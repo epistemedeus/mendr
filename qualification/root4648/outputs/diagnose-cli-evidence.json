@@ -1,0 +1,27 @@
+{
+  "name": "diagnose-cli-evidence",
+  "command": [
+    "node",
+    "node_modules/tsx/dist/cli.mjs",
+    "src/cli.ts",
+    "evidence",
+    "not-a-model"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:37:38.182016+00:00",
+  "elapsedSeconds": 0.107,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 529468,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 393571,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 1116,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "6fa74acc574246a14212eb99c9223fc3e22ce187ddafcd17995bb13f7dcc4c5d",
+  "reportArtifact": null
+}

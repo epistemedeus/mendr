@@ -1,0 +1,119 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ✓ src/registry/freshRegistry.test.ts (24 tests) 173ms
+ ✓ src/registry/evidence.test.ts (25 tests) 76ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 15ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 9ms
+ ✓ src/runtime/evidence.test.ts (14 tests) 8ms
+ ✓ src/audit/evaluatedAt.test.ts (11 tests) 5ms
+ ❯ src/cli.evidence.test.ts (5 tests | 5 failed) 313ms
+     × resolves an entryId -- the id findings actually print 71ms
+     × still resolves the bare model id 60ms
+     × shows the four fields the gate reads, and says the prose is not one of them 60ms
+     × reports PASS on a record that clears the whole conjunction 61ms
+     × exits 2 on an unknown id, naming both forms it accepts 60ms
+ ✓ src/assurance/root4410-telemetry-evidence.test.ts (4 tests) 28ms
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/cli.evidence.test.ts > mendr evidence > resolves an entryId -- the id findings actually print
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ src/cli.evidence.test.ts:29:22
+     27|   it('resolves an entryId -- the id findings actually print', async ()…
+     28|     const { exitCode, stdout } = await evidence('openai.gpt-3.5-turbo-…
+     29|     expect(exitCode).toBe(0);
+       |                      ^
+     30|     expect(stdout).toContain('openai: gpt-3.5-turbo-16k -> gpt-5.6-ter…
+     31|     expect(stdout).toContain('registry entry: openai.gpt-3.5-turbo-16k…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/cli.evidence.test.ts > mendr evidence > still resolves the bare model id
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ src/cli.evidence.test.ts:36:22
+     34|   it('still resolves the bare model id', async () => {
+     35|     const { exitCode, stdout } = await evidence('gpt-3.5-turbo-16k');
+     36|     expect(exitCode).toBe(0);
+       |                      ^
+     37|     expect(stdout).toContain('openai: gpt-3.5-turbo-16k -> gpt-5.6-ter…
+     38|     // Even when asked by model id, it prints the record's stable id, …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/cli.evidence.test.ts > mendr evidence > shows the four fields the gate reads, and says the prose is not one of them
+AssertionError: expected '' to contain 'verification : quarantined'
+
+- Expected
++ Received
+
+- verification : quarantined
+
+ ❯ src/cli.evidence.test.ts:45:20
+     43|   it('shows the four fields the gate reads, and says the prose is not …
+     44|     const { stdout } = await evidence('openai.gpt-3.5-turbo-16k.retire…
+     45|     expect(stdout).toContain('verification : quarantined');
+       |                    ^
+     46|     expect(stdout).toContain('official source confirmed : yes');
+     47|     expect(stdout).toContain('replacement confirmed     : yes');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/cli.evidence.test.ts > mendr evidence > reports PASS on a record that clears the whole conjunction
+AssertionError: expected '' to contain 'auto-apply allowed        : yes'
+
+- Expected
++ Received
+
+- auto-apply allowed        : yes
+
+ ❯ src/cli.evidence.test.ts:56:20
+     54|   it('reports PASS on a record that clears the whole conjunction', asy…
+     55|     const { stdout } = await evidence('openai.gpt-4.retirement-2026-10…
+     56|     expect(stdout).toContain('auto-apply allowed        : yes');
+       |                    ^
+     57|     expect(stdout).toContain('engine gate  : PASS -- eligible for a Ti…
+     58|   }, 60_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/cli.evidence.test.ts > mendr evidence > exits 2 on an unknown id, naming both forms it accepts
+AssertionError: expected 1 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ src/cli.evidence.test.ts:62:22
+     60|   it('exits 2 on an unknown id, naming both forms it accepts', async (…
+     61|     const { exitCode, stderr } = await evidence('not-a-model');
+     62|     expect(exitCode).toBe(2);
+       |                      ^
+     63|     expect(stderr).toContain('expected an entryId');
+     64|     expect(stderr).toContain('or a deprecated model id');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed | 8 passed (9)
+      Tests  5 failed | 113 passed (118)
+   Start at  12:36:57
+   Duration  2.71s (transform 285ms, setup 0ms, import 1.15s, tests 628ms, environment 1ms)
+

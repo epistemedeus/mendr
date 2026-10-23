@@ -1,0 +1,29 @@
+{
+  "name": "focused-unit",
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/recon/modelRetirement.test.ts",
+    "--maxWorkers",
+    "1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:32:29.806408+00:00",
+  "elapsedSeconds": 0.519,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 554488,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 394133,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 314,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "113010afb40426ae9a55312378dc12f6ebda5fbc48253756bc369d8016b3351d",
+  "reportArtifact": null
+}

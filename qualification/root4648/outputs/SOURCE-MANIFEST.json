@@ -1,0 +1,75 @@
+{
+  "base": "6e2a0c8cab5bb94817173fff43dbf67a1f834c61",
+  "testedSourceHead": "3fae0d61de2ed5bbc14468dde491a3c2a1203a22",
+  "testedSourceTree": "86f455456edd4656424a86dba0ebf6a29435087e",
+  "branch": "codex/root4648-mendr-provider-retirement-metadata-20261023",
+  "origin": "https://github.com/epistemedeus/mendr.git",
+  "changedFiles": [
+    "README.md",
+    "qualification/root4648/.gitignore",
+    "qualification/root4648/CONTRACT.md",
+    "qualification/root4648/fixtures/default-migration.json",
+    "qualification/root4648/fixtures/default-migration.txt",
+    "qualification/root4648/fixtures/default-numbers.json",
+    "qualification/root4648/fixtures/default-numbers.txt",
+    "qualification/root4648/fixtures/list-conflict.json",
+    "qualification/root4648/fixtures/list-date.json",
+    "qualification/root4648/fixtures/list-missing.json",
+    "qualification/root4648/fixtures/list-null.json",
+    "qualification/root4648/fixtures/list-omitted.json",
+    "qualification/root4648/fixtures/list-stale.json",
+    "qualification/root4648/fixtures/migration-undated.json",
+    "qualification/root4648/fixtures/migration.json",
+    "qualification/root4648/fixtures/numbers.json",
+    "qualification/root4648/fixtures/retrieve-date.json",
+    "qualification/root4648/scripts/fixed-clock.cjs",
+    "src/cli.modelRetirement.test.ts",
+    "src/cli.ts",
+    "src/recon/modelRetirement.test.ts",
+    "src/recon/modelRetirement.ts"
+  ],
+  "unchangedBaseFiles": 1054,
+  "originalQualificationFilesPreserved": 253,
+  "sourceHashes": {
+    "README.md": {
+      "bytes": 69032,
+      "sha256": "6ae6d5f4875e64a88dc2ed3b783e7f5075d92a451ea30ac2f9168d052600b737",
+      "gitBlob": "57e7e3ecb10a52780ed08ba0ed83f6a3b36c0295"
+    },
+    "package-lock.json": {
+      "bytes": 72550,
+      "sha256": "3e6180b1ebbf28224586a04d982a5bd593df14ac023aeea512b82ce6d7d7ea8c",
+      "gitBlob": "d8a8c0b3d162f19c15207096db78c00157d475c2"
+    },
+    "package.json": {
+      "bytes": 1698,
+      "sha256": "d644f577ae6e9afe08aebf45bfada4faf1b6521425c0a9c4e4f8f6a3d2a21f4d",
+      "gitBlob": "9fefe0e2a66dbe41cb17211d862c56d8cd962b18"
+    },
+    "qualification/root4648/CONTRACT.md": {
+      "bytes": 4980,
+      "sha256": "40b3b29e51827fb4552291b8b3c53666962e8ca30af89f512fc0120adee513c7",
+      "gitBlob": "9cf7ed5a43fe8b5e32a21ba0db4b8070b82f9cbd"
+    },
+    "src/cli.modelRetirement.test.ts": {
+      "bytes": 17193,
+      "sha256": "586610df043f148574e39442d76f68e6cc560b25c75d405bcb143dcf8d23dc94",
+      "gitBlob": "c61e9afdbdf3b7f40b8c680d0126a195a9c4da80"
+    },
+    "src/cli.ts": {
+      "bytes": 222607,
+      "sha256": "adf6d43f65ade5adf2ba9de00c380214e1f2017e95a70e87395128abcca68aa5",
+      "gitBlob": "0ccea2d30c63147c9997f57b99d669ca711e9793"
+    },
+    "src/recon/modelRetirement.test.ts": {
+      "bytes": 17341,
+      "sha256": "df38ec110a5688452e5639109c3aa851867a2045c68b7e8db3797274a69e6f95",
+      "gitBlob": "7724f329b193dad3e6c28a626b77a2d984b8f2f0"
+    },
+    "src/recon/modelRetirement.ts": {
+      "bytes": 18504,
+      "sha256": "ab6c0a257842fa28b39f218d32ca2c4e683175ad7aa8a6b41ddc975469dab4dc",
+      "gitBlob": "a6259e1e9ef609a6b04771ef9ea4fb5d127ddd6b"
+    }
+  }
+}

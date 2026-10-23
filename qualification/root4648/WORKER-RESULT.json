@@ -1,0 +1,135 @@
+{
+  "schema": "root4648-worker-result/v1",
+  "status": "source_qualified_ready_for_root_receiving",
+  "completedAt": "2026-10-23T13:12:20.727265+00:00",
+  "repository": "https://github.com/epistemedeus/mendr.git",
+  "branch": "codex/root4648-mendr-provider-retirement-metadata-20261023",
+  "base": "6e2a0c8cab5bb94817173fff43dbf67a1f834c61",
+  "testedSourceHead": "3fae0d61de2ed5bbc14468dde491a3c2a1203a22",
+  "testedSourceTree": "86f455456edd4656424a86dba0ebf6a29435087e",
+  "exportIdentity": "Final qualification-only HEAD/tree are supplied in the native final response; this file cannot embed its own commit hash.",
+  "sourceHashes": {
+    "README.md": {
+      "bytes": 69032,
+      "sha256": "6ae6d5f4875e64a88dc2ed3b783e7f5075d92a451ea30ac2f9168d052600b737",
+      "gitBlob": "57e7e3ecb10a52780ed08ba0ed83f6a3b36c0295"
+    },
+    "package-lock.json": {
+      "bytes": 72550,
+      "sha256": "3e6180b1ebbf28224586a04d982a5bd593df14ac023aeea512b82ce6d7d7ea8c",
+      "gitBlob": "d8a8c0b3d162f19c15207096db78c00157d475c2"
+    },
+    "package.json": {
+      "bytes": 1698,
+      "sha256": "d644f577ae6e9afe08aebf45bfada4faf1b6521425c0a9c4e4f8f6a3d2a21f4d",
+      "gitBlob": "9fefe0e2a66dbe41cb17211d862c56d8cd962b18"
+    },
+    "qualification/root4648/CONTRACT.md": {
+      "bytes": 4980,
+      "sha256": "40b3b29e51827fb4552291b8b3c53666962e8ca30af89f512fc0120adee513c7",
+      "gitBlob": "9cf7ed5a43fe8b5e32a21ba0db4b8070b82f9cbd"
+    },
+    "src/cli.modelRetirement.test.ts": {
+      "bytes": 17193,
+      "sha256": "586610df043f148574e39442d76f68e6cc560b25c75d405bcb143dcf8d23dc94",
+      "gitBlob": "c61e9afdbdf3b7f40b8c680d0126a195a9c4da80"
+    },
+    "src/cli.ts": {
+      "bytes": 222607,
+      "sha256": "adf6d43f65ade5adf2ba9de00c380214e1f2017e95a70e87395128abcca68aa5",
+      "gitBlob": "0ccea2d30c63147c9997f57b99d669ca711e9793"
+    },
+    "src/recon/modelRetirement.test.ts": {
+      "bytes": 17341,
+      "sha256": "df38ec110a5688452e5639109c3aa851867a2045c68b7e8db3797274a69e6f95",
+      "gitBlob": "7724f329b193dad3e6c28a626b77a2d984b8f2f0"
+    },
+    "src/recon/modelRetirement.ts": {
+      "bytes": 18504,
+      "sha256": "ab6c0a257842fa28b39f218d32ca2c4e683175ad7aa8a6b41ddc975469dab4dc",
+      "gitBlob": "a6259e1e9ef609a6b04771ef9ea4fb5d127ddd6b"
+    }
+  },
+  "inputSchema": "mendr-models-metadata/v1",
+  "evidenceSchema": "mendr-model-retirement/v1",
+  "contract": "CONTRACT.md",
+  "checks": {
+    "fullSerial": {
+      "passed": 2337,
+      "files": 130,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "outputs/full-facts-final.json"
+    },
+    "focused": {
+      "passed": 107,
+      "files": 2,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "outputs/focused-facts-final.json"
+    },
+    "relatedExisting": {
+      "passed": 118,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "outputs/related-safety-recovery.json"
+    },
+    "defaultParity": {
+      "controls": 4,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true,
+      "exitsEqual": true,
+      "receipt": "outputs/default-parity-final.json"
+    },
+    "build": "outputs/terminal-build.json",
+    "networkControls": "outputs/network-controls.json",
+    "consumerReplay": "outputs/consumer-cases.json"
+  },
+  "firstFailuresRetained": [
+    "focused-built-cli",
+    "related-safety",
+    "full-serial",
+    "malformed-utf8-red",
+    "fact-retention-red"
+  ],
+  "targetedSelectionSkips": {
+    "malformedUtf8Red": 31,
+    "factRetentionRed": 99
+  },
+  "resources": {
+    "totalReserveKiB": 2097152,
+    "peakSampledAggregateRssKiB": 1468656,
+    "sampleMs": 100,
+    "reserveStops": 0,
+    "modelChildren": 0,
+    "heavyCommands": "serial",
+    "accounting": "Final commands include the positively identified same-task launch/native/supervisor tree and all owned command descendants; earlier receipts label their narrower supervisor root. RSS is sampled, not a kernel high-water mark."
+  },
+  "preservation": {
+    "unchangedBaseFiles": 1054,
+    "originalQualificationFiles": 253,
+    "packageAndLockUnchanged": true,
+    "registryAndMigrationAndCustomerSourceUnchanged": true
+  },
+  "policy": {
+    "maxCaptureBytes": 1048576,
+    "maxRecords": 2048,
+    "maxCaptureAgeHours": 24,
+    "futureToleranceSeconds": 0,
+    "authentication": "caller_supplied_unverified",
+    "clock": "existing MENDR_EVALUATED_AT convention on opt-in only",
+    "exactBinding": "provider/from and declared direct OpenAI scope; serving endpoint not recorded in artifact",
+    "unsupported": "partner/proxy scope and fine-tunes; no alias/snapshot/base-model inheritance"
+  },
+  "limits": [
+    "Synthetic offline fixtures, not real account responses or endpoint accessibility.",
+    "Schedule advice only; no replacement, semantic quality, measured billing or write assurance.",
+    "No registry promotion/freshening, lifecycle change, verification-switch change or new write authority.",
+    "Existing --record schema retains original artifact/rollout facts; save JSON for reconciliation.",
+    "No live Models/provider API/key/account action, installation, public PR/comment/release, deployment, upstream adoption, customer or revenue."
+  ],
+  "handback": "WORKER-HANDBACK.md",
+  "recipe": "RECIPE.md",
+  "selfReview": "SELF-REVIEW.md",
+  "commands": "outputs/COMMANDS.json"
+}

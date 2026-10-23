@@ -1,0 +1,31 @@
+{
+  "name": "malformed-utf8-red",
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/cli.modelRetirement.test.ts",
+    "--testNamePattern",
+    "refuses malformed UTF-8 migration bytes",
+    "--maxWorkers",
+    "1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:52:23.030306+00:00",
+  "elapsedSeconds": 1.557,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 880764,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 393571,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 3709,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "e15bd434d3d1eccef6d0e71b4e4707c6ebf883042fa6c96ffd2a59b3fa338c21",
+  "reportArtifact": null
+}

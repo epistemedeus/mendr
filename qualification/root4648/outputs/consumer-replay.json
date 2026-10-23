@@ -1,0 +1,24 @@
+{
+  "name": "consumer-replay",
+  "command": [
+    "node",
+    "qualification/root4648/scripts/qualify-consumer.mjs"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T13:11:26.509728+00:00",
+  "elapsedSeconds": 4.171,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 714868,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 393571,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 8008,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "04315765bafa2de98704bec008a75c0942c5d5bc1dcd641ac3765202c6bbed39",
+  "reportArtifact": null
+}

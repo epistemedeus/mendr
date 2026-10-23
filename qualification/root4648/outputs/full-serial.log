@@ -1,0 +1,1217 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ✓ src/cli.tiers.test.ts (26 tests) 34606ms
+     ✓ maps every finding class onto its documented Tier B reason code  1406ms
+     ✓ never generates a patch for a Tier B finding  1109ms
+     ✓ keeps the deprecated JSON keys, DERIVED from the tier data (no drift)  1107ms
+     ✓ prints counts that equal the items listed under each tier  1116ms
+     ✓ does not claim a fix was applied when nothing was written  1116ms
+     ✓ orders the sections A, then B, then C  1107ms
+     ✓ prints every Tier B finding with location, ids, both reason forms and no-patch  1115ms
+     ✓ makes one id in several tiers legible: line numbers, and a note saying why  1129ms
+     ✓ reports the replacement verdict for every Tier B finding in --json  1112ms
+     ✓ never auto-applies a quarantined record  1083ms
+     ✓ says WHY the held finding is held, and names the record to go read  1090ms
+     ✓ never auto-applies a record stamped unverified  1081ms
+     ✓ never auto-applies a record stamped unverifiable  1078ms
+     ✓ stays a Tier A candidate in the count and reports its disposition  1424ms
+     ✓ is listed in Tier B with the reason audit gives it, and never patched  1087ms
+     ✓ takes a held finding's quarantine verdict and reason from its record, prefixed ids included  2167ms
+     ✓ builds a held finding from the record the scan matched, prefixed ids included  1079ms
+     ✓ does not report the repo as clean, and says why each call is held  1087ms
+     ✓ fails a --fail-on tierB gate  1087ms
+     ✓ under --write, leaves every held call untouched and still fixes the calls around it  1531ms
+     ✓ is Tier B with its inline twin's reason, and fix-llm, watch and audit agree  4717ms
+     ✓ under --write, leaves every held shape untouched and still applies the controls  1657ms
+     ✓ gates on tierB  1127ms
+     ✓ accepts "blocked" as a deprecated alias for tierB, and says so on stderr  1112ms
+     ✓ rejects an unknown class, naming the accepted ones  768ms
+     ✓ leads with what mendr would auto-fix, then itemises the rest  1111ms
+ ✓ src/report/tiers.test.ts (65 tests) 27ms
+ ✓ src/fix/paramFix.test.ts (41 tests) 2820ms
+     ✓ holds every real request fed a gateway-prefixed const, and nothing fed a plain one  460ms
+ ✓ src/python/paramGuard.test.ts (53 tests) 135ms
+ ✓ src/usage/coupledParams.test.ts (110 tests) 279ms
+ ✓ src/report/llmReport.test.ts (49 tests) 14ms
+ ✓ src/usage/tsGuards.test.ts (67 tests) 108ms
+ ✓ src/audit/issueReport.test.ts (55 tests) 69ms
+ ✓ src/migrate/actionOutcome.test.ts (24 tests) 2358ms
+     ✓ decides from what the real CLI emits for a held-only repository, and says so on the open pull request  1688ms
+ ✓ src/python/scanPy.test.ts (31 tests) 65ms
+ ✓ src/fix/modelId.test.ts (23 tests) 121ms
+ ✓ src/migrate/migrate.test.ts (33 tests) 4629ms
+     ✓ re-checks a TypeScript migration and reports it beside the four gates  508ms
+     ✓ VERIFIED and PR-ready when the sandbox build and tests pass  691ms
+     ✓ FAILED and not PR-ready when the sandbox tests fail  685ms
+     ✓ --write applies to the working tree ONLY on a verified verdict  664ms
+     ✓ --write writes NOTHING when a gate fails, leaving the tree untouched  660ms
+     ✓ a test script that exits 0 without running a test is INCONCLUSIVE, so the migration is never PR-ready on it  439ms
+ ✓ src/audit/investigation.test.ts (37 tests) 14ms
+ ❯ src/audit/auditStdout.test.ts (30 tests | 27 failed) 107ms
+     × a JavaScript-only repo reports exposure with jsFiles counted, not "inconclusive" 17ms
+     × the human report names the JS file count in the coverage matrix 5ms
+     × a retiring id in a test file is informational (test_fixture, Tier C, not patch-eligible) 4ms
+     ✓ clean and exposure both exit 0 by default (monitoring stays green) 6ms
+     × --fail-on-exposure makes exposure exit 1 (opt-in CI gate) 4ms
+     × an inconclusive scan exits 3, never 0 (not mistaken for clean/resolved) 3ms
+     × proves the tie-back when code reads the env-var config selector, and reports the reader 3ms
+     × leaves the tie-back unproven when no code reads the env var 4ms
+     × carries every issue counter, including carriedCount 3ms
+     × reports carriedCount > 0 when a surface did not complete, and stays non-closable 3ms
+     × calls a located call site VERIFIED DIRECT PROVIDER, never "proven production" 3ms
+     × states plainly that production usage was not measured 3ms
+     × renders a patch decision as ELIGIBILITY with no change applied 3ms
+     × JSON keeps decision:"patch" but states patchEligible/patchApplied/productionUsage 3ms
+     × JSON carries the evidence a UI needs: repo, timestamp, next action, a limited snippet and a line hash per location 2ms
+     × JSON snippets pass through the same secret redaction as the issue body 3ms
+     × never reports patchApplied true for any finding 3ms
+     × marks configuration NOT APPLICABLE (○) when no supported config files exist 2ms
+     × still ticks configuration when real config files were scanned 3ms
+     × REPEATABILITY: saving mendr JSON inside the repo does not change the next run 3ms
+     × stamps generatedBy on its own JSON so it can be recognised anywhere 2ms
+     × ignores a mendr report even when renamed and placed at the repo root 3ms
+     × never treats generated-artifact directories as configuration 3ms
+     × a catalog-only repo concludes NO EXPOSURE, not EXPOSURE DETECTED 2ms
+     ✓ says "Monitor provider status" when a record has no dated deadline 2ms
+     × needs NO credentials: a full audit runs with every provider key unset 2ms
+     × says runtime usage is NOT MEASURED when nothing is connected 3ms
+     × discloses unsupported languages present in the repo 2ms
+     × cannot reach a clean conclusion when a surface was skipped 3ms
+     ✓ never prints a provider key that is present in the environment 4ms
+ ✓ src/usage/llmRegistry.test.ts (36 tests) 30ms
+ ✓ src/registry/verify.test.ts (33 tests) 10ms
+ ✓ src/registry/graph.test.ts (72 tests) 20ms
+ ✓ src/registry/discover.test.ts (36 tests) 14ms
+ ✓ src/usage/lockedSdks.test.ts (38 tests) 41ms
+ ✓ src/python/guards.test.ts (37 tests) 46ms
+ ✓ src/cli.runFooter.test.ts (14 tests) 18465ms
+     ✓ says LOOK and zero files modified on a run without --write  1472ms
+     ✓ says WRITE and counts the files it actually wrote  1517ms
+     ✓ still says WRITE over a refused write, and reports zero files modified  1523ms
+     ✓ reports the intent even when the flags make a write impossible  1110ms
+     ✓ prints an occurrence count that equals tier A + tier B + tier C  1115ms
+     ✓ holds the same identity on a repo where nothing is auto-fixable  1112ms
+     ✓ carries the same three facts in --json  1556ms
+     ✓ reports LOOK and zero in --json for a read-only run  1146ms
+     ✓ never promises a future --write in a report that already refused one  1459ms
+     ✓ points at the Summary rather than predicting, on a successful --write  1544ms
+     ✓ keeps the forward statement on a LOOK run  1478ms
+     ✓ never denies a literal is a model id while patching that same literal  1097ms
+     ✓ says WRITE and zero when a blind required type-check blocks the patch  1475ms
+     ✓ prints the run block on a clean repo too, where every number is zero  860ms
+ ✓ src/report/prBody.test.ts (31 tests) 8ms
+ ✓ src/registry/candidates.test.ts (31 tests) 16ms
+ ✓ src/registry/announcedRetirements.test.ts (17 tests) 117ms
+ ✓ src/usage/pinnedRequirements.test.ts (62 tests) 291ms
+ ✓ src/audit/auditAction.test.ts (25 tests) 10ms
+ ✓ src/cli.evalGate.test.ts (12 tests) 20606ms
+     ✓ without a config: Tier A stands, behavior is NOT tested, and the report says how to enable it  1575ms
+     ✓ a PASSING eval keeps Tier A, states the pass, and --write applies the fix  1552ms
+     ✓ a FAILING eval downgrades Tier A, refuses --write, leaves the file alone, and exits non-zero  1526ms
+     ✓ --eval-command overrides the config file  1552ms
+     ✓ reports the eval outcome in --json (behavioralVerification + eval object)  1548ms
+     ✓ omits the eval object and reports not-tested when nothing was configured  1500ms
+     ✓ reports the inconclusive case in --json with a reason, and still says NOT tested  3051ms
+     ✓ a malformed mendr.config.json is a hard error naming the file, not a silent skip  782ms
+     ✓ a TIMED-OUT eval with --write leaves the file alone and exits non-zero  3031ms
+     ✓ a COMMAND-NOT-FOUND eval with --write leaves the file alone and exits non-zero  1496ms
+     ✓ NOT RUN (no eval configured) is unchanged: --write still applies the fix on the code gates alone  1503ms
+     ✓ a dependency-less checkout is inconclusive, never starts the eval, and writes nothing  1488ms
+ ✓ src/cli.gatePolicy.test.ts (9 tests) 12871ms
+     ✓ gates.tests.required = true: downgraded, --write refused, exit non-zero, gate named  1478ms
+     ✓ gates.tests.required = false: Tier A stands, and tests still report inconclusive  1485ms
+     ✓ the default policy leaves tests advisory -- but a BLIND type-check now blocks  1475ms
+     ✓ a FAILING required eval blocks Tier A and names the command  1541ms
+     ✓ gates.eval.command is the same setting as the legacy evalCommand  1543ms
+     ✓ gates.eval.required = false makes a failing eval advisory -- but it still blocks  1525ms
+     ✓ a required eval with NO command blocks rather than dropping the requirement  1499ms
+     ✓ itemizes policy and outcomes, and marks the blocking gate  1537ms
+     ✓ fails immediately, naming the file and the field, before any scanning  787ms
+ ✓ src/cli.modelRetirement.test.ts (31 tests) 60569ms
+     ✓ preserves frozen base stdout/stderr/exits with no new flag, including an ignored invalid evaluation pin  4100ms
+     ✓ requires --migration and refuses new write flags  1983ms
+     ✓ corroborates date-only evidence and retains both digests, artifact age and stale registry facts  972ms
+     ✓ changes the existing recovery consumer for an undated artifact while measured verdict and signals stay identical  2018ms
+     ✓ keeps null, omitted field and missing model distinct; null cannot clear an artifact warning  3001ms
+     ✓ list/retrieve agree and preserve unrelated provider/model swaps  2023ms
+     ✓ cannot cross-bind wrong-model evidence  1062ms
+     ✓ cannot cross-bind duplicate evidence  1012ms
+     ✓ cannot cross-bind azure-provider evidence  1020ms
+     ✓ cannot cross-bind proxy-surface evidence  1056ms
+     ✓ cannot cross-bind partner-document evidence  1001ms
+     ✓ cannot cross-bind fine-tune evidence  1031ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:59:59Z without declaring observed shutdown  1029ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:00Z without declaring observed shutdown  1020ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:01Z without declaring observed shutdown  990ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:30:00+14:00 without declaring observed shutdown  1038ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:30:00-12:00 without declaring observed shutdown  1011ms
+     ✓ independently withholds stale/future/conflicting captures and recovers with valid current evidence  9436ms
+     ✓ refuses malformed input with exit 2 and no private marker  1014ms
+     ✓ refuses shape input with exit 2 and no private marker  1047ms
+     ✓ refuses bytes input with exit 2 and no private marker  3407ms
+     ✓ refuses records input with exit 2 and no private marker  1451ms
+     ✓ refuses locator input with exit 2 and no private marker  1010ms
+     ✓ refuses error-body input with exit 2 and no private marker  1050ms
+     ✓ refuses duplicate-key input with exit 2 and no private marker  1002ms
+     ✓ refuses clock input with exit 2 and no private marker  1019ms
+     ✓ refuses migration input with exit 2 and no private marker  1041ms
+     ✓ refuses malformed migration rows before consuming telemetry=false  1004ms
+     ✓ refuses malformed migration rows before consuming telemetry=true  1016ms
+     ✓ renders a scoped human result including provenance, conflict and unauthenticated evidence  1047ms
+     ✓ keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered  10657ms
+ ✓ src/usage/findingUniqueness.test.ts (10 tests) 925ms
+ ✓ src/registry/aiReader.test.ts (29 tests) 36ms
+ ✓ src/watch/exposure.test.ts (25 tests) 265ms
+ ✓ src/registry/freshRegistry.test.ts (24 tests) 173ms
+ ✓ src/recon/modelRetirement.test.ts (67 tests) 40ms
+ ✓ src/registry/catalog.test.ts (22 tests) 11ms
+ ✓ src/usage/fineTuneScan.test.ts (10 tests) 65ms
+ ✓ src/config/yamlEntries.test.ts (28 tests) 22ms
+ ✓ src/watch/watchAction.test.ts (13 tests) 10ms
+ ❯ src/usage/lockedSdks.cli.test.ts (17 tests | 10 failed) 88ms
+     × shows the locked SDK and its resolution in the human report 14ms
+     ✓ never changes the conclusion or the exit code, even with --fail-on-exposure 13ms
+     × puts nothing about SDKs into --json 3ms
+     × reads the SDK release record from the bundled copy, even beside a registry override 7ms
+     × leaves a malformed lockfile to the configuration scan, which still fails closed 3ms
+     × is appended to GITHUB_STEP_SUMMARY and changes nothing in the JSON or the exit code 6ms
+     ✓ writes nothing unless the workflow turns it on 3ms
+     ✓ is not written by the human report 3ms
+     × survives an unwritable summary file 5ms
+     ✓ sets MENDR_JOB_SUMMARY: 'on' in the audit step's env 0ms
+     ✓ does not touch the run block that sends the audit to Mendr 0ms
+     × shows a pinned SDK in the human report 3ms
+     ✓ never changes the conclusion or the exit code 10ms
+     × puts nothing about Python SDKs into --json or the job summary 2ms
+     × shows the locked SDK in the human report 3ms
+     ✓ never changes the conclusion or the exit code 9ms
+     × puts nothing about uv.lock into --json or the job summary 3ms
+ ✓ src/registry/evidence.test.ts (25 tests) 74ms
+ ✓ src/audit/hardening.test.ts (18 tests) 18ms
+ ✓ src/cli.heldCalls.test.ts (3 tests) 8029ms
+     ✓ gets the same held calls, with the same reason codes, from audit, fix-llm and migrate  3454ms
+     ✓ lists a held call in a file the tsconfig leaves out, and in a .js file without allowJs, as audit and fix-llm do  3423ms
+     ✓ prints HELD FOR REVIEW and each held call, never NO MIGRATION  1151ms
+ ✓ src/gates/secondCheck.test.ts (17 tests) 166ms
+ ✓ src/registry/validateRegistry.test.ts (26 tests) 13ms
+ ✓ src/cli.fineTuneIds.test.ts (5 tests) 9242ms
+     ✓ fix-llm lists each one as held for review, with its own row, and proposes no patch  2218ms
+     ✓ fix-llm --write swaps the base model beside a fine-tune and leaves every fine-tune byte-identical  1516ms
+     ✓ audit counts them as exposure, on the same lines, and says why they are never swapped  2205ms
+     ✓ watch puts each one under review, in the same tier and on the same lines  1126ms
+     ✓ are not findings in fix-llm or audit  2175ms
+ ✓ src/config/classification.test.ts (19 tests) 23ms
+ ✓ src/usage/uvLock.test.ts (25 tests) 30ms
+ ✓ src/registry/samplingRules.test.ts (16 tests) 249ms
+ ✓ src/migrate/heldCalls.test.ts (10 tests) 1719ms
+     ✓ is held_for_review, never no_migration, and lists every held call with its code and sentence  349ms
+ ✓ src/cli.realRepoMisses.test.ts (5 tests) 10219ms
+     ✓ is listed under surface_capped with the guard's reason, the code audit gives it  2620ms
+     ✓ is listed in fix-llm Tier B under the reason audit gives it, with the scanner's sentence  3421ms
+     ✓ keeps a max_tokens parameter as written, and still redacts a key on the next line  1036ms
+     ✓ still redacts ADMIN_TOKENS on the line after a model id in a .env  801ms
+     ✓ is listed in fix-llm Tier B, and audit puts the same line in the same tier  2340ms
+ ✓ src/config/repoConfig.test.ts (26 tests) 19ms
+ ✓ src/cli.gatedScope.test.ts (4 tests) 6013ms
+     ✓ patches a finding outside the root tsconfig instead of blaming a gate  3036ms
+     ✓ reports a type-check that ran blind as inconclusive, never as passed  2975ms
+ ✓ src/python/hardening.test.ts (18 tests) 34ms
+ ✓ src/redact/sanitize.test.ts (63 tests) 63ms
+ ✓ src/fix/atomicWrite.test.ts (10 tests) 12ms
+ ✓ src/usage/requestObjectFlow.test.ts (14 tests) 2522ms
+     ✓ is a live call, not catalog data, when the client is assigned later (the Node server shape)  311ms
+     ✓ classifies hundreds of standalone model objects in one large file within budget  345ms
+     ✓ an object handed to a function that is not a provider endpoint  480ms
+ ✓ src/gates/runTests.test.ts (16 tests) 797ms
+ ✓ src/registry/checkDates.test.ts (23 tests) 7ms
+ ❯ src/registry/freshRegistry.cli.test.ts (7 tests | 7 failed) 57ms
+     × an operator registry of unknown age (unsigned MENDR_REGISTRY_FILE) makes a zero-finding scan INCONCLUSIVE: exit 3, ✗ row, explained 21ms
+     × a registry proven fresh by a signature the run trusts lets "no exposure" stand: exit 0 13ms
+     × exposure still wins over a stale registry (stale knowledge can prove a problem, never its absence) 4ms
+     × a requested refresh that cannot happen (no network) degrades to the bundled registry, says why, and completes 4ms
+     × --offline wins over a requested refresh: no network call, the reason names offline 4ms
+     × an operator registry of unknown age is recorded as STALE in the artifact and said in the notes 3ms
+     × a registry proven fresh by a signature the run trusts is recorded as FRESH, and the human report says which one 6ms
+ ✓ src/fix/llmFix.test.ts (7 tests) 563ms
+     ✓ follows a swap through a shorthand, a cast, `!`, quoted keys or a request variable with its parameter fix, as inline (paramsOnSwappedCallsOnly: false)  340ms
+ ✓ src/python/fineTuneScan.test.ts (7 tests) 36ms
+ ✓ src/gates/policy.test.ts (16 tests) 6ms
+ ✓ src/report/registryFooter.test.ts (10 tests) 11ms
+ ✓ src/config/configParse.test.ts (28 tests) 9ms
+ ✓ src/gates/evalCases.test.ts (12 tests) 12ms
+ ✓ src/config/fixturePaths.test.ts (14 tests) 23ms
+ ✓ src/recon/usageAudit.test.ts (11 tests) 10ms
+ ✓ src/migrate/reportToApp.test.ts (6 tests) 262ms
+ ✓ src/cli.writeRefusal.test.ts (4 tests) 5995ms
+     ✓ never claims an auto-fix for a write that was refused  1524ms
+     ✓ records the refusal in --json, where stderr is not the document  1475ms
+     ✓ reports a SUCCESSFUL write in the same field, so the two are told apart  1498ms
+     ✓ a read-only run that never asked to write reports no attempt at all  1497ms
+ ✓ src/watch/issue.test.ts (16 tests) 7ms
+ ✓ src/fix/tierAFloor.test.ts (21 tests) 71ms
+ ✓ src/cli.pythonParamGuard.test.ts (1 test) 3562ms
+     ✓ gets the same tier and reason code from fix-llm, audit and watch, and is not swapped  3561ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 15ms
+ ✓ src/python/cliDefault.test.ts (15 tests) 48ms
+ ✓ src/usage/scanRepo.test.ts (9 tests) 371ms
+ ✓ src/fix/verifyGate.test.ts (4 tests) 48ms
+ ✓ src/registry/claimCheck.test.ts (13 tests) 6ms
+ ✓ src/suppress/suppress.test.ts (16 tests) 7ms
+ ✓ src/usage/fineTune.test.ts (11 tests) 8ms
+ ✓ src/registry/sdkReleases.test.ts (14 tests) 13ms
+ ✓ src/registry/refreshSummary.test.ts (10 tests) 6ms
+ ✓ src/python/metamorphic.test.ts (11 tests) 37ms
+ ✓ src/gates/runEval.test.ts (8 tests) 946ms
+     ✓ is inconclusive (never fail) when the command times out  756ms
+ ✓ src/gates/typecheck.test.ts (7 tests) 9742ms
+     ✓ passes when the patched code is valid (the migrated field exists)  1746ms
+     ✓ fails when the patch introduces a NEW type error  1148ms
+     ✓ is baseline-relative: a PRE-EXISTING error the patch does not touch still passes  1217ms
+     ✓ collects the packages the baseline could not resolve  1062ms
+     ✓ reports a deep import as its package, once  2408ms
+     ✓ does not call a repo’s own broken relative import a missing package  1099ms
+     ✓ says nothing when every package resolved  1059ms
+ ✓ src/config/scanConfig.test.ts (16 tests) 21ms
+ ✓ src/cli.validateRegistry.test.ts (5 tests) 3941ms
+     ✓ passes on the shipped registry, and says how many records it checked  793ms
+     ✓ fails, and names the record, when a verified stamp loses one of its proofs  788ms
+     ✓ fails when a record is switched on under a non-verified status  780ms
+     ✓ fails a quarantine that no longer says what has to be resolved  791ms
+     ✓ fails a hand-edited entryId  788ms
+ ✓ src/audit/testReferences.test.ts (6 tests) 26ms
+ ✓ src/migrate/approvalGate.test.ts (6 tests) 4ms
+ ✓ src/config/difyRegression.test.ts (7 tests) 15ms
+ ❯ src/audit/schemaCompat.test.ts (3 tests | 3 failed) 23ms
+     × the scanner emits the schema version the App expects 14ms
+     × real audit output passes the App's validateReport unchanged 4ms
+     × the App can sanitize it, count its decisions, and read the fields it renders 4ms
+ ✓ src/gates/sandboxSecrets.test.ts (7 tests) 6ms
+ ❯ src/audit/noNetwork.test.ts (5 tests | 5 failed) 34ms
+     × completes under a preload that blocks every outbound network primitive 16ms
+     × the human report, --install scaffolding and the GitHub issue body also complete offline 4ms
+     × CONTROL: the optional provider usage read is blocked by the same preload 5ms
+     × the default audit runs with --offline 4ms
+     × the provider read refuses under MENDR_OFFLINE=1 and names the blocked operation 4ms
+ ✓ src/fix/rename.test.ts (4 tests) 650ms
+     ✓ renames the property at EVERY matching site  336ms
+ ✓ src/migrate/redactionE2E.test.ts (2 tests) 3055ms
+     ✓ redacts a key sitting in the diff context of a finding  1504ms
+     ✓ redacts a key inlined in the eval command it echoes back  1550ms
+ ✓ src/cli.evidence.test.ts (5 tests) 3931ms
+     ✓ resolves an entryId -- the id findings actually print  793ms
+     ✓ still resolves the bare model id  784ms
+     ✓ shows the four fields the gate reads, and says the prose is not one of them  784ms
+     ✓ reports PASS on a record that clears the whole conjunction  792ms
+     ✓ exits 2 on an unknown id, naming both forms it accepts  777ms
+ ✓ src/migrate/root4410-second-check-write.test.ts (1 test) 886ms
+   ✓ a failed second check cannot verify or write; a real healthy check subsequently recovers  885ms
+ ✓ src/intersect/intersect.test.ts (6 tests) 4ms
+ ✓ src/detect/diffSpec.test.ts (5 tests) 7ms
+ ✓ src/assurance/root4410-telemetry-evidence.test.ts (4 tests) 28ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 9ms
+ ✓ src/runtime/evidence.test.ts (14 tests) 8ms
+ ✓ src/registry/invariant.test.ts (6 tests) 34ms
+ ✓ src/registry/manifest.test.ts (15 tests) 29ms
+ ✓ src/report/coverageDenominator.test.ts (13 tests) 5ms
+ ✓ src/usage/jsScan.test.ts (6 tests) 32ms
+ ✓ src/audit/evaluatedAt.test.ts (11 tests) 5ms
+ ✓ src/release/checkPins.test.ts (5 tests) 151ms
+ ✓ src/report/runFooter.test.ts (9 tests) 4ms
+ ✓ src/usage/root4410-request-spread.test.ts (15 tests) 391ms
+ ✓ src/python/requestDict.test.ts (8 tests) 299ms
+ ✓ src/report/usageReport.test.ts (8 tests) 4ms
+ ✓ src/registry/normalize.test.ts (17 tests) 5ms
+ ✓ src/registry/pageText.test.ts (13 tests) 5ms
+ ✓ src/watch/watchStdout.test.ts (2 tests) 2237ms
+     ✓ prints the generated badge in the terminal (non-json)  1145ms
+     ✓ --json carries occurrence + model counts, both deadline fields, and per-model verdicts  1091ms
+ ✓ src/registry/oracles.test.ts (6 tests) 4ms
+ ✓ src/config/readerTieBack.test.ts (6 tests) 26ms
+ ✓ src/watch/watchWriteErrors.test.ts (2 tests) 1872ms
+     ✓ warns and still prints the summary when .mendr/exposure.json cannot be written  1103ms
+     ✓ exits 1 with a friendly line when --install cannot create the workflow dir  767ms
+ ✓ src/watch/exposureFile.test.ts (6 tests) 5ms
+ ✓ src/registry/checkRules.test.ts (7 tests) 5ms
+ ✓ src/registry/entryId.test.ts (9 tests) 13ms
+ ✓ src/report/configReport.test.ts (7 tests) 4ms
+ ✓ src/registry/paramRuleGap.test.ts (5 tests) 4ms
+ ❯ src/registry/graph.cli.test.ts (4 tests | 4 failed) 27ms
+     × walks a PyPI SDK major forward through the shipped release record 15ms
+     × refuses a spec that could span majors, with a usage error rather than an answer 4ms
+     × answers an SDK question even when the model registry beside it is broken 4ms
+     × still sends a model id down the model path 3ms
+ ✓ src/audit/languages.test.ts (3 tests) 10ms
+ ✓ src/gates/runBuild.test.ts (5 tests) 401ms
+ ✓ src/report/plain.test.ts (8 tests) 4ms
+ ✓ src/usage/resolveStripe.test.ts (2 tests) 458ms
+     ✓ keys nested reads by the TYPE name, not the variable name  301ms
+ ✓ src/migrate/restrictRegistry.test.ts (4 tests) 3ms
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 3ms
+ ✓ src/cli.test.ts (1 test) 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 56 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — JavaScript source is analyzed, not reported as a gap > a JavaScript-only repo reports exposure with jsFiles counted, not "inconclusive"
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:89:25
+     87|     const { stdout, exitCode } = await runAudit([dir, '--json']);
+     88|     expect(exitCode).toBe(0);
+     89|     const report = JSON.parse(stdout);
+       |                         ^
+     90|     expect(report.conclusion).toBe('exposure_detected');
+     91|     expect(report.coverage.source.jsFiles).toBeGreaterThanOrEqual(2);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — JavaScript source is analyzed, not reported as a gap > the human report names the JS file count in the coverage matrix
+AssertionError: expected '' to match /\d+ JS/
+
+- Expected:
+/\d+ JS/
+
++ Received:
+""
+
+ ❯ src/audit/auditStdout.test.ts:110:20
+    108|     const { stdout, exitCode } = await runAudit([dir]);
+    109|     expect(exitCode).toBe(0);
+    110|     expect(stdout).toMatch(/\d+ JS/);
+       |                    ^
+    111|   }, 120_000);
+    112| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — test files are scanned as test-only references, never migrated > a retiring id in a test file is informational (test_fixture, Tier C, not patch-eligible)
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:126:25
+    124|     const { stdout, exitCode } = await runAudit([dir, '--json']);
+    125|     expect(exitCode).toBe(0);
+    126|     const report = JSON.parse(stdout);
+       |                         ^
+    127|     const prod = report.investigations.find((i: { model: string }) => …
+    128|     const test = report.investigations.find((i: { model: string }) => …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — deterministic exit codes (a broken scan never reads as clean) > --fail-on-exposure makes exposure exit 1 (opt-in CI gate)
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ src/audit/auditStdout.test.ts:158:87
+    156|
+    157|   it('--fail-on-exposure makes exposure exit 1 (opt-in CI gate)', asyn…
+    158|     expect((await runAudit([repo({ 'x.ts': CALL }), '--fail-on-exposur…
+       |                                                                                       ^
+    159|     // clean still exits 0 even with the flag
+    160|     expect((await runAudit([repo({ 'y.ts': 'export const x = 1;\n' }),…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — deterministic exit codes (a broken scan never reads as clean) > an inconclusive scan exits 3, never 0 (not mistaken for clean/resolved)
+AssertionError: expected +0 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ ❯ src/audit/auditStdout.test.ts:165:82
+    163|   it('an inconclusive scan exits 3, never 0 (not mistaken for clean/re…
+    164|     // --skip-source: the audit cannot conclude anything.
+    165|     expect((await runAudit([repo({ 'x.ts': CALL }), '--skip-source']))…
+       |                                                                                  ^
+    166|     // a repo mendr cannot analyze (Go only) is inconclusive, not clea…
+    167|     expect((await runAudit([repo({ 'main.go': 'package main\n' })])).e…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — reader tie-back (config env-var read proven in code) > proves the tie-back when code reads the env-var config selector, and reports the reader
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:187:25
+    185|     const { stdout, exitCode } = await runAudit([dir, '--json']);
+    186|     expect(exitCode).toBe(0);
+    187|     const report = JSON.parse(stdout);
+       |                         ^
+    188|     expect(report.coverage.readerTieBack.proven).toBe(true);
+    189|     const inv = report.investigations.find((i: { model: string }) => i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — reader tie-back (config env-var read proven in code) > leaves the tie-back unproven when no code reads the env var
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:207:25
+    205|     writeFileSync(join(dir, 'unrelated.ts'), 'export const x = 1;\n');
+    206|     const { stdout } = await runAudit([dir, '--json']);
+    207|     const report = JSON.parse(stdout);
+       |                         ^
+    208|     expect(report.coverage.readerTieBack.proven).toBe(false);
+    209|     const inv = report.investigations.find((i: { model: string }) => i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — the JSON contract the GitHub workflow depends on > carries every issue counter, including carriedCount
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:219:23
+    217|     const { stdout, exitCode } = await runAudit([dir, '--sha', 'abc123…
+    218|     expect(exitCode).toBe(0);
+    219|     const json = JSON.parse(stdout);
+       |                       ^
+    220|     expect(json.schema).toBe('mendr-audit/v3');
+    221|     expect(json.issue).toBeDefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — the JSON contract the GitHub workflow depends on > reports carriedCount > 0 when a surface did not complete, and stays non-closable
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:235:17
+    233|     const prior = join(dir, 'prior.md');
+    234|     const first = await runAudit([dir, '--sha', 'aaa', '--issue-body',…
+    235|     expect(JSON.parse(first.stdout).issue.openCount).toBeGreaterThan(0…
+       |                 ^
+    236|
+    237|     // Skip the source scan: the previously-found code findings cannot…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > calls a located call site VERIFIED DIRECT PROVIDER, never "proven production"
+AssertionError: expected '' to contain 'verified direct provider call site'
+
+- Expected
++ Received
+
+- verified direct provider call site
+
+ ❯ src/audit/auditStdout.test.ts:251:20
+    249|     const dir = sampleRepo();
+    250|     const { stdout } = await runAudit([dir]);
+    251|     expect(stdout).toContain('verified direct provider call site');
+       |                    ^
+    252|     // Source analysis cannot prove production executes anything.
+    253|     expect(stdout).not.toContain('proven production call site');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > states plainly that production usage was not measured
+AssertionError: expected '' to contain 'Production usage was not measured.'
+
+- Expected
++ Received
+
+- Production usage was not measured.
+
+ ❯ src/audit/auditStdout.test.ts:259:20
+    257|     const dir = sampleRepo();
+    258|     const { stdout } = await runAudit([dir]);
+    259|     expect(stdout).toContain('Production usage was not measured.');
+       |                    ^
+    260|   }, 120_000);
+    261|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > renders a patch decision as ELIGIBILITY with no change applied
+AssertionError: expected '' to contain 'Decision: PATCH ELIGIBLE'
+
+- Expected
++ Received
+
+- Decision: PATCH ELIGIBLE
+
+ ❯ src/audit/auditStdout.test.ts:265:20
+    263|     const dir = sampleRepo();
+    264|     const { stdout } = await runAudit([dir]);
+    265|     expect(stdout).toContain('Decision: PATCH ELIGIBLE');
+       |                    ^
+    266|     expect(stdout).toContain('Status: No change applied');
+    267|     // The next action names the command and the exact line it would r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > JSON keeps decision:"patch" but states patchEligible/patchApplied/productionUsage
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:278:22
+    276|     const dir = sampleRepo();
+    277|     const { stdout } = await runAudit([dir, '--json']);
+    278|     const inv = JSON.parse(stdout).investigations.find((i: { decision:…
+       |                      ^
+    279|     expect(inv).toBeDefined();
+    280|     expect(inv.decision).toBe('patch'); // compatibility
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > JSON carries the evidence a UI needs: repo, timestamp, next action, a limited snippet and a line hash per location
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:290:25
+    288|     const dir = sampleRepo();
+    289|     const { stdout } = await runAudit([dir, '--json']);
+    290|     const report = JSON.parse(stdout);
+       |                         ^
+    291|     expect(typeof report.repo).toBe('string');
+    292|     expect(report.generatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > JSON snippets pass through the same secret redaction as the issue body
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:328:25
+    326|     expect(stdout).not.toContain('sk-proj-abcdefghijklmnopqrstuvwxyz01…
+    327|     expect(stdout).not.toContain('sk-abcdefghijklmnopqrstuvwxyz0123');
+    328|     const report = JSON.parse(stdout);
+       |                         ^
+    329|     const loc = report.investigations.find((i: { decision: string }) =…
+    330|     const snippet = loc.snippet.lines.join(EOL_LF);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > never reports patchApplied true for any finding
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:338:28
+    336|     const dir = sampleRepo();
+    337|     const { stdout } = await runAudit([dir, '--json']);
+    338|     for (const inv of JSON.parse(stdout).investigations) {
+       |                            ^
+    339|       expect(inv.patchApplied).toBe(false);
+    340|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > marks configuration NOT APPLICABLE (○) when no supported config files exist
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:346:17
+    344|     const dir = sampleRepo(); // has .ts and .go only — no config files
+    345|     const { stdout } = await runAudit([dir, '--json']);
+    346|     expect(JSON.parse(stdout).coverage.config.filesScanned).toBe(0);
+       |                 ^
+    347|     const human = await runAudit([dir]);
+    348|     expect(human.stdout).toContain('○ Configuration:     not applicabl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — claim discipline (release-copy corrections) > still ticks configuration when real config files were scanned
+AssertionError: expected '' to match /✓ Configuration:\s+1 files scanned/
+
+- Expected:
+/✓ Configuration:\s+1 files scanned/
+
++ Received:
+""
+
+ ❯ src/audit/auditStdout.test.ts:357:20
+    355|     writeFileSync(join(dir, 'app.yaml'), 'model: gpt-4\n');
+    356|     const { stdout } = await runAudit([dir]);
+    357|     expect(stdout).toMatch(/✓ Configuration:\s+1 files scanned/);
+       |                    ^
+    358|   }, 120_000);
+    359| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — no recursive self-detection > REPEATABILITY: saving mendr JSON inside the repo does not change the next run
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:367:24
+    365|   it('REPEATABILITY: saving mendr JSON inside the repo does not change…
+    366|     const dir = sampleRepo();
+    367|     const first = JSON.parse((await runAudit([dir, '--json'])).stdout);
+       |                        ^
+    368|
+    369|     // Save mendr's own output INTO the scanned repository, at the roo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — no recursive self-detection > stamps generatedBy on its own JSON so it can be recognised anywhere
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:383:17
+    381|     const dir = sampleRepo();
+    382|     const { stdout } = await runAudit([dir, '--json']);
+    383|     expect(JSON.parse(stdout).generatedBy).toBe('mendr');
+       |                 ^
+    384|   }, 120_000);
+    385|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — no recursive self-detection > ignores a mendr report even when renamed and placed at the repo root
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:388:25
+    386|   it('ignores a mendr report even when renamed and placed at the repo …
+    387|     const dir = sampleRepo();
+    388|     const report = JSON.parse((await runAudit([dir, '--json'])).stdout…
+       |                         ^
+    389|     const before = report.investigations.length;
+    390|     // Rename it to something innocuous — the marker, not the path, mu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — no recursive self-detection > never treats generated-artifact directories as configuration
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:404:23
+    402|     }
+    403|     const { stdout } = await runAudit([dir, '--json']);
+    404|     const json = JSON.parse(stdout);
+       |                       ^
+    405|     const files = json.investigations.flatMap((i: { locations: { selec…
+    406|       [...i.locations.selectors, ...i.locations.catalog].map((l) => l.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — no recursive self-detection > a catalog-only repo concludes NO EXPOSURE, not EXPOSURE DETECTED
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:421:23
+    419|     writeFileSync(join(dir, 'catalog.yaml'), ids.map((m) => `${m}:\n  …
+    420|     const { stdout } = await runAudit([dir, '--json']);
+    421|     const json = JSON.parse(stdout);
+       |                       ^
+    422|     expect(json.conclusion).toBe('no_exposure_in_completed_surfaces');
+    423|     expect(json.investigations.every((i: { decision: string }) => i.de…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — release guarantees > needs NO credentials: a full audit runs with every provider key unset
+AssertionError: expected '' to contain 'Audit coverage'
+
+- Expected
++ Received
+
+- Audit coverage
+
+ ❯ src/audit/auditStdout.test.ts:456:20
+    454|     });
+    455|     expect(exitCode).toBe(0);
+    456|     expect(stdout).toContain('Audit coverage');
+       |                    ^
+    457|     expect(stdout).toContain('EXPOSURE DETECTED');
+    458|   }, 120_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — release guarantees > says runtime usage is NOT MEASURED when nothing is connected
+AssertionError: expected '' to contain '○ Runtime usage:'
+
+- Expected
++ Received
+
+- ○ Runtime usage:
+
+ ❯ src/audit/auditStdout.test.ts:463:20
+    461|     const dir = sampleRepo();
+    462|     const { stdout } = await runAudit([dir]);
+    463|     expect(stdout).toContain('○ Runtime usage:');
+       |                    ^
+    464|     expect(stdout).toContain('not measured');
+    465|   }, 120_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — release guarantees > discloses unsupported languages present in the repo
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:470:23
+    468|     const dir = sampleRepo();
+    469|     const { stdout } = await runAudit([dir, '--json']);
+    470|     const json = JSON.parse(stdout);
+       |                       ^
+    471|     expect(json.coverage.source.unanalyzedLanguages.join(' ')).toConta…
+    472|   }, 120_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/56]⎯
+
+ FAIL  src/audit/auditStdout.test.ts > audit CLI — release guarantees > cannot reach a clean conclusion when a surface was skipped
+SyntaxError: Unexpected end of JSON input
+ ❯ src/audit/auditStdout.test.ts:479:23
+    477|     writeFileSync(join(dir, 'ok.ts'), 'export const x = 1;\n');
+    478|     const { stdout } = await runAudit([dir, '--skip-source', '--json']…
+    479|     const json = JSON.parse(stdout);
+       |                       ^
+    480|     expect(json.conclusion).toBe('inconclusive');
+    481|     expect(json.conclusion).not.toBe('clean');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/56]⎯
+
+ FAIL  src/audit/noNetwork.test.ts > the default audit needs no network — proven, not promised > completes under a preload that blocks every outbound network primitive
+AssertionError: expected undefined to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ src/audit/noNetwork.test.ts:46:24
+     44|     const dir = repo();
+     45|     const r = await run([ 'audit', dir, '--json' ]);
+     46|     expect(r.exitCode).toBe(0);
+       |                        ^
+     47|     const report = JSON.parse(r.stdout);
+     48|     expect(report.conclusion).toBe('exposure_detected');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/56]⎯
+
+ FAIL  src/audit/noNetwork.test.ts > the default audit needs no network — proven, not promised > the human report, --install scaffolding and the GitHub issue body also complete offline
+AssertionError: expected undefined to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ src/audit/noNetwork.test.ts:57:24
+     55|     const body = join(dir, 'issue.md');
+     56|     const r = await run(['audit', dir, '--issue-body', body, '--sha', …
+     57|     expect(r.exitCode).toBe(0);
+       |                        ^
+     58|     expect(r.stdout).toContain('Conclusion: EXPOSURE DETECTED');
+     59|     const inst = await run(['audit', dir, '--install']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/56]⎯
+
+ FAIL  src/audit/noNetwork.test.ts > the default audit needs no network — proven, not promised > CONTROL: the optional provider usage read is blocked by the same preload
+AssertionError: expected '\n' to contain 'no-network preload'
+
+- Expected
++ Received
+
+- no-network preload
++
++
+
+ ❯ src/audit/noNetwork.test.ts:67:40
+     65|     const r = await run(['audit', dir, 'openai'], { MENDR_PROVIDER_KEY…
+     66|     expect(r.exitCode).not.toBe(0);
+     67|     expect(`${r.stdout}\n${r.stderr}`).toContain('no-network preload');
+       |                                        ^
+     68|   }, 120_000);
+     69| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/56]⎯
+
+ FAIL  src/audit/noNetwork.test.ts > --offline / MENDR_OFFLINE=1 — the same guarantee from inside the process > the default audit runs with --offline
+AssertionError: expected undefined to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ src/audit/noNetwork.test.ts:75:24
+     73|     const dir = repo();
+     74|     const r = await execa('tsx', ['src/cli.ts', 'audit', dir, '--json'…
+     75|     expect(r.exitCode).toBe(0);
+       |                        ^
+     76|     expect(JSON.parse(r.stdout).conclusion).toBe('exposure_detected');
+     77|   }, 120_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/56]⎯
+
+ FAIL  src/audit/noNetwork.test.ts > --offline / MENDR_OFFLINE=1 — the same guarantee from inside the process > the provider read refuses under MENDR_OFFLINE=1 and names the blocked operation
+AssertionError: expected '\n' to contain 'mendr --offline'
+
+- Expected
++ Received
+
+- mendr --offline
++
++
+
+ ❯ src/audit/noNetwork.test.ts:86:40
+     84|     });
+     85|     expect(r.exitCode).not.toBe(0);
+     86|     expect(`${r.stdout}\n${r.stderr}`).toContain('mendr --offline');
+       |                                        ^
+     87|   }, 120_000);
+     88| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/56]⎯
+
+ FAIL  src/audit/schemaCompat.test.ts > scanner JSON validates against the App consumer > the scanner emits the schema version the App expects
+AssertionError: expected undefined to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ auditJson src/audit/schemaCompat.test.ts:48:22
+     46|     env: { ...process.env, MENDR_UNICODE: '1' },
+     47|   });
+     48|   expect(r.exitCode).toBe(0);
+       |                      ^
+     49|   return r.stdout;
+     50| }
+ ❯ src/audit/schemaCompat.test.ts:54:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/56]⎯
+
+ FAIL  src/audit/schemaCompat.test.ts > scanner JSON validates against the App consumer > real audit output passes the App's validateReport unchanged
+AssertionError: expected undefined to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ auditJson src/audit/schemaCompat.test.ts:48:22
+     46|     env: { ...process.env, MENDR_UNICODE: '1' },
+     47|   });
+     48|   expect(r.exitCode).toBe(0);
+       |                      ^
+     49|   return r.stdout;
+     50| }
+ ❯ src/audit/schemaCompat.test.ts:59:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/56]⎯
+
+ FAIL  src/audit/schemaCompat.test.ts > scanner JSON validates against the App consumer > the App can sanitize it, count its decisions, and read the fields it renders
+AssertionError: expected undefined to be +0 // Object.is equality
+
+- Expected:
+0
+
++ Received:
+undefined
+
+ ❯ auditJson src/audit/schemaCompat.test.ts:48:22
+     46|     env: { ...process.env, MENDR_UNICODE: '1' },
+     47|   });
+     48|   expect(r.exitCode).toBe(0);
+       |                      ^
+     49|   return r.stdout;
+     50| }
+ ❯ src/audit/schemaCompat.test.ts:66:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/56]⎯
+
+ FAIL  src/registry/freshRegistry.cli.test.ts > registry freshness through the real CLI > an operator registry of unknown age (unsigned MENDR_REGISTRY_FILE) makes a zero-finding scan INCONCLUSIVE: exit 3, ✗ row, explained
+AssertionError: expected +0 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ ❯ src/registry/freshRegistry.cli.test.ts:84:24
+     82|     const repo = cleanRepo();
+     83|     const j = await audit([repo, '--json'], { MENDR_REGISTRY_FILE: fil…
+     84|     expect(j.exitCode).toBe(3);
+       |                        ^
+     85|     const report = JSON.parse(j.stdout);
+     86|     expect(report.conclusion).toBe('inconclusive');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/56]⎯
+
+ FAIL  src/registry/freshRegistry.cli.test.ts > registry freshness through the real CLI > a registry proven fresh by a signature the run trusts lets "no exposure" stand: exit 0
+SyntaxError: Unexpected end of JSON input
+ ❯ src/registry/freshRegistry.cli.test.ts:101:25
+     99|     const j = await audit([cleanRepo(), '--json'], { MENDR_REGISTRY_FI…
+    100|     expect(j.exitCode).toBe(0);
+    101|     const report = JSON.parse(j.stdout);
+       |                         ^
+    102|     expect(report.conclusion).toBe('no_exposure_in_completed_surfaces'…
+    103|     expect(report.coverage.registry).toMatchObject({ source: 'file', f…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/56]⎯
+
+ FAIL  src/registry/freshRegistry.cli.test.ts > registry freshness through the real CLI > exposure still wins over a stale registry (stale knowledge can prove a problem, never its absence)
+SyntaxError: Unexpected end of JSON input
+ ❯ src/registry/freshRegistry.cli.test.ts:112:25
+    110|     const j = await audit([exposedRepo(), '--json'], { MENDR_REGISTRY_…
+    111|     expect(j.exitCode).toBe(0); // exposure exits 0 by default (monito…
+    112|     const report = JSON.parse(j.stdout);
+       |                         ^
+    113|     expect(report.conclusion).toBe('exposure_detected');
+    114|     expect(report.coverage.registry.freshness).toBe('stale');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/56]⎯
+
+ FAIL  src/registry/freshRegistry.cli.test.ts > registry freshness through the real CLI > a requested refresh that cannot happen (no network) degrades to the bundled registry, says why, and completes
+SyntaxError: Unexpected end of JSON input
+ ❯ src/registry/freshRegistry.cli.test.ts:125:25
+    123|     });
+    124|     expect(j.exitCode).toBe(0);
+    125|     const report = JSON.parse(j.stdout);
+       |                         ^
+    126|     expect(report.conclusion).toBe('no_exposure_in_completed_surfaces'…
+    127|     expect(report.coverage.registry).toMatchObject({ source: 'bundled'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/56]⎯
+
+ FAIL  src/registry/freshRegistry.cli.test.ts > registry freshness through the real CLI > --offline wins over a requested refresh: no network call, the reason names offline
+SyntaxError: Unexpected end of JSON input
+ ❯ src/registry/freshRegistry.cli.test.ts:139:17
+    137|     const j = await audit([cleanRepo(), '--json', '--refresh-registry'…
+    138|     expect(j.exitCode).toBe(0);
+    139|     expect(JSON.parse(j.stdout).coverage.registry.refresh.error).toMat…
+       |                 ^
+    140|   }, 180_000);
+    141| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/56]⎯
+
+ FAIL  src/registry/freshRegistry.cli.test.ts > migrate plans against the same freshness-graded registry as the audit > an operator registry of unknown age is recorded as STALE in the artifact and said in the notes
+SyntaxError: Unexpected end of JSON input
+ ❯ src/registry/freshRegistry.cli.test.ts:150:27
+    148|     const j = await migrate([repo, '--skip-verify', '--json'], { MENDR…
+    149|     expect(j.exitCode).toBe(0);
+    150|     const artifact = JSON.parse(j.stdout);
+       |                           ^
+    151|     expect(artifact.migrated).toBe(true);
+    152|     expect(artifact.registry).toMatchObject({ source: 'file', publishe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/56]⎯
+
+ FAIL  src/registry/freshRegistry.cli.test.ts > migrate plans against the same freshness-graded registry as the audit > a registry proven fresh by a signature the run trusts is recorded as FRESH, and the human report says which one
+SyntaxError: Unexpected end of JSON input
+ ❯ src/registry/freshRegistry.cli.test.ts:162:27
+    160|     const j = await migrate([repo, '--skip-verify', '--json'], { MENDR…
+    161|     expect(j.exitCode).toBe(0);
+    162|     const artifact = JSON.parse(j.stdout);
+       |                           ^
+    163|     expect(artifact.registry).toMatchObject({ source: 'file', freshnes…
+    164|     expect(artifact.notes.some((n: string) => /STALE/.test(n))).toBe(f…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/56]⎯
+
+ FAIL  src/registry/graph.cli.test.ts > mendr resolve through the real CLI > walks a PyPI SDK major forward through the shipped release record
+AssertionError: expected '' to contain 'pypi:openai@0 -> pypi:openai@1'
+
+- Expected
++ Received
+
+- pypi:openai@0 -> pypi:openai@1
+
+ ❯ src/registry/graph.cli.test.ts:32:22
+     30|     const r = await mendrResolve(['pypi:openai@0.28.1']);
+     31|     expect(r.exitCode).toBe(0);
+     32|     expect(r.stdout).toContain('pypi:openai@0 -> pypi:openai@1');
+       |                      ^
+     33|     expect(r.stdout).toContain('sdk_newer_majors');
+     34|     expect(r.stdout).toContain('1 (2023-09-29)');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/56]⎯
+
+ FAIL  src/registry/graph.cli.test.ts > mendr resolve through the real CLI > refuses a spec that could span majors, with a usage error rather than an answer
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ src/registry/graph.cli.test.ts:40:24
+     38|   it('refuses a spec that could span majors, with a usage error rather…
+     39|     const r = await mendrResolve(['npm:openai@latest']);
+     40|     expect(r.exitCode).toBe(2);
+       |                        ^
+     41|     expect(r.stderr).toContain('cannot read one major version');
+     42|     expect(r.stdout).toBe('');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/56]⎯
+
+ FAIL  src/registry/graph.cli.test.ts > mendr resolve through the real CLI > answers an SDK question even when the model registry beside it is broken
+AssertionError: expected '' to contain 'npm:openai@4 -> npm:openai@5'
+
+- Expected
++ Received
+
+- npm:openai@4 -> npm:openai@5
+
+ ❯ src/registry/graph.cli.test.ts:52:22
+     50|     const r = await mendrResolve(['npm:openai@^4.28.0', '--registry', …
+     51|     expect(r.exitCode).toBe(0);
+     52|     expect(r.stdout).toContain('npm:openai@4 -> npm:openai@5');
+       |                      ^
+     53|   }, 180_000);
+     54|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[45/56]⎯
+
+ FAIL  src/registry/graph.cli.test.ts > mendr resolve through the real CLI > still sends a model id down the model path
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/registry/graph.cli.test.ts:58:51
+     56|     const r = await mendrResolve(['gpt-4-0613']);
+     57|     expect(r.exitCode).toBe(0);
+     58|     expect(r.stdout.startsWith('gpt-4-0613 -> ')).toBe(true);
+       |                                                   ^
+     59|     expect(r.stdout).not.toContain('sdk_');
+     60|   }, 180_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[46/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Provider SDKs row through the real CLI > shows the locked SDK and its resolution in the human report
+AssertionError: expected '' to match /Provider SDKs:\s+1 declared by the ro…/
+
+- Expected:
+/Provider SDKs:\s+1 declared by the root project in package-lock\.json/
+
++ Received:
+""
+
+ ❯ src/usage/lockedSdks.cli.test.ts:51:22
+     49|   it('shows the locked SDK and its resolution in the human report', as…
+     50|     const r = await audit(fixture(LOCK));
+     51|     expect(r.stdout).toMatch(/Provider SDKs:\s+1 declared by the root …
+       |                      ^
+     52|     expect(r.stdout).toContain('openai 4.24.7');
+     53|     expect(r.stdout).toContain('newer major lines seen');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[47/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Provider SDKs row through the real CLI > puts nothing about SDKs into --json
+SyntaxError: Unexpected end of JSON input
+ ❯ src/usage/lockedSdks.cli.test.ts:67:23
+     65|   it('puts nothing about SDKs into --json', async () => {
+     66|     const r = await audit(fixture(LOCK), ['--json']);
+     67|     const json = JSON.parse(r.stdout);
+       |                       ^
+     68|     const text = JSON.stringify(json);
+     69|     expect(text).not.toMatch(/Provider SDKs|lockedSdks|newer major|4\.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[48/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Provider SDKs row through the real CLI > reads the SDK release record from the bundled copy, even beside a registry override
+AssertionError: expected '' to contain 'newer major lines seen'
+
+- Expected
++ Received
+
+- newer major lines seen
+
+ ❯ src/usage/lockedSdks.cli.test.ts:84:22
+     82|     );
+     83|     const r = await audit(fixture(LOCK), [], { MENDR_REGISTRY_FILE: jo…
+     84|     expect(r.stdout).toContain('newer major lines seen');
+       |                      ^
+     85|     expect(r.stdout).not.toContain('is not one of the 0 SDK packages');
+     86|   }, 180_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[49/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Provider SDKs row through the real CLI > leaves a malformed lockfile to the configuration scan, which still fails closed
+TypeError: .toMatch() expects to receive a string, but got undefined
+ ❯ src/usage/lockedSdks.cli.test.ts:93:34
+     91|   it('leaves a malformed lockfile to the configuration scan, which sti…
+     92|     const r = await audit(fixture('{ not json', CLEAN_SOURCE));
+     93|     expect(conclusion(r.stdout)).toMatch(/INCONCLUSIVE/);
+       |                                  ^
+     94|     expect(r.stdout).toMatch(/Provider SDKs:\s+package-lock\.json coul…
+     95|   }, 180_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[50/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Provider SDKs section in the Actions job summary > is appended to GITHUB_STEP_SUMMARY and changes nothing in the JSON or the exit code
+Error: ENOENT: no such file or directory, open '/tmp/r4648-01hpz0lt/mendr-summary-VOEcOa/step-summary.md'
+ ❯ src/usage/lockedSdks.cli.test.ts:128:18
+    126|       expect(withSummary.stdout).toBe(plain.stdout);
+    127|       expect(withSummary.exitCode).toBe(plain.exitCode);
+    128|       const md = readFileSync(file, 'utf8');
+       |                  ^
+    129|       expect(md).toContain('### Mendr — provider SDKs (information onl…
+    130|       expect(md).toContain('openai 4.24.7');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[51/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Provider SDKs section in the Actions job summary > survives an unwritable summary file
+AssertionError: expected '' to contain 'job summary not written'
+
+- Expected
++ Received
+
+- job summary not written
+
+ ❯ src/usage/lockedSdks.cli.test.ts:157:27
+    155|     expect(broken.stdout).toBe(plain.stdout);
+    156|     expect(broken.exitCode).toBe(plain.exitCode);
+    157|     expect(broken.stderr).toContain('job summary not written');
+       |                           ^
+    158|   }, 180_000);
+    159| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[52/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Python SDKs row through the real CLI > shows a pinned SDK in the human report
+AssertionError: expected '' to match /Python SDKs:\s+1 listed in the root r…/
+
+- Expected:
+/Python SDKs:\s+1 listed in the root requirements\*\.txt/
+
++ Received:
+""
+
+ ❯ src/usage/lockedSdks.cli.test.ts:197:22
+    195|   it('shows a pinned SDK in the human report', async () => {
+    196|     const r = await audit(pyFixture('openai==1.40.6\n'));
+    197|     expect(r.stdout).toMatch(/Python SDKs:\s+1 listed in the root requ…
+       |                      ^
+    198|     expect(r.stdout).toContain('openai 1.40.6 (requirements.txt)');
+    199|   }, 180_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[53/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the Python SDKs row through the real CLI > puts nothing about Python SDKs into --json or the job summary
+SyntaxError: Unexpected end of JSON input
+ ❯ src/usage/lockedSdks.cli.test.ts:213:32
+    211|     const file = summaryFile();
+    212|     const r = await audit(pyFixture('openai==1.40.6\n'), ['--json'], {…
+    213|     expect(JSON.stringify(JSON.parse(r.stdout))).not.toMatch(/Python S…
+       |                                ^
+    214|     expect(readFileSync(file, 'utf8')).not.toMatch(/Python SDKs|1\.40\…
+    215|   }, 180_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[54/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the uv.lock part of the Python SDKs row > shows the locked SDK in the human report
+AssertionError: expected '' to match /Python SDKs:\s+1 listed in uv\.lock/
+
+- Expected:
+/Python SDKs:\s+1 listed in uv\.lock/
+
++ Received:
+""
+
+ ❯ src/usage/lockedSdks.cli.test.ts:252:22
+    250|   it('shows the locked SDK in the human report', async () => {
+    251|     const r = await audit(uvFixture(true));
+    252|     expect(r.stdout).toMatch(/Python SDKs:\s+1 listed in uv\.lock/);
+       |                      ^
+    253|     expect(r.stdout).toContain('openai 2.29.0 (uv.lock)');
+    254|   }, 180_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[55/56]⎯
+
+ FAIL  src/usage/lockedSdks.cli.test.ts > the uv.lock part of the Python SDKs row > puts nothing about uv.lock into --json or the job summary
+SyntaxError: Unexpected end of JSON input
+ ❯ src/usage/lockedSdks.cli.test.ts:268:32
+    266|     const file = summaryFile();
+    267|     const r = await audit(uvFixture(true), ['--json'], { MENDR_JOB_SUM…
+    268|     expect(JSON.stringify(JSON.parse(r.stdout))).not.toMatch(/uv\.lock…
+       |                                ^
+    269|     expect(readFileSync(file, 'utf8')).not.toMatch(/Python SDKs|2\.29\…
+    270|   }, 180_000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[56/56]⎯
+
+
+ Test Files  6 failed | 124 passed (130)
+      Tests  56 failed | 2272 passed (2328)
+   Start at  12:40:50
+   Duration  272.29s (transform 1.85s, setup 0ms, import 18.76s, tests 239.91s, environment 9ms)
+

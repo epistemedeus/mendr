@@ -1,0 +1,229 @@
+{
+  "cases": [
+    {
+      "name": "exact-base-undated",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/.scratch/baseline-dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration-undated.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": null,
+      "reconciliation": null,
+      "effectiveSchedule": null,
+      "revertScheduleOption": false
+    },
+    {
+      "name": "current-exact-corroborated",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-date.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "scheduled",
+      "reconciliation": "corroborated",
+      "effectiveSchedule": {
+        "source": "corroborated",
+        "shutdownDate": "2026-10-24"
+      },
+      "revertScheduleOption": true
+    },
+    {
+      "name": "current-exact-undated",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration-undated.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-date.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "scheduled",
+      "reconciliation": "metadata_schedule",
+      "effectiveSchedule": {
+        "source": "metadata",
+        "shutdownDate": "2026-10-24"
+      },
+      "revertScheduleOption": true
+    },
+    {
+      "name": "null",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-null.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "no_announced_date",
+      "reconciliation": "conflict",
+      "effectiveSchedule": {
+        "source": "none",
+        "shutdownDate": null
+      },
+      "revertScheduleOption": false
+    },
+    {
+      "name": "omitted",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-omitted.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "not_reported",
+      "reconciliation": "artifact_only",
+      "effectiveSchedule": {
+        "source": "artifact",
+        "shutdownDate": "2026-10-24"
+      },
+      "revertScheduleOption": true
+    },
+    {
+      "name": "missing",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-missing.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "missing_model",
+      "reconciliation": "artifact_only",
+      "effectiveSchedule": {
+        "source": "artifact",
+        "shutdownDate": "2026-10-24"
+      },
+      "revertScheduleOption": true
+    },
+    {
+      "name": "conflict",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-conflict.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "scheduled",
+      "reconciliation": "conflict",
+      "effectiveSchedule": {
+        "source": "none",
+        "shutdownDate": null
+      },
+      "revertScheduleOption": false
+    },
+    {
+      "name": "stale",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-stale.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "scheduled",
+      "reconciliation": "unknown",
+      "effectiveSchedule": {
+        "source": "none",
+        "shutdownDate": null
+      },
+      "revertScheduleOption": false
+    },
+    {
+      "name": "recovered-current",
+      "command": [
+        "/exec-daemon/node",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/numbers.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/migration.json",
+        "--models-metadata",
+        "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/fixtures/list-date.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "measuredVerdict": "verified",
+      "metadataState": "scheduled",
+      "reconciliation": "corroborated",
+      "effectiveSchedule": {
+        "source": "corroborated",
+        "shutdownDate": "2026-10-24"
+      },
+      "revertScheduleOption": true
+    }
+  ],
+  "exactBaseFlagRefusal": {
+    "exitCode": 1,
+    "stderr": "error: unknown option '--models-metadata'"
+  },
+  "recoveredByteStructureEqual": true
+}

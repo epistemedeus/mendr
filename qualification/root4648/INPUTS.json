@@ -1,0 +1,81 @@
+{
+  "operatingInputs": {
+    "schema": "pilot.native-inputs.v1",
+    "binding": "00dc60376cce37f85c017c1af756a12288f6b82fb10dd846a5a0678b96a632c8",
+    "directory": "/home/ubuntu/root-sol-window100337/root4648-mendr-provider-retirement-metadata-20261023/inputs",
+    "product": {
+      "repository": "https://github.com/epistemedeus/mendr.git",
+      "commit": "6e2a0c8cab5bb94817173fff43dbf67a1f834c61"
+    },
+    "operating": {
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "658a37002f59df0b449b4f0c7d07842875350a48",
+      "account": "epistemedeus"
+    },
+    "assignment": {
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "658a37002f59df0b449b4f0c7d07842875350a48",
+      "account": "epistemedeus"
+    },
+    "members": [
+      {
+        "role": "instructions",
+        "path": "AGENTS.md",
+        "repository": "https://github.com/epistemedeus/pilot.git",
+        "commit": "658a37002f59df0b449b4f0c7d07842875350a48",
+        "blob": "1948fb788970e41ca2524cb7f743e58241ba04c5",
+        "bytes": 33312,
+        "sha256": "c2dc6304ed19e7ec9d3370353408667ebb61355b0c54b8f750fa4390f59c68a3"
+      },
+      {
+        "role": "state",
+        "path": "overview/STATE.md",
+        "repository": "https://github.com/epistemedeus/pilot.git",
+        "commit": "658a37002f59df0b449b4f0c7d07842875350a48",
+        "blob": "1f6660699ba8cf574428e056195b0ec3d797fe6a",
+        "bytes": 30979,
+        "sha256": "7f73c2c0e32730258dbe8f29badf65f1630bc3cc362b7259bab1a04b6f3970b0"
+      },
+      {
+        "role": "execution-plan",
+        "path": "overview/MACHINE-COMMERCE-EXECUTION-PLAN.md",
+        "repository": "https://github.com/epistemedeus/pilot.git",
+        "commit": "658a37002f59df0b449b4f0c7d07842875350a48",
+        "blob": "050b10a522d9bb075bbc94f8f816ed56db143cb2",
+        "bytes": 32647,
+        "sha256": "2178ba0d156418d78006e4495717d6715a0313034f4108fbbbb895718fb380cb"
+      },
+      {
+        "role": "assignment",
+        "path": "overview/remote-worker/assignments/ROOT4648-MENDR-PROVIDER-RETIREMENT-METADATA.md",
+        "repository": "https://github.com/epistemedeus/pilot.git",
+        "commit": "658a37002f59df0b449b4f0c7d07842875350a48",
+        "blob": "be3b26ed1b009ff83c0caf76b9e4d679d94e7cc8",
+        "bytes": 10428,
+        "sha256": "77a2867e4234cfd0693412846ef947a6906402320fb9816c9f3785a92ec5bf0c"
+      }
+    ],
+    "at": "2026-10-23T12:22:11.692Z"
+  },
+  "receiptSha256": "075d77d33877c1cc3c29c52ed94644bf4a1b3781b1553d0eb901b4e78b1e4876",
+  "admittedManifestSha256": "bfbe2bda3ea0e904c705394d9d8082c40335a3b629bfd47558bb5dd08b349aab",
+  "branch": "codex/root4648-mendr-provider-retirement-metadata-20261023",
+  "executionLifetime": {
+    "host": {
+      "provider": "cursor",
+      "agentId": "bc-ef42aba6-30ac-475e-a65d-56705caa5eb8",
+      "bootId": "75d10aec-f516-4b98-bbfe-b8ff0ee0ca5e"
+    },
+    "enrollment": {
+      "path": "/home/ubuntu/root-sol-window100337/root4654-research-control-20261023/LIFETIME-ENROLLMENT.json",
+      "sha256": "139f3b9be9a2bdd359f3234a55c7973fedcf65d77d00d0edb4dbf5fa50299f12"
+    },
+    "checkpointBy": "2026-10-23T14:01:50.356Z",
+    "requiredUntil": "2026-10-23T14:16:50.356Z"
+  },
+  "model": "gpt-6.1-sol",
+  "effort": "xhigh",
+  "totalReserveKiB": 2097152,
+  "modelChildren": 0,
+  "qualification": "ROOT4648 only; no other job ownership"
+}

@@ -1,0 +1,10 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ✓ src/recon/modelRetirement.test.ts (67 tests) 41ms
+
+ Test Files  1 passed (1)
+      Tests  67 passed (67)
+   Start at  12:32:30
+   Duration  245ms (transform 68ms, setup 0ms, import 84ms, tests 41ms, environment 0ms)
+

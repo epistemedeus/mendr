@@ -1,0 +1,361 @@
+
+> mendr@0.5.11-alpha test
+> vitest run --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ✓ src/cli.modelRetirement.test.ts (32 tests) 61672ms
+     ✓ preserves frozen base stdout/stderr/exits with no new flag, including an ignored invalid evaluation pin  4075ms
+     ✓ requires --migration and refuses new write flags  1975ms
+     ✓ corroborates date-only evidence and retains both digests, artifact age and stale registry facts  984ms
+     ✓ changes the existing recovery consumer for an undated artifact while measured verdict and signals stay identical  2029ms
+     ✓ keeps null, omitted field and missing model distinct; null cannot clear an artifact warning  3041ms
+     ✓ list/retrieve agree and preserve unrelated provider/model swaps  2075ms
+     ✓ cannot cross-bind wrong-model evidence  1045ms
+     ✓ cannot cross-bind duplicate evidence  1017ms
+     ✓ cannot cross-bind azure-provider evidence  1029ms
+     ✓ cannot cross-bind proxy-surface evidence  1047ms
+     ✓ cannot cross-bind partner-document evidence  1008ms
+     ✓ cannot cross-bind fine-tune evidence  1001ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:59:59Z without declaring observed shutdown  1059ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:00Z without declaring observed shutdown  1028ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:01Z without declaring observed shutdown  1001ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:30:00+14:00 without declaring observed shutdown  1061ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:30:00-12:00 without declaring observed shutdown  1022ms
+     ✓ independently withholds stale/future/conflicting captures and recovers with valid current evidence  9288ms
+     ✓ refuses malformed input with exit 2 and no private marker  1014ms
+     ✓ refuses shape input with exit 2 and no private marker  1044ms
+     ✓ refuses bytes input with exit 2 and no private marker  3204ms
+     ✓ refuses records input with exit 2 and no private marker  1424ms
+     ✓ refuses locator input with exit 2 and no private marker  1018ms
+     ✓ refuses error-body input with exit 2 and no private marker  1043ms
+     ✓ refuses duplicate-key input with exit 2 and no private marker  1081ms
+     ✓ refuses clock input with exit 2 and no private marker  1017ms
+     ✓ refuses migration input with exit 2 and no private marker  1114ms
+     ✓ refuses malformed UTF-8 migration bytes without replacing them in provenance  1026ms
+     ✓ refuses malformed migration rows before consuming telemetry=false  1005ms
+     ✓ refuses malformed migration rows before consuming telemetry=true  1052ms
+     ✓ renders a scoped human result including provenance, conflict and unauthenticated evidence  1010ms
+     ✓ keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered  10830ms
+ ✓ src/audit/auditStdout.test.ts (30 tests) 38971ms
+     ✓ a JavaScript-only repo reports exposure with jsFiles counted, not "inconclusive"  1402ms
+     ✓ the human report names the JS file count in the coverage matrix  1143ms
+     ✓ a retiring id in a test file is informational (test_fixture, Tier C, not patch-eligible)  1031ms
+     ✓ clean and exposure both exit 0 by default (monitoring stays green)  1857ms
+     ✓ --fail-on-exposure makes exposure exit 1 (opt-in CI gate)  1845ms
+     ✓ an inconclusive scan exits 3, never 0 (not mistaken for clean/resolved)  1590ms
+     ✓ proves the tie-back when code reads the env-var config selector, and reports the reader  2113ms
+     ✓ leaves the tie-back unproven when no code reads the env var  794ms
+     ✓ carries every issue counter, including carriedCount  1091ms
+     ✓ reports carriedCount > 0 when a surface did not complete, and stays non-closable  1821ms
+     ✓ calls a located call site VERIFIED DIRECT PROVIDER, never "proven production"  1042ms
+     ✓ states plainly that production usage was not measured  1050ms
+     ✓ renders a patch decision as ELIGIBILITY with no change applied  1031ms
+     ✓ JSON keeps decision:"patch" but states patchEligible/patchApplied/productionUsage  1039ms
+     ✓ JSON carries the evidence a UI needs: repo, timestamp, next action, a limited snippet and a line hash per location  1031ms
+     ✓ JSON snippets pass through the same secret redaction as the issue body  1028ms
+     ✓ never reports patchApplied true for any finding  1047ms
+     ✓ marks configuration NOT APPLICABLE (○) when no supported config files exist  2106ms
+     ✓ still ticks configuration when real config files were scanned  1088ms
+     ✓ REPEATABILITY: saving mendr JSON inside the repo does not change the next run  2068ms
+     ✓ stamps generatedBy on its own JSON so it can be recognised anywhere  1036ms
+     ✓ ignores a mendr report even when renamed and placed at the repo root  2064ms
+     ✓ never treats generated-artifact directories as configuration  1067ms
+     ✓ a catalog-only repo concludes NO EXPOSURE, not EXPOSURE DETECTED  1685ms
+     ✓ says "Monitor provider status" when a record has no dated deadline  837ms
+     ✓ needs NO credentials: a full audit runs with every provider key unset  1070ms
+     ✓ says runtime usage is NOT MEASURED when nothing is connected  1064ms
+     ✓ discloses unsupported languages present in the repo  1056ms
+     ✓ cannot reach a clean conclusion when a surface was skipped  805ms
+     ✓ never prints a provider key that is present in the environment  1069ms
+ ✓ src/cli.tiers.test.ts (26 tests) 34881ms
+     ✓ maps every finding class onto its documented Tier B reason code  1159ms
+     ✓ never generates a patch for a Tier B finding  1129ms
+     ✓ keeps the deprecated JSON keys, DERIVED from the tier data (no drift)  1219ms
+     ✓ prints counts that equal the items listed under each tier  1084ms
+     ✓ does not claim a fix was applied when nothing was written  1131ms
+     ✓ orders the sections A, then B, then C  1129ms
+     ✓ prints every Tier B finding with location, ids, both reason forms and no-patch  1201ms
+     ✓ makes one id in several tiers legible: line numbers, and a note saying why  1148ms
+     ✓ reports the replacement verdict for every Tier B finding in --json  1114ms
+     ✓ never auto-applies a quarantined record  1102ms
+     ✓ says WHY the held finding is held, and names the record to go read  1105ms
+     ✓ never auto-applies a record stamped unverified  1093ms
+     ✓ never auto-applies a record stamped unverifiable  1096ms
+     ✓ stays a Tier A candidate in the count and reports its disposition  1489ms
+     ✓ is listed in Tier B with the reason audit gives it, and never patched  1147ms
+     ✓ takes a held finding's quarantine verdict and reason from its record, prefixed ids included  2183ms
+     ✓ builds a held finding from the record the scan matched, prefixed ids included  1100ms
+     ✓ does not report the repo as clean, and says why each call is held  1089ms
+     ✓ fails a --fail-on tierB gate  1089ms
+     ✓ under --write, leaves every held call untouched and still fixes the calls around it  1527ms
+     ✓ is Tier B with its inline twin's reason, and fix-llm, watch and audit agree  4733ms
+     ✓ under --write, leaves every held shape untouched and still applies the controls  1662ms
+     ✓ gates on tierB  1120ms
+     ✓ accepts "blocked" as a deprecated alias for tierB, and says so on stderr  1130ms
+     ✓ rejects an unknown class, naming the accepted ones  778ms
+     ✓ leads with what mendr would auto-fix, then itemises the rest  1120ms
+ ✓ src/usage/lockedSdks.cli.test.ts (17 tests) 26481ms
+     ✓ shows the locked SDK and its resolution in the human report  1055ms
+     ✓ never changes the conclusion or the exit code, even with --fail-on-exposure  4189ms
+     ✓ puts nothing about SDKs into --json  1050ms
+     ✓ reads the SDK release record from the bundled copy, even beside a registry override  1055ms
+     ✓ leaves a malformed lockfile to the configuration scan, which still fails closed  820ms
+     ✓ is appended to GITHUB_STEP_SUMMARY and changes nothing in the JSON or the exit code  4183ms
+     ✓ writes nothing unless the workflow turns it on  1036ms
+     ✓ is not written by the human report  1060ms
+     ✓ survives an unwritable summary file  2089ms
+     ✓ shows a pinned SDK in the human report  831ms
+     ✓ never changes the conclusion or the exit code  3308ms
+     ✓ puts nothing about Python SDKs into --json or the job summary  828ms
+     ✓ shows the locked SDK in the human report  835ms
+     ✓ never changes the conclusion or the exit code  3313ms
+     ✓ puts nothing about uv.lock into --json or the job summary  827ms
+ ✓ src/cli.evalGate.test.ts (12 tests) 20420ms
+     ✓ without a config: Tier A stands, behavior is NOT tested, and the report says how to enable it  1476ms
+     ✓ a PASSING eval keeps Tier A, states the pass, and --write applies the fix  1522ms
+     ✓ a FAILING eval downgrades Tier A, refuses --write, leaves the file alone, and exits non-zero  1520ms
+     ✓ --eval-command overrides the config file  1542ms
+     ✓ reports the eval outcome in --json (behavioralVerification + eval object)  1549ms
+     ✓ omits the eval object and reports not-tested when nothing was configured  1500ms
+     ✓ reports the inconclusive case in --json with a reason, and still says NOT tested  3025ms
+     ✓ a malformed mendr.config.json is a hard error naming the file, not a silent skip  771ms
+     ✓ a TIMED-OUT eval with --write leaves the file alone and exits non-zero  3026ms
+     ✓ a COMMAND-NOT-FOUND eval with --write leaves the file alone and exits non-zero  1506ms
+     ✓ NOT RUN (no eval configured) is unchanged: --write still applies the fix on the code gates alone  1471ms
+     ✓ a dependency-less checkout is inconclusive, never starts the eval, and writes nothing  1510ms
+ ✓ src/cli.runFooter.test.ts (14 tests) 18503ms
+     ✓ says LOOK and zero files modified on a run without --write  1536ms
+     ✓ says WRITE and counts the files it actually wrote  1527ms
+     ✓ still says WRITE over a refused write, and reports zero files modified  1508ms
+     ✓ reports the intent even when the flags make a write impossible  1114ms
+     ✓ prints an occurrence count that equals tier A + tier B + tier C  1121ms
+     ✓ holds the same identity on a repo where nothing is auto-fixable  1107ms
+     ✓ carries the same three facts in --json  1488ms
+     ✓ reports LOOK and zero in --json for a read-only run  1201ms
+     ✓ never promises a future --write in a report that already refused one  1475ms
+     ✓ points at the Summary rather than predicting, on a successful --write  1492ms
+     ✓ keeps the forward statement on a LOOK run  1489ms
+     ✓ never denies a literal is a model id while patching that same literal  1111ms
+     ✓ says WRITE and zero when a blind required type-check blocks the patch  1488ms
+     ✓ prints the run block on a clean repo too, where every number is zero  846ms
+ ✓ src/cli.gatePolicy.test.ts (9 tests) 12757ms
+     ✓ gates.tests.required = true: downgraded, --write refused, exit non-zero, gate named  1479ms
+     ✓ gates.tests.required = false: Tier A stands, and tests still report inconclusive  1470ms
+     ✓ the default policy leaves tests advisory -- but a BLIND type-check now blocks  1460ms
+     ✓ a FAILING required eval blocks Tier A and names the command  1529ms
+     ✓ gates.eval.command is the same setting as the legacy evalCommand  1534ms
+     ✓ gates.eval.required = false makes a failing eval advisory -- but it still blocks  1568ms
+     ✓ a required eval with NO command blocks rather than dropping the requirement  1480ms
+     ✓ itemizes policy and outcomes, and marks the blocking gate  1465ms
+     ✓ fails immediately, naming the file and the field, before any scanning  771ms
+ ✓ src/cli.realRepoMisses.test.ts (5 tests) 10170ms
+     ✓ is listed under surface_capped with the guard's reason, the code audit gives it  2616ms
+     ✓ is listed in fix-llm Tier B under the reason audit gives it, with the scanner's sentence  3417ms
+     ✓ keeps a max_tokens parameter as written, and still redacts a key on the next line  1040ms
+     ✓ still redacts ADMIN_TOKENS on the line after a model id in a .env  795ms
+     ✓ is listed in fix-llm Tier B, and audit puts the same line in the same tier  2300ms
+ ✓ src/gates/typecheck.test.ts (7 tests) 9903ms
+     ✓ passes when the patched code is valid (the migrated field exists)  1726ms
+     ✓ fails when the patch introduces a NEW type error  1185ms
+     ✓ is baseline-relative: a PRE-EXISTING error the patch does not touch still passes  1233ms
+     ✓ collects the packages the baseline could not resolve  1090ms
+     ✓ reports a deep import as its package, once  2237ms
+     ✓ does not call a repo’s own broken relative import a missing package  1338ms
+     ✓ says nothing when every package resolved  1091ms
+ ✓ src/cli.fineTuneIds.test.ts (5 tests) 9059ms
+     ✓ fix-llm lists each one as held for review, with its own row, and proposes no patch  2206ms
+     ✓ fix-llm --write swaps the base model beside a fine-tune and leaves every fine-tune byte-identical  1491ms
+     ✓ audit counts them as exposure, on the same lines, and says why they are never swapped  2132ms
+     ✓ watch puts each one under review, in the same tier and on the same lines  1096ms
+     ✓ are not findings in fix-llm or audit  2133ms
+ ✓ src/cli.heldCalls.test.ts (3 tests) 7983ms
+     ✓ gets the same held calls, with the same reason codes, from audit, fix-llm and migrate  3393ms
+     ✓ lists a held call in a file the tsconfig leaves out, and in a .js file without allowJs, as audit and fix-llm do  3436ms
+     ✓ prints HELD FOR REVIEW and each held call, never NO MIGRATION  1153ms
+ ✓ src/registry/freshRegistry.cli.test.ts (7 tests) 7393ms
+     ✓ an operator registry of unknown age (unsigned MENDR_REGISTRY_FILE) makes a zero-finding scan INCONCLUSIVE: exit 3, ✗ row, explained  1598ms
+     ✓ a registry proven fresh by a signature the run trusts lets "no exposure" stand: exit 0  794ms
+     ✓ exposure still wins over a stale registry (stale knowledge can prove a problem, never its absence)  1023ms
+     ✓ a requested refresh that cannot happen (no network) degrades to the bundled registry, says why, and completes  720ms
+     ✓ --offline wins over a requested refresh: no network call, the reason names offline  790ms
+     ✓ an operator registry of unknown age is recorded as STALE in the artifact and said in the notes  824ms
+     ✓ a registry proven fresh by a signature the run trusts is recorded as FRESH, and the human report says which one  1641ms
+ ✓ src/cli.gatedScope.test.ts (4 tests) 6061ms
+     ✓ patches a finding outside the root tsconfig instead of blaming a gate  3019ms
+     ✓ reports a type-check that ran blind as inconclusive, never as passed  3041ms
+ ✓ src/cli.writeRefusal.test.ts (4 tests) 5965ms
+     ✓ never claims an auto-fix for a write that was refused  1496ms
+     ✓ records the refusal in --json, where stderr is not the document  1479ms
+     ✓ reports a SUCCESSFUL write in the same field, so the two are told apart  1472ms
+     ✓ a read-only run that never asked to write reports no attempt at all  1518ms
+ ✓ src/audit/noNetwork.test.ts (5 tests) 5702ms
+     ✓ completes under a preload that blocks every outbound network primitive  955ms
+     ✓ the human report, --install scaffolding and the GitHub issue body also complete offline  1683ms
+     ✓ CONTROL: the optional provider usage read is blocked by the same preload  958ms
+     ✓ the default audit runs with --offline  1048ms
+     ✓ the provider read refuses under MENDR_OFFLINE=1 and names the blocked operation  1056ms
+ ✓ src/migrate/migrate.test.ts (33 tests) 4433ms
+     ✓ re-checks a TypeScript migration and reports it beside the four gates  489ms
+     ✓ VERIFIED and PR-ready when the sandbox build and tests pass  676ms
+     ✓ FAILED and not PR-ready when the sandbox tests fail  648ms
+     ✓ --write applies to the working tree ONLY on a verified verdict  650ms
+     ✓ --write writes NOTHING when a gate fails, leaving the tree untouched  655ms
+     ✓ a test script that exits 0 without running a test is INCONCLUSIVE, so the migration is never PR-ready on it  383ms
+ ✓ src/cli.validateRegistry.test.ts (5 tests) 3958ms
+     ✓ passes on the shipped registry, and says how many records it checked  803ms
+     ✓ fails, and names the record, when a verified stamp loses one of its proofs  791ms
+     ✓ fails when a record is switched on under a non-verified status  787ms
+     ✓ fails a quarantine that no longer says what has to be resolved  790ms
+     ✓ fails a hand-edited entryId  784ms
+ ✓ src/cli.evidence.test.ts (5 tests) 3935ms
+     ✓ resolves an entryId -- the id findings actually print  794ms
+     ✓ still resolves the bare model id  785ms
+     ✓ shows the four fields the gate reads, and says the prose is not one of them  788ms
+     ✓ reports PASS on a record that clears the whole conjunction  786ms
+     ✓ exits 2 on an unknown id, naming both forms it accepts  780ms
+ ✓ src/cli.pythonParamGuard.test.ts (1 test) 3602ms
+     ✓ gets the same tier and reason code from fix-llm, audit and watch, and is not swapped  3601ms
+ ✓ src/registry/graph.cli.test.ts (4 tests) 3219ms
+     ✓ walks a PyPI SDK major forward through the shipped release record  807ms
+     ✓ refuses a spec that could span majors, with a usage error rather than an answer  804ms
+     ✓ answers an SDK question even when the model registry beside it is broken  802ms
+     ✓ still sends a model id down the model path  804ms
+ ✓ src/audit/schemaCompat.test.ts (3 tests) 3162ms
+     ✓ the scanner emits the schema version the App expects  1061ms
+     ✓ real audit output passes the App's validateReport unchanged  1049ms
+     ✓ the App can sanitize it, count its decisions, and read the fields it renders  1051ms
+ ✓ src/migrate/redactionE2E.test.ts (2 tests) 3015ms
+     ✓ redacts a key sitting in the diff context of a finding  1471ms
+     ✓ redacts a key inlined in the eval command it echoes back  1542ms
+ ✓ src/fix/paramFix.test.ts (41 tests) 2859ms
+     ✓ holds every real request fed a gateway-prefixed const, and nothing fed a plain one  500ms
+ ✓ src/usage/requestObjectFlow.test.ts (14 tests) 2547ms
+     ✓ is a live call, not catalog data, when the client is assigned later (the Node server shape)  313ms
+     ✓ classifies hundreds of standalone model objects in one large file within budget  338ms
+     ✓ an object handed to a function that is not a provider endpoint  467ms
+ ✓ src/migrate/actionOutcome.test.ts (24 tests) 2413ms
+     ✓ decides from what the real CLI emits for a held-only repository, and says so on the open pull request  1736ms
+ ✓ src/watch/watchStdout.test.ts (2 tests) 2233ms
+     ✓ prints the generated badge in the terminal (non-json)  1118ms
+     ✓ --json carries occurrence + model counts, both deadline fields, and per-model verdicts  1114ms
+ ✓ src/watch/watchWriteErrors.test.ts (2 tests) 1924ms
+     ✓ warns and still prints the summary when .mendr/exposure.json cannot be written  1123ms
+     ✓ exits 1 with a friendly line when --install cannot create the workflow dir  800ms
+ ✓ src/migrate/heldCalls.test.ts (10 tests) 1797ms
+     ✓ is held_for_review, never no_migration, and lists every held call with its code and sentence  377ms
+ ✓ src/gates/runEval.test.ts (8 tests) 960ms
+     ✓ is inconclusive (never fail) when the command times out  757ms
+ ✓ src/usage/findingUniqueness.test.ts (10 tests) 931ms
+ ✓ src/migrate/root4410-second-check-write.test.ts (1 test) 906ms
+   ✓ a failed second check cannot verify or write; a real healthy check subsequently recovers  905ms
+ ✓ src/gates/runTests.test.ts (16 tests) 820ms
+ ✓ src/fix/rename.test.ts (4 tests) 615ms
+     ✓ renames the property at EVERY matching site  306ms
+ ✓ src/fix/llmFix.test.ts (7 tests) 643ms
+     ✓ follows a swap through a shorthand, a cast, `!`, quoted keys or a request variable with its parameter fix, as inline (paramsOnSwappedCallsOnly: false)  417ms
+ ✓ src/usage/resolveStripe.test.ts (2 tests) 475ms
+     ✓ keys nested reads by the TYPE name, not the variable name  311ms
+ ✓ src/gates/runBuild.test.ts (5 tests) 409ms
+ ✓ src/usage/root4410-request-spread.test.ts (15 tests) 387ms
+     ✓ holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }  303ms
+ ✓ src/usage/scanRepo.test.ts (9 tests) 366ms
+ ✓ src/usage/pinnedRequirements.test.ts (62 tests) 293ms
+ ✓ src/python/requestDict.test.ts (8 tests) 303ms
+ ✓ src/usage/coupledParams.test.ts (110 tests) 279ms
+ ✓ src/migrate/reportToApp.test.ts (6 tests) 259ms
+ ✓ src/watch/exposure.test.ts (25 tests) 259ms
+ ✓ src/registry/samplingRules.test.ts (16 tests) 243ms
+ ✓ src/registry/freshRegistry.test.ts (24 tests) 173ms
+ ✓ src/gates/secondCheck.test.ts (17 tests) 164ms
+ ✓ src/release/checkPins.test.ts (5 tests) 151ms
+ ✓ src/python/paramGuard.test.ts (53 tests) 136ms
+ ✓ src/fix/modelId.test.ts (23 tests) 121ms
+ ✓ src/registry/announcedRetirements.test.ts (17 tests) 116ms
+ ✓ src/usage/tsGuards.test.ts (67 tests) 115ms
+ ✓ src/registry/evidence.test.ts (25 tests) 76ms
+ ✓ src/fix/tierAFloor.test.ts (21 tests) 70ms
+ ✓ src/audit/issueReport.test.ts (55 tests) 69ms
+ ✓ src/redact/sanitize.test.ts (63 tests) 62ms
+ ✓ src/python/scanPy.test.ts (31 tests) 66ms
+ ✓ src/usage/fineTuneScan.test.ts (10 tests) 66ms
+ ✓ src/registry/manifest.test.ts (15 tests) 114ms
+ ✓ src/fix/verifyGate.test.ts (4 tests) 49ms
+ ✓ src/python/guards.test.ts (37 tests) 48ms
+ ✓ src/python/cliDefault.test.ts (15 tests) 49ms
+ ✓ src/usage/lockedSdks.test.ts (38 tests) 41ms
+ ✓ src/recon/modelRetirement.test.ts (67 tests) 40ms
+ ✓ src/python/metamorphic.test.ts (11 tests) 42ms
+ ✓ src/registry/aiReader.test.ts (29 tests) 36ms
+ ✓ src/python/fineTuneScan.test.ts (7 tests) 37ms
+ ✓ src/registry/invariant.test.ts (6 tests) 35ms
+ ✓ src/python/hardening.test.ts (18 tests) 35ms
+ ✓ src/usage/jsScan.test.ts (6 tests) 30ms
+ ✓ src/usage/uvLock.test.ts (25 tests) 30ms
+ ✓ src/usage/llmRegistry.test.ts (36 tests) 29ms
+ ✓ src/assurance/root4410-telemetry-evidence.test.ts (4 tests) 28ms
+ ✓ src/audit/testReferences.test.ts (6 tests) 27ms
+ ✓ src/report/tiers.test.ts (65 tests) 27ms
+ ✓ src/config/readerTieBack.test.ts (6 tests) 27ms
+ ✓ src/config/fixturePaths.test.ts (14 tests) 23ms
+ ✓ src/config/classification.test.ts (19 tests) 23ms
+ ✓ src/config/yamlEntries.test.ts (28 tests) 23ms
+ ✓ src/config/scanConfig.test.ts (16 tests) 21ms
+ ✓ src/registry/graph.test.ts (72 tests) 19ms
+ ✓ src/config/repoConfig.test.ts (26 tests) 19ms
+ ✓ src/audit/hardening.test.ts (18 tests) 18ms
+ ✓ src/registry/candidates.test.ts (31 tests) 15ms
+ ✓ src/config/difyRegression.test.ts (7 tests) 15ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 15ms
+ ✓ src/audit/investigation.test.ts (37 tests) 14ms
+ ✓ src/report/llmReport.test.ts (49 tests) 14ms
+ ✓ src/registry/discover.test.ts (36 tests) 14ms
+ ✓ src/registry/entryId.test.ts (9 tests) 13ms
+ ✓ src/registry/validateRegistry.test.ts (26 tests) 13ms
+ ✓ src/registry/sdkReleases.test.ts (14 tests) 13ms
+ ✓ src/gates/evalCases.test.ts (12 tests) 12ms
+ ✓ src/fix/atomicWrite.test.ts (10 tests) 12ms
+ ✓ src/registry/catalog.test.ts (22 tests) 11ms
+ ✓ src/report/registryFooter.test.ts (10 tests) 11ms
+ ✓ src/audit/auditAction.test.ts (25 tests) 11ms
+ ✓ src/registry/verify.test.ts (33 tests) 12ms
+ ✓ src/audit/languages.test.ts (3 tests) 10ms
+ ✓ src/recon/usageAudit.test.ts (11 tests) 9ms
+ ✓ src/watch/watchAction.test.ts (13 tests) 10ms
+ ✓ src/config/configParse.test.ts (28 tests) 9ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 8ms
+ ✓ src/runtime/evidence.test.ts (14 tests) 8ms
+ ✓ src/report/prBody.test.ts (31 tests) 7ms
+ ✓ src/usage/fineTune.test.ts (11 tests) 8ms
+ ✓ src/registry/checkDates.test.ts (23 tests) 7ms
+ ✓ src/suppress/suppress.test.ts (16 tests) 7ms
+ ✓ src/detect/diffSpec.test.ts (5 tests) 8ms
+ ✓ src/watch/issue.test.ts (16 tests) 7ms
+ ✓ src/gates/sandboxSecrets.test.ts (7 tests) 6ms
+ ✓ src/registry/claimCheck.test.ts (13 tests) 6ms
+ ✓ src/registry/refreshSummary.test.ts (10 tests) 6ms
+ ✓ src/gates/policy.test.ts (16 tests) 6ms
+ ✓ src/watch/exposureFile.test.ts (6 tests) 5ms
+ ✓ src/registry/pageText.test.ts (13 tests) 5ms
+ ✓ src/registry/normalize.test.ts (17 tests) 5ms
+ ✓ src/audit/evaluatedAt.test.ts (11 tests) 5ms
+ ✓ src/registry/checkRules.test.ts (7 tests) 5ms
+ ✓ src/report/coverageDenominator.test.ts (13 tests) 6ms
+ ✓ src/report/runFooter.test.ts (9 tests) 5ms
+ ✓ src/registry/oracles.test.ts (6 tests) 5ms
+ ✓ src/intersect/intersect.test.ts (6 tests) 4ms
+ ✓ src/report/usageReport.test.ts (8 tests) 4ms
+ ✓ src/registry/paramRuleGap.test.ts (5 tests) 4ms
+ ✓ src/migrate/approvalGate.test.ts (6 tests) 4ms
+ ✓ src/report/plain.test.ts (8 tests) 4ms
+ ✓ src/report/configReport.test.ts (7 tests) 3ms
+ ✓ src/migrate/restrictRegistry.test.ts (4 tests) 3ms
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 3ms
+ ✓ src/cli.test.ts (1 test) 2ms
+
+ Test Files  130 passed (130)
+      Tests  2329 passed (2329)
+   Start at  12:54:01
+   Duration  357.98s (transform 1.67s, setup 0ms, import 18.57s, tests 325.81s, environment 8ms)
+

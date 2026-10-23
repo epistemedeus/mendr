@@ -1,0 +1,20 @@
+node:net:1919
+      const error = new UVExceptionWithHostPort(rval, 'listen', address, port);
+                    ^
+
+Error: listen EADDRINUSE: address already in use /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/.scratch/tsx-1000/396756.pipe
+    at Server.setupListenHandle [as _listen2] (node:net:1919:21)
+    at listenInCluster (node:net:1998:12)
+    at Server.listen (node:net:2120:5)
+    at file:///home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/node_modules/tsx/dist/cli.mjs:53:31472
+    at new Promise (<anonymous>)
+    at createIpcServer (file:///home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/node_modules/tsx/dist/cli.mjs:53:31450)
+    at async file:///home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/node_modules/tsx/dist/cli.mjs:55:500 {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4648/.scratch/tsx-1000/396756.pipe',
+  port: -1
+}
+
+Node.js v22.23.4

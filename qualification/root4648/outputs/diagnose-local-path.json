@@ -1,0 +1,25 @@
+{
+  "name": "diagnose-local-path",
+  "command": [
+    "node",
+    "-e",
+    "const {spawnSync}=require(\"node:child_process\"); const r=spawnSync(\"tsx\",[\"--version\"],{encoding:\"utf8\"}); console.log(JSON.stringify({status:r.status,error:r.error?.code,stdout:r.stdout,stderr:r.stderr})); process.exit(r.error?1:0)"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:45:36.642013+00:00",
+  "elapsedSeconds": 0.108,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 531108,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 393571,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 33,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "508ae7f97890bc052f9bc23580e83b34535b72df808036cd01e70ab8b79b68e1",
+  "reportArtifact": null
+}

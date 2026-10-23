@@ -1,0 +1,53 @@
+{
+  "name": "full-serial-recovery",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:45:51.762670+00:00",
+  "elapsedSeconds": 358.856,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1450928,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 393571,
+  "stopReason": null,
+  "survivingOwnedPids": [
+    407784,
+    407838,
+    404047,
+    404090
+  ],
+  "logBytesBeforeBounding": 25533,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 407784,
+      "state": "Z",
+      "ppid": 394133
+    },
+    {
+      "pid": 407838,
+      "state": "Z",
+      "ppid": 394133
+    },
+    {
+      "pid": 404047,
+      "state": "Z",
+      "ppid": 394133
+    },
+    {
+      "pid": 404090,
+      "state": "Z",
+      "ppid": 394133
+    }
+  ],
+  "outputSha256": "b8f3886a9831b3323f98b6ce490bbed1f8049c189731588b31d8abf28b910ffe",
+  "reportArtifact": null
+}

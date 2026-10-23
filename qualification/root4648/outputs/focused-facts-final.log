@@ -1,0 +1,44 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ✓ src/cli.modelRetirement.test.ts (33 tests) 64281ms
+     ✓ preserves frozen base stdout/stderr/exits with no new flag, including an ignored invalid evaluation pin  4008ms
+     ✓ requires --migration and refuses new write flags  1976ms
+     ✓ corroborates date-only evidence and retains both digests, artifact age and stale registry facts  978ms
+     ✓ changes the existing recovery consumer for an undated artifact while measured verdict and signals stay identical  2039ms
+     ✓ keeps null, omitted field and missing model distinct; null cannot clear an artifact warning  3036ms
+     ✓ list/retrieve agree and preserve unrelated provider/model swaps  2015ms
+     ✓ cannot cross-bind wrong-model evidence  1056ms
+     ✓ cannot cross-bind duplicate evidence  1000ms
+     ✓ cannot cross-bind azure-provider evidence  1013ms
+     ✓ cannot cross-bind proxy-surface evidence  1054ms
+     ✓ cannot cross-bind partner-document evidence  1004ms
+     ✓ cannot cross-bind fine-tune evidence  998ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:59:59Z without declaring observed shutdown  1105ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:00Z without declaring observed shutdown  1059ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:01Z without declaring observed shutdown  997ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:30:00+14:00 without declaring observed shutdown  1090ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:30:00-12:00 without declaring observed shutdown  996ms
+     ✓ independently withholds stale/future/conflicting captures and recovers with valid current evidence  9156ms
+     ✓ refuses malformed input with exit 2 and no private marker  1004ms
+     ✓ refuses shape input with exit 2 and no private marker  1088ms
+     ✓ refuses bytes input with exit 2 and no private marker  3135ms
+     ✓ refuses records input with exit 2 and no private marker  1423ms
+     ✓ refuses locator input with exit 2 and no private marker  1012ms
+     ✓ refuses error-body input with exit 2 and no private marker  1042ms
+     ✓ refuses duplicate-key input with exit 2 and no private marker  1010ms
+     ✓ refuses clock input with exit 2 and no private marker  1074ms
+     ✓ refuses migration input with exit 2 and no private marker  1028ms
+     ✓ preserves supplied field facts while stale evidence withholds recovery  3085ms
+     ✓ refuses malformed UTF-8 migration bytes without replacing them in provenance  1006ms
+     ✓ refuses malformed migration rows before consuming telemetry=false  1014ms
+     ✓ refuses malformed migration rows before consuming telemetry=true  1056ms
+     ✓ renders a scoped human result including provenance, conflict and unauthenticated evidence  1004ms
+     ✓ keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered  10718ms
+ ✓ src/recon/modelRetirement.test.ts (74 tests) 44ms
+
+ Test Files  2 passed (2)
+      Tests  107 passed (107)
+   Start at  13:03:06
+   Duration  64.70s (transform 94ms, setup 0ms, import 152ms, tests 64.33s, environment 0ms)
+

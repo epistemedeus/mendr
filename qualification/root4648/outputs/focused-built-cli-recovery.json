@@ -1,0 +1,29 @@
+{
+  "name": "focused-built-cli-recovery",
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/cli.modelRetirement.test.ts",
+    "--maxWorkers",
+    "1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:35:18.042537+00:00",
+  "elapsedSeconds": 59.314,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1167340,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 394133,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 2844,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "5b5397f0cad7efec7c1a7a9d77b8acb2756f823da44131b7887ae4efbb920674",
+  "reportArtifact": null
+}

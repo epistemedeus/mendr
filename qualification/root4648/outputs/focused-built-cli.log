@@ -1,0 +1,68 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ❯ src/cli.modelRetirement.test.ts (29 tests | 2 failed) 49366ms
+     ✓ preserves frozen base stdout/stderr/exits with no new flag, including an ignored invalid evaluation pin  4133ms
+     ✓ requires --migration and refuses new write flags  1953ms
+     ✓ corroborates date-only evidence and retains both digests, artifact age and stale registry facts  1036ms
+     ✓ changes the existing recovery consumer for an undated artifact while measured verdict and signals stay identical  2035ms
+     ✓ keeps null, omitted field and missing model distinct; null cannot clear an artifact warning  3010ms
+     ✓ list/retrieve agree and preserve unrelated provider/model swaps  2046ms
+     ✓ cannot cross-bind wrong-model evidence  1009ms
+     ✓ cannot cross-bind duplicate evidence  1047ms
+     ✓ cannot cross-bind azure-provider evidence  1006ms
+     ✓ cannot cross-bind proxy-surface evidence  997ms
+     ✓ cannot cross-bind partner-document evidence  1112ms
+     ✓ cannot cross-bind fine-tune evidence  1022ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:59:59Z without declaring observed shutdown  1022ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:00Z without declaring observed shutdown  1073ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:00:01Z without declaring observed shutdown  1023ms
+     ✓ honors UTC schedule boundaries at 2026-10-24T00:30:00+14:00 without declaring observed shutdown  1014ms
+     ✓ honors UTC schedule boundaries at 2026-10-23T23:30:00-12:00 without declaring observed shutdown  1096ms
+     × independently withholds stale/future/conflicting captures and recovers with valid current evidence 5114ms
+     ✓ refuses malformed input with exit 2 and no private marker  1101ms
+     ✓ refuses shape input with exit 2 and no private marker  1029ms
+     ✓ refuses bytes input with exit 2 and no private marker  3477ms
+     ✓ refuses records input with exit 2 and no private marker  1470ms
+     ✓ refuses locator input with exit 2 and no private marker  1056ms
+     ✓ refuses error-body input with exit 2 and no private marker  1047ms
+     ✓ refuses duplicate-key input with exit 2 and no private marker  1005ms
+     ✓ refuses clock input with exit 2 and no private marker  1009ms
+     ✓ refuses migration input with exit 2 and no private marker  1043ms
+     ✓ renders a scoped human result including provenance, conflict and unauthenticated evidence  1011ms
+     × keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered 5367ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/cli.modelRetirement.test.ts > built rollout --models-metadata, no network or input writes > independently withholds stale/future/conflicting captures and recovers with valid current evidence
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/cli.modelRetirement.test.ts:140:3
+    138|     expect(r.report.modelsMetadata.evaluatedAt).toBe(new Date(now).toI…
+    139|   });
+    140|   it('independently withholds stale/future/conflicting captures and re…
+       |   ^
+    141|     for (const kind of ['stale', 'future', 'conflict', 'invalid-date',…
+    142|       const capture = fixture('list-date.json');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/cli.modelRetirement.test.ts > built rollout --models-metadata, no network or input writes > keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/cli.modelRetirement.test.ts:181:3
+    179|     expect(r.stdout).toContain('endpoint accessibility was not observe…
+    180|   });
+    181|   it('keeps missing outcomes and malformed costs unknown, actual measu…
+       |   ^
+    182|     const deployedAt = Date.parse('2026-10-20T12:00:00Z');
+    183|     const rows = (fields: any, unhealthy = false) => [-1, 1].flatMap((…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 27 passed (29)
+   Start at  12:34:12
+   Duration  49.56s (transform 37ms, setup 0ms, import 81ms, tests 49.37s, environment 0ms)
+

@@ -1,0 +1,37 @@
+{
+  "base": "6e2a0c8cab5bb94817173fff43dbf67a1f834c61",
+  "cases": [
+    {
+      "name": "numbers",
+      "format": "json",
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true,
+      "bytes": 1018
+    },
+    {
+      "name": "numbers",
+      "format": "text",
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true,
+      "bytes": 647
+    },
+    {
+      "name": "migration",
+      "format": "json",
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true,
+      "bytes": 2160
+    },
+    {
+      "name": "migration",
+      "format": "text",
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true,
+      "bytes": 1472
+    }
+  ]
+}

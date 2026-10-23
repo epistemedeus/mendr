@@ -1,0 +1,19 @@
+{
+  "head": "6e2a0c8cab5bb94817173fff43dbf67a1f834c61",
+  "trackedDiffSha256": "51f078201da982aaf943691e69bb725820824bbf0940d2047bf21d6a46ad7ef4",
+  "sourceTreeSha256": "721f07413de712241bebbb2d1136de902216e186f3f2328caa337fb1db586c1a",
+  "scopeSha256": {
+    "src/assurance/assurance.test.ts": "2f5cc8530ae9cb8bf0ae5929a9af23e58b7e2e380b2b5877d790df0c249ad2f4",
+    "src/assurance/recovery.ts": "a0d5276db3d96e2292b3c3593ae832626a99e17ebed4fc332be56eb29f5a8348",
+    "src/assurance/root4410-recovery.test.ts": "cd7caf7e6e6ce28e16f5e2efb4278075b9274d4170f59bbbe30c8bd0fdd8eca0",
+    "src/assurance/root4410-telemetry-evidence.test.ts": "620341dfade2f0eaa92714a43ac8b05f6d466eda2d720a70f773aa81682c74da",
+    "src/assurance/telemetry.ts": "31fc32f4d78b8a513b96b609c21857843c880da24068b8c9a42790431980a886",
+    "src/migrate/root4410-second-check-write.test.ts": "b7a51ddf6dd32508b539e8ab45712cee77855033b576c6a12a9f828f47f31a09",
+    "src/runtime/evidence.ts": "9976587d7ca9e4606b0b704f93433388e4ddede9dfff74cb0e7d94f35eb9afbe",
+    "src/usage/requestObjectFlow.test.ts": "9e25df9ad6785b82c4e673efb004432e4b03b5419e019f0ad707dcd4a620903f",
+    "src/usage/root4410-request-spread.test.ts": "b77e94900629c98476d7094c4881214ef7fbb27e7cfad982daccb88394d91a6e",
+    "src/usage/scanLiterals.ts": "1c31aafbca378de08f2da4852f738c8fa8914bc2c3900e7805fff26633e74fae",
+    "src/usage/tsSurface.ts": "f789c686659cf536da32b0bb01d1af27400c34b5bbb31ad8676d2dd285725452"
+  },
+  "lockSha256": "3e6180b1ebbf28224586a04d982a5bd593df14ac023aeea512b82ce6d7d7ea8c"
+}

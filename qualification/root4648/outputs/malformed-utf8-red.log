@@ -1,0 +1,64 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ❯ src/cli.modelRetirement.test.ts (32 tests | 1 failed | 31 skipped) 1073ms
+     ↓ preserves frozen base stdout/stderr/exits with no new flag, including an ignored invalid evaluation pin
+     ↓ requires --migration and refuses new write flags
+     ↓ corroborates date-only evidence and retains both digests, artifact age and stale registry facts
+     ↓ changes the existing recovery consumer for an undated artifact while measured verdict and signals stay identical
+     ↓ keeps null, omitted field and missing model distinct; null cannot clear an artifact warning
+     ↓ list/retrieve agree and preserve unrelated provider/model swaps
+     ↓ cannot cross-bind wrong-model evidence
+     ↓ cannot cross-bind duplicate evidence
+     ↓ cannot cross-bind azure-provider evidence
+     ↓ cannot cross-bind proxy-surface evidence
+     ↓ cannot cross-bind partner-document evidence
+     ↓ cannot cross-bind fine-tune evidence
+     ↓ honors UTC schedule boundaries at 2026-10-23T23:59:59Z without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-24T00:00:00Z without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-24T00:00:01Z without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-24T00:30:00+14:00 without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-23T23:30:00-12:00 without declaring observed shutdown
+     ↓ independently withholds stale/future/conflicting captures and recovers with valid current evidence
+     ↓ refuses malformed input with exit 2 and no private marker
+     ↓ refuses shape input with exit 2 and no private marker
+     ↓ refuses bytes input with exit 2 and no private marker
+     ↓ refuses records input with exit 2 and no private marker
+     ↓ refuses locator input with exit 2 and no private marker
+     ↓ refuses error-body input with exit 2 and no private marker
+     ↓ refuses duplicate-key input with exit 2 and no private marker
+     ↓ refuses clock input with exit 2 and no private marker
+     ↓ refuses migration input with exit 2 and no private marker
+     × refuses malformed UTF-8 migration bytes without replacing them in provenance 1072ms
+     ↓ refuses malformed migration rows before consuming telemetry=false
+     ↓ refuses malformed migration rows before consuming telemetry=true
+     ↓ renders a scoped human result including provenance, conflict and unauthenticated evidence
+     ↓ keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/cli.modelRetirement.test.ts > built rollout --models-metadata, no network or input writes > refuses malformed UTF-8 migration bytes without replacing them in provenance
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ src/cli.modelRetirement.test.ts:178:24
+    176|     rawMigration[rawMigration.indexOf('invalid-byte')] = 0xff;
+    177|     const r = await run({ rawMigration });
+    178|     expect(r.exitCode).toBe(2); expect(r.stdout).toBe('');
+       |                        ^
+    179|     expect(r.stderr).toContain('could_not_read_input_json');
+    180|     expect(r.stderr).not.toContain('PRIVATE_BODY_MARKER');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 31 skipped (32)
+   Start at  12:52:23
+   Duration  1.27s (transform 43ms, setup 0ms, import 87ms, tests 1.07s, environment 0ms)
+

@@ -1,0 +1,23 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ✓ src/cli.evidence.test.ts (5 tests) 4198ms
+     ✓ resolves an entryId -- the id findings actually print  1078ms
+     ✓ still resolves the bare model id  788ms
+     ✓ shows the four fields the gate reads, and says the prose is not one of them  782ms
+     ✓ reports PASS on a record that clears the whole conjunction  780ms
+     ✓ exits 2 on an unknown id, naming both forms it accepts  768ms
+ ✓ src/registry/freshRegistry.test.ts (24 tests) 170ms
+ ✓ src/registry/evidence.test.ts (25 tests) 73ms
+ ✓ src/assurance/root4410-telemetry-evidence.test.ts (4 tests) 28ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 15ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 8ms
+ ✓ src/runtime/evidence.test.ts (14 tests) 8ms
+ ✓ src/audit/evaluatedAt.test.ts (11 tests) 5ms
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 4ms
+
+ Test Files  9 passed (9)
+      Tests  118 passed (118)
+   Start at  12:38:27
+   Duration  6.61s (transform 295ms, setup 0ms, import 1.16s, tests 4.51s, environment 1ms)
+

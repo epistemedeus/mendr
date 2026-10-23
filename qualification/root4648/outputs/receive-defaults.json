@@ -1,0 +1,24 @@
+{
+  "name": "receive-defaults",
+  "command": [
+    "node",
+    "qualification/root4648/scripts/receive-defaults.mjs"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:30:15.785447+00:00",
+  "elapsedSeconds": 3.209,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 530692,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 394133,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 417,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "bd2a82775ab17617532f9728acd0ad233cd1acc5f15a6c1cb0e257ea644d28b8",
+  "reportArtifact": null
+}

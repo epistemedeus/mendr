@@ -1,0 +1,42 @@
+{
+  "name": "related-safety-recovery",
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/audit/evaluatedAt.test.ts",
+    "src/assurance",
+    "src/runtime/evidence.test.ts",
+    "src/cli.evidence.test.ts",
+    "src/registry/evidence.test.ts",
+    "src/registry/freshRegistry.test.ts",
+    "--maxWorkers",
+    "1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023",
+  "startedAt": "2026-10-23T12:38:27.549808+00:00",
+  "elapsedSeconds": 7.021,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1022588,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 393571,
+  "stopReason": null,
+  "survivingOwnedPids": [
+    396901
+  ],
+  "logBytesBeforeBounding": 1109,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 396901,
+      "state": "Z",
+      "ppid": 394133
+    }
+  ],
+  "outputSha256": "d64a94ef5254314db8ece25850374235ed8d4f60baedd30fd83532ca117faf76",
+  "reportArtifact": null
+}

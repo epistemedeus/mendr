@@ -1,0 +1,267 @@
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023
+
+ ❯ src/cli.modelRetirement.test.ts (33 tests | 1 failed | 32 skipped) 1064ms
+     ↓ preserves frozen base stdout/stderr/exits with no new flag, including an ignored invalid evaluation pin
+     ↓ requires --migration and refuses new write flags
+     ↓ corroborates date-only evidence and retains both digests, artifact age and stale registry facts
+     ↓ changes the existing recovery consumer for an undated artifact while measured verdict and signals stay identical
+     ↓ keeps null, omitted field and missing model distinct; null cannot clear an artifact warning
+     ↓ list/retrieve agree and preserve unrelated provider/model swaps
+     ↓ cannot cross-bind wrong-model evidence
+     ↓ cannot cross-bind duplicate evidence
+     ↓ cannot cross-bind azure-provider evidence
+     ↓ cannot cross-bind proxy-surface evidence
+     ↓ cannot cross-bind partner-document evidence
+     ↓ cannot cross-bind fine-tune evidence
+     ↓ honors UTC schedule boundaries at 2026-10-23T23:59:59Z without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-24T00:00:00Z without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-24T00:00:01Z without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-24T00:30:00+14:00 without declaring observed shutdown
+     ↓ honors UTC schedule boundaries at 2026-10-23T23:30:00-12:00 without declaring observed shutdown
+     ↓ independently withholds stale/future/conflicting captures and recovers with valid current evidence
+     ↓ refuses malformed input with exit 2 and no private marker
+     ↓ refuses shape input with exit 2 and no private marker
+     ↓ refuses bytes input with exit 2 and no private marker
+     ↓ refuses records input with exit 2 and no private marker
+     ↓ refuses locator input with exit 2 and no private marker
+     ↓ refuses error-body input with exit 2 and no private marker
+     ↓ refuses duplicate-key input with exit 2 and no private marker
+     ↓ refuses clock input with exit 2 and no private marker
+     ↓ refuses migration input with exit 2 and no private marker
+     × preserves supplied field facts while stale evidence withholds recovery 1063ms
+     ↓ refuses malformed UTF-8 migration bytes without replacing them in provenance
+     ↓ refuses malformed migration rows before consuming telemetry=false
+     ↓ refuses malformed migration rows before consuming telemetry=true
+     ↓ renders a scoped human result including provenance, conflict and unauthenticated evidence
+     ↓ keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered
+ ❯ src/recon/modelRetirement.test.ts (74 tests | 7 failed | 67 skipped) 18ms
+     ↓ corroborates an exact schedule and independently reports unauthenticated provenance and stale artifact registry
+     ↓ supplies a bounded schedule to an undated artifact without changing verification, lifecycle or replacement
+     ↓ agrees on equivalent list and retrieve objects without equating their scope provenance
+     ↓ keeps null distinct against a dated artifact
+     ↓ keeps omitted distinct against a dated artifact
+     ↓ keeps missing distinct against a dated artifact
+     ↓ null alone never proves a safe revert
+     ↓ omitted alone never proves a safe revert
+     ↓ missing alone never proves a safe revert
+     ↓ null cannot erase an expired artifact date
+     ↓ retains both differing dates and refuses to select either as recovery assurance
+     ↓ never cross-binds gpt-example to gpt-example-2026-10-01
+     ↓ never cross-binds gpt-example-2026-10-01 to gpt-example
+     ↓ never cross-binds gpt-example to ft:gpt-example:customer:custom
+     ↓ never cross-binds exact-model to EXACT-model
+     ↓ allows only exact snapshot binding and refuses even exact fine-tune scope
+     ↓ preserves unrelated swaps and all target IDs without a replacement inference
+     ↓ does not accept a retrieve body for the wrong declared exact model
+     ↓ retains HTTP 404 as failure evidence without inventing a date
+     ↓ retains HTTP 401 as failure evidence without inventing a date
+     ↓ retains HTTP 429 as failure evidence without inventing a date
+     ↓ retains HTTP 500 as failure evidence without inventing a date
+     ↓ refuses provider=azure authority even with an official locator and exact ID
+     ↓ refuses surface=azure authority even with an official locator and exact ID
+     ↓ refuses surface=proxy authority even with an official locator and exact ID
+     ↓ keeps partner document facts separate from the direct schedule
+     ↓ grades retrieval 2026-10-22T12:00:00Z independently as fresh
+     ↓ grades retrieval 2026-10-22T11:59:59Z independently as stale
+     ↓ grades retrieval 2026-10-23T12:00:01Z independently as future
+     ↓ grades retrieval 2026-10-23T14:00:00+02:00 independently as fresh
+     ↓ uses the existing UTC schedule rule at 2026-10-23T23:59:59Z without observing accessibility
+     ↓ uses the existing UTC schedule rule at 2026-10-24T00:00:00Z without observing accessibility
+     ↓ uses the existing UTC schedule rule at 2026-10-24T00:00:01Z without observing accessibility
+     ↓ uses the existing UTC schedule rule at 2026-10-24T00:30:00+14:00 without observing accessibility
+     ↓ uses the existing UTC schedule rule at 2026-10-23T23:30:00-12:00 without observing accessibility
+     ↓ does not normalize an invalid shutdown date 2026-02-30
+     ↓ does not normalize an invalid shutdown date 2025-02-29
+     ↓ does not normalize an invalid shutdown date 2026-13-01
+     ↓ does not normalize an invalid shutdown date 2026-00-12
+     ↓ does not normalize an invalid shutdown date 2026-10-24T00:00:00Z
+     ↓ does not normalize an invalid shutdown date 
+     ↓ does not normalize an invalid shutdown date 42
+     ↓ does not normalize an invalid shutdown date false
+     × preserves supplied field facts under stale null capture grading 10ms
+     × preserves supplied field facts under stale omitted capture grading 1ms
+     × preserves supplied field facts under stale missing capture grading 1ms
+     × preserves supplied field facts under future null capture grading 1ms
+     × preserves supplied field facts under future omitted capture grading 2ms
+     × preserves supplied field facts under future missing capture grading 1ms
+     × preserves supplied field facts when artifact dates are invalid or conflicting 1ms
+     ↓ accepts a real leap date as a schedule
+     ↓ refuses ambiguous/invalid retrieval time 2026-02-30T12:00:00Z
+     ↓ refuses ambiguous/invalid retrieval time 2026-10-23T12:00:00
+     ↓ refuses ambiguous/invalid retrieval time 2026-10-23
+     ↓ refuses ambiguous/invalid retrieval time 2026-10-23T24:00:00Z
+     ↓ refuses ambiguous/invalid retrieval time 2026-10-23T12:00:00+25:00
+     ↓ identical duplicates are visible; differing duplicates are conflicted regardless of order
+     ↓ withholds assurance on partial evidence, even alongside an exact valid row
+     ↓ withholds assurance on truncated evidence, even alongside an exact valid row
+     ↓ withholds assurance on malformed-row evidence, even alongside an exact valid row
+     ↓ withholds assurance on malformed-body evidence, even alongside an exact valid row
+     ↓ does not choose a convenient artifact date from conflicting duplicate migrations
+     ↓ invalid artifact dates stay explicit unknown rather than lexical future dates
+     ↓ recovers deterministically from stale and conflicting captures without cache or mutation
+     ↓ refuses malformed JSON/envelope with safe errors: {PRIVATE_BODY_MARKER
+     ↓ refuses malformed JSON/envelope with safe errors: null
+     ↓ refuses malformed JSON/envelope with safe errors: []
+     ↓ refuses duplicate JSON keys including escaped equivalent keys
+     ↓ bounds bytes, depth, UTF-8 and record count
+     ↓ refuses an unbound locator without echoing it: https://proxy.example/v1/models
+     ↓ refuses an unbound locator without echoing it: https://api.openai.com/v1/models?key=PRIVATE_BODY_MARKER
+     ↓ refuses an unbound locator without echoing it: https://PRIVATE_BODY_MARKER@api.openai.com/v1/models
+     ↓ refuses an unbound locator without echoing it: https://api.openai.com/v1/models/other
+     ↓ refuses error bodies, headers and unknown envelope keys without echoing private values
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/cli.modelRetirement.test.ts > built rollout --models-metadata, no network or input writes > preserves supplied field facts while stale evidence withholds recovery
+AssertionError: expected { provider: 'openai', …(7) } to match object { …(3) }
+(12 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -2,9 +2,9 @@
+    "effectiveSchedule": {
+      "shutdownDate": null,
+      "source": "none",
+    },
+    "metadata": {
+-     "state": "no_announced_date",
++     "state": "unusable",
+    },
+    "reconciliation": "unknown",
+  }
+
+ ❯ src/cli.modelRetirement.test.ts:180:23
+    178|       if (kind === 'missing') capture.response.body.data = [];
+    179|       const r = await run({ capture });
+    180|       expect(swap(r)).toMatchObject({ metadata: { state }, reconciliat…
+       |                       ^
+    181|       expect(r.report.modelsMetadata.capture.freshness).toBe('stale');
+    182|       expect(revert(r).available).toBe(false); expect(r.exitCode).toBe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  src/recon/modelRetirement.test.ts > supplied Models metadata, exact scoped reconciliation > preserves supplied field facts under stale null capture grading
+ FAIL  src/recon/modelRetirement.test.ts > supplied Models metadata, exact scoped reconciliation > preserves supplied field facts under future null capture grading
+AssertionError: expected { provider: 'openai', …(7) } to match object { …(3) }
+(12 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -2,9 +2,9 @@
+    "effectiveSchedule": {
+      "shutdownDate": null,
+      "source": "none",
+    },
+    "metadata": {
+-     "state": "no_announced_date",
++     "state": "unusable",
+    },
+    "reconciliation": "unknown",
+  }
+
+ ❯ src/recon/modelRetirement.test.ts:156:22
+    154|     if (kind === 'omitted') delete c.response.body.data[0].shutdown_da…
+    155|     if (kind === 'missing') c.response.body.data = [];
+    156|     expect(first(c)).toMatchObject({ metadata: { state }, reconciliati…
+       |                      ^
+    157|     expect(first(c).reasons).toContain(`${grade}_capture`);
+    158|     expect(revert(c).available).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  src/recon/modelRetirement.test.ts > supplied Models metadata, exact scoped reconciliation > preserves supplied field facts under stale omitted capture grading
+ FAIL  src/recon/modelRetirement.test.ts > supplied Models metadata, exact scoped reconciliation > preserves supplied field facts under future omitted capture grading
+AssertionError: expected { provider: 'openai', …(7) } to match object { …(3) }
+(12 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -2,9 +2,9 @@
+    "effectiveSchedule": {
+      "shutdownDate": null,
+      "source": "none",
+    },
+    "metadata": {
+-     "state": "not_reported",
++     "state": "unusable",
+    },
+    "reconciliation": "unknown",
+  }
+
+ ❯ src/recon/modelRetirement.test.ts:156:22
+    154|     if (kind === 'omitted') delete c.response.body.data[0].shutdown_da…
+    155|     if (kind === 'missing') c.response.body.data = [];
+    156|     expect(first(c)).toMatchObject({ metadata: { state }, reconciliati…
+       |                      ^
+    157|     expect(first(c).reasons).toContain(`${grade}_capture`);
+    158|     expect(revert(c).available).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  src/recon/modelRetirement.test.ts > supplied Models metadata, exact scoped reconciliation > preserves supplied field facts under stale missing capture grading
+ FAIL  src/recon/modelRetirement.test.ts > supplied Models metadata, exact scoped reconciliation > preserves supplied field facts under future missing capture grading
+AssertionError: expected { provider: 'openai', …(7) } to match object { …(3) }
+(12 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -2,9 +2,9 @@
+    "effectiveSchedule": {
+      "shutdownDate": null,
+      "source": "none",
+    },
+    "metadata": {
+-     "state": "missing_model",
++     "state": "unusable",
+    },
+    "reconciliation": "unknown",
+  }
+
+ ❯ src/recon/modelRetirement.test.ts:156:22
+    154|     if (kind === 'omitted') delete c.response.body.data[0].shutdown_da…
+    155|     if (kind === 'missing') c.response.body.data = [];
+    156|     expect(first(c)).toMatchObject({ metadata: { state }, reconciliati…
+       |                      ^
+    157|     expect(first(c).reasons).toContain(`${grade}_capture`);
+    158|     expect(revert(c).available).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  src/recon/modelRetirement.test.ts > supplied Models metadata, exact scoped reconciliation > preserves supplied field facts when artifact dates are invalid or conflicting
+AssertionError: expected { provider: 'openai', …(7) } to match object { metadata: { …(2) }, …(1) }
+(14 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "metadata": {
+-     "shutdownDate": "2026-10-24",
+-     "state": "scheduled",
++     "shutdownDate": null,
++     "state": "not_in_scope",
+    },
+    "reconciliation": "unknown",
+  }
+
+ ❯ src/recon/modelRetirement.test.ts:162:33
+    160|   it('preserves supplied field facts when artifact dates are invalid o…
+    161|     const m = migration(); m.migrations[0].evidence.shutdownDate = 'no…
+    162|     expect(first(capture(), m)).toMatchObject({ metadata: { state: 'sc…
+       |                                 ^
+    163|     m.migrations[0].evidence.shutdownDate = '2026-10-24'; m.migrations…
+    164|     m.migrations[1].evidence.shutdownDate = '2026-10-25';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  8 failed | 99 skipped (107)
+   Start at  13:01:38
+   Duration  1.47s (transform 89ms, setup 0ms, import 146ms, tests 1.08s, environment 0ms)
+
