@@ -39,5 +39,6 @@ it('a failed second check cannot verify or write; a real healthy check subsequen
     expect(healthy.verification.secondCheck.status).toBe('passed');
     expect(healthy.verification.verdict).toBe('verified');
     expect(healthy.applied).toEqual(['src/app.ts']);
+    expect(readFileSync(file,'utf8')).toBe(source.replace('gpt-4-0613','gpt-5.6-sol'));
   } finally { control.fail=true; rmSync(dir,{recursive:true,force:true}); }
 },30000);
