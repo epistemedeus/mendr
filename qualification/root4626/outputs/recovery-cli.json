@@ -1,0 +1,27 @@
+{
+  "name": "recovery-cli",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/scripts/probe-recovery.mjs",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/outputs/recovery-cli",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery",
+  "startedAt": "2026-10-23T12:06:43.500000+00:00",
+  "elapsedSeconds": 2.285,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 554124,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 115737,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 95,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "b2ef261f902fcd07f6c1b7725830b856930a3ad5e25936bed4e2376334d5b8f9",
+  "reportArtifact": null
+}

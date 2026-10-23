@@ -1,0 +1,20 @@
+[
+  {
+    "projection": "recovery",
+    "selectedFilePreflightExit": 0,
+    "missing": []
+  },
+  {
+    "projection": "request-spreads",
+    "selectedFilePreflightExit": 1,
+    "missing": [
+      "src/usage/sinkParamGuard.test.ts"
+    ],
+    "resolution": "Absent at exact baseline and accepted source. No fabricated file or empty test counted. The existing coupledParams.test.ts owns const/shorthand/fallback sink parameter regressions; retain its full 110 tests and other named existing files."
+  },
+  {
+    "projection": "telemetry",
+    "selectedFilePreflightExit": 0,
+    "missing": []
+  }
+]

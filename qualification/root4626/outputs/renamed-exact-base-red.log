@@ -1,0 +1,190 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance/recovery-schedule.test.ts src/usage/request-spreads.test.ts src/assurance/telemetry-evidence.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/red-base
+
+ ❯ src/usage/request-spreads.test.ts (15 tests | 14 failed) 2035ms
+     × holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); } 19ms
+     × holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ ...options, model: "gpt-4-0613", messages: [] }); } 3ms
+     × holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); } 322ms
+     × holds model and parameter uncertainty: const MODEL = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model: MODEL, messages: [], ...options }); } 3ms
+     × holds model and parameter uncertainty: const model = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model, messages: [], ...options }); } 4ms
+     × holds model and parameter uncertainty: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override ?? { model: "gpt-4-0613", messages: [], ...options }); } 3ms
+     × holds model and parameter uncertainty: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override || { ...options, model: "gpt-4-0613", messages: [] }); } 6ms
+     × holds model and parameter uncertainty: export async function ask(options: object, useOptions: boolean) { return client.chat.completions.create(useOptions ? { model: "gpt-4-0613", messages: [], ...options } : { model: "gpt-5.6-sol", messages: [] }); } 2ms
+     × holds model and parameter uncertainty: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create((override ?? ({ model: "gpt-4-0613", messages: [], ...options }))); } 3ms
+     ✓ keeps an explicit request eligible 5ms
+     × refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); } 410ms
+     × refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override ?? { model: "gpt-4-0613", messages: [], ...options }); } 349ms
+     × refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override || { ...options, model: "gpt-4-0613", messages: [] }); } 315ms
+     × refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, useOptions: boolean) { return client.chat.completions.create(useOptions ? { model: "gpt-4-0613", messages: [], ...options } : { model: "gpt-5.6-sol", messages: [] }); } 293ms
+     × refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create((override ?? ({ model: "gpt-4-0613", messages: [], ...options }))); } 294ms
+ ❯ src/assurance/telemetry-evidence.test.ts (4 tests | 3 failed) 21ms
+     × cannot turn an export without outcomes into a healthy rollout 8ms
+     × holds missing, malformed and partial failure evidence 4ms
+     ✓ valid failures are regressions; explicit success and explicit zero recover 7ms
+     × does not invent zero cost from malformed values; an actual zero remains measured 1ms
+ ❯ src/assurance/recovery-schedule.test.ts (3 tests | 3 failed) 8ms
+     × does not make an unknown deadline a safe revert, including mixed swaps 5ms
+     × closes the scheduled window on the UTC date without inventing observed failure 2ms
+     × describes a pre-deadline option as schedule-only and records unobserved access 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 20 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/assurance/recovery-schedule.test.ts > recovery schedule evidence > does not make an unknown deadline a safe revert, including mixed swaps
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/assurance/recovery-schedule.test.ts:10:38
+      8|     for (const swaps of [[], [{ ...swap, shutdownDate: null }], [swap,…
+      9|       const r = recoveryPlan(swaps, new Date('2026-10-22T00:00:00Z'));
+     10|       expect(r.options[0].available).toBe(false);
+       |                                      ^
+     11|       expect(r.options[0].detail).toMatch(/not established|not proven|…
+     12|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/20]⎯
+
+ FAIL  src/assurance/recovery-schedule.test.ts > recovery schedule evidence > closes the scheduled window on the UTC date without inventing observed failure
+AssertionError: expected 'Do not revert: `o4-mini` shut down on…' to contain 'announced'
+
+Expected: "announced"
+Received: "Do not revert: `o4-mini` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+
+ ❯ src/assurance/recovery-schedule.test.ts:18:35
+     16|       const r = recoveryPlan([swap], new Date(now));
+     17|       expect(r.options[0].available).toBe(false);
+     18|       expect(r.options[0].detail).toContain('announced');
+       |                                   ^
+     19|       expect(r.options[0].detail).not.toMatch(/shut down on|no longer …
+     20|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/20]⎯
+
+ FAIL  src/assurance/recovery-schedule.test.ts > recovery schedule evidence > describes a pre-deadline option as schedule-only and records unobserved access
+AssertionError: expected 'Revert the pull request and calls go …' to contain 'announced'
+
+Expected: "announced"
+Received: "Revert the pull request and calls go back to `o4-mini`, until 2026-10-23, when `o4-mini` shuts down. After that, a revert stops working."
+
+ ❯ src/assurance/recovery-schedule.test.ts:26:35
+     24|       const r = recoveryPlan([swap], new Date(now));
+     25|       expect(r.options[0].available).toBe(true);
+     26|       expect(r.options[0].detail).toContain('announced');
+       |                                   ^
+     27|       expect(r.caveats.join(' ')).toMatch(/accessibility.*not observed…
+     28|       expect(r.caveats.join(' ')).toMatch(/quality.*not/i);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/20]⎯
+
+ FAIL  src/assurance/telemetry-evidence.test.ts > telemetry keeps missing evidence unknown > cannot turn an export without outcomes into a healthy rollout
+AssertionError: expected +0 to be undefined
+
+- Expected:
+undefined
+
++ Received:
+0
+
+ ❯ src/assurance/telemetry-evidence.test.ts:17:38
+     15|   it('cannot turn an export without outcomes into a healthy rollout',(…
+     16|     const r=summarize(rows());
+     17|     expect(r.input.before.errorRate).toBeUndefined();
+       |                                      ^
+     18|     expect(r.input.after.errorRate).toBeUndefined();
+     19|     expect(judgeRollout(r.input,undefined).verdict).toBe('inconclusive…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/20]⎯
+
+ FAIL  src/assurance/telemetry-evidence.test.ts > telemetry keeps missing evidence unknown > holds missing, malformed and partial failure evidence
+AssertionError: expected 'verified' to be 'inconclusive' // Object.is equality
+
+Expected: "inconclusive"
+Received: "verified"
+
+ ❯ src/assurance/telemetry-evidence.test.ts:24:55
+     22|     for(const value of ['pending','200not-a-code','',null]) {
+     23|       const r=summarize(rows({status:value}));
+     24|       expect(judgeRollout(r.input,undefined).verdict).toBe('inconclusi…
+       |                                                       ^
+     25|     }
+     26|     const partial=rows({status:200});delete partial[200].status;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/20]⎯
+
+ FAIL  src/assurance/telemetry-evidence.test.ts > telemetry keeps missing evidence unknown > does not invent zero cost from malformed values; an actual zero remains measured
+AssertionError: expected +0 to be null
+
+- Expected:
+null
+
++ Received:
+0
+
+ ❯ src/assurance/telemetry-evidence.test.ts:39:60
+     37|   it('does not invent zero cost from malformed values; an actual zero …
+     38|     for(const cost of ['unknown','12garbage',-1,Infinity]) {
+     39|       expect(toCallSample({model:'o4-mini',cost}).costUsd).toBeNull();
+       |                                                            ^
+     40|       expect(toObservation({model:'o4-mini',cost})?.costUsd).toBeNull(…
+     41|       expect(toCallSample({model:'o4-mini',latency_ms:cost}).latencyMs…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/20]⎯
+
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ ...options, model: "gpt-4-0613", messages: [] }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: const MODEL = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model: MODEL, messages: [], ...options }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: const model = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model, messages: [], ...options }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override ?? { model: "gpt-4-0613", messages: [], ...options }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override || { ...options, model: "gpt-4-0613", messages: [] }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, useOptions: boolean) { return client.chat.completions.create(useOptions ? { model: "gpt-4-0613", messages: [], ...options } : { model: "gpt-5.6-sol", messages: [] }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create((override ?? ({ model: "gpt-4-0613", messages: [], ...options }))); }
+AssertionError: expected 'model_arg' to be 'surface_capped' // Object.is equality
+
+Expected: "surface_capped"
+Received: "model_arg"
+
+ ❯ src/usage/request-spreads.test.ts:30:28
+     28|     p.createSourceFile('src/app.ts', prefix + source);
+     29|     const [match] = findModelIdLiterals(p, registry);
+     30|     expect(match.position).toBe('surface_capped');
+       |                            ^
+     31|     expect(match.reason).toMatch(/spread.*model.*parameters/i);
+     32|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/20]⎯
+
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override ?? { model: "gpt-4-0613", messages: [], ...options }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override || { ...options, model: "gpt-4-0613", messages: [] }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, useOptions: boolean) { return client.chat.completions.create(useOptions ? { model: "gpt-4-0613", messages: [], ...options } : { model: "gpt-5.6-sol", messages: [] }); }
+ FAIL  src/usage/request-spreads.test.ts > opaque request spreads cannot earn automatic migration > refuses a real migration write rather than trusting a passing local eval: export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create((override ?? ({ model: "gpt-4-0613", messages: [], ...options }))); }
+AssertionError: expected 'verified' to be 'held_for_review' // Object.is equality
+
+Expected: "held_for_review"
+Received: "verified"
+
+ ❯ src/usage/request-spreads.test.ts:60:38
+     58|       writeFileSync(join(dir, 'eval.cjs'), 'require("node:assert/stric…
+     59|       const r = await runMigration(dir, registry, { write: true, evalC…
+     60|       expect(r.verification.verdict).toBe('held_for_review');
+       |                                      ^
+     61|       expect(r.prReady).toBe(false);
+     62|       expect(readFileSync(file, 'utf8')).toBe(source);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/20]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  20 failed | 2 passed (22)
+   Start at  12:07:56
+   Duration  3.32s (transform 324ms, setup 0ms, import 915ms, tests 2.06s, environment 0ms)
+

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery",
+    "removed": true,
+    "scope": "owned disposable worktree; candidate refs and compact evidence preserved"
+  },
+  {
+    "path": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/request-spreads",
+    "removed": true,
+    "scope": "owned disposable worktree; candidate refs and compact evidence preserved"
+  },
+  {
+    "path": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/telemetry",
+    "removed": true,
+    "scope": "owned disposable worktree; candidate refs and compact evidence preserved"
+  },
+  {
+    "path": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/red-base",
+    "removed": true,
+    "scope": "owned disposable worktree; candidate refs and compact evidence preserved"
+  }
+]

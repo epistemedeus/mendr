@@ -1,0 +1,26 @@
+{
+  "name": "request-spreads-direct",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4551/scripts/probe-spread-write.mjs",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/request-spreads",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/outputs/request-spreads-direct"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/request-spreads",
+  "startedAt": "2026-10-23T12:07:00.183636+00:00",
+  "elapsedSeconds": 0.931,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 589304,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 115737,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 87,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "725b576e4700279b099be702640868ebe68ccc4f669f0f819222c696a49cf0d0",
+  "reportArtifact": null
+}

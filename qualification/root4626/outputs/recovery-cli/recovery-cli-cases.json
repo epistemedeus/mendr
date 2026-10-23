@@ -1,0 +1,891 @@
+{
+  "observedClock": "2026-10-23T12:06:43.547Z",
+  "future": "2026-10-25",
+  "past": "2026-10-21",
+  "results": [
+    {
+      "name": "empty",
+      "args": [
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/numbers.json",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/migration.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW",
+        "--json"
+      ],
+      "exitCode": 0,
+      "numbers": {
+        "workflow": "Synthetic",
+        "before": {
+          "calls": 120,
+          "errorRate": 0
+        },
+        "after": {
+          "calls": 120,
+          "errorRate": 0
+        }
+      },
+      "migration": {
+        "schema": "mendr-migration/v1",
+        "generatedBy": "mendr",
+        "repo": "explicit",
+        "generatedAt": "2026-10-23T11:37:25.722Z",
+        "sha": null,
+        "migrated": true,
+        "migrations": [],
+        "paramTransforms": [],
+        "skipped": [],
+        "changedFiles": [
+          "src/app.ts"
+        ],
+        "diff": "diff --git a/src/app.ts b/src/app.ts\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -1,2 +1,2 @@\n import OpenAI from \"openai\"; const client = new OpenAI();\n-export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n\\ No newline at end of file\n+export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n\\ No newline at end of file\n",
+        "verification": {
+          "typeCheck": {
+            "status": "passed"
+          },
+          "build": {
+            "status": "not_run"
+          },
+          "tests": {
+            "status": "not_run",
+            "detail": "no test script"
+          },
+          "eval": {
+            "status": "passed",
+            "detail": "",
+            "command": "node eval.cjs"
+          },
+          "behavioralTested": true,
+          "secondCheck": {
+            "status": "passed",
+            "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+          },
+          "verdict": "verified"
+        },
+        "prReady": true,
+        "notes": [
+          "No build script found (package.json has no `build`); the build gate did not run.",
+          "No test script found (package.json has no `test`); the test gate did not run.",
+          "This migration is a reviewed PR candidate. Mendr never merges; a human approves.",
+          "Applied the verified migration to 1 file in this checkout."
+        ],
+        "applied": [
+          "src/app.ts"
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      },
+      "expectedRevertAvailable": false,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "120 calls since the deploy; error rate stayed inside its limit. Not measured, so not covered: p95 latency, cost per 1,000 calls, your quality check.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep  and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      }
+    },
+    {
+      "name": "unknown",
+      "args": [
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/numbers.json",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/migration.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW",
+        "--json"
+      ],
+      "exitCode": 0,
+      "numbers": {
+        "workflow": "Synthetic",
+        "before": {
+          "calls": 120,
+          "errorRate": 0
+        },
+        "after": {
+          "calls": 120,
+          "errorRate": 0
+        }
+      },
+      "migration": {
+        "schema": "mendr-migration/v1",
+        "generatedBy": "mendr",
+        "repo": "explicit",
+        "generatedAt": "2026-10-23T11:37:25.722Z",
+        "sha": null,
+        "migrated": true,
+        "migrations": [
+          {
+            "provider": "openai",
+            "model": "gpt-4-0613",
+            "from": "synthetic-old-0",
+            "to": "synthetic-new-0",
+            "language": "ts",
+            "sites": 1,
+            "files": [
+              "src/app.ts"
+            ],
+            "evidence": {
+              "entryId": null,
+              "lifecycle": null,
+              "shutdownDate": null,
+              "daysUntil": null,
+              "sourceUrl": null,
+              "replacementVerdict": "verified",
+              "excerpts": []
+            }
+          }
+        ],
+        "paramTransforms": [],
+        "skipped": [],
+        "changedFiles": [
+          "src/app.ts"
+        ],
+        "diff": "diff --git a/src/app.ts b/src/app.ts\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -1,2 +1,2 @@\n import OpenAI from \"openai\"; const client = new OpenAI();\n-export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n\\ No newline at end of file\n+export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n\\ No newline at end of file\n",
+        "verification": {
+          "typeCheck": {
+            "status": "passed"
+          },
+          "build": {
+            "status": "not_run"
+          },
+          "tests": {
+            "status": "not_run",
+            "detail": "no test script"
+          },
+          "eval": {
+            "status": "passed",
+            "detail": "",
+            "command": "node eval.cjs"
+          },
+          "behavioralTested": true,
+          "secondCheck": {
+            "status": "passed",
+            "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+          },
+          "verdict": "verified"
+        },
+        "prReady": true,
+        "notes": [
+          "No build script found (package.json has no `build`); the build gate did not run.",
+          "No test script found (package.json has no `test`); the test gate did not run.",
+          "This migration is a reviewed PR candidate. Mendr never merges; a human approves.",
+          "Applied the verified migration to 1 file in this checkout."
+        ],
+        "applied": [
+          "src/app.ts"
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      },
+      "expectedRevertAvailable": false,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "120 calls since the deploy; error rate stayed inside its limit. Not measured, so not covered: p95 latency, cost per 1,000 calls, your quality check.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-new-0` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      }
+    },
+    {
+      "name": "mixed",
+      "args": [
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/numbers.json",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/migration.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW",
+        "--json"
+      ],
+      "exitCode": 0,
+      "numbers": {
+        "workflow": "Synthetic",
+        "before": {
+          "calls": 120,
+          "errorRate": 0
+        },
+        "after": {
+          "calls": 120,
+          "errorRate": 0
+        }
+      },
+      "migration": {
+        "schema": "mendr-migration/v1",
+        "generatedBy": "mendr",
+        "repo": "explicit",
+        "generatedAt": "2026-10-23T11:37:25.722Z",
+        "sha": null,
+        "migrated": true,
+        "migrations": [
+          {
+            "provider": "openai",
+            "model": "gpt-4-0613",
+            "from": "synthetic-old-0",
+            "to": "synthetic-new-0",
+            "language": "ts",
+            "sites": 1,
+            "files": [
+              "src/app.ts"
+            ],
+            "evidence": {
+              "entryId": null,
+              "lifecycle": null,
+              "shutdownDate": "2026-10-25",
+              "daysUntil": null,
+              "sourceUrl": null,
+              "replacementVerdict": "verified",
+              "excerpts": []
+            }
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-4-0613",
+            "from": "synthetic-old-1",
+            "to": "synthetic-new-1",
+            "language": "ts",
+            "sites": 1,
+            "files": [
+              "src/app.ts"
+            ],
+            "evidence": {
+              "entryId": null,
+              "lifecycle": null,
+              "shutdownDate": null,
+              "daysUntil": null,
+              "sourceUrl": null,
+              "replacementVerdict": "verified",
+              "excerpts": []
+            }
+          }
+        ],
+        "paramTransforms": [],
+        "skipped": [],
+        "changedFiles": [
+          "src/app.ts"
+        ],
+        "diff": "diff --git a/src/app.ts b/src/app.ts\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -1,2 +1,2 @@\n import OpenAI from \"openai\"; const client = new OpenAI();\n-export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n\\ No newline at end of file\n+export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n\\ No newline at end of file\n",
+        "verification": {
+          "typeCheck": {
+            "status": "passed"
+          },
+          "build": {
+            "status": "not_run"
+          },
+          "tests": {
+            "status": "not_run",
+            "detail": "no test script"
+          },
+          "eval": {
+            "status": "passed",
+            "detail": "",
+            "command": "node eval.cjs"
+          },
+          "behavioralTested": true,
+          "secondCheck": {
+            "status": "passed",
+            "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+          },
+          "verdict": "verified"
+        },
+        "prReady": true,
+        "notes": [
+          "No build script found (package.json has no `build`); the build gate did not run.",
+          "No test script found (package.json has no `test`); the test gate did not run.",
+          "This migration is a reviewed PR candidate. Mendr never merges; a human approves.",
+          "Applied the verified migration to 1 file in this checkout."
+        ],
+        "applied": [
+          "src/app.ts"
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      },
+      "expectedRevertAvailable": false,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "120 calls since the deploy; error rate stayed inside its limit. Not measured, so not covered: p95 latency, cost per 1,000 calls, your quality check.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-new-0`, `synthetic-new-1` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      }
+    },
+    {
+      "name": "known-before-date",
+      "args": [
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/numbers.json",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/migration.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW",
+        "--json"
+      ],
+      "exitCode": 0,
+      "numbers": {
+        "workflow": "Synthetic",
+        "before": {
+          "calls": 120,
+          "errorRate": 0
+        },
+        "after": {
+          "calls": 120,
+          "errorRate": 0
+        }
+      },
+      "migration": {
+        "schema": "mendr-migration/v1",
+        "generatedBy": "mendr",
+        "repo": "explicit",
+        "generatedAt": "2026-10-23T11:37:25.722Z",
+        "sha": null,
+        "migrated": true,
+        "migrations": [
+          {
+            "provider": "openai",
+            "model": "gpt-4-0613",
+            "from": "synthetic-old-0",
+            "to": "synthetic-new-0",
+            "language": "ts",
+            "sites": 1,
+            "files": [
+              "src/app.ts"
+            ],
+            "evidence": {
+              "entryId": null,
+              "lifecycle": null,
+              "shutdownDate": "2026-10-25",
+              "daysUntil": null,
+              "sourceUrl": null,
+              "replacementVerdict": "verified",
+              "excerpts": []
+            }
+          }
+        ],
+        "paramTransforms": [],
+        "skipped": [],
+        "changedFiles": [
+          "src/app.ts"
+        ],
+        "diff": "diff --git a/src/app.ts b/src/app.ts\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -1,2 +1,2 @@\n import OpenAI from \"openai\"; const client = new OpenAI();\n-export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n\\ No newline at end of file\n+export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n\\ No newline at end of file\n",
+        "verification": {
+          "typeCheck": {
+            "status": "passed"
+          },
+          "build": {
+            "status": "not_run"
+          },
+          "tests": {
+            "status": "not_run",
+            "detail": "no test script"
+          },
+          "eval": {
+            "status": "passed",
+            "detail": "",
+            "command": "node eval.cjs"
+          },
+          "behavioralTested": true,
+          "secondCheck": {
+            "status": "passed",
+            "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+          },
+          "verdict": "verified"
+        },
+        "prReady": true,
+        "notes": [
+          "No build script found (package.json has no `build`); the build gate did not run.",
+          "No test script found (package.json has no `test`); the test gate did not run.",
+          "This migration is a reviewed PR candidate. Mendr never merges; a human approves.",
+          "Applied the verified migration to 1 file in this checkout."
+        ],
+        "applied": [
+          "src/app.ts"
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      },
+      "expectedRevertAvailable": true,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "120 calls since the deploy; error rate stayed inside its limit. Not measured, so not covered: p95 latency, cost per 1,000 calls, your quality check.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": true,
+              "detail": "A code revert would send calls back to `synthetic-old-0`, within the announced schedule window until 2026-10-25. Verify current accessibility and workload behavior before relying on it."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-new-0` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      }
+    },
+    {
+      "name": "known-after-date",
+      "args": [
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery/dist/cli.js",
+        "rollout",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/numbers.json",
+        "--migration",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW/migration.json",
+        "--repo",
+        "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/mendr-recovery-consumer-AtXyQW",
+        "--json"
+      ],
+      "exitCode": 0,
+      "numbers": {
+        "workflow": "Synthetic",
+        "before": {
+          "calls": 120,
+          "errorRate": 0
+        },
+        "after": {
+          "calls": 120,
+          "errorRate": 0
+        }
+      },
+      "migration": {
+        "schema": "mendr-migration/v1",
+        "generatedBy": "mendr",
+        "repo": "explicit",
+        "generatedAt": "2026-10-23T11:37:25.722Z",
+        "sha": null,
+        "migrated": true,
+        "migrations": [
+          {
+            "provider": "openai",
+            "model": "gpt-4-0613",
+            "from": "synthetic-old-0",
+            "to": "synthetic-new-0",
+            "language": "ts",
+            "sites": 1,
+            "files": [
+              "src/app.ts"
+            ],
+            "evidence": {
+              "entryId": null,
+              "lifecycle": null,
+              "shutdownDate": "2026-10-21",
+              "daysUntil": null,
+              "sourceUrl": null,
+              "replacementVerdict": "verified",
+              "excerpts": []
+            }
+          }
+        ],
+        "paramTransforms": [],
+        "skipped": [],
+        "changedFiles": [
+          "src/app.ts"
+        ],
+        "diff": "diff --git a/src/app.ts b/src/app.ts\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -1,2 +1,2 @@\n import OpenAI from \"openai\"; const client = new OpenAI();\n-export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n\\ No newline at end of file\n+export async function ask(options: object) { return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n\\ No newline at end of file\n",
+        "verification": {
+          "typeCheck": {
+            "status": "passed"
+          },
+          "build": {
+            "status": "not_run"
+          },
+          "tests": {
+            "status": "not_run",
+            "detail": "no test script"
+          },
+          "eval": {
+            "status": "passed",
+            "detail": "",
+            "command": "node eval.cjs"
+          },
+          "behavioralTested": true,
+          "secondCheck": {
+            "status": "passed",
+            "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+          },
+          "verdict": "verified"
+        },
+        "prReady": true,
+        "notes": [
+          "No build script found (package.json has no `build`); the build gate did not run.",
+          "No test script found (package.json has no `test`); the test gate did not run.",
+          "This migration is a reviewed PR candidate. Mendr never merges; a human approves.",
+          "Applied the verified migration to 1 file in this checkout."
+        ],
+        "applied": [
+          "src/app.ts"
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      },
+      "expectedRevertAvailable": false,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "120 calls since the deploy; error rate stayed inside its limit. Not measured, so not covered: p95 latency, cost per 1,000 calls, your quality check.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Do not revert on schedule evidence: `synthetic-old-0` reached its announced retirement date 2026-10-21. Current endpoint accessibility is not established by a date-only notice."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-new-0` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      }
+    }
+  ]
+}

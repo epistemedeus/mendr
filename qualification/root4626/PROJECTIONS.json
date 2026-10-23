@@ -1,0 +1,315 @@
+[
+  {
+    "key": "recovery",
+    "ref": "codex/root4626-mendr-recovery-20261023",
+    "worktree": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery",
+    "head": "10b4ed4b65908bf9cca421174562524902f2c189",
+    "tree": "67173e9dfdc72aeca9331283ad460b95e0986aeb",
+    "base": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+    "acceptedCommits": [
+      "233b362a4834a7100fcf2a015100345fc11500a6"
+    ],
+    "author": [
+      "epistemedeus",
+      "124947147+epistemedeus@users.noreply.github.com",
+      "2026-10-23T11:25:44+00:00"
+    ],
+    "files": [
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/assurance/recovery.ts",
+        "projectedPath": "src/assurance/recovery.ts",
+        "sourceSha256": "a0d5276db3d96e2292b3c3593ae832626a99e17ebed4fc332be56eb29f5a8348",
+        "projectedSha256": "a0d5276db3d96e2292b3c3593ae832626a99e17ebed4fc332be56eb29f5a8348",
+        "labelOnlyReplacements": [],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/assurance/assurance.test.ts",
+        "projectedPath": "src/assurance/assurance.test.ts",
+        "sourceSha256": "2f5cc8530ae9cb8bf0ae5929a9af23e58b7e2e380b2b5877d790df0c249ad2f4",
+        "projectedSha256": "2f5cc8530ae9cb8bf0ae5929a9af23e58b7e2e380b2b5877d790df0c249ad2f4",
+        "labelOnlyReplacements": [],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/assurance/root4410-recovery.test.ts",
+        "projectedPath": "src/assurance/recovery-schedule.test.ts",
+        "sourceSha256": "cd7caf7e6e6ce28e16f5e2efb4278075b9274d4170f59bbbe30c8bd0fdd8eca0",
+        "projectedSha256": "ebe88dae4f0b031f7d607de60cd15c0198eb146e2bf6c0ab5285b556a819b3d3",
+        "labelOnlyReplacements": [
+          [
+            "ROOT4410 recovery evidence boundary",
+            "recovery schedule evidence"
+          ]
+        ],
+        "assertionsPreservedByInverseByteEquality": true
+      }
+    ],
+    "allowedDiff": [
+      "src/assurance/assurance.test.ts",
+      "src/assurance/recovery-schedule.test.ts",
+      "src/assurance/recovery.ts"
+    ],
+    "ancestorCommitsAboveBase": 1,
+    "qualificationInHistory": false,
+    "baselineDiffStat": " src/assurance/assurance.test.ts         |  6 +++---\n src/assurance/recovery-schedule.test.ts | 31 +++++++++++++++++++++++++++++++\n src/assurance/recovery.ts               | 27 +++++++++++++++++++--------\n 3 files changed, 53 insertions(+), 11 deletions(-)\n",
+    "baselineDiffSha256": "0105739bfc8f95de3c500c57ad090703a1410932af225b033a6d1637b758de0f",
+    "remoteHeadReadback": "10b4ed4b65908bf9cca421174562524902f2c189",
+    "focusedTestsPassed": 28,
+    "focusedFilesPassed": 2,
+    "buildReceipt": "outputs/recovery-build.json",
+    "testReceipt": "outputs/recovery-tests.json",
+    "builtControls": [
+      "outputs/recovery-cli.json"
+    ],
+    "baseTree": "601dc96f4658585058cdd06df23e6a2728e4a9d2",
+    "fileInventory": [
+      {
+        "path": "src/assurance/recovery.ts",
+        "blob": "474bb1f7b96e017048c1f600d16b9544519b09d9",
+        "bytes": 4013,
+        "sha256": "a0d5276db3d96e2292b3c3593ae832626a99e17ebed4fc332be56eb29f5a8348"
+      },
+      {
+        "path": "src/assurance/assurance.test.ts",
+        "blob": "c7b88390bbd4cdacd3a4b486d17f55b56f70a498",
+        "bytes": 8054,
+        "sha256": "2f5cc8530ae9cb8bf0ae5929a9af23e58b7e2e380b2b5877d790df0c249ad2f4"
+      },
+      {
+        "path": "src/assurance/recovery-schedule.test.ts",
+        "blob": "d13786f23e4211aa495894511a1f003041782494",
+        "bytes": 1685,
+        "sha256": "ebe88dae4f0b031f7d607de60cd15c0198eb146e2bf6c0ab5285b556a819b3d3"
+      }
+    ]
+  },
+  {
+    "key": "request-spreads",
+    "ref": "codex/root4626-mendr-request-spreads-20261023",
+    "worktree": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/request-spreads",
+    "head": "8382a864fd5ef0334a8a803d52a40559126e3e3b",
+    "tree": "55ede68e2eb0120e7dad853e7a14d9ee8c3a9679",
+    "base": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+    "acceptedCommits": [
+      "0c94fb98471b3093f78feb3d2504c970aa3ef4d2",
+      "9f166d9f1a70fc9c10e9ec0cb30d6259057b97e9",
+      "6584ea126657b4bfb00d85e8f72ade00094d7a64",
+      "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c"
+    ],
+    "author": [
+      "epistemedeus",
+      "124947147+epistemedeus@users.noreply.github.com",
+      "2026-10-23T11:25:50+00:00"
+    ],
+    "files": [
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/usage/scanLiterals.ts",
+        "projectedPath": "src/usage/scanLiterals.ts",
+        "sourceSha256": "1c31aafbca378de08f2da4852f738c8fa8914bc2c3900e7805fff26633e74fae",
+        "projectedSha256": "1c31aafbca378de08f2da4852f738c8fa8914bc2c3900e7805fff26633e74fae",
+        "labelOnlyReplacements": [],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/usage/tsSurface.ts",
+        "projectedPath": "src/usage/tsSurface.ts",
+        "sourceSha256": "f789c686659cf536da32b0bb01d1af27400c34b5bbb31ad8676d2dd285725452",
+        "projectedSha256": "f789c686659cf536da32b0bb01d1af27400c34b5bbb31ad8676d2dd285725452",
+        "labelOnlyReplacements": [],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/usage/requestObjectFlow.test.ts",
+        "projectedPath": "src/usage/requestObjectFlow.test.ts",
+        "sourceSha256": "9e25df9ad6785b82c4e673efb004432e4b03b5419e019f0ad707dcd4a620903f",
+        "projectedSha256": "9e25df9ad6785b82c4e673efb004432e4b03b5419e019f0ad707dcd4a620903f",
+        "labelOnlyReplacements": [],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/usage/root4410-request-spread.test.ts",
+        "projectedPath": "src/usage/request-spreads.test.ts",
+        "sourceSha256": "b77e94900629c98476d7094c4881214ef7fbb27e7cfad982daccb88394d91a6e",
+        "projectedSha256": "f831b1145beb2c2c09f820fecd153cdfc99876c5e65c93fbe3dac5f2cecb495d",
+        "labelOnlyReplacements": [
+          [
+            "ROOT4410 opaque request spread cannot earn automatic migration",
+            "opaque request spreads cannot earn automatic migration"
+          ],
+          [
+            "// ROOT4551 additions below retain the exact received direct-request controls.",
+            "// Inline, fallback and conditional requests use the same safety controls."
+          ],
+          [
+            "root4410-spread-",
+            "mendr-request-spreads-"
+          ]
+        ],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/migrate/root4410-second-check-write.test.ts",
+        "projectedPath": "src/migrate/write-revalidation.test.ts",
+        "sourceSha256": "b7a51ddf6dd32508b539e8ab45712cee77855033b576c6a12a9f828f47f31a09",
+        "projectedSha256": "f960775cd6939e98adcc5f34fdc8ef1f68dbfa17c0369b823dcad0b1b1817a26",
+        "labelOnlyReplacements": [
+          [
+            "root4410-second-write-",
+            "mendr-write-revalidation-"
+          ]
+        ],
+        "assertionsPreservedByInverseByteEquality": true
+      }
+    ],
+    "allowedDiff": [
+      "src/migrate/write-revalidation.test.ts",
+      "src/usage/request-spreads.test.ts",
+      "src/usage/requestObjectFlow.test.ts",
+      "src/usage/scanLiterals.ts",
+      "src/usage/tsSurface.ts"
+    ],
+    "ancestorCommitsAboveBase": 1,
+    "qualificationInHistory": false,
+    "baselineDiffStat": " src/migrate/write-revalidation.test.ts | 44 +++++++++++++++++++++++\n src/usage/request-spreads.test.ts      | 65 ++++++++++++++++++++++++++++++++++\n src/usage/requestObjectFlow.test.ts    |  4 +--\n src/usage/scanLiterals.ts              |  4 +++\n src/usage/tsSurface.ts                 | 21 +++++++++++\n 5 files changed, 136 insertions(+), 2 deletions(-)\n",
+    "baselineDiffSha256": "e565f7053f60de40ac50f15cff9150534f8b1afeb442078fab8ac1acb8bfc8a3",
+    "remoteHeadReadback": "8382a864fd5ef0334a8a803d52a40559126e3e3b",
+    "focusedTestsPassed": 234,
+    "focusedFilesPassed": 7,
+    "buildReceipt": "outputs/request-spreads-build.json",
+    "testReceipt": "outputs/request-spreads-tests.json",
+    "builtControls": [
+      "outputs/request-spreads-direct.json",
+      "outputs/request-spreads-wrapped.json"
+    ],
+    "baseTree": "601dc96f4658585058cdd06df23e6a2728e4a9d2",
+    "fileInventory": [
+      {
+        "path": "src/usage/scanLiterals.ts",
+        "blob": "b6027627c54d5cca22178ab4f7d26e6532d91a53",
+        "bytes": 52461,
+        "sha256": "1c31aafbca378de08f2da4852f738c8fa8914bc2c3900e7805fff26633e74fae"
+      },
+      {
+        "path": "src/usage/tsSurface.ts",
+        "blob": "c67cbede385dfed2cb9b37fb88eb47a92e299009",
+        "bytes": 67913,
+        "sha256": "f789c686659cf536da32b0bb01d1af27400c34b5bbb31ad8676d2dd285725452"
+      },
+      {
+        "path": "src/usage/requestObjectFlow.test.ts",
+        "blob": "7cc0ade5765c6703b493249a8c54592e1995f1c2",
+        "bytes": 9631,
+        "sha256": "9e25df9ad6785b82c4e673efb004432e4b03b5419e019f0ad707dcd4a620903f"
+      },
+      {
+        "path": "src/usage/request-spreads.test.ts",
+        "blob": "e3f049ce0ee0bfa1feee987ad3c3be0603bcdd65",
+        "bytes": 5036,
+        "sha256": "f831b1145beb2c2c09f820fecd153cdfc99876c5e65c93fbe3dac5f2cecb495d"
+      },
+      {
+        "path": "src/migrate/write-revalidation.test.ts",
+        "blob": "298f21bee307116ad9dfa9f898c418b61bb96b0f",
+        "bytes": 2904,
+        "sha256": "f960775cd6939e98adcc5f34fdc8ef1f68dbfa17c0369b823dcad0b1b1817a26"
+      }
+    ]
+  },
+  {
+    "key": "telemetry",
+    "ref": "codex/root4626-mendr-telemetry-20261023",
+    "worktree": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/telemetry",
+    "head": "55e4a3499a0330aa8de4e36c9a7659202635af4d",
+    "tree": "c49563242ef84a012711493ed47dc33e092df809",
+    "base": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+    "acceptedCommits": [
+      "ed6ddc85a1990de782edb55fdd9021c934ceb820"
+    ],
+    "author": [
+      "epistemedeus",
+      "124947147+epistemedeus@users.noreply.github.com",
+      "2026-10-23T11:25:52+00:00"
+    ],
+    "files": [
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/assurance/telemetry.ts",
+        "projectedPath": "src/assurance/telemetry.ts",
+        "sourceSha256": "31fc32f4d78b8a513b96b609c21857843c880da24068b8c9a42790431980a886",
+        "projectedSha256": "31fc32f4d78b8a513b96b609c21857843c880da24068b8c9a42790431980a886",
+        "labelOnlyReplacements": [],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/runtime/evidence.ts",
+        "projectedPath": "src/runtime/evidence.ts",
+        "sourceSha256": "9976587d7ca9e4606b0b704f93433388e4ddede9dfff74cb0e7d94f35eb9afbe",
+        "projectedSha256": "9976587d7ca9e4606b0b704f93433388e4ddede9dfff74cb0e7d94f35eb9afbe",
+        "labelOnlyReplacements": [],
+        "assertionsPreservedByInverseByteEquality": true
+      },
+      {
+        "acceptedCommit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+        "sourcePath": "src/assurance/root4410-telemetry-evidence.test.ts",
+        "projectedPath": "src/assurance/telemetry-evidence.test.ts",
+        "sourceSha256": "620341dfade2f0eaa92714a43ac8b05f6d466eda2d720a70f773aa81682c74da",
+        "projectedSha256": "b172c8cc09940a02209c722dbccaf4f2f10a0b8a13e71a390970752ce47c4998",
+        "labelOnlyReplacements": [
+          [
+            "ROOT4410 telemetry keeps missing evidence unknown",
+            "telemetry keeps missing evidence unknown"
+          ]
+        ],
+        "assertionsPreservedByInverseByteEquality": true
+      }
+    ],
+    "allowedDiff": [
+      "src/assurance/telemetry-evidence.test.ts",
+      "src/assurance/telemetry.ts",
+      "src/runtime/evidence.ts"
+    ],
+    "ancestorCommitsAboveBase": 1,
+    "qualificationInHistory": false,
+    "baselineDiffStat": " src/assurance/telemetry-evidence.test.ts | 48 ++++++++++++++++++++++++++++++++\n src/assurance/telemetry.ts               |  6 +++-\n src/runtime/evidence.ts                  | 35 +++++++++++++++++------\n 3 files changed, 79 insertions(+), 10 deletions(-)\n",
+    "baselineDiffSha256": "8ee1428f66ad8f7163cb75b8687c94f5e4ee0ad4cf181ceafcf97774603ad647",
+    "remoteHeadReadback": "55e4a3499a0330aa8de4e36c9a7659202635af4d",
+    "focusedTestsPassed": 50,
+    "focusedFilesPassed": 4,
+    "buildReceipt": "outputs/telemetry-build.json",
+    "testReceipt": "outputs/telemetry-tests.json",
+    "builtControls": [
+      "outputs/telemetry-cli.json"
+    ],
+    "baseTree": "601dc96f4658585058cdd06df23e6a2728e4a9d2",
+    "fileInventory": [
+      {
+        "path": "src/assurance/telemetry.ts",
+        "blob": "a9f151ec1f4a36bd7c8af9f09e9fdc1067a0b337",
+        "bytes": 5887,
+        "sha256": "31fc32f4d78b8a513b96b609c21857843c880da24068b8c9a42790431980a886"
+      },
+      {
+        "path": "src/runtime/evidence.ts",
+        "blob": "c4c4e00eeb9a4ddda8871e5669bebbafd56769a5",
+        "bytes": 17150,
+        "sha256": "9976587d7ca9e4606b0b704f93433388e4ddede9dfff74cb0e7d94f35eb9afbe"
+      },
+      {
+        "path": "src/assurance/telemetry-evidence.test.ts",
+        "blob": "5c488f6c71561bb7287fcab15fb270f03be7ec65",
+        "bytes": 2641,
+        "sha256": "b172c8cc09940a02209c722dbccaf4f2f10a0b8a13e71a390970752ce47c4998"
+      }
+    ]
+  }
+]

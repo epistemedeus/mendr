@@ -1,0 +1,29 @@
+{
+  "name": "recovery-tests",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/recovery-schedule.test.ts",
+    "src/assurance/assurance.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/recovery",
+  "startedAt": "2026-10-23T12:06:42.319792+00:00",
+  "elapsedSeconds": 1.059,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 638124,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 115737,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 554,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "a5fcfc282333c4158eef1ef1f189c1dd19b0643e6badc8d7ee8750af060d5513",
+  "reportArtifact": null
+}

@@ -1,0 +1,17 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance/telemetry-evidence.test.ts src/assurance/telemetry.test.ts src/runtime/evidence.test.ts src/assurance/assurance.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/telemetry
+
+ ✓ src/assurance/assurance.test.ts (25 tests) 15ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 9ms
+ ✓ src/runtime/evidence.test.ts (14 tests) 8ms
+ ✓ src/assurance/telemetry-evidence.test.ts (4 tests) 29ms
+
+ Test Files  4 passed (4)
+      Tests  50 passed (50)
+   Start at  12:07:07
+   Duration  1.57s (transform 255ms, setup 0ms, import 1.06s, tests 61ms, environment 0ms)
+

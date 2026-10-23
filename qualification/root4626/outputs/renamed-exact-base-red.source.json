@@ -1,0 +1,15 @@
+{
+  "head": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+  "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sourceTreeSha256": "379e3d12ef037bc3eb3dbf76819baf0f0611f12f1ae8b4d6425ce0c74392eb5a",
+  "scopeSha256": {
+    "src/assurance/assurance.test.ts": "e0152f13c8d1b6bf53430bd0d6079189f4953d934702e8d12f20676cb569d0f5",
+    "src/assurance/recovery.ts": "9b596b99ea8f6bf10cda7a150df04a8902293f07dab883f536b5602a75b13192",
+    "src/assurance/telemetry.ts": "5a2a6e4bd1c3d684a210ab715dba4b5a713bcbaf042e4193350eb22f7473aa2a",
+    "src/runtime/evidence.ts": "d058c862991d9cc18e246fd83693f8268548dcb334aad1621702ddfc9b6defe6",
+    "src/usage/requestObjectFlow.test.ts": "2222637bc43053706a4319fa53cb75481fc43ec2d3221617bee93301416923d0",
+    "src/usage/scanLiterals.ts": "ce445151987cc3f9ac3eac11433fc60d8f7356a271c152cf834acd017a0f04c2",
+    "src/usage/tsSurface.ts": "dcf05c62c6d7fc0b2fae7ea7e4a88f61fde06cdbfab70d688e2359d4e71f77ac"
+  },
+  "lockSha256": "3e6180b1ebbf28224586a04d982a5bd593df14ac023aeea512b82ce6d7d7ea8c"
+}

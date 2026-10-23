@@ -1,0 +1,30 @@
+{
+  "name": "renamed-exact-base-red",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/recovery-schedule.test.ts",
+    "src/usage/request-spreads.test.ts",
+    "src/assurance/telemetry-evidence.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/red-base",
+  "startedAt": "2026-10-23T12:07:56.077151+00:00",
+  "elapsedSeconds": 3.749,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1043996,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 115737,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 15557,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "80dc73492e52a3e74b7672e902becef0240f6b9ab2f8dcd8a694c7f5f9332a5c",
+  "reportArtifact": null
+}

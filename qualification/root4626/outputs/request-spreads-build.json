@@ -1,0 +1,25 @@
+{
+  "name": "request-spreads-build",
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/request-spreads",
+  "startedAt": "2026-10-23T12:06:45.898514+00:00",
+  "elapsedSeconds": 4.246,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 860184,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 115737,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 35,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "6dc7477cb53b4f989c0f19caad60216fdbdacb39ccc3857b3197182f8c95b4d3",
+  "reportArtifact": null
+}

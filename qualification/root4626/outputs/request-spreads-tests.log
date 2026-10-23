@@ -1,0 +1,25 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/usage/request-spreads.test.ts src/usage/requestObjectFlow.test.ts src/usage/tsGuards.test.ts src/usage/coupledParams.test.ts src/migrate/write-revalidation.test.ts src/gates/secondCheck.test.ts src/migrate/heldCalls.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023/qualification/root4626/.scratch/request-spreads
+
+ ✓ src/usage/requestObjectFlow.test.ts (14 tests) 2696ms
+     ✓ is a live call, not catalog data, when the client is assigned later (the Node server shape)  329ms
+     ✓ classifies hundreds of standalone model objects in one large file within budget  382ms
+     ✓ an object handed to a function that is not a provider endpoint  519ms
+ ✓ src/migrate/heldCalls.test.ts (10 tests) 1736ms
+     ✓ is held_for_review, never no_migration, and lists every held call with its code and sentence  363ms
+ ✓ src/usage/coupledParams.test.ts (110 tests) 284ms
+ ✓ src/gates/secondCheck.test.ts (17 tests) 171ms
+ ✓ src/usage/tsGuards.test.ts (67 tests) 116ms
+ ✓ src/usage/request-spreads.test.ts (15 tests) 391ms
+ ✓ src/migrate/write-revalidation.test.ts (1 test) 900ms
+   ✓ a failed second check cannot verify or write; a real healthy check subsequently recovers  899ms
+
+ Test Files  7 passed (7)
+      Tests  234 passed (234)
+   Start at  12:06:50
+   Duration  9.35s (transform 364ms, setup 0ms, import 2.31s, tests 6.29s, environment 0ms)
+
