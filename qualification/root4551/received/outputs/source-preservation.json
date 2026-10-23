@@ -1,0 +1,16 @@
+{
+  "eventcatalog": {
+    "head": "d721c06b0142c55cd23c461734c1423bf95cedb2",
+    "trackedTree": "79e75adfccb57cef8288d9b974733831306788ea",
+    "statusPorcelain": "",
+    "trackedBytesSha256": "bd6d74b7809ce72ea497ff4ad5bd01d6a19d2ea273bdf7d19323f9068f4daf19",
+    "changedByQualification": false
+  },
+  "yolo": {
+    "head": "f5470e7ea1e3fcf5d972fc826b263e2fb0469f25",
+    "trackedTree": "29cafb49f963fc2bc01fa70f24b4b5fb32e8f047",
+    "statusPorcelain": "",
+    "trackedBytesSha256": "ca20fbd0895f01ddb8a251ed6423a8aebec108592009c5b78e67b490eb77f960",
+    "changedByQualification": false
+  }
+}

@@ -1,0 +1,5 @@
+# Preserve exact captured output, unified-diff context and upstream notices.
+outputs/*.log -whitespace
+outputs/**/*.log -whitespace
+upstream/*.patch -whitespace
+upstream/LICENSE* -whitespace

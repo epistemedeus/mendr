@@ -1,0 +1,14 @@
+{
+  "command": [
+    "tools/ops/doc-hygiene",
+    "--json"
+  ],
+  "exitCode": 127,
+  "stderr": "cannot execute: required file not found; /bin/zsh is absent",
+  "fallback": [
+    "node",
+    "tools/ops/doc-hygiene.mjs",
+    "--json"
+  ],
+  "fallbackExitCode": 0
+}

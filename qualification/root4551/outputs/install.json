@@ -1,0 +1,27 @@
+{
+  "name": "install",
+  "command": [
+    "npm",
+    "ci",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:19:27.429450+00:00",
+  "elapsedSeconds": 1.841,
+  "exitCode": 0,
+  "offlinePreload": false,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 517320,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 25,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "64a521e3a9259b34490437d68fe9d1450af591918983c29f85e9d14609d337f4",
+  "reportArtifact": null
+}

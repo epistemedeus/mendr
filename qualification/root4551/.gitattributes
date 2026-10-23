@@ -1,0 +1,3 @@
+received/** -diff -text -whitespace
+outputs/*.log -whitespace
+amendments/*.patch -whitespace

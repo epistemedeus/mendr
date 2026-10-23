@@ -1,0 +1,24 @@
+{
+  "name": "guard-control",
+  "command": [
+    "node",
+    "qualification/root4551/received/scripts/network-guard-control.cjs"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:25:08.269510+00:00",
+  "elapsedSeconds": 0.108,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 364060,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 66,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "3d180d7741b611da4358a4c78d6ade4e41517cdd11c2719e391272b6201f4444",
+  "reportArtifact": null
+}

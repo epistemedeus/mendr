@@ -1,0 +1,1235 @@
+{
+  "eventcatalog": {
+    "expected": 11,
+    "reported": 11,
+    "missing": [],
+    "byRole": {
+      "config_selector": 1,
+      "model_catalog": 6,
+      "indirect_runtime_default": 2,
+      "test_fixture": 2
+    },
+    "coverage": {
+      "source": {
+        "analyzed": true,
+        "failed": false,
+        "filesScanned": 16,
+        "filesRead": 16,
+        "tsFiles": 16,
+        "jsFiles": 0,
+        "pyFiles": 0,
+        "unanalyzedLanguages": [],
+        "unanalyzedFiles": 0,
+        "docsFiles": 2,
+        "testFilesSkipped": 4,
+        "unreadableFiles": 0,
+        "parseFailures": 0,
+        "parseFailureFiles": []
+      },
+      "config": {
+        "analyzed": true,
+        "failed": false,
+        "filesScanned": 13,
+        "filesRead": 13,
+        "generatedSkipped": 0,
+        "excludedDirs": [
+          ".git",
+          "dist"
+        ],
+        "parseFailures": 0,
+        "parseFailureFiles": []
+      },
+      "registry": {
+        "providers": [
+          "anthropic",
+          "google",
+          "openai"
+        ],
+        "source": "bundled",
+        "version": "sha256:e0464cc70ab44d9d",
+        "publishedAt": "2026-10-11T07:10:25Z",
+        "ageDays": 12.1,
+        "maxAgeDays": 14,
+        "freshness": "fresh",
+        "refresh": {
+          "requested": false,
+          "ok": false
+        }
+      },
+      "runtime": {
+        "connected": false,
+        "source": null,
+        "failed": false
+      },
+      "readerTieBack": {
+        "proven": false
+      },
+      "migration": {
+        "workflowPresent": false,
+        "workflowFile": null
+      }
+    },
+    "conclusion": "exposure_detected",
+    "comparisons": [
+      {
+        "repo": "eventcatalog",
+        "file": "action.yml",
+        "line": 22,
+        "column": 15,
+        "value": "o4-mini",
+        "role": "config_selector",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "catalog_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/ai-models/openai.ts",
+        "line": 11,
+        "column": 4,
+        "value": "o3-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/ai-models/openai.ts",
+        "line": 12,
+        "column": 4,
+        "value": "o3-mini-2025-01-31",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/ai-models/openai.ts",
+        "line": 15,
+        "column": 4,
+        "value": "o4-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/ai-models/openai.ts",
+        "line": 16,
+        "column": 4,
+        "value": "o4-mini-2025-04-16",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/ai-models/openai.ts",
+        "line": 21,
+        "column": 4,
+        "value": "gpt-4.1-nano",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/ai-models/openai.ts",
+        "line": 22,
+        "column": 4,
+        "value": "gpt-4.1-nano-2025-04-14",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/ai-models/openai.ts",
+        "line": 58,
+        "column": 62,
+        "value": "o4-mini",
+        "role": "indirect_runtime_default",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "src/lib/ai.ts",
+        "line": 13,
+        "column": 41,
+        "value": "o4-mini",
+        "role": "indirect_runtime_default",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "surface_capped",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "tests/tasks/schema-review/github-comment.spec.ts",
+        "line": 51,
+        "column": 15,
+        "value": "o4-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "eventcatalog",
+        "file": "tests/tasks/schema-review/github-comment.spec.ts",
+        "line": 94,
+        "column": 15,
+        "value": "o4-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      }
+    ],
+    "totalReportedLocationsAllModels": 64,
+    "allModels": [
+      "o4-mini",
+      "gpt-4.5-preview",
+      "gpt-4.5-preview-2025-02-27",
+      "gemini-2.5-flash-preview-04-17",
+      "claude-3-sonnet-20240229",
+      "o1-preview",
+      "gemini-1.5-flash",
+      "gemini-1.5-flash-001",
+      "gemini-1.5-flash-002",
+      "gemini-1.5-flash-8b",
+      "gemini-1.5-flash-latest",
+      "gemini-1.5-pro",
+      "gemini-1.5-pro-001",
+      "gemini-1.5-pro-002",
+      "gemini-1.5-pro-latest",
+      "gpt-4o-audio-preview-2024-10-01",
+      "o1-mini",
+      "claude-3-5-sonnet-20240620",
+      "claude-3-5-sonnet-20241022",
+      "claude-3-5-sonnet-latest",
+      "gemini-2.0-flash-exp",
+      "gemini-2.5-pro-preview-05-06",
+      "gemini-2.0-flash-live-001",
+      "claude-3-opus-20240229",
+      "claude-3-opus-latest",
+      "chatgpt-4o-latest",
+      "claude-3-5-haiku-20241022",
+      "claude-3-5-haiku-latest",
+      "claude-3-7-sonnet-20250219",
+      "gpt-4-0125-preview",
+      "gpt-4-turbo-preview",
+      "claude-3-haiku-20240307",
+      "gpt-4o-audio-preview",
+      "gemini-2.0-flash",
+      "gemini-2.0-flash-001",
+      "gemini-2.0-flash-lite",
+      "gpt-4o-mini-search-preview-2025-03-11",
+      "gpt-4o-search-preview-2025-03-11",
+      "gpt-3.5-turbo-1106",
+      "gpt-3.5-turbo",
+      "gpt-3.5-turbo-0125",
+      "gpt-4",
+      "gpt-4-0613",
+      "gpt-4-1106-preview",
+      "gpt-4-turbo",
+      "gpt-4-turbo-2024-04-09",
+      "gpt-4.1-nano",
+      "gpt-4.1-nano-2025-04-14",
+      "gpt-4o-2024-05-13",
+      "o1",
+      "o1-2024-12-17",
+      "o3-mini",
+      "o3-mini-2025-01-31",
+      "o4-mini-2025-04-16",
+      "o3-2025-04-16",
+      "gpt-4o-audio-preview-2024-12-17"
+    ]
+  },
+  "yolo": {
+    "expected": 43,
+    "reported": 43,
+    "missing": [],
+    "byRole": {
+      "model_catalog": 10,
+      "historical_migration": 17,
+      "test_fixture": 16
+    },
+    "coverage": {
+      "source": {
+        "analyzed": true,
+        "failed": false,
+        "filesScanned": 1365,
+        "filesRead": 1365,
+        "tsFiles": 1321,
+        "jsFiles": 44,
+        "pyFiles": 0,
+        "unanalyzedLanguages": [
+          "Markdown/docs (63 files)"
+        ],
+        "unanalyzedFiles": 0,
+        "docsFiles": 63,
+        "testFilesSkipped": 628,
+        "unreadableFiles": 0,
+        "parseFailures": 0,
+        "parseFailureFiles": []
+      },
+      "config": {
+        "analyzed": true,
+        "failed": false,
+        "filesScanned": 41,
+        "filesRead": 41,
+        "generatedSkipped": 0,
+        "excludedDirs": [
+          ".git"
+        ],
+        "parseFailures": 0,
+        "parseFailureFiles": []
+      },
+      "registry": {
+        "providers": [
+          "anthropic",
+          "google",
+          "openai"
+        ],
+        "source": "bundled",
+        "version": "sha256:e0464cc70ab44d9d",
+        "publishedAt": "2026-10-11T07:10:25Z",
+        "ageDays": 12.1,
+        "maxAgeDays": 14,
+        "freshness": "fresh",
+        "refresh": {
+          "requested": false,
+          "ok": false
+        }
+      },
+      "runtime": {
+        "connected": false,
+        "source": null,
+        "failed": false
+      },
+      "readerTieBack": {
+        "proven": false
+      },
+      "migration": {
+        "workflowPresent": false,
+        "workflowFile": null
+      }
+    },
+    "conclusion": "exposure_detected",
+    "comparisons": [
+      {
+        "repo": "yolo",
+        "file": "src/constants.ts",
+        "line": 634,
+        "column": 10,
+        "value": "openai/gpt-4.1-nano",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false,
+            "value": "gpt-4.1-nano"
+          }
+        ],
+        "reportedValueCanonicalized": true
+      },
+      {
+        "repo": "yolo",
+        "file": "src/constants.ts",
+        "line": 635,
+        "column": 13,
+        "value": "gpt-4.1-nano",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "usage_unverified",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/constants.ts",
+        "line": 652,
+        "column": 10,
+        "value": "openai/o4-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false,
+            "value": "o4-mini"
+          }
+        ],
+        "reportedValueCanonicalized": true
+      },
+      {
+        "repo": "yolo",
+        "file": "src/constants.ts",
+        "line": 653,
+        "column": 13,
+        "value": "o4-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "usage_unverified",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/constants.ts",
+        "line": 753,
+        "column": 4,
+        "value": "gpt-4.1-nano",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/constants.ts",
+        "line": 758,
+        "column": 4,
+        "value": "o4-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/constants.ts",
+        "line": 759,
+        "column": 4,
+        "value": "o3-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/10_to_11.ts",
+        "line": 146,
+        "column": 10,
+        "value": "gpt-4.1-nano",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/10_to_11.ts",
+        "line": 147,
+        "column": 13,
+        "value": "gpt-4.1-nano",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "usage_unverified",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/10_to_11.ts",
+        "line": 164,
+        "column": 10,
+        "value": "o4-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/10_to_11.ts",
+        "line": 165,
+        "column": 13,
+        "value": "o4-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/11_to_12.ts",
+        "line": 222,
+        "column": 10,
+        "value": "openai/gpt-4.1-nano",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false,
+            "value": "gpt-4.1-nano"
+          }
+        ],
+        "reportedValueCanonicalized": true
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/11_to_12.ts",
+        "line": 223,
+        "column": 13,
+        "value": "gpt-4.1-nano",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "usage_unverified",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/11_to_12.ts",
+        "line": 243,
+        "column": 10,
+        "value": "openai/o4-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false,
+            "value": "o4-mini"
+          }
+        ],
+        "reportedValueCanonicalized": true
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/11_to_12.ts",
+        "line": 244,
+        "column": 13,
+        "value": "o4-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.test.ts",
+        "line": 32,
+        "column": 14,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.test.ts",
+        "line": 33,
+        "column": 17,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.test.ts",
+        "line": 123,
+        "column": 14,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.test.ts",
+        "line": 124,
+        "column": 17,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.test.ts",
+        "line": 171,
+        "column": 16,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.test.ts",
+        "line": 195,
+        "column": 14,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.test.ts",
+        "line": 196,
+        "column": 17,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.ts",
+        "line": 32,
+        "column": 28,
+        "value": "o3-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.ts",
+        "line": 52,
+        "column": 12,
+        "value": "o3-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/5_to_6.ts",
+        "line": 53,
+        "column": 15,
+        "value": "o3-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/6_to_7.ts",
+        "line": 105,
+        "column": 10,
+        "value": "o3-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/6_to_7.ts",
+        "line": 106,
+        "column": 13,
+        "value": "o3-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "usage_unverified",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 28,
+        "column": 39,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 86,
+        "column": 18,
+        "value": "gpt-4.1-nano",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 100,
+        "column": 18,
+        "value": "o4-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 117,
+        "column": 10,
+        "value": "gpt-4.1-nano",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 119,
+        "column": 10,
+        "value": "o4-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 151,
+        "column": 18,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 152,
+        "column": 21,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 173,
+        "column": 16,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.test.ts",
+        "line": 174,
+        "column": 19,
+        "value": "o3-mini",
+        "role": "test_fixture",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "test_fixture",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.ts",
+        "line": 51,
+        "column": 10,
+        "value": "gpt-4.1-nano",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.ts",
+        "line": 52,
+        "column": 13,
+        "value": "gpt-4.1-nano",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "usage_unverified",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.ts",
+        "line": 70,
+        "column": 10,
+        "value": "o4-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/settings/schema/migrations/7_to_8.ts",
+        "line": 71,
+        "column": 13,
+        "value": "o4-mini",
+        "role": "historical_migration",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "selectors",
+            "tier": "B",
+            "role": "code_candidate",
+            "reason": "usage_unverified",
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/utils/llm/openrouter-model-capabilities.ts",
+        "line": 242,
+        "column": 4,
+        "value": "gpt-4.1-nano",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/utils/llm/openrouter-model-capabilities.ts",
+        "line": 498,
+        "column": 4,
+        "value": "o3-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      },
+      {
+        "repo": "yolo",
+        "file": "src/utils/llm/openrouter-model-capabilities.ts",
+        "line": 503,
+        "column": 4,
+        "value": "o4-mini",
+        "role": "model_catalog",
+        "reported": true,
+        "actual": [
+          {
+            "bucket": "catalog",
+            "tier": "C",
+            "role": "code_reference",
+            "reason": null,
+            "patchEligible": false
+          }
+        ]
+      }
+    ],
+    "totalReportedLocationsAllModels": 306,
+    "allModels": [
+      "gemini-1.5-flash",
+      "gemini-1.5-pro",
+      "claude-3-5-sonnet-latest",
+      "gemini-2.0-flash-exp",
+      "gemini-2.0-flash-thinking-exp",
+      "gemini-2.5-pro-preview-03-25",
+      "claude-3-5-haiku-latest",
+      "claude-3-7-sonnet-latest",
+      "gemini-2.0-flash",
+      "gemini-2.0-flash-lite",
+      "claude-sonnet-4-0",
+      "claude-opus-4-1",
+      "gpt-4.1-nano",
+      "o1",
+      "o3-mini",
+      "o4-mini",
+      "gpt-3.5-turbo-0613",
+      "gpt-3.5-turbo-16k",
+      "gemini-pro",
+      "o1-mini",
+      "claude-3-5-sonnet-20240620",
+      "claude-3-opus",
+      "claude-3-opus-20240229",
+      "gemini-3-pro-preview",
+      "claude-3-haiku",
+      "claude-sonnet-4",
+      "claude-sonnet-4-20250514",
+      "gpt-3.5-turbo-instruct",
+      "gpt-3.5-turbo",
+      "gpt-4",
+      "gpt-4-turbo",
+      "gpt-4o-2024-05-13",
+      "o1-pro",
+      "claude-sonnet-4-5-20250929",
+      "gpt-audio",
+      "gpt-audio-mini",
+      "gemini-2.5-flash-image",
+      "gpt-5.1",
+      "gpt-5.3-codex",
+      "gpt-5.4-nano",
+      "gemini-3.1-flash-lite",
+      "gemini-3-flash-preview"
+    ],
+    "valueNormalizationLimit": "Four provider-prefixed catalog identity values are emitted without their openai/ prefix; matching uses manual source locators and records that loss."
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "mendr": {
+    "head": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+    "tree": "601dc96f4658585058cdd06df23e6a2728e4a9d2",
+    "package": {
+      "name": "mendr",
+      "version": "0.5.11-alpha",
+      "engines": {
+        "node": ">=22"
+      },
+      "license": "MIT",
+      "scripts": {
+        "build": "tsc",
+        "dev": "tsx src/cli.ts",
+        "test": "vitest run",
+        "validate:registry": "npm run build && node scripts/validate-registry.mjs",
+        "start": "node dist/cli.js",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run build && npm test"
+      }
+    },
+    "lockfiles": {
+      "package-lock.json": "3e6180b1ebbf28224586a04d982a5bd593df14ac023aeea512b82ce6d7d7ea8c",
+      "skills-lock.json": "ef7b06c9099d816a2ed6f89dd0af773647de9ab6403dba300ca539540f06286e"
+    },
+    "resolved": {
+      "version": "0.5.11-alpha",
+      "name": "mendr",
+      "dependencies": {
+        "@types/diff": {
+          "version": "7.0.2",
+          "resolved": "https://registry.npmjs.org/@types/diff/-/diff-7.0.2.tgz",
+          "overridden": false
+        },
+        "@types/node": {
+          "version": "26.1.2",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-26.1.2.tgz",
+          "overridden": false
+        },
+        "commander": {
+          "version": "15.0.0",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-15.0.0.tgz",
+          "overridden": false
+        },
+        "diff": {
+          "version": "9.0.0",
+          "resolved": "https://registry.npmjs.org/diff/-/diff-9.0.0.tgz",
+          "overridden": false
+        },
+        "execa": {
+          "version": "10.0.1",
+          "resolved": "https://registry.npmjs.org/execa/-/execa-10.0.1.tgz",
+          "overridden": false
+        },
+        "simple-git": {
+          "version": "3.36.0",
+          "resolved": "https://registry.npmjs.org/simple-git/-/simple-git-3.36.0.tgz",
+          "overridden": false
+        },
+        "stripe": {
+          "version": "22.4.0",
+          "resolved": "https://registry.npmjs.org/stripe/-/stripe-22.4.0.tgz",
+          "overridden": false
+        },
+        "tree-sitter-python": {
+          "version": "0.25.0",
+          "resolved": "https://registry.npmjs.org/tree-sitter-python/-/tree-sitter-python-0.25.0.tgz",
+          "overridden": false
+        },
+        "ts-morph": {
+          "version": "28.0.0",
+          "resolved": "https://registry.npmjs.org/ts-morph/-/ts-morph-28.0.0.tgz",
+          "overridden": false
+        },
+        "tsx": {
+          "version": "4.23.5",
+          "resolved": "https://registry.npmjs.org/tsx/-/tsx-4.23.5.tgz",
+          "overridden": false
+        },
+        "typescript": {
+          "version": "5.9.3",
+          "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz",
+          "overridden": false
+        },
+        "vitest": {
+          "version": "4.1.10",
+          "resolved": "https://registry.npmjs.org/vitest/-/vitest-4.1.10.tgz",
+          "overridden": false
+        },
+        "web-tree-sitter": {
+          "version": "0.26.12",
+          "resolved": "https://registry.npmjs.org/web-tree-sitter/-/web-tree-sitter-0.26.12.tgz",
+          "overridden": false
+        },
+        "yaml": {
+          "version": "2.9.1",
+          "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.9.1.tgz",
+          "overridden": false
+        }
+      }
+    }
+  },
+  "eventcatalog": {
+    "head": "d721c06b0142c55cd23c461734c1423bf95cedb2",
+    "tree": "79e75adfccb57cef8288d9b974733831306788ea",
+    "package": {
+      "name": "@eventcatalog/github-action",
+      "version": "0.0.1",
+      "license": "BSL-1.1",
+      "scripts": {
+        "build": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
+        "test": "vitest",
+        "format": "prettier --config .prettierrc --write \"**/*.{js,jsx,ts,tsx,json,astro}\"",
+        "format:diff": "prettier --config .prettierrc --list-different \"**/*.{js,jsx,ts,tsx,json,astro}\"",
+        "changeset": "changeset",
+        "release": "changeset publish",
+        "prepare": "husky install"
+      }
+    },
+    "lockfiles": {
+      "pnpm-lock.yaml": "803e169a01427ebf8a945b704ce11a42fee2eac3dbb2d1a73658b317c380bdcc"
+    }
+  },
+  "yolo": {
+    "head": "f5470e7ea1e3fcf5d972fc826b263e2fb0469f25",
+    "tree": "29cafb49f963fc2bc01fa70f24b4b5fb32e8f047",
+    "package": {
+      "name": "obsidian-yolo",
+      "version": "1.6.12",
+      "license": "MIT",
+      "scripts": {
+        "dev": "npm run runtime:build && npm run module:build && concurrently --kill-others-on-fail -n app,styles,modules,sync -c blue,magenta,green,yellow \"npm:dev:app\" \"npm:styles:watch\" \"npm:dev:modules\" \"npm:dev:sync\"",
+        "ob": "osascript -e 'quit app \"Obsidian\"' >/dev/null 2>&1 || true; while pgrep -x Obsidian >/dev/null; do sleep 0.2; done; node scripts/obsidian-open-dev-vault-only.mjs && open -a Obsidian --args --remote-debugging-port=9222 && npm run dev",
+        "dev:app": "node esbuild.config.mjs",
+        "dev:modules": "node scripts/watch-first-party-modules.mjs",
+        "dev:sync": "node scripts/sync-dev-artifacts.mjs",
+        "build": "tsc -noEmit -skipLibCheck && npm run module:typecheck && npm run runtime:typecheck && npm run styles:build && npm run runtime:build && npm run module:build && node esbuild.config.mjs production && npm run runtime:verify",
+        "styles:build": "postcss src/styles/index.css -o styles.css && node scripts/minify-styles.mjs",
+        "styles:watch": "postcss src/styles/index.css -o styles.css -w",
+        "module:build": "node scripts/build-first-party-modules.mjs",
+        "module:conformance:build": "npm run module:build",
+        "module:typecheck": "tsc --noEmit -p modules/tsconfig.json",
+        "runtime:build": "node scripts/build-runtime-components.mjs --production",
+        "runtime:check": "node scripts/build-runtime-components.mjs --production --check",
+        "runtime:typecheck": "tsc --noEmit -p runtime-components/tsconfig.json",
+        "runtime:verify": "node scripts/verify-runtime-component-boundaries.mjs",
+        "seed:long-chat": "node generate-long-chat.mjs",
+        "version": "node version-bump.mjs",
+        "release:prepare": "node scripts/release.mjs prepare",
+        "release:check": "node scripts/release.mjs check",
+        "prettier:check": "prettier --check --cache --cache-strategy content --cache-location node_modules/.cache/.prettiercache src __mocks__ modules/*/src modules/*/module.config.json modules/host-sdk.d.ts modules/tsconfig.json runtime-components/*/src runtime-components/*.ts runtime-components/*.d.ts runtime-components/tsconfig.json runtime-components/*/component.config.json scripts/build-first-party-modules.mjs scripts/watch-first-party-modules.mjs scripts/build-runtime-components.mjs scripts/verify-runtime-component-boundaries.mjs scripts/runtimeComponentAssetName.mjs scripts/runtimeComponentAssetName.test.mjs scripts/runtimeComponentAssetSources.mjs scripts/runtimeComponentImportMetaUrlShim.mjs scripts/runtimeComponentReleaseAssets.mjs scripts/runtimeComponentReleaseAssets.test.mjs scripts/runtime-assets.mjs scripts/smoke-embedding-engine.mjs scripts/distribution.mjs scripts/distribution.test.mjs scripts/download-stats.mjs scripts/download-stats.test.mjs scripts/release.mjs scripts/release.test.mjs scripts/module-release-assets.mjs scripts/module-release-assets.test.mjs scripts/validate-module-release.mjs scripts/validate-module-release.test.mjs scripts/verify-core-release-assets.mjs scripts/sync-dev-artifacts.mjs scripts/minify-styles.mjs .github/workflows/release.yml .github/workflows/module-release.yml .github/workflows/distribution-publish.yml .github/workflows/download-stats.yml package.json app.css eslint.config.mjs postcss.config.cjs",
+        "prettier:write": "prettier --write --cache --cache-strategy content --cache-location node_modules/.cache/.prettiercache src __mocks__ modules/*/src modules/*/module.config.json modules/host-sdk.d.ts modules/tsconfig.json runtime-components/*/src runtime-components/*.ts runtime-components/*.d.ts runtime-components/tsconfig.json runtime-components/*/component.config.json scripts/build-first-party-modules.mjs scripts/watch-first-party-modules.mjs scripts/build-runtime-components.mjs scripts/verify-runtime-component-boundaries.mjs scripts/runtimeComponentAssetName.mjs scripts/runtimeComponentAssetName.test.mjs scripts/runtimeComponentAssetSources.mjs scripts/runtimeComponentImportMetaUrlShim.mjs scripts/runtimeComponentReleaseAssets.mjs scripts/runtimeComponentReleaseAssets.test.mjs scripts/runtime-assets.mjs scripts/smoke-embedding-engine.mjs scripts/distribution.mjs scripts/distribution.test.mjs scripts/download-stats.mjs scripts/download-stats.test.mjs scripts/release.mjs scripts/release.test.mjs scripts/module-release-assets.mjs scripts/module-release-assets.test.mjs scripts/validate-module-release.mjs scripts/validate-module-release.test.mjs scripts/verify-core-release-assets.mjs scripts/sync-dev-artifacts.mjs scripts/minify-styles.mjs .github/workflows/release.yml .github/workflows/module-release.yml .github/workflows/distribution-publish.yml .github/workflows/download-stats.yml package.json app.css eslint.config.mjs postcss.config.cjs",
+        "lint": "npm run lint:check",
+        "lint:check": "npm run prettier:check && eslint --cache --cache-location node_modules/.cache/.eslintcache-runtime-components src __mocks__ modules/*/src runtime-components/*/src",
+        "lint:fix": "npm run prettier:write && eslint --cache --cache-location node_modules/.cache/.eslintcache-runtime-components --fix src __mocks__ modules/*/src runtime-components/*/src",
+        "type:check": "tsc --noEmit --incremental --tsBuildInfoFile node_modules/.cache/tsconfig.typecheck.tsbuildinfo",
+        "deps:check": "node scripts/check-circular.mjs",
+        "deps:baseline": "node scripts/check-circular.mjs --update",
+        "test": "jest --maxWorkers=50%",
+        "test:watch": "jest --watch",
+        "test:changed": "jest -o",
+        "models:update:openrouter": "node scripts/update-openrouter-model-capabilities.mjs"
+      }
+    },
+    "lockfiles": {
+      "package-lock.json": "5371aec26e72be83af7fb4c4f185cd121ddbb91b08c3f773a307ec78843dd783"
+    }
+  },
+  "runtime": {
+    "node": "v22.23.4",
+    "npm": "10.9.9"
+  }
+}

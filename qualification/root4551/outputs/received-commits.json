@@ -1,0 +1,17 @@
+[
+  {
+    "patch": "0001-recovery-schedule-evidence.patch",
+    "commit": "233b362a4834a7100fcf2a015100345fc11500a6",
+    "focusedReceipt": "green-recovery.json"
+  },
+  {
+    "patch": "0002-request-spread-hold.patch",
+    "commit": "0c94fb98471b3093f78feb3d2504c970aa3ef4d2",
+    "focusedReceipt": "green-spread.json"
+  },
+  {
+    "patch": "0003-telemetry-unknown-evidence.patch",
+    "commit": "ed6ddc85a1990de782edb55fdd9021c934ceb820",
+    "focusedReceipt": "green-telemetry.json"
+  }
+]

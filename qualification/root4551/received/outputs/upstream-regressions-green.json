@@ -1,0 +1,30 @@
+{
+  "name": "upstream-regressions-green",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/root4410-recovery.test.ts",
+    "src/usage/root4410-request-spread.test.ts",
+    "src/usage/tsGuards.test.ts",
+    "src/usage/requestObjectFlow.test.ts",
+    "src/usage/coupledParams.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:20:11.498742+00:00",
+  "elapsedSeconds": 5.65,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 849616,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 3257,
+  "outputSha256": "ab2002d1459d7adec95f9ebfd1da1587eab42869dc03ef8b2f0fe175852663f5",
+  "reportArtifact": null
+}

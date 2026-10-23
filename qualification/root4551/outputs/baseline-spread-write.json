@@ -1,0 +1,26 @@
+{
+  "name": "baseline-spread-write",
+  "command": [
+    "node",
+    "qualification/root4551/scripts/probe-spread-write.mjs",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+    "qualification/root4551/outputs/baseline-spread-write"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:25:10.560532+00:00",
+  "elapsedSeconds": 1.354,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 706484,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 506,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "4ab728935ed58ed9df9315c90012f2d1c12daee492c0d3328d3a427ef50589d4",
+  "reportArtifact": null
+}

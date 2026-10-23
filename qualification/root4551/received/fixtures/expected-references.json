@@ -1,0 +1,437 @@
+{
+  "scope": "Exact quoted base ids and their announced dated snapshots in tracked authored JS/TS/YAML; generated dist, locks, embedded text and routed variants excluded. File roles manually checked against pinned sources. Docs inventoried separately.",
+  "references": [
+    {
+      "repo": "eventcatalog",
+      "file": "action.yml",
+      "line": 22,
+      "column": 15,
+      "value": "o4-mini",
+      "role": "config_selector"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/ai-models/openai.ts",
+      "line": 11,
+      "column": 4,
+      "value": "o3-mini",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/ai-models/openai.ts",
+      "line": 12,
+      "column": 4,
+      "value": "o3-mini-2025-01-31",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/ai-models/openai.ts",
+      "line": 15,
+      "column": 4,
+      "value": "o4-mini",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/ai-models/openai.ts",
+      "line": 16,
+      "column": 4,
+      "value": "o4-mini-2025-04-16",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/ai-models/openai.ts",
+      "line": 21,
+      "column": 4,
+      "value": "gpt-4.1-nano",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/ai-models/openai.ts",
+      "line": 22,
+      "column": 4,
+      "value": "gpt-4.1-nano-2025-04-14",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/ai-models/openai.ts",
+      "line": 58,
+      "column": 62,
+      "value": "o4-mini",
+      "role": "indirect_runtime_default"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "src/lib/ai.ts",
+      "line": 13,
+      "column": 41,
+      "value": "o4-mini",
+      "role": "indirect_runtime_default"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "tests/tasks/schema-review/github-comment.spec.ts",
+      "line": 51,
+      "column": 15,
+      "value": "o4-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "eventcatalog",
+      "file": "tests/tasks/schema-review/github-comment.spec.ts",
+      "line": 94,
+      "column": 15,
+      "value": "o4-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/constants.ts",
+      "line": 634,
+      "column": 10,
+      "value": "openai/gpt-4.1-nano",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/constants.ts",
+      "line": 635,
+      "column": 13,
+      "value": "gpt-4.1-nano",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/constants.ts",
+      "line": 652,
+      "column": 10,
+      "value": "openai/o4-mini",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/constants.ts",
+      "line": 653,
+      "column": 13,
+      "value": "o4-mini",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/constants.ts",
+      "line": 753,
+      "column": 4,
+      "value": "gpt-4.1-nano",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/constants.ts",
+      "line": 758,
+      "column": 4,
+      "value": "o4-mini",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/constants.ts",
+      "line": 759,
+      "column": 4,
+      "value": "o3-mini",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/10_to_11.ts",
+      "line": 146,
+      "column": 10,
+      "value": "gpt-4.1-nano",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/10_to_11.ts",
+      "line": 147,
+      "column": 13,
+      "value": "gpt-4.1-nano",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/10_to_11.ts",
+      "line": 164,
+      "column": 10,
+      "value": "o4-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/10_to_11.ts",
+      "line": 165,
+      "column": 13,
+      "value": "o4-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/11_to_12.ts",
+      "line": 222,
+      "column": 10,
+      "value": "openai/gpt-4.1-nano",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/11_to_12.ts",
+      "line": 223,
+      "column": 13,
+      "value": "gpt-4.1-nano",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/11_to_12.ts",
+      "line": 243,
+      "column": 10,
+      "value": "openai/o4-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/11_to_12.ts",
+      "line": 244,
+      "column": 13,
+      "value": "o4-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.test.ts",
+      "line": 32,
+      "column": 14,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.test.ts",
+      "line": 33,
+      "column": 17,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.test.ts",
+      "line": 123,
+      "column": 14,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.test.ts",
+      "line": 124,
+      "column": 17,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.test.ts",
+      "line": 171,
+      "column": 16,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.test.ts",
+      "line": 195,
+      "column": 14,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.test.ts",
+      "line": 196,
+      "column": 17,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.ts",
+      "line": 32,
+      "column": 28,
+      "value": "o3-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.ts",
+      "line": 52,
+      "column": 12,
+      "value": "o3-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/5_to_6.ts",
+      "line": 53,
+      "column": 15,
+      "value": "o3-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/6_to_7.ts",
+      "line": 105,
+      "column": 10,
+      "value": "o3-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/6_to_7.ts",
+      "line": 106,
+      "column": 13,
+      "value": "o3-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 28,
+      "column": 39,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 86,
+      "column": 18,
+      "value": "gpt-4.1-nano",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 100,
+      "column": 18,
+      "value": "o4-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 117,
+      "column": 10,
+      "value": "gpt-4.1-nano",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 119,
+      "column": 10,
+      "value": "o4-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 151,
+      "column": 18,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 152,
+      "column": 21,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 173,
+      "column": 16,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.test.ts",
+      "line": 174,
+      "column": 19,
+      "value": "o3-mini",
+      "role": "test_fixture"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.ts",
+      "line": 51,
+      "column": 10,
+      "value": "gpt-4.1-nano",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.ts",
+      "line": 52,
+      "column": 13,
+      "value": "gpt-4.1-nano",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.ts",
+      "line": 70,
+      "column": 10,
+      "value": "o4-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/settings/schema/migrations/7_to_8.ts",
+      "line": 71,
+      "column": 13,
+      "value": "o4-mini",
+      "role": "historical_migration"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/utils/llm/openrouter-model-capabilities.ts",
+      "line": 242,
+      "column": 4,
+      "value": "gpt-4.1-nano",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/utils/llm/openrouter-model-capabilities.ts",
+      "line": 498,
+      "column": 4,
+      "value": "o3-mini",
+      "role": "model_catalog"
+    },
+    {
+      "repo": "yolo",
+      "file": "src/utils/llm/openrouter-model-capabilities.ts",
+      "line": 503,
+      "column": 4,
+      "value": "o4-mini",
+      "role": "model_catalog"
+    }
+  ]
+}

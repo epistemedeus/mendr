@@ -1,0 +1,24 @@
+{
+  "name": "final-registry",
+  "command": [
+    "node",
+    "scripts/validate-registry.mjs"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:37:37.395083+00:00",
+  "elapsedSeconds": 0.108,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 365424,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 55,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "225ab931a77850d399a7a3b1ce6d0221157d754d7ce08684271e04fd2da71657",
+  "reportArtifact": null
+}

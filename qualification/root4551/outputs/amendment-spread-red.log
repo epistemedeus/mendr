@@ -1,0 +1,62 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/usage/root4410-request-spread.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023
+
+ ❯ src/usage/root4410-request-spread.test.ts (11 tests | 4 failed) 369ms
+     ✓ holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); } 15ms
+     ✓ holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ ...options, model: "gpt-4-0613", messages: [] }); } 3ms
+     ✓ holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }  309ms
+     ✓ holds model and parameter uncertainty: const MODEL = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model: MODEL, messages: [], ...options }); } 2ms
+     ✓ holds model and parameter uncertainty: const model = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model, messages: [], ...options }); } 2ms
+     × holds model and parameter uncertainty: export async function ask(options: object, override?: object) { return client.chat.completions.create(override ?? { model: "gpt-4-0613", messages: [], ...options }); } 6ms
+     × holds model and parameter uncertainty: export async function ask(options: object, override?: object) { return client.chat.completions.create(override || { ...options, model: "gpt-4-0613", messages: [] }); } 2ms
+     × holds model and parameter uncertainty: export async function ask(options: object, useOptions: boolean) { return client.chat.completions.create(useOptions ? { model: "gpt-4-0613", messages: [], ...options } : {}); } 2ms
+     × holds model and parameter uncertainty: export async function ask(options: object, override?: object) { return client.chat.completions.create((override ?? ({ model: "gpt-4-0613", messages: [], ...options } satisfies object)) satisfies object); } 3ms
+     ✓ keeps an explicit request eligible 10ms
+     ✓ refuses a real migration write rather than trusting a passing local eval 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, override?: object) { return client.chat.completions.create(override ?? { model: "gpt-4-0613", messages: [], ...options }); }
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, override?: object) { return client.chat.completions.create(override || { ...options, model: "gpt-4-0613", messages: [] }); }
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, useOptions: boolean) { return client.chat.completions.create(useOptions ? { model: "gpt-4-0613", messages: [], ...options } : {}); }
+AssertionError: expected 'model_arg' to be 'surface_capped' // Object.is equality
+
+Expected: "surface_capped"
+Received: "model_arg"
+
+ ❯ src/usage/root4410-request-spread.test.ts:30:28
+     28|     p.createSourceFile('src/app.ts', prefix + source);
+     29|     const [match] = findModelIdLiterals(p, registry);
+     30|     expect(match.position).toBe('surface_capped');
+       |                            ^
+     31|     expect(match.reason).toMatch(/spread.*model.*parameters/i);
+     32|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object, override?: object) { return client.chat.completions.create((override ?? ({ model: "gpt-4-0613", messages: [], ...options } satisfies object)) satisfies object); }
+AssertionError: expected 'data' to be 'surface_capped' // Object.is equality
+
+Expected: "surface_capped"
+Received: "data"
+
+ ❯ src/usage/root4410-request-spread.test.ts:30:28
+     28|     p.createSourceFile('src/app.ts', prefix + source);
+     29|     const [match] = findModelIdLiterals(p, registry);
+     30|     expect(match.position).toBe('surface_capped');
+       |                            ^
+     31|     expect(match.reason).toMatch(/spread.*model.*parameters/i);
+     32|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 7 passed (11)
+   Start at  11:27:27
+   Duration  1.10s (transform 289ms, setup 0ms, import 599ms, tests 369ms, environment 0ms)
+

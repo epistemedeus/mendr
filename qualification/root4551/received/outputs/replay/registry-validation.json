@@ -1,0 +1,24 @@
+{
+  "name": "registry-validation",
+  "command": [
+    "node",
+    "dist/cli.js",
+    "validate-registry"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:34:34.078343+00:00",
+  "elapsedSeconds": 0.416,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 391128,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 137,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "209a89e9544d8972bb2001737470900f659777eaa05c72d78fcf4a80f967cb31",
+  "reportArtifact": null
+}

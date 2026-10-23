@@ -1,0 +1,175 @@
+{
+  "schema": "root4551.worker-result/v1",
+  "owner": "ROOT4551",
+  "status": "complete_for_root_receiving",
+  "recordedAt": "2026-10-23T11:41:01.226510+00:00",
+  "repository": {
+    "origin": "https://github.com/epistemedeus/mendr.git",
+    "branch": "codex/root4551-mendr-safety-integration-20261023",
+    "base": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+    "baseTree": "601dc96f4658585058cdd06df23e6a2728e4a9d2",
+    "testedSourceHead": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+    "testedSourceTree": "f1553e8186dd6c4a54b2836712f0101ec3d2da88",
+    "headMeaning": "Final tested product/test checkpoint. A following qualification-only commit exports these receipts; its exact HEAD/tree is returned in the final native response and must be read back on the admitted branch."
+  },
+  "operating": {
+    "pilotPin": "8555c77b55e62f98f24f29b915f2ef06f07e7806",
+    "inputsReceiptSha256": "82f28e4be1542c05fca16223e97a049e86d55680ce254da4f1f3c141953e74f6",
+    "specSha256": "7ff9de1f67f203b0fe03e52afb5cacd5e500883e57db3b70960aabdeba527f5e",
+    "checkpointBy": "2026-10-23T13:34:06.713Z",
+    "requiredUntil": "2026-10-23T13:49:06.713Z",
+    "bootId": "75d10aec-f516-4b98-bbfe-b8ff0ee0ca5e",
+    "hostAgentId": "bc-04984aa5-bc2b-4569-99e3-166ecb107705"
+  },
+  "execution": {
+    "admittedModel": "gpt-6.1-sol",
+    "admittedEffort": "xhigh",
+    "nativeSupervisorPid": 94491,
+    "nativeWrapperPid": 94492,
+    "completedTurnModelMetadata": "Root collects runner-owned terminal metadata after this turn; no runner receipt was rewritten.",
+    "modelChildren": 0,
+    "otherJobsOwned": 0,
+    "ownedPostgreSQL": 0,
+    "heavyCommands": "serial"
+  },
+  "received": {
+    "owner": "ROOT4410-C",
+    "pilotPin": "79aa03ac668e712825db5947d05c4c560d0951d2",
+    "originalExportFiles": 131,
+    "originalExportBytes": 1854886,
+    "originalWorkerCheckpoint": {
+      "originHost": "github.com",
+      "originPath": "/epistemedeus/pilot.git",
+      "originUserinfoPresent": false,
+      "base": "8aded3ca3bb5f22b32454f962091ef3750715a76",
+      "head": "310ebe7ad06cee5ca6b436a078edcf5ccebf0f2e",
+      "tree": "544faa00b9b9d3367f389083003385ffd46988ea",
+      "branch": "codex/root4410-c-mendr-adoption-20261023",
+      "headMeaning": "Exact tested payload checkpoint. A following report-only commit adds this self-referential receipt; final export HEAD/tree are returned in the native Git readback."
+    },
+    "patches": {
+      "0001-recovery-schedule-evidence.patch": {
+        "sha256": "8e870d83e8e79fe65df9c0573bb78c72652f84b6b6cebee31a10a5097f2a3c75",
+        "bytes": 7291
+      },
+      "0002-request-spread-hold.patch": {
+        "sha256": "606c971744556d9853651dcd0db7354266516dd300df080bdb1a24e8c87d6168",
+        "bytes": 7198
+      },
+      "0003-telemetry-unknown-evidence.patch": {
+        "sha256": "bde4a6d394f34437178cdc488acddfeae9f05f6513eabb8c7759019a047b5145",
+        "bytes": 7618
+      }
+    },
+    "exactProductBytesMatchedBeforeAmendment": "outputs/exact-patch-source-match.json",
+    "allOriginalEvidence": "received/",
+    "sourceManifest": "SOURCE-MANIFEST.json"
+  },
+  "commits": [
+    {
+      "commit": "233b362a4834a7100fcf2a015100345fc11500a6",
+      "subject": "fix: qualify recovery advice by known retirement schedules",
+      "focusedReceipt": "outputs/green-recovery.json"
+    },
+    {
+      "commit": "0c94fb98471b3093f78feb3d2504c970aa3ef4d2",
+      "subject": "fix: hold opaque request spreads for model and parameter review",
+      "focusedReceipt": "outputs/green-spread.json"
+    },
+    {
+      "commit": "ed6ddc85a1990de782edb55fdd9021c934ceb820",
+      "subject": "fix: preserve unknown telemetry outcomes and measurements",
+      "focusedReceipt": "outputs/green-telemetry.json"
+    },
+    {
+      "commit": "6584ea126657b4bfb00d85e8f72ade00094d7a64",
+      "subject": "test: receive second-check write refusal and recovery",
+      "focusedReceipt": "outputs/second-check-received.json"
+    },
+    {
+      "commit": "9f166d9f1a70fc9c10e9ec0cb30d6259057b97e9",
+      "subject": "fix: hold opaque request spreads in fallback and conditional branches",
+      "focusedReceipt": "outputs/amendment-spread-green.json"
+    },
+    {
+      "commit": "5ea45e2fce4cc3e57f053f6864e525a87e12fb4c",
+      "subject": "test: assert exact source after second-check recovery",
+      "focusedReceipt": "outputs/second-check-source-bytes.json"
+    }
+  ],
+  "amendments": {
+    "production": "9f166d9: private request-value spread guard through ||, ?? and conditional branches; 8 failing regressions and actual type/eval-passing wrong writes precede correction.",
+    "testOnly": "5ea45e2: exact rewritten source assertion after existing second-check failure/recovery."
+  },
+  "verification": {
+    "baseline": {
+      "testsPassed": 2207,
+      "filesPassed": 124,
+      "buildExit": 0
+    },
+    "baselineRed": {
+      "recoveryFailed": 3,
+      "spreadFailed": 6,
+      "spreadPassed": 1,
+      "telemetryFailed": 3,
+      "telemetryPassed": 1,
+      "rolloutProbeExit": 1,
+      "actualOpaqueWrite": {
+        "typeCheck": "passed",
+        "eval": "passed",
+        "verdict": "verified",
+        "prReady": true,
+        "bytesChanged": true
+      }
+    },
+    "amendmentRed": {
+      "refinedFailed": 8,
+      "refinedPassed": 7,
+      "builtFallbackAndConditional": "verified with type/eval passed; wrong bytes written"
+    },
+    "final": {
+      "testsPassed": 2230,
+      "filesPassed": 128,
+      "failures": 0,
+      "skips": 0,
+      "buildExit": 0,
+      "rolloutProbeExit": 0,
+      "rolloutCases": 5,
+      "migrationCorpusExit": 0,
+      "migrationCorpusCases": 22,
+      "registryExit": 0,
+      "spreadWriteProbesExit": 0,
+      "secondCheckExactRecoveryExit": 0
+    },
+    "commands": "outputs/COMMANDS.json",
+    "semanticBoundaries": "outputs/BOUNDARY-RESULTS.json",
+    "firstFailuresAndReview": "SELF-REVIEW.md"
+  },
+  "resource": {
+    "totalReservationKiB": 2097152,
+    "highestSampledAggregateRssKiB": 1284936,
+    "sampleIntervalMs": 100,
+    "safetyStopKiB": 1966080,
+    "accounting": "admitted native/supervisor tree plus owned command descendants; sampled RSS, not a kernel high-water measurement",
+    "stopReasons": [],
+    "largerReserveRequired": false,
+    "survivingCommandProcesses": "Only zero-RSS zombies under the admitted supervisor were observed; no live command worker retained."
+  },
+  "environment": {
+    "runtime": {
+      "node": "v22.23.4",
+      "npm": "10.9.9"
+    },
+    "dependencyIdentity": "BASELINE-IDENTITY.json",
+    "lockChanged": false,
+    "credentials": "allowlisted command environment and isolated HOME; no provider/Git credentials inherited by tests or CLI",
+    "network": "existing scripts/no-network.cjs; six negative primitive controls passed; Node enforcement, not an OS sandbox; source/dependency acquisition and authorized Git export separate"
+  },
+  "limits": [
+    "Source candidate only; Root owns independent receiving and later PR/release decisions.",
+    "No deployment, live provider/account/Models calls, paid or provider-backed evaluation, telemetry upload, installation, external issue/comment/PR or public human-copy change.",
+    "Local evals are deterministic synthetic command checks; no live availability, semantic parity, measured billing, maintainer adoption, customer or revenue claim.",
+    "Existing syntactic/locate-only boundaries remain; exploratory nested satisfies source is retained in SELF-REVIEW, without a new general classifier promotion.",
+    "Separate hosted app and provider-backed evaluation paths were not run."
+  ]
+}

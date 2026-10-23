@@ -1,0 +1,31 @@
+{
+  "name": "second-check-received",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/migrate/root4410-second-check-write.test.ts",
+    "src/gates/secondCheck.test.ts",
+    "src/migrate/migrate.test.ts",
+    "src/migrate/heldCalls.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:26:24.888345+00:00",
+  "elapsedSeconds": 9.72,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1110604,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 1420,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "1cbf908115b7ff77f5f43fd14d1ef33b41fb81d1513814ac4dbbcdd94883aebf",
+  "reportArtifact": null
+}

@@ -1,0 +1,30 @@
+{
+  "name": "green-telemetry",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/root4410-telemetry-evidence.test.ts",
+    "src/assurance/telemetry.test.ts",
+    "src/runtime/evidence.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:25:50.541016+00:00",
+  "elapsedSeconds": 1.756,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 803528,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 610,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "93a878729e905766e6c012eeb2667f533ed36b528a305e02fad79dc3f3507064",
+  "reportArtifact": null
+}

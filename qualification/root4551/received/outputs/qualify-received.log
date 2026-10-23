@@ -1,0 +1,21 @@
+PASS verified print-only migration
+PASS repeated audit preserves all fixture bytes
+PASS type-failure refuses write
+PASS test-failure refuses write
+PASS build-failure refuses write
+PASS eval-failure refuses write
+PASS external eval timeout then recovery
+PASS second check rejects out-of-scope edit then recovers
+PASS verified explicit write and repeat-load recovery
+PASS proxy held without writing
+PASS gateway-prefix held without writing
+PASS incompatible-parameter held without writing
+PASS rollout healthy
+PASS rollout degraded
+PASS rollout insufficient
+PASS rollout missing
+PASS rollout missing-cost
+PASS rollout missing-quality
+PASS runtime missing cost stays null
+PASS dated registry freshness
+PASS Models seam preserves schedule, access and semantics separately

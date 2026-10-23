@@ -1,0 +1,28 @@
+{
+  "name": "second-check-source-bytes",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/migrate/root4410-second-check-write.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:31:47.186320+00:00",
+  "elapsedSeconds": 2.184,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 974580,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 547,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "e3dcd07b5916db62beb33d0fb8d5cc4a5ade6a51cbafd9b23cea93183607f019",
+  "reportArtifact": null
+}

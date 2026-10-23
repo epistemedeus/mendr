@@ -1,0 +1,24 @@
+PASS verified print-only migration
+PASS repeated audit preserves all fixture bytes
+PASS type-failure refuses write
+PASS test-failure refuses write
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'inconclusive'
+- 'failed'
+
+    at file:///home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs:77:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'inconclusive',
+  expected: 'failed',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.4

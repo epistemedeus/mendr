@@ -1,0 +1,25 @@
+{
+  "name": "telemetry-cli-baseline-red",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/probe-telemetry.mjs",
+    "/tmp/root4410-c-scratch/mendr-baseline",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/baseline-telemetry"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:36:54.102075+00:00",
+  "elapsedSeconds": 1.553,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 437464,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 749,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "d30b50395480da5652fec7cd5fa3ed3e7ac536dc0df1bcedd133036c12b669e7",
+  "reportArtifact": null
+}

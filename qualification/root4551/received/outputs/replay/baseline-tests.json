@@ -1,0 +1,58 @@
+{
+  "name": "baseline-tests",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:29:22.522981+00:00",
+  "elapsedSeconds": 296.65,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1171932,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [
+    61628,
+    61682,
+    58957,
+    58990,
+    72985
+  ],
+  "logBytesBeforeBounding": 22985,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 61628,
+      "state": "Z",
+      "ppid": 15884
+    },
+    {
+      "pid": 61682,
+      "state": "Z",
+      "ppid": 15884
+    },
+    {
+      "pid": 58957,
+      "state": "Z",
+      "ppid": 15884
+    },
+    {
+      "pid": 58990,
+      "state": "Z",
+      "ppid": 15884
+    },
+    {
+      "pid": 72985,
+      "state": "Z",
+      "ppid": 15884
+    }
+  ],
+  "outputSha256": "8d6cb3c6e96dfe622b9cde5275e0b5559ddd9566265668e48bfd1972da7ea216",
+  "reportArtifact": null
+}

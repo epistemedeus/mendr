@@ -1,0 +1,209 @@
+{
+  "results": [
+    {
+      "name": "healthy",
+      "expectedVerdict": "verified",
+      "exitCode": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": "2026-10-20T12:00:00.000Z",
+        "verdict": "verified",
+        "reason": "120 calls since the deploy; error rate stayed inside its limit. Not measured, so not covered: p95 latency, cost per 1,000 calls, your quality check.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "notes": [
+          "Counted every call in the export, which may include other features. Add a \"telemetry\" filter to this workflow, or pass --migration, to narrow it.",
+          "Before: 7 days up to 2026-10-20T12:00:00.000Z. After: from the deploy to 2026-10-20T12:02:00.000Z (the latest call in the export)."
+        ]
+      }
+    },
+    {
+      "name": "degraded",
+      "expectedVerdict": "regression",
+      "exitCode": 1,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": "2026-10-20T12:00:00.000Z",
+        "verdict": "regression",
+        "reason": "1 signal moved past its limit: error rate 0.00% → 100.00% (+100.00 points; limit +0.50 points).",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "regression",
+            "before": 0,
+            "after": 1,
+            "detail": "error rate 0.00% → 100.00% (+100.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "notes": [
+          "Counted every call in the export, which may include other features. Add a \"telemetry\" filter to this workflow, or pass --migration, to narrow it.",
+          "Before: 7 days up to 2026-10-20T12:00:00.000Z. After: from the deploy to 2026-10-20T12:02:00.000Z (the latest call in the export)."
+        ]
+      }
+    },
+    {
+      "name": "insufficient",
+      "expectedVerdict": "inconclusive",
+      "exitCode": 3,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": "2026-10-20T12:00:00.000Z",
+        "verdict": "inconclusive",
+        "reason": "Only 3 calls since the deploy, fewer than the 100 this check needs to judge.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "notes": [
+          "Counted every call in the export, which may include other features. Add a \"telemetry\" filter to this workflow, or pass --migration, to narrow it.",
+          "Before: 7 days up to 2026-10-20T12:00:00.000Z. After: from the deploy to 2026-10-20T12:00:03.000Z (the latest call in the export)."
+        ]
+      }
+    },
+    {
+      "name": "missing-cost",
+      "expectedVerdict": "verified",
+      "exitCode": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": "2026-10-20T12:00:00.000Z",
+        "verdict": "verified",
+        "reason": "120 calls since the deploy; error rate stayed inside its limit. Not measured, so not covered: p95 latency, cost per 1,000 calls, your quality check.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "notes": [
+          "Counted every call in the export, which may include other features. Add a \"telemetry\" filter to this workflow, or pass --migration, to narrow it.",
+          "Before: 7 days up to 2026-10-20T12:00:00.000Z. After: from the deploy to 2026-10-20T12:02:00.000Z (the latest call in the export)."
+        ]
+      }
+    },
+    {
+      "name": "missing-outcome",
+      "expectedVerdict": "inconclusive",
+      "exitCode": 3,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic",
+        "configured": false,
+        "deployedAt": "2026-10-20T12:00:00.000Z",
+        "verdict": "inconclusive",
+        "reason": "The error rate was not measured in both windows, and a verdict needs at least that.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "not_measured",
+            "detail": "error rate was not given for both windows"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ],
+        "notes": [
+          "Counted every call in the export, which may include other features. Add a \"telemetry\" filter to this workflow, or pass --migration, to narrow it.",
+          "Before: 7 days up to 2026-10-20T12:00:00.000Z. After: from the deploy to 2026-10-20T12:02:00.000Z (the latest call in the export).",
+          "Some rows before the deploy have no usable outcome evidence, so error rate was not computed.",
+          "Some rows after the deploy have no usable outcome evidence, so error rate was not computed."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/usage/root4410-request-spread.test.ts src/usage/requestObjectFlow.test.ts src/usage/tsGuards.test.ts src/usage/sinkParamGuard.test.ts src/usage/coupledParams.test.ts src/migrate/heldCalls.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023
+
+ ✓ src/usage/root4410-request-spread.test.ts (15 tests) 398ms
+     ✓ holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }  317ms
+ ✓ src/usage/requestObjectFlow.test.ts (14 tests) 2580ms
+     ✓ is a live call, not catalog data, when the client is assigned later (the Node server shape)  342ms
+     ✓ classifies hundreds of standalone model objects in one large file within budget  339ms
+     ✓ an object handed to a function that is not a provider endpoint  487ms
+ ✓ src/migrate/heldCalls.test.ts (10 tests) 1774ms
+     ✓ is held_for_review, never no_migration, and lists every held call with its code and sentence  361ms
+ ✓ src/usage/coupledParams.test.ts (110 tests) 279ms
+ ✓ src/usage/tsGuards.test.ts (67 tests) 111ms
+
+ Test Files  5 passed (5)
+      Tests  216 passed (216)
+   Start at  11:29:18
+   Duration  7.41s (transform 354ms, setup 0ms, import 1.70s, tests 5.14s, environment 0ms)
+

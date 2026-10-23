@@ -1,0 +1,26 @@
+{
+  "name": "spread-baseline-red",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/usage/root4410-request-spread.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:18:31.057343+00:00",
+  "elapsedSeconds": 1.957,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 811352,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 4557,
+  "outputSha256": "86cd0773fa7dd2e412adbc82e24931b09b46f10f632699a4e0c18cf7d5b398e6",
+  "reportArtifact": null
+}

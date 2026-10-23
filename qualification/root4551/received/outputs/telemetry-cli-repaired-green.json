@@ -1,0 +1,25 @@
+{
+  "name": "telemetry-cli-repaired-green",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/probe-telemetry.mjs",
+    "/tmp/root4410-c-scratch/mendr",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/patched-telemetry"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:37:52.970284+00:00",
+  "elapsedSeconds": 1.971,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 445008,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 86,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "8578216bc2f1156fd5bce67853a80ab287f54d6e8b8c8583ea00f9f48f95cfd4",
+  "reportArtifact": null
+}

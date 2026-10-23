@@ -1,0 +1,11 @@
+{
+  "provenance": "Owner-authored synthetic responses; no endpoint contacted",
+  "cases": [
+    { "name": "date", "observedAt": "2026-10-22T12:00:00Z", "response": { "object": "list", "data": [{ "id": "o4-mini", "object": "model", "shutdown_date": "2026-10-23" }] } },
+    { "name": "null", "observedAt": "2026-10-22T12:00:00Z", "response": { "id": "o4-mini", "object": "model", "shutdown_date": null } },
+    { "name": "missing", "observedAt": "2026-10-22T12:00:00Z", "response": { "id": "o4-mini", "object": "model" } },
+    { "name": "conflict", "observedAt": "2026-10-22T12:00:00Z", "response": { "id": "o4-mini", "object": "model", "shutdown_date": "2026-11-01" } },
+    { "name": "stale", "observedAt": "2026-08-01T12:00:00Z", "response": { "id": "o4-mini", "object": "model", "shutdown_date": "2026-11-01" } }
+  ],
+  "boundaryInstants": ["2026-10-22T23:59:59Z", "2026-10-23T00:00:00Z", "2026-10-24T00:00:00Z", "2026-10-23T00:30:00+14:00", "2026-10-22T23:30:00-12:00"]
+}

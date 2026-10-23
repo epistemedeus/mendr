@@ -1,0 +1,31 @@
+PASS verified print-only migration
+PASS repeated audit preserves all fixture bytes
+PASS type-failure refuses write
+PASS test-failure refuses write
+PASS build-failure refuses write
+PASS eval-failure refuses write
+PASS external eval timeout then recovery
+PASS second check rejects out-of-scope edit then recovers
+PASS verified explicit write and repeat-load recovery
+PASS proxy held without writing
+PASS gateway-prefix held without writing
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '7670a34494e201eb19985626a3095322efdd7269a14360f553d38c0cd7a69afc'
+- '78ccb39139973195b244119e9d2964c2b1572713e3b4d82d42f9155cdea89535'
+
+    at file:///home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs:118:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '7670a34494e201eb19985626a3095322efdd7269a14360f553d38c0cd7a69afc',
+  expected: '78ccb39139973195b244119e9d2964c2b1572713e3b4d82d42f9155cdea89535',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.4

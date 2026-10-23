@@ -1,0 +1,79 @@
+{
+  "schema": "pilot-mendr-workflow-report/v1",
+  "source": "n8n.json",
+  "format": "n8n",
+  "registry": {
+    "activeEntries": 219,
+    "autoFixEligible": 135,
+    "reviewOnlyCounts": {
+      "verified": 0,
+      "quarantined": 22,
+      "unverified": 30,
+      "unverifiable": 32,
+      "unstamped": 0,
+      "withheld": 0
+    },
+    "oldestCheckedAt": "2026-09-15",
+    "newestCheckedAt": "2026-10-11",
+    "undatedEntries": 0
+  },
+  "coverage": {
+    "totalNodes": 3,
+    "supportedNodes": 2,
+    "unsupportedNodes": 1
+  },
+  "limitations": [
+    "Synthetic-qualified input shapes only; connector versions and actual request bodies are unreceived.",
+    "Unsupported nodes are not assessed. No workflow execution, model availability or semantic equivalence was measured.",
+    "Registry candidates require review. This adapter never migrates or writes source."
+  ],
+  "candidates": [
+    {
+      "pointer": "/nodes/0/parameters/model/value",
+      "parameterPointers": [
+        "/nodes/0/parameters/options/temperature"
+      ],
+      "model": "o4-mini",
+      "assessment": "retirement_reference",
+      "runtimeUsage": "not_measured",
+      "compatibility": "not_assessed",
+      "evidence": [
+        {
+          "provider": "openai",
+          "deprecated": "o4-mini",
+          "shutdownDate": "2026-10-23",
+          "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+          "registryCandidate": "gpt-5.6-terra",
+          "providerSurface": null,
+          "tier": "B",
+          "disposition": "review",
+          "patchEligible": false
+        }
+      ]
+    },
+    {
+      "pointer": "/nodes/1/parameters/model",
+      "parameterPointers": [
+        "/nodes/1/parameters/options/maxTokens"
+      ],
+      "model": "o4-mini",
+      "assessment": "retirement_reference",
+      "runtimeUsage": "not_measured",
+      "compatibility": "not_assessed",
+      "evidence": [
+        {
+          "provider": "openai",
+          "deprecated": "o4-mini",
+          "shutdownDate": "2026-10-23",
+          "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+          "registryCandidate": "gpt-5.6-terra",
+          "providerSurface": null,
+          "tier": "B",
+          "disposition": "review",
+          "patchEligible": false
+        }
+      ]
+    }
+  ],
+  "sourceSha256": "a9c1ee1132cbc424ea7cd5c87931f89de4dd02471b301bfcba65bcf5930e73c1"
+}

@@ -1,0 +1,71 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance/root4410-recovery.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /tmp/root4410-c-scratch/mendr
+
+ ❯ src/assurance/root4410-recovery.test.ts (3 tests | 3 failed) 8ms
+     × does not make an unknown deadline a safe revert, including mixed swaps 5ms
+     × closes the scheduled window on the UTC date without inventing observed failure 2ms
+     × describes a pre-deadline option as schedule-only and records unobserved access 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/assurance/root4410-recovery.test.ts > ROOT4410 recovery evidence boundary > does not make an unknown deadline a safe revert, including mixed swaps
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/assurance/root4410-recovery.test.ts:10:38
+      8|     for (const swaps of [[], [{ ...swap, shutdownDate: null }], [swap,…
+      9|       const r = recoveryPlan(swaps, new Date('2026-10-22T00:00:00Z'));
+     10|       expect(r.options[0].available).toBe(false);
+       |                                      ^
+     11|       expect(r.options[0].detail).toMatch(/not established|not proven|…
+     12|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/assurance/root4410-recovery.test.ts > ROOT4410 recovery evidence boundary > closes the scheduled window on the UTC date without inventing observed failure
+AssertionError: expected 'Do not revert: `o4-mini` shut down on…' to contain 'announced'
+
+Expected: "announced"
+Received: "Do not revert: `o4-mini` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+
+ ❯ src/assurance/root4410-recovery.test.ts:18:35
+     16|       const r = recoveryPlan([swap], new Date(now));
+     17|       expect(r.options[0].available).toBe(false);
+     18|       expect(r.options[0].detail).toContain('announced');
+       |                                   ^
+     19|       expect(r.options[0].detail).not.toMatch(/shut down on|no longer …
+     20|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/assurance/root4410-recovery.test.ts > ROOT4410 recovery evidence boundary > describes a pre-deadline option as schedule-only and records unobserved access
+AssertionError: expected 'Revert the pull request and calls go …' to contain 'announced'
+
+Expected: "announced"
+Received: "Revert the pull request and calls go back to `o4-mini`, until 2026-10-23, when `o4-mini` shuts down. After that, a revert stops working."
+
+ ❯ src/assurance/root4410-recovery.test.ts:26:35
+     24|       const r = recoveryPlan([swap], new Date(now));
+     25|       expect(r.options[0].available).toBe(true);
+     26|       expect(r.options[0].detail).toContain('announced');
+       |                                   ^
+     27|       expect(r.caveats.join(' ')).toMatch(/accessibility.*not observed…
+     28|       expect(r.caveats.join(' ')).toMatch(/quality.*not/i);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  10:17:34
+   Duration  154ms (transform 21ms, setup 0ms, import 30ms, tests 8ms, environment 0ms)
+

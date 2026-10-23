@@ -1,0 +1,24 @@
+{
+  "name": "audit-yolo",
+  "command": [
+    "node",
+    "dist/cli.js",
+    "audit",
+    "/tmp/root4410-c-scratch/yolo",
+    "--offline",
+    "--json"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:14:29.538922+00:00",
+  "elapsedSeconds": 3.896,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 834608,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 348718
+}

@@ -1,0 +1,25 @@
+{
+  "name": "workflow-tests",
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/workflow-report.test.mjs"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:34:34.529293+00:00",
+  "elapsedSeconds": 0.418,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 440620,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 1156,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "25549692eba1c43845a71e93560efc219047cfbdf6dae4663596944a5da9bd56",
+  "reportArtifact": null
+}

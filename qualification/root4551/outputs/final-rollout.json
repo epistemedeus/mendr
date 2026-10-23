@@ -1,0 +1,26 @@
+{
+  "name": "final-rollout",
+  "command": [
+    "node",
+    "qualification/root4551/received/scripts/probe-telemetry.mjs",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+    "qualification/root4551/outputs/final-rollout"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:37:23.356970+00:00",
+  "elapsedSeconds": 1.964,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 544012,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 86,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "8578216bc2f1156fd5bce67853a80ab287f54d6e8b8c8583ea00f9f48f95cfd4",
+  "reportArtifact": null
+}

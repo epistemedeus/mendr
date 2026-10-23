@@ -1,0 +1,48 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance src/usage/root4410-request-spread.test.ts src/usage/tsGuards.test.ts src/usage/requestObjectFlow.test.ts src/usage/coupledParams.test.ts src/migrate --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /tmp/root4410-c-scratch/mendr
+
+ ✓ src/usage/requestObjectFlow.test.ts (14 tests) 2498ms
+     ✓ is a live call, not catalog data, when the client is assigned later (the Node server shape)  313ms
+     ✓ classifies hundreds of standalone model objects in one large file within budget  329ms
+     ✓ an object handed to a function that is not a provider endpoint  464ms
+nvm is not compatible with the "npm_config_prefix" environment variable: currently set to "/"
+Run `unset npm_config_prefix` to unset it.
+nvm is not compatible with the "npm_config_prefix" environment variable: currently set to "/"
+Run `unset npm_config_prefix` to unset it.
+ ✓ src/migrate/actionOutcome.test.ts (24 tests) 6424ms
+     ✓ is clean only for no_migration with a held count of exactly zero  894ms
+     ✓ is not-verified for anything else, as before  728ms
+     ✓ says how many places need a person, in a plain sentence  440ms
+     ✓ finds the marker line among comment bodies, and only as a whole line  738ms
+     ✓ decides from what the real CLI emits for a held-only repository, and says so on the open pull request  1727ms
+ ✓ src/migrate/migrate.test.ts (33 tests) 4306ms
+     ✓ re-checks a TypeScript migration and reports it beside the four gates  473ms
+     ✓ VERIFIED and PR-ready when the sandbox build and tests pass  654ms
+     ✓ FAILED and not PR-ready when the sandbox tests fail  631ms
+     ✓ --write applies to the working tree ONLY on a verified verdict  630ms
+     ✓ --write writes NOTHING when a gate fails, leaving the tree untouched  638ms
+     ✓ a test script that exits 0 without running a test is INCONCLUSIVE, so the migration is never PR-ready on it  375ms
+ ✓ src/migrate/redactionE2E.test.ts (2 tests) 3002ms
+     ✓ redacts a key sitting in the diff context of a finding  1490ms
+     ✓ redacts a key inlined in the eval command it echoes back  1511ms
+ ✓ src/migrate/heldCalls.test.ts (10 tests) 1676ms
+     ✓ is held_for_review, never no_migration, and lists every held call with its code and sentence  349ms
+ ✓ src/usage/root4410-request-spread.test.ts (7 tests) 334ms
+ ✓ src/usage/coupledParams.test.ts (110 tests) 280ms
+ ✓ src/migrate/reportToApp.test.ts (6 tests) 266ms
+ ✓ src/usage/tsGuards.test.ts (67 tests) 114ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 16ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 8ms
+ ✓ src/migrate/approvalGate.test.ts (6 tests) 5ms
+ ✓ src/migrate/restrictRegistry.test.ts (4 tests) 3ms
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 3ms
+
+ Test Files  14 passed (14)
+      Tests  318 passed (318)
+   Start at  10:20:59
+   Duration  23.76s (transform 476ms, setup 0ms, import 3.37s, tests 18.94s, environment 1ms)
+

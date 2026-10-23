@@ -1,0 +1,27 @@
+{
+  "name": "audit-eventcatalog",
+  "command": [
+    "node",
+    "dist/cli.js",
+    "audit",
+    "/tmp/root4410-c-scratch/eventcatalog",
+    "--offline",
+    "--json"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:34:28.956164+00:00",
+  "elapsedSeconds": 0.935,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 469352,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 140063,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "67b577d911e9430b741dc2323b3ea51427e9b844b5d8a6f5ce81f64598391a9e",
+  "reportArtifact": "audit-eventcatalog.report.json"
+}

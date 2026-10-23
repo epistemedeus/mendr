@@ -1,0 +1,27 @@
+{
+  "name": "telemetry-baseline-exact-red",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/root4410-telemetry-evidence.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:43:32.649150+00:00",
+  "elapsedSeconds": 1.04,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 716596,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 3281,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "c6c96fb795ff93b1ead5a61f30a5eacaf94d33be2aa97f4d485d8fd9f752312e",
+  "reportArtifact": null
+}

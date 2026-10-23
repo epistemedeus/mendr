@@ -1,0 +1,40 @@
+{
+  "name": "final-migration-corpus",
+  "command": [
+    "node",
+    "qualification/root4551/received/scripts/qualify.mjs",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+    "qualification/root4551/outputs/final-migration-corpus"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:37:27.350096+00:00",
+  "elapsedSeconds": 9.989,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1073280,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [
+    113552,
+    113504
+  ],
+  "logBytesBeforeBounding": 834,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 113552,
+      "state": "Z",
+      "ppid": 94491
+    },
+    {
+      "pid": 113504,
+      "state": "Z",
+      "ppid": 94491
+    }
+  ],
+  "outputSha256": "daabcb4d283108b28aab47f435bee99899ab3d66b944ee0bf78844bee6e57266",
+  "reportArtifact": null
+}

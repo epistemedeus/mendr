@@ -1,0 +1,28 @@
+{
+  "name": "amendment-wrapped-spread-red",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/usage/root4410-request-spread.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:28:53.132016+00:00",
+  "elapsedSeconds": 2.931,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1030344,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 8215,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "13aedd5fd9a8c6041be57086082033e6b17dce4660e9de7ea0ba832b2467e88d",
+  "reportArtifact": null
+}

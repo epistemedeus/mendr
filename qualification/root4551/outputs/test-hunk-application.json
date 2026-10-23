@@ -1,0 +1,32 @@
+[
+  {
+    "command": [
+      "git",
+      "apply",
+      "--include=src/**/root4410-*.test.ts",
+      "qualification/root4551/received/upstream/0001-recovery-schedule-evidence.patch"
+    ],
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "apply",
+      "--include=src/**/root4410-*.test.ts",
+      "qualification/root4551/received/upstream/0002-request-spread-hold.patch"
+    ],
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "apply",
+      "--include=src/**/root4410-*.test.ts",
+      "qualification/root4551/received/upstream/0003-telemetry-unknown-evidence.patch"
+    ],
+    "exitCode": 0,
+    "output": ""
+  }
+]

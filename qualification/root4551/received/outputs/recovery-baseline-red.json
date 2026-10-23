@@ -1,0 +1,26 @@
+{
+  "name": "recovery-baseline-red",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/root4410-recovery.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:17:34.197864+00:00",
+  "elapsedSeconds": 0.623,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 500624,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 3306,
+  "outputSha256": "bfcb3869e8553aa8b879d3c1338b22d52342fbc51f58dc30545374d21d42e90a",
+  "reportArtifact": null
+}

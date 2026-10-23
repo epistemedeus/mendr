@@ -1,0 +1,24 @@
+{
+  "name": "build",
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:29:18.340716+00:00",
+  "elapsedSeconds": 4.145,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 765064,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 35,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "6dc7477cb53b4f989c0f19caad60216fdbdacb39ccc3857b3197182f8c95b4d3",
+  "reportArtifact": null
+}

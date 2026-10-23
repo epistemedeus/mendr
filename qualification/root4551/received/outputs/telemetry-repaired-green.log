@@ -1,0 +1,19 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance src/runtime src/audit/investigation.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /tmp/root4410-c-scratch/mendr
+
+ ✓ src/assurance/root4410-telemetry-evidence.test.ts (4 tests) 28ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 15ms
+ ✓ src/audit/investigation.test.ts (37 tests) 14ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 10ms
+ ✓ src/runtime/evidence.test.ts (14 tests) 8ms
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 3ms
+
+ Test Files  6 passed (6)
+      Tests  90 passed (90)
+   Start at  10:35:52
+   Duration  2.12s (transform 340ms, setup 0ms, import 1.42s, tests 78ms, environment 0ms)
+

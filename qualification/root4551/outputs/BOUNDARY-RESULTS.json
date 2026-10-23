@@ -1,0 +1,469 @@
+{
+  "rollout": {
+    "baseline-rollout": [
+      {
+        "name": "healthy",
+        "expectedVerdict": "verified",
+        "exitCode": 0,
+        "verdict": "verified",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% \u2192 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "degraded",
+        "expectedVerdict": "regression",
+        "exitCode": 1,
+        "verdict": "regression",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "regression",
+            "before": 0,
+            "after": 1,
+            "detail": "error rate 0.00% \u2192 100.00% (+100.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "insufficient",
+        "expectedVerdict": "inconclusive",
+        "exitCode": 3,
+        "verdict": "inconclusive",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% \u2192 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "missing-cost",
+        "expectedVerdict": "verified",
+        "exitCode": 0,
+        "verdict": "verified",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% \u2192 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 \u2192 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "missing-outcome",
+        "expectedVerdict": "inconclusive",
+        "exitCode": 0,
+        "verdict": "verified",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% \u2192 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      }
+    ],
+    "final-rollout": [
+      {
+        "name": "healthy",
+        "expectedVerdict": "verified",
+        "exitCode": 0,
+        "verdict": "verified",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% \u2192 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "degraded",
+        "expectedVerdict": "regression",
+        "exitCode": 1,
+        "verdict": "regression",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "regression",
+            "before": 0,
+            "after": 1,
+            "detail": "error rate 0.00% \u2192 100.00% (+100.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "insufficient",
+        "expectedVerdict": "inconclusive",
+        "exitCode": 3,
+        "verdict": "inconclusive",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% \u2192 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "missing-cost",
+        "expectedVerdict": "verified",
+        "exitCode": 0,
+        "verdict": "verified",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% \u2192 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      },
+      {
+        "name": "missing-outcome",
+        "expectedVerdict": "inconclusive",
+        "exitCode": 3,
+        "verdict": "inconclusive",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "not_measured",
+            "detail": "error rate was not given for both windows"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "not_measured",
+            "detail": "p95 latency was not given for both windows"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "not_measured",
+            "detail": "cost per 1,000 calls was not given for both windows"
+          },
+          {
+            "signal": "quality",
+            "state": "not_measured",
+            "detail": "your quality check was not reported for the time since the deploy"
+          }
+        ]
+      }
+    ]
+  },
+  "writes": {
+    "baseline-spread-write": [
+      {
+        "name": "opaque",
+        "verdict": "verified",
+        "typeCheck": "passed",
+        "eval": "passed",
+        "prReady": true,
+        "applied": [
+          "src/app.ts"
+        ],
+        "unchanged": false,
+        "beforeSha256": "7d34da5d03cc2cb85e695d83e06822f72ec9a6ae20ed095c063f863eb51083e3",
+        "afterSha256": "6cdad64c45031103e6b6feedaf56f67c8829474deee3be3e26d1347e6fb91f2c"
+      },
+      {
+        "name": "explicit",
+        "verdict": "verified",
+        "typeCheck": "passed",
+        "eval": "passed",
+        "prReady": true,
+        "applied": [
+          "src/app.ts"
+        ],
+        "unchanged": false,
+        "beforeSha256": "562661e364c9b11041fe9080aece69c7733fd76e6ef83b5bf68cea4c6712dd81",
+        "afterSha256": "2d82f3c17a89da3a1a08197f5fd8067e02467a8f40fa03b09a766725d626736c"
+      }
+    ],
+    "amendment-wrapped-write-red": [
+      {
+        "name": "fallback",
+        "verdict": "verified",
+        "typeCheck": "passed",
+        "eval": "passed",
+        "prReady": true,
+        "applied": [
+          "src/app.ts"
+        ],
+        "unchanged": false,
+        "beforeSha256": "a7bf7215807cb7ab002005e3262a0eb67519261260a4e65363a30f9098c5daa8",
+        "afterSha256": "599293021650431df672ecd9bf10801d946f3e9eeed44679fca017db698bec16"
+      },
+      {
+        "name": "conditional",
+        "verdict": "verified",
+        "typeCheck": "passed",
+        "eval": "passed",
+        "prReady": true,
+        "applied": [
+          "src/app.ts"
+        ],
+        "unchanged": false,
+        "beforeSha256": "2afb39ca5af46cf15cb39d524bea2754b6e9a26c5c06afe6215f28034ac2d1af",
+        "afterSha256": "1026a1c92b8f4ac19655e5e85347e24800c3a2fe4079478c385af15a2fecfee1"
+      },
+      {
+        "name": "explicit",
+        "verdict": "verified",
+        "typeCheck": "passed",
+        "eval": "passed",
+        "prReady": true,
+        "applied": [
+          "src/app.ts"
+        ],
+        "unchanged": false,
+        "beforeSha256": "4522795af0cc32fc25f3f4e5d90a0617c7fcd0205e6b9f22fc456702c1fd31e4",
+        "afterSha256": "e0c5da58af98a631829772422e73d9cbb8061e696f06c145efee5c8f60c881f0"
+      }
+    ],
+    "final-spread-write": [
+      {
+        "name": "opaque",
+        "verdict": "held_for_review",
+        "typeCheck": "not_run",
+        "eval": "not_run",
+        "prReady": false,
+        "applied": null,
+        "unchanged": true,
+        "beforeSha256": "7d34da5d03cc2cb85e695d83e06822f72ec9a6ae20ed095c063f863eb51083e3",
+        "afterSha256": "7d34da5d03cc2cb85e695d83e06822f72ec9a6ae20ed095c063f863eb51083e3"
+      },
+      {
+        "name": "explicit",
+        "verdict": "verified",
+        "typeCheck": "passed",
+        "eval": "passed",
+        "prReady": true,
+        "applied": [
+          "src/app.ts"
+        ],
+        "unchanged": false,
+        "beforeSha256": "562661e364c9b11041fe9080aece69c7733fd76e6ef83b5bf68cea4c6712dd81",
+        "afterSha256": "2d82f3c17a89da3a1a08197f5fd8067e02467a8f40fa03b09a766725d626736c"
+      }
+    ],
+    "final-wrapped-spread-write": [
+      {
+        "name": "fallback",
+        "verdict": "held_for_review",
+        "typeCheck": "not_run",
+        "eval": "not_run",
+        "prReady": false,
+        "applied": null,
+        "unchanged": true,
+        "beforeSha256": "a7bf7215807cb7ab002005e3262a0eb67519261260a4e65363a30f9098c5daa8",
+        "afterSha256": "a7bf7215807cb7ab002005e3262a0eb67519261260a4e65363a30f9098c5daa8"
+      },
+      {
+        "name": "conditional",
+        "verdict": "held_for_review",
+        "typeCheck": "not_run",
+        "eval": "not_run",
+        "prReady": false,
+        "applied": null,
+        "unchanged": true,
+        "beforeSha256": "2afb39ca5af46cf15cb39d524bea2754b6e9a26c5c06afe6215f28034ac2d1af",
+        "afterSha256": "2afb39ca5af46cf15cb39d524bea2754b6e9a26c5c06afe6215f28034ac2d1af"
+      },
+      {
+        "name": "explicit",
+        "verdict": "verified",
+        "typeCheck": "passed",
+        "eval": "passed",
+        "prReady": true,
+        "applied": [
+          "src/app.ts"
+        ],
+        "unchanged": false,
+        "beforeSha256": "4522795af0cc32fc25f3f4e5d90a0617c7fcd0205e6b9f22fc456702c1fd31e4",
+        "afterSha256": "e0c5da58af98a631829772422e73d9cbb8061e696f06c145efee5c8f60c881f0"
+      }
+    ]
+  },
+  "migrationCorpus": {
+    "completedCases": 22,
+    "cases": [
+      "verified print-only migration",
+      "repeated audit preserves all fixture bytes",
+      "type-failure refuses write",
+      "test-failure refuses write",
+      "build-failure refuses write",
+      "eval-failure refuses write",
+      "external eval timeout then recovery",
+      "CLI eval timeout refuses write then healthy command recovers",
+      "second check rejects out-of-scope edit then recovers",
+      "verified explicit write and repeat-load recovery",
+      "proxy held without writing",
+      "gateway-prefix held without writing",
+      "incompatible-parameter held without writing",
+      "rollout healthy",
+      "rollout degraded",
+      "rollout insufficient",
+      "rollout missing",
+      "rollout missing-cost",
+      "rollout missing-quality",
+      "runtime missing cost stays null",
+      "dated registry freshness",
+      "Models seam preserves schedule, access and semantics separately"
+    ]
+  }
+}

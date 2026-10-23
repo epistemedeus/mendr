@@ -1,0 +1,319 @@
+{
+  "generatedBy": "mendr",
+  "schema": "mendr-audit/v3",
+  "preview": true,
+  "repo": "root4410-exports-xctdnp55",
+  "generatedAt": "2026-10-23T10:34:36.044Z",
+  "evaluatedAt": "2026-10-23T10:34:36.044Z",
+  "evaluationTimeSource": "system",
+  "period": {
+    "from": null,
+    "to": null
+  },
+  "sha": null,
+  "coverage": {
+    "source": {
+      "analyzed": true,
+      "failed": false,
+      "filesScanned": 0,
+      "filesRead": 0,
+      "tsFiles": 0,
+      "jsFiles": 0,
+      "pyFiles": 0,
+      "unanalyzedLanguages": [],
+      "unanalyzedFiles": 0,
+      "docsFiles": 0,
+      "testFilesSkipped": 0,
+      "unreadableFiles": 0,
+      "parseFailures": 0,
+      "parseFailureFiles": []
+    },
+    "config": {
+      "analyzed": true,
+      "failed": false,
+      "filesScanned": 2,
+      "filesRead": 2,
+      "generatedSkipped": 0,
+      "excludedDirs": [],
+      "parseFailures": 0,
+      "parseFailureFiles": []
+    },
+    "registry": {
+      "providers": [
+        "anthropic",
+        "google",
+        "openai"
+      ],
+      "source": "bundled",
+      "version": "sha256:e0464cc70ab44d9d",
+      "publishedAt": "2026-10-11T07:10:25Z",
+      "ageDays": 12.1,
+      "maxAgeDays": 14,
+      "freshness": "fresh",
+      "refresh": {
+        "requested": false,
+        "ok": false
+      }
+    },
+    "runtime": {
+      "connected": false,
+      "source": null,
+      "failed": false
+    },
+    "readerTieBack": {
+      "proven": false
+    },
+    "migration": {
+      "workflowPresent": false,
+      "workflowFile": null
+    }
+  },
+  "observations": {
+    "config": {}
+  },
+  "conclusion": "exposure_detected",
+  "investigations": [
+    {
+      "entryId": "openai.gpt-4.1-nano.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4.1-nano",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": null,
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-luna",
+        "replacementVerdict": "verified",
+        "sourceUrl": null
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [
+          {
+            "file": "make.json",
+            "line": 9,
+            "column": 29,
+            "key": "model",
+            "value": "gpt-4.1-nano",
+            "role": "runtime_selector_candidate",
+            "surface": "config",
+            "tier": "B",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "review",
+            "reason": null,
+            "lineHash": "116f72bbe58259d8"
+          },
+          {
+            "file": "make.json",
+            "line": 14,
+            "column": 79,
+            "key": "model",
+            "value": "gpt-4.1-nano",
+            "role": "runtime_selector_candidate",
+            "surface": "config",
+            "tier": "B",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "review",
+            "reason": null,
+            "lineHash": "cd560312ab43f5e6"
+          },
+          {
+            "file": "make.json",
+            "line": 17,
+            "column": 94,
+            "key": "model",
+            "value": "gpt-4.1-nano",
+            "role": "runtime_selector_candidate",
+            "surface": "config",
+            "tier": "B",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "review",
+            "reason": null,
+            "lineHash": "17c80aec2baac2b0"
+          }
+        ],
+        "catalog": [
+          {
+            "file": "make.json",
+            "line": 14,
+            "column": 54,
+            "key": "value",
+            "value": "gpt-4.1-nano",
+            "role": "catalog_reference",
+            "surface": "config",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "lineHash": "cd560312ab43f5e6"
+          },
+          {
+            "file": "make.json",
+            "line": 17,
+            "column": 44,
+            "key": "metadata",
+            "value": "gpt-4.1-nano",
+            "role": "catalog_reference",
+            "surface": "config",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "lineHash": "17c80aec2baac2b0"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "review",
+      "reason": "Located at a config selector candidate (reader tie-back not proven). Production usage was not measured. Human review required before any change.",
+      "nextAction": "Human review before any change",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o4-mini.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "o4-mini",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": null,
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": null
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [
+          {
+            "file": "n8n.json",
+            "line": 14,
+            "column": 33,
+            "key": "model",
+            "value": "o4-mini",
+            "role": "runtime_selector_candidate",
+            "surface": "config",
+            "tier": "B",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "review",
+            "reason": null,
+            "lineHash": "8960ae890220f76b"
+          },
+          {
+            "file": "n8n.json",
+            "line": 19,
+            "column": 74,
+            "key": "model",
+            "value": "o4-mini",
+            "role": "runtime_selector_candidate",
+            "surface": "config",
+            "tier": "B",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "review",
+            "reason": null,
+            "lineHash": "355ad92f83d28433"
+          }
+        ],
+        "catalog": [
+          {
+            "file": "n8n.json",
+            "line": 8,
+            "column": 58,
+            "key": "value",
+            "value": "o4-mini",
+            "role": "catalog_reference",
+            "surface": "config",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "lineHash": "ba26f6f4283d37f0"
+          },
+          {
+            "file": "n8n.json",
+            "line": 9,
+            "column": 72,
+            "key": "name",
+            "value": "o4-mini",
+            "role": "catalog_reference",
+            "surface": "config",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "lineHash": "1b3fb2da2882a549"
+          },
+          {
+            "file": "n8n.json",
+            "line": 19,
+            "column": 46,
+            "key": "parameters",
+            "value": "o4-mini",
+            "role": "catalog_reference",
+            "surface": "config",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "lineHash": "355ad92f83d28433"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "review",
+      "reason": "Located at a config selector candidate (reader tie-back not proven). Production usage was not measured. Human review required before any change.",
+      "nextAction": "Human review before any change",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "amendment-spread-green",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/usage/root4410-request-spread.test.ts",
+    "src/usage/requestObjectFlow.test.ts",
+    "src/usage/tsGuards.test.ts",
+    "src/usage/sinkParamGuard.test.ts",
+    "src/usage/coupledParams.test.ts",
+    "src/migrate/heldCalls.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:29:18.164234+00:00",
+  "elapsedSeconds": 7.824,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 933800,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 1413,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "3babd22e2e203d29c4e3222f4dd87ae2d9ffb8f0b198d7f44926b1ce02bc96b4",
+  "reportArtifact": null
+}

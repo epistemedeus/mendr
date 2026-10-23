@@ -1,0 +1,18 @@
+{
+  "head": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+  "trackedDiffSha256": "d5518c876d2f925bad6835413a46428b806aa1b3a79c10a79b2b95e607be6106",
+  "sourceTreeSha256": "4d3f560a9dbcb163dca41cfa6c2334920049a192559f1b0bd942576f6acfc0a7",
+  "scopeSha256": {
+    "src/assurance/assurance.test.ts": "2f5cc8530ae9cb8bf0ae5929a9af23e58b7e2e380b2b5877d790df0c249ad2f4",
+    "src/assurance/recovery.ts": "a0d5276db3d96e2292b3c3593ae832626a99e17ebed4fc332be56eb29f5a8348",
+    "src/assurance/root4410-recovery.test.ts": "cd7caf7e6e6ce28e16f5e2efb4278075b9274d4170f59bbbe30c8bd0fdd8eca0",
+    "src/assurance/root4410-telemetry-evidence.test.ts": "620341dfade2f0eaa92714a43ac8b05f6d466eda2d720a70f773aa81682c74da",
+    "src/assurance/telemetry.ts": "5a2a6e4bd1c3d684a210ab715dba4b5a713bcbaf042e4193350eb22f7473aa2a",
+    "src/runtime/evidence.ts": "d058c862991d9cc18e246fd83693f8268548dcb334aad1621702ddfc9b6defe6",
+    "src/usage/requestObjectFlow.test.ts": "2222637bc43053706a4319fa53cb75481fc43ec2d3221617bee93301416923d0",
+    "src/usage/root4410-request-spread.test.ts": "de3ab46ea39866781fe19ebcad460c2e7a658a189b2e1ab359b5fb49e6010eae",
+    "src/usage/scanLiterals.ts": "ce445151987cc3f9ac3eac11433fc60d8f7356a271c152cf834acd017a0f04c2",
+    "src/usage/tsSurface.ts": "dcf05c62c6d7fc0b2fae7ea7e4a88f61fde06cdbfab70d688e2359d4e71f77ac"
+  },
+  "lockSha256": "3e6180b1ebbf28224586a04d982a5bd593df14ac023aeea512b82ce6d7d7ea8c"
+}

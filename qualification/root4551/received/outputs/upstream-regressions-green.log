@@ -1,0 +1,52 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance/root4410-recovery.test.ts src/usage/root4410-request-spread.test.ts src/usage/tsGuards.test.ts src/usage/requestObjectFlow.test.ts src/usage/coupledParams.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /tmp/root4410-c-scratch/mendr
+
+ ✓ src/usage/root4410-request-spread.test.ts (7 tests) 348ms
+     ✓ holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }  302ms
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 3ms
+ ❯ src/usage/requestObjectFlow.test.ts (14 tests | 1 failed) 2537ms
+     ✓ is a live call, not catalog data, when the client is assigned later (the Node server shape)  346ms
+     ✓ is a safe swap when the object is the whole request to a resolved first-party client 167ms
+     ✓ follows the Anthropic endpoint too, and judges the client like an inline argument 130ms
+     ✓ is held when the client is a proxy, exactly as an inline argument would be 127ms
+     × is held when the object is spread into the request, whose other keys the literal does not show 133ms
+     ✓ is held when the variable is also used some other way 232ms
+     ✓ is held for a `let`, an exported const, or an object that is only a fallback value 249ms
+     ✓ is capped at module level, where the request fires at import 123ms
+     ✓ classifies hundreds of standalone model objects in one large file within budget  329ms
+     ✓ an object nothing passes anywhere 117ms
+     ✓ an object handed to a function that is not a provider endpoint  461ms
+     ✓ a model-picker list, even next to a real request 1ms
+     ✓ a same-named binding in another scope is not the object that is sent 118ms
+     ✓ a row of a list is not followed, even when one row is later spread into a request 1ms
+ ✓ src/usage/coupledParams.test.ts (110 tests) 275ms
+ ✓ src/usage/tsGuards.test.ts (67 tests) 112ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/usage/requestObjectFlow.test.ts > a request object built in a variable and passed to a provider request > is held when the object is spread into the request, whose other keys the literal does not show
+AssertionError: expected 'request object spread leaves the effe…' to be 'request object built in a variable an…' // Object.is equality
+
+Expected: "request object built in a variable and passed to a provider request, but the variable is also used, spread, changed or exported elsewhere, so the request it sends is not all visible here — review"
+Received: "request object spread leaves the effective model and parameters unproven; review before a model swap"
+
+ ❯ src/usage/requestObjectFlow.test.ts:97:23
+     95|     );
+     96|     expect(v?.tier).toBe('B');
+     97|     expect(v?.reason).toBe(TS_REQUEST_VARIABLE_REASON);
+       |                       ^
+     98|   });
+     99|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 200 passed (201)
+   Start at  10:20:11
+   Duration  5.18s (transform 333ms, setup 0ms, import 1.37s, tests 3.28s, environment 0ms)
+

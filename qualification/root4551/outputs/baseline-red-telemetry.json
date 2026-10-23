@@ -1,0 +1,28 @@
+{
+  "name": "baseline-red-telemetry",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/root4410-telemetry-evidence.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:25:14.573883+00:00",
+  "elapsedSeconds": 1.036,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 795416,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 3309,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "3491f074ff0ded4c664883e292ee988c692489ab41633afe98debb6ee93d4089",
+  "reportArtifact": null
+}

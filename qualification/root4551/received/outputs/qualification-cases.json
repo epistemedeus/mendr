@@ -1,0 +1,1536 @@
+{
+  "pinnedMendr": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+  "completedCases": 21,
+  "results": [
+    {
+      "name": "verified print-only migration",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "positive",
+      "generatedAt": "2026-10-22T12:00:00.000Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 1,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "passed"
+        },
+        "build": {
+          "status": "passed",
+          "detail": "\n> build\n> node build.cjs\n",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "passed",
+          "detail": "\n> test\n> node test.cjs\n\n1 passing"
+        },
+        "eval": {
+          "status": "passed",
+          "detail": "synthetic patched-source check passed",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": true,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "verified"
+      },
+      "prReady": true,
+      "notes": [
+        "This migration is a reviewed PR candidate. Mendr never merges; a human approves."
+      ],
+      "recovery": {
+        "asOf": "2026-10-22",
+        "options": [
+          {
+            "kind": "revert",
+            "available": true,
+            "detail": "Revert the pull request and calls go back to `gpt-4-0613`, until 2026-10-23, when `gpt-4-0613` shuts down. After that, a revert stops working."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    },
+    {
+      "name": "repeated audit preserves all fixture bytes",
+      "beforeSha256": "262c1017e92ee313ae987a06e7e80d3aac641704524d1796341d1d75bf50b912",
+      "afterSha256": "262c1017e92ee313ae987a06e7e80d3aac641704524d1796341d1d75bf50b912",
+      "audits": [
+        {
+          "generatedBy": "mendr",
+          "schema": "mendr-audit/v3",
+          "preview": true,
+          "repo": "positive",
+          "generatedAt": "2026-10-23T10:16:36.552Z",
+          "evaluatedAt": "2026-10-23T10:16:36.552Z",
+          "evaluationTimeSource": "system",
+          "period": {
+            "from": null,
+            "to": null
+          },
+          "sha": null,
+          "coverage": {
+            "source": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 5,
+              "filesRead": 5,
+              "tsFiles": 1,
+              "jsFiles": 4,
+              "pyFiles": 0,
+              "unanalyzedLanguages": [],
+              "unanalyzedFiles": 0,
+              "docsFiles": 0,
+              "testFilesSkipped": 0,
+              "unreadableFiles": 0,
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "config": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 1,
+              "filesRead": 1,
+              "generatedSkipped": 0,
+              "excludedDirs": [
+                "node_modules"
+              ],
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "registry": {
+              "providers": [
+                "anthropic",
+                "google",
+                "openai"
+              ],
+              "source": "bundled",
+              "version": "sha256:e0464cc70ab44d9d",
+              "publishedAt": "2026-10-11T07:10:25Z",
+              "ageDays": 12.1,
+              "maxAgeDays": 14,
+              "freshness": "fresh",
+              "refresh": {
+                "requested": false,
+                "ok": false
+              }
+            },
+            "runtime": {
+              "connected": false,
+              "source": null,
+              "failed": false
+            },
+            "readerTieBack": {
+              "proven": false
+            },
+            "migration": {
+              "workflowPresent": false,
+              "workflowFile": null
+            }
+          },
+          "observations": {
+            "config": {}
+          },
+          "conclusion": "exposure_detected",
+          "investigations": [
+            {
+              "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+              "provider": "openai",
+              "model": "gpt-4-0613",
+              "retirementEvidence": {
+                "deprecated": true,
+                "status": "deprecated",
+                "shutdownDate": "2026-10-23",
+                "daysUntil": 0,
+                "replacement": "gpt-5.6-sol",
+                "replacementVerdict": "verified",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+              },
+              "productionUsage": "not_measured",
+              "locations": {
+                "selectors": [
+                  {
+                    "file": "src/client.ts",
+                    "line": 3,
+                    "column": 77,
+                    "key": null,
+                    "value": "gpt-4-0613",
+                    "role": "code_call_site",
+                    "surface": "code",
+                    "tier": "A",
+                    "providerSurface": null,
+                    "patchEligible": true,
+                    "disposition": "patch",
+                    "reason": null,
+                    "snippet": {
+                      "startLine": 1,
+                      "lines": [
+                        "import OpenAI from \"openai\";",
+                        "const client = new OpenAI();",
+                        "export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }",
+                        ""
+                      ]
+                    },
+                    "lineHash": "5eb91dca6e36b3a5"
+                  }
+                ],
+                "catalog": []
+              },
+              "compatibility": {
+                "checked": false,
+                "result": null
+              },
+              "verification": {
+                "replacementVerdict": "verified",
+                "readerTieBackProven": false
+              },
+              "decision": "patch",
+              "reason": "A verified auto-fix exists for src/client.ts:3 — fix-llm can rewrite it to gpt-5.6-sol. Nothing is applied by the audit; a change is proposed as a reviewed PR, never auto-merged. Production usage was not measured.",
+              "nextAction": "run `mendr fix-llm <path>` to print the verified diff for src/client.ts:3; review it before applying. Only Tier-A lines are rewritten.",
+              "patchEligible": true,
+              "patchApplied": false,
+              "productionUsageDetail": {
+                "measured": false,
+                "source": null,
+                "observed": false,
+                "requestsReported": false,
+                "requests": 0,
+                "failures": 0,
+                "lastSeen": null,
+                "services": [],
+                "environments": [],
+                "costUsd": null
+              }
+            }
+          ]
+        },
+        {
+          "generatedBy": "mendr",
+          "schema": "mendr-audit/v3",
+          "preview": true,
+          "repo": "positive",
+          "generatedAt": "2026-10-23T10:16:37.298Z",
+          "evaluatedAt": "2026-10-23T10:16:37.298Z",
+          "evaluationTimeSource": "system",
+          "period": {
+            "from": null,
+            "to": null
+          },
+          "sha": null,
+          "coverage": {
+            "source": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 5,
+              "filesRead": 5,
+              "tsFiles": 1,
+              "jsFiles": 4,
+              "pyFiles": 0,
+              "unanalyzedLanguages": [],
+              "unanalyzedFiles": 0,
+              "docsFiles": 0,
+              "testFilesSkipped": 0,
+              "unreadableFiles": 0,
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "config": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 1,
+              "filesRead": 1,
+              "generatedSkipped": 0,
+              "excludedDirs": [
+                "node_modules"
+              ],
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "registry": {
+              "providers": [
+                "anthropic",
+                "google",
+                "openai"
+              ],
+              "source": "bundled",
+              "version": "sha256:e0464cc70ab44d9d",
+              "publishedAt": "2026-10-11T07:10:25Z",
+              "ageDays": 12.1,
+              "maxAgeDays": 14,
+              "freshness": "fresh",
+              "refresh": {
+                "requested": false,
+                "ok": false
+              }
+            },
+            "runtime": {
+              "connected": false,
+              "source": null,
+              "failed": false
+            },
+            "readerTieBack": {
+              "proven": false
+            },
+            "migration": {
+              "workflowPresent": false,
+              "workflowFile": null
+            }
+          },
+          "observations": {
+            "config": {}
+          },
+          "conclusion": "exposure_detected",
+          "investigations": [
+            {
+              "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+              "provider": "openai",
+              "model": "gpt-4-0613",
+              "retirementEvidence": {
+                "deprecated": true,
+                "status": "deprecated",
+                "shutdownDate": "2026-10-23",
+                "daysUntil": 0,
+                "replacement": "gpt-5.6-sol",
+                "replacementVerdict": "verified",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+              },
+              "productionUsage": "not_measured",
+              "locations": {
+                "selectors": [
+                  {
+                    "file": "src/client.ts",
+                    "line": 3,
+                    "column": 77,
+                    "key": null,
+                    "value": "gpt-4-0613",
+                    "role": "code_call_site",
+                    "surface": "code",
+                    "tier": "A",
+                    "providerSurface": null,
+                    "patchEligible": true,
+                    "disposition": "patch",
+                    "reason": null,
+                    "snippet": {
+                      "startLine": 1,
+                      "lines": [
+                        "import OpenAI from \"openai\";",
+                        "const client = new OpenAI();",
+                        "export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }",
+                        ""
+                      ]
+                    },
+                    "lineHash": "5eb91dca6e36b3a5"
+                  }
+                ],
+                "catalog": []
+              },
+              "compatibility": {
+                "checked": false,
+                "result": null
+              },
+              "verification": {
+                "replacementVerdict": "verified",
+                "readerTieBackProven": false
+              },
+              "decision": "patch",
+              "reason": "A verified auto-fix exists for src/client.ts:3 — fix-llm can rewrite it to gpt-5.6-sol. Nothing is applied by the audit; a change is proposed as a reviewed PR, never auto-merged. Production usage was not measured.",
+              "nextAction": "run `mendr fix-llm <path>` to print the verified diff for src/client.ts:3; review it before applying. Only Tier-A lines are rewritten.",
+              "patchEligible": true,
+              "patchApplied": false,
+              "productionUsageDetail": {
+                "measured": false,
+                "source": null,
+                "observed": false,
+                "requestsReported": false,
+                "requests": 0,
+                "failures": 0,
+                "lastSeen": null,
+                "services": [],
+                "environments": [],
+                "costUsd": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "type-failure refuses write",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "type-failure",
+      "generatedAt": "2026-10-23T10:16:37.601Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 0,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "failed",
+          "detail": "1 new type error(s) introduced by the migration"
+        },
+        "build": {
+          "status": "passed",
+          "detail": "\n> build\n> node build.cjs\n",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "passed",
+          "detail": "\n> test\n> node test.cjs\n\n1 passing"
+        },
+        "eval": {
+          "status": "passed",
+          "detail": "synthetic patched-source check passed",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": true,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "failed"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing was written: --write applies only a VERIFIED migration, and this run is failed."
+      ],
+      "applied": [],
+      "recovery": {
+        "asOf": "2026-10-23",
+        "options": [
+          {
+            "kind": "revert",
+            "available": false,
+            "detail": "Do not revert: `gpt-4-0613` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    },
+    {
+      "name": "test-failure refuses write",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "test-failure",
+      "generatedAt": "2026-10-23T10:16:38.454Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 0,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "passed"
+        },
+        "build": {
+          "status": "passed",
+          "detail": "\n> build\n> node build.cjs\n",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "failed",
+          "detail": "\n> test\n> node test.cjs\n\nnode:assert:150\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at Object.<anonymous> (/tmp/mendr-gate-obPka8/test.cjs:1:31)\n    at Module._compile (node:internal/modules/cjs/loader:1781:14)\n    at Object..js (node:internal/modules/cjs/loader:1913:10)\n    at Module.load (node:internal/modules/cjs/loader:1505:32)\n    at Function._load (node:internal/modules/cjs/loader:1309:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)\n    at node:internal/main/run_main_module:36:49 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: true,\n  expected: false,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.23.4"
+        },
+        "eval": {
+          "status": "passed",
+          "detail": "synthetic patched-source check passed",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": true,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "failed"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing was written: --write applies only a VERIFIED migration, and this run is failed."
+      ],
+      "applied": [],
+      "recovery": {
+        "asOf": "2026-10-23",
+        "options": [
+          {
+            "kind": "revert",
+            "available": false,
+            "detail": "Do not revert: `gpt-4-0613` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    },
+    {
+      "name": "build-failure refuses write",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "build-failure",
+      "generatedAt": "2026-10-23T10:16:39.221Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 0,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "passed"
+        },
+        "build": {
+          "status": "failed",
+          "detail": "\n> build\n> node build.cjs\n\nnode:assert:883\n    throw err;\n    ^\n\nAssertionError [ERR_ASSERTION]: The input did not match the regular expression /gpt-4-0613/. Input:\n\n'import OpenAI from \"openai\";\\n' +\n  'const client = new OpenAI();\\n' +\n  'export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\\n'\n\n    at Object.<anonymous> (/tmp/mendr-gate-lTp6s2/build.cjs:1:31)\n    at Module._compile (node:internal/modules/cjs/loader:1781:14)\n    at Object..js (node:internal/modules/cjs/loader:1913:10)\n    at Module.load (node:internal/modules/cjs/loader:1505:32)\n    at Function._load (node:internal/modules/cjs/loader:1309:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)\n    at node:internal/main/run_main_module:36:49 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 'import OpenAI from \"openai\";\\n' +\n    'const client = new OpenAI();\\n' +\n    'export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\\n',\n  expected: /gpt-4-0613/,\n  operator: 'match',\n  diff: 'simple'\n}\n\nNode.js v22.23.4",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "passed",
+          "detail": "\n> test\n> node test.cjs\n\n1 passing"
+        },
+        "eval": {
+          "status": "passed",
+          "detail": "synthetic patched-source check passed",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": true,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "failed"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing was written: --write applies only a VERIFIED migration, and this run is failed."
+      ],
+      "applied": [],
+      "recovery": {
+        "asOf": "2026-10-23",
+        "options": [
+          {
+            "kind": "revert",
+            "available": false,
+            "detail": "Do not revert: `gpt-4-0613` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    },
+    {
+      "name": "eval-failure refuses write",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "eval-failure",
+      "generatedAt": "2026-10-23T10:16:39.918Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 0,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "passed"
+        },
+        "build": {
+          "status": "passed",
+          "detail": "\n> build\n> node build.cjs\n",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "passed",
+          "detail": "\n> test\n> node test.cjs\n\n1 passing"
+        },
+        "eval": {
+          "status": "failed",
+          "detail": "node:assert:150\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at Object.<anonymous> (/tmp/mendr-gate-7xu1sm/eval.cjs:1:44)\n    at Module._compile (node:internal/modules/cjs/loader:1781:14)\n    at Object..js (node:internal/modules/cjs/loader:1913:10)\n    at Module.load (node:internal/modules/cjs/loader:1505:32)\n    at Function._load (node:internal/modules/cjs/loader:1309:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)\n    at node:internal/main/run_main_module:36:49 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: true,\n  expected: false,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.23.4",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": false,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "failed"
+      },
+      "prReady": false,
+      "notes": [
+        "Behaviour was NOT verified: the throwaway copy proves the migration builds and existing tests pass, not that the replacement model matches the old one on quality, latency, cost or response shape. Pass --eval-command to test behaviour, and review the swap either way.",
+        "Nothing was written: --write applies only a VERIFIED migration, and this run is failed."
+      ],
+      "applied": [],
+      "recovery": {
+        "asOf": "2026-10-23",
+        "options": [
+          {
+            "kind": "revert",
+            "available": false,
+            "detail": "Do not revert: `gpt-4-0613` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    },
+    {
+      "name": "external eval timeout then recovery",
+      "timeout": {
+        "status": "inconclusive",
+        "command": "node sleep.cjs",
+        "output": "eval command timed out after 400ms (raise \"evalTimeoutMs\" in mendr.config.json if your eval needs longer)"
+      },
+      "passAfterTimeout": {
+        "status": "passed",
+        "command": "node eval.cjs",
+        "exitCode": 0,
+        "output": "synthetic patched-source check passed"
+      }
+    },
+    {
+      "name": "second check rejects out-of-scope edit then recovers",
+      "second": {
+        "status": "failed",
+        "detail": "1 problem in 1 patched file: src/client.ts:3 added or removed code no registry rule describes",
+        "problems": [
+          {
+            "kind": "out_of_scope_edit",
+            "file": "src/client.ts",
+            "line": 3,
+            "detail": "added or removed code no registry rule describes"
+          }
+        ]
+      },
+      "validSecond": {
+        "status": "passed",
+        "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet",
+        "problems": []
+      },
+      "sourcePreserved": true
+    },
+    {
+      "name": "verified explicit write and repeat-load recovery",
+      "written": {
+        "schema": "mendr-migration/v1",
+        "generatedBy": "mendr",
+        "repo": "positive",
+        "generatedAt": "2026-10-23T10:16:41.071Z",
+        "sha": null,
+        "migrated": true,
+        "migrations": [
+          {
+            "provider": "openai",
+            "model": "gpt-4-0613",
+            "from": "gpt-4-0613",
+            "to": "gpt-5.6-sol",
+            "language": "ts",
+            "sites": 1,
+            "files": [
+              "src/client.ts"
+            ],
+            "evidence": {
+              "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+              "lifecycle": "deprecated",
+              "shutdownDate": "2026-10-23",
+              "daysUntil": 0,
+              "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+              "replacementVerdict": "verified",
+              "excerpts": []
+            }
+          }
+        ],
+        "paramTransforms": [],
+        "skipped": [],
+        "changedFiles": [
+          "src/client.ts"
+        ],
+        "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+        "verification": {
+          "typeCheck": {
+            "status": "passed"
+          },
+          "build": {
+            "status": "passed",
+            "detail": "\n> build\n> node build.cjs\n",
+            "command": "npm run build"
+          },
+          "tests": {
+            "status": "passed",
+            "detail": "\n> test\n> node test.cjs\n\n1 passing"
+          },
+          "eval": {
+            "status": "passed",
+            "detail": "synthetic patched-source check passed",
+            "command": "node eval.cjs"
+          },
+          "behavioralTested": true,
+          "secondCheck": {
+            "status": "passed",
+            "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+          },
+          "verdict": "verified"
+        },
+        "prReady": true,
+        "notes": [
+          "This migration is a reviewed PR candidate. Mendr never merges; a human approves.",
+          "Applied the verified migration to 1 file in this checkout."
+        ],
+        "applied": [
+          "src/client.ts"
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Do not revert: `gpt-4-0613` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      },
+      "again": {
+        "schema": "mendr-migration/v1",
+        "generatedBy": "mendr",
+        "repo": "positive",
+        "generatedAt": "2026-10-23T10:16:41.772Z",
+        "sha": null,
+        "migrated": false,
+        "migrations": [],
+        "paramTransforms": [],
+        "skipped": [],
+        "changedFiles": [],
+        "diff": "",
+        "verification": {
+          "typeCheck": {
+            "status": "not_run"
+          },
+          "build": {
+            "status": "not_run"
+          },
+          "tests": {
+            "status": "not_run"
+          },
+          "eval": {
+            "status": "not_run"
+          },
+          "behavioralTested": false,
+          "secondCheck": {
+            "status": "not_run"
+          },
+          "verdict": "no_migration"
+        },
+        "prReady": false,
+        "notes": [
+          "No verified Tier-A migration was found. Nothing to apply and nothing to verify."
+        ]
+      }
+    },
+    {
+      "name": "proxy held without writing",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "proxy",
+      "generatedAt": "2026-10-23T10:16:41.779Z",
+      "sha": null,
+      "migrated": false,
+      "migrations": [],
+      "paramTransforms": [],
+      "skipped": [
+        {
+          "file": "src/client.ts",
+          "line": 3,
+          "column": 77,
+          "model": "gpt-4-0613",
+          "replacement": "gpt-5.6-sol",
+          "code": "surface_capped",
+          "reason": "provider surface caps this call at review (proxy: OpenAI(…) with a base URL / fetch override)",
+          "language": "ts"
+        }
+      ],
+      "changedFiles": [],
+      "diff": "",
+      "verification": {
+        "typeCheck": {
+          "status": "not_run"
+        },
+        "build": {
+          "status": "not_run"
+        },
+        "tests": {
+          "status": "not_run"
+        },
+        "eval": {
+          "status": "not_run"
+        },
+        "behavioralTested": false,
+        "secondCheck": {
+          "status": "not_run"
+        },
+        "verdict": "held_for_review"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing could be migrated automatically: 1 place in the code uses a retiring model id that Mendr held for a person to review (listed under \"Held for review\"). Nothing was applied and nothing was verified."
+      ]
+    },
+    {
+      "name": "gateway-prefix held without writing",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "gateway-prefix",
+      "generatedAt": "2026-10-23T10:16:41.786Z",
+      "sha": null,
+      "migrated": false,
+      "migrations": [],
+      "paramTransforms": [],
+      "skipped": [
+        {
+          "file": "src/client.ts",
+          "line": 3,
+          "column": 77,
+          "model": "openai/gpt-4-0613",
+          "replacement": "gpt-5.6-sol",
+          "code": "surface_capped",
+          "reason": "provider-prefixed selector (gateway / provider registry); the successor may need a different prefix, capped at review",
+          "language": "ts"
+        }
+      ],
+      "changedFiles": [],
+      "diff": "",
+      "verification": {
+        "typeCheck": {
+          "status": "not_run"
+        },
+        "build": {
+          "status": "not_run"
+        },
+        "tests": {
+          "status": "not_run"
+        },
+        "eval": {
+          "status": "not_run"
+        },
+        "behavioralTested": false,
+        "secondCheck": {
+          "status": "not_run"
+        },
+        "verdict": "held_for_review"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing could be migrated automatically: 1 place in the code uses a retiring model id that Mendr held for a person to review (listed under \"Held for review\"). Nothing was applied and nothing was verified."
+      ]
+    },
+    {
+      "name": "incompatible-parameter held without writing",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "incompatible-parameter",
+      "generatedAt": "2026-10-23T10:16:41.793Z",
+      "sha": null,
+      "migrated": false,
+      "migrations": [],
+      "paramTransforms": [],
+      "skipped": [
+        {
+          "file": "src/client.ts",
+          "line": 3,
+          "column": 77,
+          "model": "gpt-4-0613",
+          "replacement": "gpt-5.6-sol",
+          "code": "coupled_param_unverified",
+          "reason": "the replacement gpt-5.6-sol may not accept the parameter `prompt_cache_retention` that this call passes, and no migration rule covers it: swapping the model id alone could leave a request the provider rejects, so this needs review rather than an automatic patch",
+          "language": "ts"
+        }
+      ],
+      "changedFiles": [],
+      "diff": "",
+      "verification": {
+        "typeCheck": {
+          "status": "not_run"
+        },
+        "build": {
+          "status": "not_run"
+        },
+        "tests": {
+          "status": "not_run"
+        },
+        "eval": {
+          "status": "not_run"
+        },
+        "behavioralTested": false,
+        "secondCheck": {
+          "status": "not_run"
+        },
+        "verdict": "held_for_review"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing could be migrated automatically: 1 place in the code uses a retiring model id that Mendr held for a person to review (listed under \"Held for review\"). Nothing was applied and nothing was verified."
+      ]
+    },
+    {
+      "name": "rollout healthy",
+      "schema": "mendr-rollout/v1",
+      "workflow": "Synthetic reply",
+      "configured": true,
+      "deployedAt": null,
+      "verdict": "verified",
+      "reason": "1000 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "ok",
+          "before": 0.001,
+          "after": 0.001,
+          "detail": "error rate 0.10% → 0.10% (+0.00 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "ok",
+          "before": 100,
+          "after": 100,
+          "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "ok",
+          "before": 1,
+          "after": 1,
+          "detail": "cost per 1,000 calls 1.00 → 1.00 (+0%; limit +50%)"
+        },
+        {
+          "signal": "quality",
+          "state": "ok",
+          "before": "passed",
+          "after": "passed",
+          "detail": "your quality check passed after the deploy (it passed before)"
+        }
+      ]
+    },
+    {
+      "name": "rollout degraded",
+      "schema": "mendr-rollout/v1",
+      "workflow": "Synthetic reply",
+      "configured": true,
+      "deployedAt": null,
+      "verdict": "regression",
+      "reason": "1 signal moved past its limit: error rate 0.10% → 20.00% (+19.90 points; limit +0.50 points).",
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "regression",
+          "before": 0.001,
+          "after": 0.2,
+          "detail": "error rate 0.10% → 20.00% (+19.90 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "ok",
+          "before": 100,
+          "after": 100,
+          "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "ok",
+          "before": 1,
+          "after": 1,
+          "detail": "cost per 1,000 calls 1.00 → 1.00 (+0%; limit +50%)"
+        },
+        {
+          "signal": "quality",
+          "state": "ok",
+          "before": "passed",
+          "after": "passed",
+          "detail": "your quality check passed after the deploy (it passed before)"
+        }
+      ]
+    },
+    {
+      "name": "rollout insufficient",
+      "schema": "mendr-rollout/v1",
+      "workflow": "Synthetic reply",
+      "configured": true,
+      "deployedAt": null,
+      "verdict": "inconclusive",
+      "reason": "Only 3 calls since the deploy, fewer than the 100 this check needs to judge.",
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "ok",
+          "before": 0.001,
+          "after": 0.001,
+          "detail": "error rate 0.10% → 0.10% (+0.00 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "ok",
+          "before": 100,
+          "after": 100,
+          "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "ok",
+          "before": 1,
+          "after": 1,
+          "detail": "cost per 1,000 calls 1.00 → 1.00 (+0%; limit +50%)"
+        },
+        {
+          "signal": "quality",
+          "state": "ok",
+          "before": "passed",
+          "after": "passed",
+          "detail": "your quality check passed after the deploy (it passed before)"
+        }
+      ]
+    },
+    {
+      "name": "rollout missing",
+      "schema": "mendr-rollout/v1",
+      "workflow": "Synthetic reply",
+      "configured": true,
+      "deployedAt": null,
+      "verdict": "inconclusive",
+      "reason": "The number of calls since the deploy was not given, so there is no telling whether the numbers mean anything.",
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "not_measured",
+          "detail": "error rate was not given for both windows"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "not_measured",
+          "detail": "p95 latency was not given for both windows"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "not_measured",
+          "detail": "cost per 1,000 calls was not given for both windows"
+        },
+        {
+          "signal": "quality",
+          "state": "not_measured",
+          "detail": "your quality check was not reported for the time since the deploy"
+        }
+      ]
+    },
+    {
+      "name": "rollout missing-cost",
+      "schema": "mendr-rollout/v1",
+      "workflow": "Synthetic reply",
+      "configured": true,
+      "deployedAt": null,
+      "verdict": "verified",
+      "reason": "1000 calls since the deploy; error rate, your quality check stayed inside their limits. Not measured, so not covered: p95 latency, cost per 1,000 calls.",
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "ok",
+          "before": 0.001,
+          "after": 0.001,
+          "detail": "error rate 0.10% → 0.10% (+0.00 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "not_measured",
+          "detail": "p95 latency was not given for both windows"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "not_measured",
+          "detail": "cost per 1,000 calls was not given for both windows"
+        },
+        {
+          "signal": "quality",
+          "state": "ok",
+          "before": "passed",
+          "after": "passed",
+          "detail": "your quality check passed after the deploy (it passed before)"
+        }
+      ]
+    },
+    {
+      "name": "rollout missing-quality",
+      "schema": "mendr-rollout/v1",
+      "workflow": "Synthetic reply",
+      "configured": true,
+      "deployedAt": null,
+      "verdict": "inconclusive",
+      "reason": "This workflow requires the team's quality check, and no result was given for the time since the deploy.",
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "ok",
+          "before": 0.001,
+          "after": 0.001,
+          "detail": "error rate 0.10% → 0.10% (+0.00 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "not_measured",
+          "detail": "p95 latency was not given for both windows"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "not_measured",
+          "detail": "cost per 1,000 calls was not given for both windows"
+        },
+        {
+          "signal": "quality",
+          "state": "not_measured",
+          "detail": "your quality check was not reported for the time since the deploy"
+        }
+      ]
+    },
+    {
+      "name": "runtime missing cost stays null",
+      "observation": {
+        "provider": "openai",
+        "model": "o4-mini",
+        "observed": "o4-mini",
+        "service": null,
+        "environment": null,
+        "lastSeen": "2026-10-22T00:00:00Z",
+        "requests": 5,
+        "requestsReported": true,
+        "failures": 0,
+        "costUsd": null
+      }
+    },
+    {
+      "name": "dated registry freshness",
+      "current": {
+        "source": "bundled",
+        "version": "sha256:e0464cc70ab44d9d",
+        "publishedAt": "2026-10-11T07:10:25Z",
+        "refresh": {
+          "requested": false,
+          "ok": false
+        },
+        "ageDays": 11.701099537037036,
+        "maxAgeDays": 14,
+        "state": "fresh"
+      },
+      "stale": {
+        "source": "bundled",
+        "version": "sha256:e0464cc70ab44d9d",
+        "publishedAt": "2026-10-11T07:10:25Z",
+        "refresh": {
+          "requested": false,
+          "ok": false
+        },
+        "ageDays": 81.70109953703704,
+        "maxAgeDays": 14,
+        "state": "stale",
+        "reason": "the bundled registry is 81 days old (max 14) — set MENDR_REGISTRY_REFRESH=on (one signed GET to github.com) or bump MENDR_SPEC; until then \"no exposure\" is inconclusive"
+      }
+    },
+    {
+      "name": "Models seam preserves schedule, access and semantics separately",
+      "modelCases": [
+        {
+          "name": "date",
+          "observedMetadata": {
+            "object": "list",
+            "data": [
+              {
+                "id": "o4-mini",
+                "object": "model",
+                "shutdown_date": "2026-10-23"
+              }
+            ]
+          },
+          "observedAt": "2026-10-22T12:00:00Z",
+          "publishedSchedule": "2026-10-23",
+          "modelAccessibility": "not measured",
+          "semanticQualification": "not measured",
+          "nativeModelsImporter": "absent at pin; usage-export seam rejects response"
+        },
+        {
+          "name": "null",
+          "observedMetadata": {
+            "id": "o4-mini",
+            "object": "model",
+            "shutdown_date": null
+          },
+          "observedAt": "2026-10-22T12:00:00Z",
+          "publishedSchedule": "2026-10-23",
+          "modelAccessibility": "not measured",
+          "semanticQualification": "not measured",
+          "nativeModelsImporter": "absent at pin; usage-export seam rejects response"
+        },
+        {
+          "name": "missing",
+          "observedMetadata": {
+            "id": "o4-mini",
+            "object": "model"
+          },
+          "observedAt": "2026-10-22T12:00:00Z",
+          "publishedSchedule": "2026-10-23",
+          "modelAccessibility": "not measured",
+          "semanticQualification": "not measured",
+          "nativeModelsImporter": "absent at pin; usage-export seam rejects response"
+        },
+        {
+          "name": "conflict",
+          "observedMetadata": {
+            "id": "o4-mini",
+            "object": "model",
+            "shutdown_date": "2026-11-01"
+          },
+          "observedAt": "2026-10-22T12:00:00Z",
+          "publishedSchedule": "2026-10-23",
+          "modelAccessibility": "not measured",
+          "semanticQualification": "not measured",
+          "nativeModelsImporter": "absent at pin; usage-export seam rejects response"
+        },
+        {
+          "name": "stale",
+          "observedMetadata": {
+            "id": "o4-mini",
+            "object": "model",
+            "shutdown_date": "2026-11-01"
+          },
+          "observedAt": "2026-08-01T12:00:00Z",
+          "publishedSchedule": "2026-10-23",
+          "modelAccessibility": "not measured",
+          "semanticQualification": "not measured",
+          "nativeModelsImporter": "absent at pin; usage-export seam rejects response"
+        }
+      ],
+      "boundaries": [
+        {
+          "instant": "2026-10-22T23:59:59Z",
+          "recovery": {
+            "asOf": "2026-10-22",
+            "options": [
+              {
+                "kind": "revert",
+                "available": true,
+                "detail": "Revert the pull request and calls go back to `o4-mini`, until 2026-10-23, when `o4-mini` shuts down. After that, a revert stops working."
+              },
+              {
+                "kind": "fix_forward",
+                "available": true,
+                "detail": "Keep `gpt-5.6-terra` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+              },
+              {
+                "kind": "other_model",
+                "available": true,
+                "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+              }
+            ],
+            "caveats": [
+              "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+            ]
+          }
+        },
+        {
+          "instant": "2026-10-23T00:00:00Z",
+          "recovery": {
+            "asOf": "2026-10-23",
+            "options": [
+              {
+                "kind": "revert",
+                "available": false,
+                "detail": "Do not revert: `o4-mini` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+              },
+              {
+                "kind": "fix_forward",
+                "available": true,
+                "detail": "Keep `gpt-5.6-terra` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+              },
+              {
+                "kind": "other_model",
+                "available": true,
+                "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+              }
+            ],
+            "caveats": [
+              "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+            ]
+          }
+        },
+        {
+          "instant": "2026-10-24T00:00:00Z",
+          "recovery": {
+            "asOf": "2026-10-24",
+            "options": [
+              {
+                "kind": "revert",
+                "available": false,
+                "detail": "Do not revert: `o4-mini` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+              },
+              {
+                "kind": "fix_forward",
+                "available": true,
+                "detail": "Keep `gpt-5.6-terra` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+              },
+              {
+                "kind": "other_model",
+                "available": true,
+                "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+              }
+            ],
+            "caveats": [
+              "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+            ]
+          }
+        },
+        {
+          "instant": "2026-10-23T00:30:00+14:00",
+          "recovery": {
+            "asOf": "2026-10-22",
+            "options": [
+              {
+                "kind": "revert",
+                "available": true,
+                "detail": "Revert the pull request and calls go back to `o4-mini`, until 2026-10-23, when `o4-mini` shuts down. After that, a revert stops working."
+              },
+              {
+                "kind": "fix_forward",
+                "available": true,
+                "detail": "Keep `gpt-5.6-terra` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+              },
+              {
+                "kind": "other_model",
+                "available": true,
+                "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+              }
+            ],
+            "caveats": [
+              "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+            ]
+          }
+        },
+        {
+          "instant": "2026-10-22T23:30:00-12:00",
+          "recovery": {
+            "asOf": "2026-10-23",
+            "options": [
+              {
+                "kind": "revert",
+                "available": false,
+                "detail": "Do not revert: `o4-mini` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+              },
+              {
+                "kind": "fix_forward",
+                "available": true,
+                "detail": "Keep `gpt-5.6-terra` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+              },
+              {
+                "kind": "other_model",
+                "available": true,
+                "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+              }
+            ],
+            "caveats": [
+              "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+            ]
+          }
+        }
+      ],
+      "registryUnchanged": true
+    }
+  ]
+}

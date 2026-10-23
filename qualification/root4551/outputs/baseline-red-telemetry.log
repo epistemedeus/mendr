@@ -1,0 +1,75 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance/root4410-telemetry-evidence.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023
+
+ ❯ src/assurance/root4410-telemetry-evidence.test.ts (4 tests | 3 failed) 24ms
+     × cannot turn an export without outcomes into a healthy rollout 7ms
+     × holds missing, malformed and partial failure evidence 4ms
+     ✓ valid failures are regressions; explicit success and explicit zero recover 11ms
+     × does not invent zero cost from malformed values; an actual zero remains measured 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/assurance/root4410-telemetry-evidence.test.ts > ROOT4410 telemetry keeps missing evidence unknown > cannot turn an export without outcomes into a healthy rollout
+AssertionError: expected +0 to be undefined
+
+- Expected:
+undefined
+
++ Received:
+0
+
+ ❯ src/assurance/root4410-telemetry-evidence.test.ts:17:38
+     15|   it('cannot turn an export without outcomes into a healthy rollout',(…
+     16|     const r=summarize(rows());
+     17|     expect(r.input.before.errorRate).toBeUndefined();
+       |                                      ^
+     18|     expect(r.input.after.errorRate).toBeUndefined();
+     19|     expect(judgeRollout(r.input,undefined).verdict).toBe('inconclusive…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/assurance/root4410-telemetry-evidence.test.ts > ROOT4410 telemetry keeps missing evidence unknown > holds missing, malformed and partial failure evidence
+AssertionError: expected 'verified' to be 'inconclusive' // Object.is equality
+
+Expected: "inconclusive"
+Received: "verified"
+
+ ❯ src/assurance/root4410-telemetry-evidence.test.ts:24:55
+     22|     for(const value of ['pending','200not-a-code','',null]) {
+     23|       const r=summarize(rows({status:value}));
+     24|       expect(judgeRollout(r.input,undefined).verdict).toBe('inconclusi…
+       |                                                       ^
+     25|     }
+     26|     const partial=rows({status:200});delete partial[200].status;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/assurance/root4410-telemetry-evidence.test.ts > ROOT4410 telemetry keeps missing evidence unknown > does not invent zero cost from malformed values; an actual zero remains measured
+AssertionError: expected +0 to be null
+
+- Expected:
+null
+
++ Received:
+0
+
+ ❯ src/assurance/root4410-telemetry-evidence.test.ts:39:60
+     37|   it('does not invent zero cost from malformed values; an actual zero …
+     38|     for(const cost of ['unknown','12garbage',-1,Infinity]) {
+     39|       expect(toCallSample({model:'o4-mini',cost}).costUsd).toBeNull();
+       |                                                            ^
+     40|       expect(toObservation({model:'o4-mini',cost})?.costUsd).toBeNull(…
+     41|       expect(toCallSample({model:'o4-mini',latency_ms:cost}).latencyMs…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 1 passed (4)
+   Start at  11:25:14
+   Duration  633ms (transform 221ms, setup 0ms, import 488ms, tests 24ms, environment 0ms)
+

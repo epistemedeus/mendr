@@ -1,0 +1,29 @@
+{
+  "name": "patched-all-tests",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:22:57.857680+00:00",
+  "elapsedSeconds": 299.963,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1142992,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [
+    45646,
+    45702,
+    57012
+  ],
+  "logBytesBeforeBounding": 23494,
+  "outputSha256": "82267f3fe8420f64355530c0035396fafb9defe5b3aa4a795d190ae3e27edfd4",
+  "reportArtifact": null
+}

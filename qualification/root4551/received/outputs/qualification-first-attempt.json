@@ -1,0 +1,579 @@
+{
+  "pinnedMendr": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+  "completedCases": 4,
+  "results": [
+    {
+      "name": "verified print-only migration",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "positive",
+      "generatedAt": "2026-10-22T12:00:00.000Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 1,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "passed"
+        },
+        "build": {
+          "status": "passed",
+          "detail": "\n> build\n> node build.cjs\n",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "passed",
+          "detail": "\n> test\n> node test.cjs\n\n1 passing"
+        },
+        "eval": {
+          "status": "passed",
+          "detail": "synthetic patched-source check passed",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": true,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "verified"
+      },
+      "prReady": true,
+      "notes": [
+        "This migration is a reviewed PR candidate. Mendr never merges; a human approves."
+      ],
+      "recovery": {
+        "asOf": "2026-10-22",
+        "options": [
+          {
+            "kind": "revert",
+            "available": true,
+            "detail": "Revert the pull request and calls go back to `gpt-4-0613`, until 2026-10-23, when `gpt-4-0613` shuts down. After that, a revert stops working."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    },
+    {
+      "name": "repeated audit preserves all fixture bytes",
+      "beforeSha256": "262c1017e92ee313ae987a06e7e80d3aac641704524d1796341d1d75bf50b912",
+      "afterSha256": "262c1017e92ee313ae987a06e7e80d3aac641704524d1796341d1d75bf50b912",
+      "audits": [
+        {
+          "generatedBy": "mendr",
+          "schema": "mendr-audit/v3",
+          "preview": true,
+          "repo": "positive",
+          "generatedAt": "2026-10-23T10:14:00.500Z",
+          "evaluatedAt": "2026-10-23T10:14:00.500Z",
+          "evaluationTimeSource": "system",
+          "period": {
+            "from": null,
+            "to": null
+          },
+          "sha": null,
+          "coverage": {
+            "source": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 5,
+              "filesRead": 5,
+              "tsFiles": 1,
+              "jsFiles": 4,
+              "pyFiles": 0,
+              "unanalyzedLanguages": [],
+              "unanalyzedFiles": 0,
+              "docsFiles": 0,
+              "testFilesSkipped": 0,
+              "unreadableFiles": 0,
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "config": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 1,
+              "filesRead": 1,
+              "generatedSkipped": 0,
+              "excludedDirs": [
+                "node_modules"
+              ],
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "registry": {
+              "providers": [
+                "anthropic",
+                "google",
+                "openai"
+              ],
+              "source": "bundled",
+              "version": "sha256:e0464cc70ab44d9d",
+              "publishedAt": "2026-10-11T07:10:25Z",
+              "ageDays": 12.1,
+              "maxAgeDays": 14,
+              "freshness": "fresh",
+              "refresh": {
+                "requested": false,
+                "ok": false
+              }
+            },
+            "runtime": {
+              "connected": false,
+              "source": null,
+              "failed": false
+            },
+            "readerTieBack": {
+              "proven": false
+            },
+            "migration": {
+              "workflowPresent": false,
+              "workflowFile": null
+            }
+          },
+          "observations": {
+            "config": {}
+          },
+          "conclusion": "exposure_detected",
+          "investigations": [
+            {
+              "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+              "provider": "openai",
+              "model": "gpt-4-0613",
+              "retirementEvidence": {
+                "deprecated": true,
+                "status": "deprecated",
+                "shutdownDate": "2026-10-23",
+                "daysUntil": 0,
+                "replacement": "gpt-5.6-sol",
+                "replacementVerdict": "verified",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+              },
+              "productionUsage": "not_measured",
+              "locations": {
+                "selectors": [
+                  {
+                    "file": "src/client.ts",
+                    "line": 3,
+                    "column": 77,
+                    "key": null,
+                    "value": "gpt-4-0613",
+                    "role": "code_call_site",
+                    "surface": "code",
+                    "tier": "A",
+                    "providerSurface": null,
+                    "patchEligible": true,
+                    "disposition": "patch",
+                    "reason": null,
+                    "snippet": {
+                      "startLine": 1,
+                      "lines": [
+                        "import OpenAI from \"openai\";",
+                        "const client = new OpenAI();",
+                        "export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }",
+                        ""
+                      ]
+                    },
+                    "lineHash": "5eb91dca6e36b3a5"
+                  }
+                ],
+                "catalog": []
+              },
+              "compatibility": {
+                "checked": false,
+                "result": null
+              },
+              "verification": {
+                "replacementVerdict": "verified",
+                "readerTieBackProven": false
+              },
+              "decision": "patch",
+              "reason": "A verified auto-fix exists for src/client.ts:3 — fix-llm can rewrite it to gpt-5.6-sol. Nothing is applied by the audit; a change is proposed as a reviewed PR, never auto-merged. Production usage was not measured.",
+              "nextAction": "run `mendr fix-llm <path>` to print the verified diff for src/client.ts:3; review it before applying. Only Tier-A lines are rewritten.",
+              "patchEligible": true,
+              "patchApplied": false,
+              "productionUsageDetail": {
+                "measured": false,
+                "source": null,
+                "observed": false,
+                "requestsReported": false,
+                "requests": 0,
+                "failures": 0,
+                "lastSeen": null,
+                "services": [],
+                "environments": [],
+                "costUsd": null
+              }
+            }
+          ]
+        },
+        {
+          "generatedBy": "mendr",
+          "schema": "mendr-audit/v3",
+          "preview": true,
+          "repo": "positive",
+          "generatedAt": "2026-10-23T10:14:01.191Z",
+          "evaluatedAt": "2026-10-23T10:14:01.191Z",
+          "evaluationTimeSource": "system",
+          "period": {
+            "from": null,
+            "to": null
+          },
+          "sha": null,
+          "coverage": {
+            "source": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 5,
+              "filesRead": 5,
+              "tsFiles": 1,
+              "jsFiles": 4,
+              "pyFiles": 0,
+              "unanalyzedLanguages": [],
+              "unanalyzedFiles": 0,
+              "docsFiles": 0,
+              "testFilesSkipped": 0,
+              "unreadableFiles": 0,
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "config": {
+              "analyzed": true,
+              "failed": false,
+              "filesScanned": 1,
+              "filesRead": 1,
+              "generatedSkipped": 0,
+              "excludedDirs": [
+                "node_modules"
+              ],
+              "parseFailures": 0,
+              "parseFailureFiles": []
+            },
+            "registry": {
+              "providers": [
+                "anthropic",
+                "google",
+                "openai"
+              ],
+              "source": "bundled",
+              "version": "sha256:e0464cc70ab44d9d",
+              "publishedAt": "2026-10-11T07:10:25Z",
+              "ageDays": 12.1,
+              "maxAgeDays": 14,
+              "freshness": "fresh",
+              "refresh": {
+                "requested": false,
+                "ok": false
+              }
+            },
+            "runtime": {
+              "connected": false,
+              "source": null,
+              "failed": false
+            },
+            "readerTieBack": {
+              "proven": false
+            },
+            "migration": {
+              "workflowPresent": false,
+              "workflowFile": null
+            }
+          },
+          "observations": {
+            "config": {}
+          },
+          "conclusion": "exposure_detected",
+          "investigations": [
+            {
+              "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+              "provider": "openai",
+              "model": "gpt-4-0613",
+              "retirementEvidence": {
+                "deprecated": true,
+                "status": "deprecated",
+                "shutdownDate": "2026-10-23",
+                "daysUntil": 0,
+                "replacement": "gpt-5.6-sol",
+                "replacementVerdict": "verified",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+              },
+              "productionUsage": "not_measured",
+              "locations": {
+                "selectors": [
+                  {
+                    "file": "src/client.ts",
+                    "line": 3,
+                    "column": 77,
+                    "key": null,
+                    "value": "gpt-4-0613",
+                    "role": "code_call_site",
+                    "surface": "code",
+                    "tier": "A",
+                    "providerSurface": null,
+                    "patchEligible": true,
+                    "disposition": "patch",
+                    "reason": null,
+                    "snippet": {
+                      "startLine": 1,
+                      "lines": [
+                        "import OpenAI from \"openai\";",
+                        "const client = new OpenAI();",
+                        "export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }",
+                        ""
+                      ]
+                    },
+                    "lineHash": "5eb91dca6e36b3a5"
+                  }
+                ],
+                "catalog": []
+              },
+              "compatibility": {
+                "checked": false,
+                "result": null
+              },
+              "verification": {
+                "replacementVerdict": "verified",
+                "readerTieBackProven": false
+              },
+              "decision": "patch",
+              "reason": "A verified auto-fix exists for src/client.ts:3 — fix-llm can rewrite it to gpt-5.6-sol. Nothing is applied by the audit; a change is proposed as a reviewed PR, never auto-merged. Production usage was not measured.",
+              "nextAction": "run `mendr fix-llm <path>` to print the verified diff for src/client.ts:3; review it before applying. Only Tier-A lines are rewritten.",
+              "patchEligible": true,
+              "patchApplied": false,
+              "productionUsageDetail": {
+                "measured": false,
+                "source": null,
+                "observed": false,
+                "requestsReported": false,
+                "requests": 0,
+                "failures": 0,
+                "lastSeen": null,
+                "services": [],
+                "environments": [],
+                "costUsd": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "type-failure refuses write",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "type-failure",
+      "generatedAt": "2026-10-23T10:14:01.480Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 0,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "failed",
+          "detail": "1 new type error(s) introduced by the migration"
+        },
+        "build": {
+          "status": "passed",
+          "detail": "\n> build\n> node build.cjs\n",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "passed",
+          "detail": "\n> test\n> node test.cjs\n\n1 passing"
+        },
+        "eval": {
+          "status": "passed",
+          "detail": "synthetic patched-source check passed",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": true,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "failed"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing was written: --write applies only a VERIFIED migration, and this run is failed."
+      ],
+      "applied": [],
+      "recovery": {
+        "asOf": "2026-10-23",
+        "options": [
+          {
+            "kind": "revert",
+            "available": false,
+            "detail": "Do not revert: `gpt-4-0613` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    },
+    {
+      "name": "test-failure refuses write",
+      "schema": "mendr-migration/v1",
+      "generatedBy": "mendr",
+      "repo": "test-failure",
+      "generatedAt": "2026-10-23T10:14:02.224Z",
+      "sha": null,
+      "migrated": true,
+      "migrations": [
+        {
+          "provider": "openai",
+          "model": "gpt-4-0613",
+          "from": "gpt-4-0613",
+          "to": "gpt-5.6-sol",
+          "language": "ts",
+          "sites": 1,
+          "files": [
+            "src/client.ts"
+          ],
+          "evidence": {
+            "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+            "lifecycle": "deprecated",
+            "shutdownDate": "2026-10-23",
+            "daysUntil": 0,
+            "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+            "replacementVerdict": "verified",
+            "excerpts": []
+          }
+        }
+      ],
+      "paramTransforms": [],
+      "skipped": [],
+      "changedFiles": [
+        "src/client.ts"
+      ],
+      "diff": "diff --git a/src/client.ts b/src/client.ts\n--- a/src/client.ts\n+++ b/src/client.ts\n@@ -1,3 +1,3 @@\n import OpenAI from \"openai\";\n const client = new OpenAI();\n-export async function ask(){ return client.chat.completions.create({ model: \"gpt-4-0613\", messages: [] }); }\n+export async function ask(){ return client.chat.completions.create({ model: \"gpt-5.6-sol\", messages: [] }); }\n",
+      "verification": {
+        "typeCheck": {
+          "status": "passed"
+        },
+        "build": {
+          "status": "passed",
+          "detail": "\n> build\n> node build.cjs\n",
+          "command": "npm run build"
+        },
+        "tests": {
+          "status": "failed",
+          "detail": "\n> test\n> node test.cjs\n\nnode:assert:150\n  throw new AssertionError(obj);\n  ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at Object.<anonymous> (/tmp/mendr-gate-afTsjy/test.cjs:1:31)\n    at Module._compile (node:internal/modules/cjs/loader:1781:14)\n    at Object..js (node:internal/modules/cjs/loader:1913:10)\n    at Module.load (node:internal/modules/cjs/loader:1505:32)\n    at Function._load (node:internal/modules/cjs/loader:1309:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)\n    at node:internal/main/run_main_module:36:49 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: true,\n  expected: false,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.23.4"
+        },
+        "eval": {
+          "status": "passed",
+          "detail": "synthetic patched-source check passed",
+          "command": "node eval.cjs"
+        },
+        "behavioralTested": true,
+        "secondCheck": {
+          "status": "passed",
+          "detail": "re-read 1 patched file independently of the patch: every edit matches a registry rule, no live call the scan found was missed, and no parameter rule is left unmet"
+        },
+        "verdict": "failed"
+      },
+      "prReady": false,
+      "notes": [
+        "Nothing was written: --write applies only a VERIFIED migration, and this run is failed."
+      ],
+      "applied": [],
+      "recovery": {
+        "asOf": "2026-10-23",
+        "options": [
+          {
+            "kind": "revert",
+            "available": false,
+            "detail": "Do not revert: `gpt-4-0613` shut down on 2026-10-23, so a revert sends requests to a model that no longer answers."
+          },
+          {
+            "kind": "fix_forward",
+            "available": true,
+            "detail": "Keep `gpt-5.6-sol` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+          },
+          {
+            "kind": "other_model",
+            "available": true,
+            "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+          }
+        ],
+        "caveats": [
+          "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+        ]
+      }
+    }
+  ]
+}

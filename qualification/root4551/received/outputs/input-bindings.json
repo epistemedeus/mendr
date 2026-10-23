@@ -1,0 +1,94 @@
+{
+  "pilotBase": "8aded3ca3bb5f22b32454f962091ef3750715a76",
+  "admittedBranch": "codex/root4410-c-mendr-adoption-20261023",
+  "canonicalOrigin": "https://github.com/epistemedeus/pilot.git",
+  "specSha256": "c23dc8b57526e12b1b03f63b0ec93d6b0b109e311e2f084f6ea62fe2acc4b3e6",
+  "receiptSha256": "4b3485371a170300426b29708e977aba1165dae3767764fa35fb477fe1531673",
+  "members": [
+    {
+      "role": "instructions",
+      "path": "AGENTS.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "8aded3ca3bb5f22b32454f962091ef3750715a76",
+      "blob": "2b819aee80e3c64df7e4b3dadc3747e546662ef4",
+      "bytes": 32501,
+      "sha256": "5054aa9c80d1a146db66e0689349c036ce1c3cbeddc974513ceced8e39db7e16"
+    },
+    {
+      "role": "state",
+      "path": "overview/STATE.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "8aded3ca3bb5f22b32454f962091ef3750715a76",
+      "blob": "b2997c5d9d396f74cad0322c65abca70077b9d44",
+      "bytes": 30110,
+      "sha256": "a7c58a7d611d2c3ec365aeaf4f6c208eb5e60eac0c314d703d96fd6c089bae67"
+    },
+    {
+      "role": "execution-plan",
+      "path": "overview/MACHINE-COMMERCE-EXECUTION-PLAN.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "8aded3ca3bb5f22b32454f962091ef3750715a76",
+      "blob": "bc7dca860705fa51b662e9d0b37be890ac2298bd",
+      "bytes": 32351,
+      "sha256": "c744ef2b45330e86a1ec9df02ddbec594178c537d29df6a30af922ea4ba2b162"
+    },
+    {
+      "role": "assignment",
+      "path": "overview/remote-worker/assignments/ROOT4410-DEADLINE-COMPATIBILITY-COHORT.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "8aded3ca3bb5f22b32454f962091ef3750715a76",
+      "blob": "d36e9f251c387da1613bdf2c520749e84582db60",
+      "bytes": 20238,
+      "sha256": "91853c553e27afe24c105556261076ed63e0cbae6e6330bf0f32d6669843332d"
+    }
+  ],
+  "executionLifetime": {
+    "host": {
+      "provider": "cursor",
+      "agentId": "bc-04984aa5-bc2b-4569-99e3-166ecb107705",
+      "bootId": "75d10aec-f516-4b98-bbfe-b8ff0ee0ca5e"
+    },
+    "enrollment": {
+      "path": "/home/ubuntu/root-sol-window100337/root4466-aa-research-control-20261023/LIFETIME-ENROLLMENT.json",
+      "sha256": "b65b0bbde1ff79a4bc686bf4fe083f9dcb1fc44034deb559ab57c241cafced2c"
+    },
+    "checkpointBy": "2026-10-23T13:34:06.713Z",
+    "requiredUntil": "2026-10-23T13:49:06.713Z"
+  },
+  "requestedModel": "gpt-6.1-sol",
+  "requestedEffort": "xhigh",
+  "observedLauncher": {
+    "modelArgument": "gpt-6.1-sol",
+    "effortArgument": "xhigh"
+  },
+  "completedTurnMetadata": "Root collector owns verification after this turn completes",
+  "totalReservationKiB": 2097152,
+  "modelChildrenDeclared": 0,
+  "modelChildrenLaunched": 0,
+  "verifiedOperatingMembers": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "5054aa9c80d1a146db66e0689349c036ce1c3cbeddc974513ceced8e39db7e16",
+      "blob": "2b819aee80e3c64df7e4b3dadc3747e546662ef4",
+      "matchesReceipt": true
+    },
+    {
+      "path": "overview/STATE.md",
+      "sha256": "a7c58a7d611d2c3ec365aeaf4f6c208eb5e60eac0c314d703d96fd6c089bae67",
+      "blob": "b2997c5d9d396f74cad0322c65abca70077b9d44",
+      "matchesReceipt": true
+    },
+    {
+      "path": "overview/MACHINE-COMMERCE-EXECUTION-PLAN.md",
+      "sha256": "c744ef2b45330e86a1ec9df02ddbec594178c537d29df6a30af922ea4ba2b162",
+      "blob": "bc7dca860705fa51b662e9d0b37be890ac2298bd",
+      "matchesReceipt": true
+    },
+    {
+      "path": "overview/remote-worker/assignments/ROOT4410-DEADLINE-COMPATIBILITY-COHORT.md",
+      "sha256": "91853c553e27afe24c105556261076ed63e0cbae6e6330bf0f32d6669843332d",
+      "blob": "d36e9f251c387da1613bdf2c520749e84582db60",
+      "matchesReceipt": true
+    }
+  ]
+}

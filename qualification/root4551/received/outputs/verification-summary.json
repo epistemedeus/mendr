@@ -1,0 +1,794 @@
+{
+  "baselineSuite": {
+    "testsPassed": 2207,
+    "filesPassed": 124,
+    "failures": 0,
+    "skips": 0
+  },
+  "finalPatchedSuite": {
+    "testsPassed": 2222,
+    "filesPassed": 128,
+    "failures": 0,
+    "skips": 0,
+    "receipt": "outputs/final-patched-all-tests.json"
+  },
+  "baselineReceiver": {
+    "exitCode": 0,
+    "receipt": "outputs/receiver-replay.log",
+    "sourcePreserved": true
+  },
+  "builtCorpusCases": 22,
+  "workflowAdapterTests": 5,
+  "referenceDenominator": {
+    "eventcatalog": {
+      "reported": 11,
+      "expected": 11
+    },
+    "yolo": {
+      "reported": 43,
+      "expected": 43,
+      "canonicalizedValues": 4
+    }
+  },
+  "patches": {
+    "0001-recovery-schedule-evidence.patch": {
+      "sha256": "8e870d83e8e79fe65df9c0573bb78c72652f84b6b6cebee31a10a5097f2a3c75",
+      "bytes": 7291
+    },
+    "0002-request-spread-hold.patch": {
+      "sha256": "606c971744556d9853651dcd0db7354266516dd300df080bdb1a24e8c87d6168",
+      "bytes": 7198
+    },
+    "0003-telemetry-unknown-evidence.patch": {
+      "sha256": "bde4a6d394f34437178cdc488acddfeae9f05f6513eabb8c7759019a047b5145",
+      "bytes": 7618
+    }
+  },
+  "inputSourceReadback": {
+    "mendrBaseline": {
+      "head": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+      "tree": "601dc96f4658585058cdd06df23e6a2728e4a9d2",
+      "statusPorcelain": ""
+    },
+    "eventcatalog": {
+      "head": "d721c06b0142c55cd23c461734c1423bf95cedb2",
+      "tree": "79e75adfccb57cef8288d9b974733831306788ea",
+      "statusPorcelain": ""
+    },
+    "yolo": {
+      "head": "f5470e7ea1e3fcf5d972fc826b263e2fb0469f25",
+      "tree": "29cafb49f963fc2bc01fa70f24b4b5fb32e8f047",
+      "statusPorcelain": ""
+    }
+  },
+  "resourceReservationKiB": 2097152,
+  "peakSampledAggregateRssKiB": 1226072,
+  "resourceExceptions": [],
+  "modelChildrenLaunched": 0,
+  "commands": [
+    {
+      "path": "outputs/audit-eventcatalog.json",
+      "name": "audit-eventcatalog",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "audit",
+        "/tmp/root4410-c-scratch/eventcatalog",
+        "--offline",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.924,
+      "peakAggregateRssKiB": 447480,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/audit-workflows.json",
+      "name": "audit-workflows",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "audit",
+        "/tmp/root4410-c-scratch/workflow-exports",
+        "--offline",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.414,
+      "peakAggregateRssKiB": 370848,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/audit-yolo-receive.json",
+      "name": "audit-yolo-receive",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "audit",
+        "/tmp/root4410-c-scratch/yolo",
+        "--offline",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 4.002,
+      "peakAggregateRssKiB": 828128,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/audit-yolo.json",
+      "name": "audit-yolo",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "audit",
+        "/tmp/root4410-c-scratch/yolo",
+        "--offline",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 3.896,
+      "peakAggregateRssKiB": 834608,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/baseline-tests.json",
+      "name": "baseline-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 296.841,
+      "peakAggregateRssKiB": 1226072,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/build.json",
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 4.316,
+      "peakAggregateRssKiB": 775104,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/final-patched-all-tests.json",
+      "name": "final-patched-all-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 298.897,
+      "peakAggregateRssKiB": 1156768,
+      "stopReason": null,
+      "survivingOwnedProcesses": [
+        {
+          "pid": 77999,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 75316,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 89337,
+          "state": "Z",
+          "ppid": 15884
+        }
+      ]
+    },
+    {
+      "path": "outputs/final-patched-build.json",
+      "name": "final-patched-build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 4.152,
+      "peakAggregateRssKiB": 748936,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/final-qualification.json",
+      "name": "final-qualification",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+        "/tmp/root4410-c-scratch/mendr",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/final-qualification"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 9.804,
+      "peakAggregateRssKiB": 918120,
+      "stopReason": null,
+      "survivingOwnedProcesses": [
+        {
+          "pid": 90994,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 91041,
+          "state": "Z",
+          "ppid": 15884
+        }
+      ]
+    },
+    {
+      "path": "outputs/install.json",
+      "name": "install",
+      "command": [
+        "npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "exitCode": 0,
+      "offlinePreload": false,
+      "elapsedSeconds": 1.949,
+      "peakAggregateRssKiB": 448928,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/patched-all-tests.json",
+      "name": "patched-all-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 299.963,
+      "peakAggregateRssKiB": 1142992,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/patched-build.json",
+      "name": "patched-build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 4.007,
+      "peakAggregateRssKiB": 746068,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/qualify-baseline.json",
+      "name": "qualify-baseline",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+        "/tmp/root4410-c-scratch/mendr",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 4.874,
+      "peakAggregateRssKiB": 689040,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/qualify-corrected-fixture.json",
+      "name": "qualify-corrected-fixture",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+        "/tmp/root4410-c-scratch/mendr",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 7.347,
+      "peakAggregateRssKiB": 693032,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/qualify-patched-received.json",
+      "name": "qualify-patched-received",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+        "/tmp/root4410-c-scratch/mendr",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/patched-qualification"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 9.734,
+      "peakAggregateRssKiB": 903712,
+      "stopReason": null,
+      "survivingOwnedProcesses": [
+        {
+          "pid": 58651,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 58698,
+          "state": "Z",
+          "ppid": 15884
+        }
+      ]
+    },
+    {
+      "path": "outputs/qualify-received.json",
+      "name": "qualify-received",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+        "/tmp/root4410-c-scratch/mendr",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 7.16,
+      "peakAggregateRssKiB": 695000,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/recovery-baseline-red.json",
+      "name": "recovery-baseline-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/assurance/root4410-recovery.test.ts",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.623,
+      "peakAggregateRssKiB": 500624,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/replay/audit-eventcatalog.json",
+      "name": "audit-eventcatalog",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "audit",
+        "/tmp/root4410-c-scratch/eventcatalog",
+        "--offline",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.935,
+      "peakAggregateRssKiB": 469352,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/audit-generic-workflows.json",
+      "name": "audit-generic-workflows",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "audit",
+        "/tmp/root4410-exports-xctdnp55",
+        "--offline",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.416,
+      "peakAggregateRssKiB": 391448,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/audit-yolo.json",
+      "name": "audit-yolo",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "audit",
+        "/tmp/root4410-c-scratch/yolo",
+        "--offline",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 3.941,
+      "peakAggregateRssKiB": 845272,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/baseline-tests.json",
+      "name": "baseline-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 296.65,
+      "peakAggregateRssKiB": 1171932,
+      "stopReason": null,
+      "survivingOwnedProcesses": [
+        {
+          "pid": 61628,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 61682,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 58957,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 58990,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 72985,
+          "state": "Z",
+          "ppid": 15884
+        }
+      ]
+    },
+    {
+      "path": "outputs/replay/build.json",
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 4.145,
+      "peakAggregateRssKiB": 765064,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/guard-control.json",
+      "name": "guard-control",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/network-guard-control.cjs"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.108,
+      "peakAggregateRssKiB": 278120,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/qualification.json",
+      "name": "qualification",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+        "/tmp/root4410-c-scratch/mendr-baseline",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/replay"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 9.707,
+      "peakAggregateRssKiB": 968076,
+      "stopReason": null,
+      "survivingOwnedProcesses": [
+        {
+          "pid": 74524,
+          "state": "Z",
+          "ppid": 15884
+        },
+        {
+          "pid": 74571,
+          "state": "Z",
+          "ppid": 15884
+        }
+      ]
+    },
+    {
+      "path": "outputs/replay/registry-validation.json",
+      "name": "registry-validation",
+      "command": [
+        "node",
+        "dist/cli.js",
+        "validate-registry"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.416,
+      "peakAggregateRssKiB": 391128,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/workflow-make.json",
+      "name": "workflow-make",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/workflow-report.mjs",
+        "/tmp/root4410-c-scratch/mendr-baseline",
+        "make",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/fixtures/make.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.314,
+      "peakAggregateRssKiB": 367120,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/workflow-n8n.json",
+      "name": "workflow-n8n",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/workflow-report.mjs",
+        "/tmp/root4410-c-scratch/mendr-baseline",
+        "n8n",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/fixtures/n8n.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.315,
+      "peakAggregateRssKiB": 367856,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/replay/workflow-tests.json",
+      "name": "workflow-tests",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/workflow-report.test.mjs"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.418,
+      "peakAggregateRssKiB": 440620,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/spread-baseline-red.json",
+      "name": "spread-baseline-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/usage/root4410-request-spread.test.ts",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 1.957,
+      "peakAggregateRssKiB": 811352,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/telemetry-baseline-exact-red.json",
+      "name": "telemetry-baseline-exact-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/assurance/root4410-telemetry-evidence.test.ts",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 1.04,
+      "peakAggregateRssKiB": 716596,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/telemetry-baseline-red.json",
+      "name": "telemetry-baseline-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/assurance/root4410-telemetry-evidence.test.ts",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 1.039,
+      "peakAggregateRssKiB": 695820,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/telemetry-cli-baseline-complete-red.json",
+      "name": "telemetry-cli-baseline-complete-red",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/probe-telemetry.mjs",
+        "/tmp/root4410-c-scratch/mendr-baseline",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/baseline-telemetry-complete"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 1.971,
+      "peakAggregateRssKiB": 437380,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/telemetry-cli-baseline-red.json",
+      "name": "telemetry-cli-baseline-red",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/probe-telemetry.mjs",
+        "/tmp/root4410-c-scratch/mendr-baseline",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/baseline-telemetry"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 1.553,
+      "peakAggregateRssKiB": 437464,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/telemetry-cli-repaired-green.json",
+      "name": "telemetry-cli-repaired-green",
+      "command": [
+        "node",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/probe-telemetry.mjs",
+        "/tmp/root4410-c-scratch/mendr",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/patched-telemetry"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 1.971,
+      "peakAggregateRssKiB": 445008,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/telemetry-repaired-green.json",
+      "name": "telemetry-repaired-green",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/assurance",
+        "src/runtime",
+        "src/audit/investigation.test.ts",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 2.592,
+      "peakAggregateRssKiB": 707504,
+      "stopReason": null,
+      "survivingOwnedProcesses": []
+    },
+    {
+      "path": "outputs/upstream-regressions-green.json",
+      "name": "upstream-regressions-green",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/assurance/root4410-recovery.test.ts",
+        "src/usage/root4410-request-spread.test.ts",
+        "src/usage/tsGuards.test.ts",
+        "src/usage/requestObjectFlow.test.ts",
+        "src/usage/coupledParams.test.ts",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 1,
+      "offlinePreload": true,
+      "elapsedSeconds": 5.65,
+      "peakAggregateRssKiB": 849616,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/upstream-regressions-received.json",
+      "name": "upstream-regressions-received",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/assurance",
+        "src/usage/root4410-request-spread.test.ts",
+        "src/usage/tsGuards.test.ts",
+        "src/usage/requestObjectFlow.test.ts",
+        "src/usage/coupledParams.test.ts",
+        "src/migrate",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 24.602,
+      "peakAggregateRssKiB": 1045592,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    },
+    {
+      "path": "outputs/workflow-adapter-tests.json",
+      "name": "workflow-adapter-tests",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/workflow-report.test.mjs"
+      ],
+      "exitCode": 0,
+      "offlinePreload": true,
+      "elapsedSeconds": 0.415,
+      "peakAggregateRssKiB": 417844,
+      "stopReason": null,
+      "survivingOwnedProcesses": null
+    }
+  ]
+}

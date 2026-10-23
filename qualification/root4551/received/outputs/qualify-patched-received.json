@@ -1,0 +1,39 @@
+{
+  "name": "qualify-patched-received",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+    "/tmp/root4410-c-scratch/mendr",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs/patched-qualification"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:28:50.562703+00:00",
+  "elapsedSeconds": 9.734,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 903712,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [
+    58651,
+    58698
+  ],
+  "logBytesBeforeBounding": 834,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 58651,
+      "state": "Z",
+      "ppid": 15884
+    },
+    {
+      "pid": 58698,
+      "state": "Z",
+      "ppid": 15884
+    }
+  ],
+  "outputSha256": "daabcb4d283108b28aab47f435bee99899ab3d66b944ee0bf78844bee6e57266",
+  "reportArtifact": null
+}

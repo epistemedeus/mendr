@@ -1,0 +1,59 @@
+{
+  "name": "baseline-tests",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:19:51.956474+00:00",
+  "elapsedSeconds": 297.506,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1284936,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [
+    99190,
+    99246,
+    97545,
+    95578,
+    102143
+  ],
+  "logBytesBeforeBounding": 22359,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 99190,
+      "state": "Z",
+      "ppid": 94491
+    },
+    {
+      "pid": 99246,
+      "state": "Z",
+      "ppid": 94491
+    },
+    {
+      "pid": 97545,
+      "state": "Z",
+      "ppid": 94491
+    },
+    {
+      "pid": 95578,
+      "state": "Z",
+      "ppid": 94491
+    },
+    {
+      "pid": 102143,
+      "state": "Z",
+      "ppid": 94491
+    }
+  ],
+  "outputSha256": "68975141087cf6b0f179b16437879905a888cb79a2b841394fd35d6c76140349",
+  "reportArtifact": null
+}

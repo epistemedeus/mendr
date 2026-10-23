@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: n8n resource locator and scalar are located; notes and credentials are excluded
+ok 1 - n8n resource locator and scalar are located; notes and credentials are excluded
+  ---
+  duration_ms: 243.337316
+  type: 'test'
+  ...
+# Subtest: Make mapper uses exact module scope, with parameter locators
+ok 2 - Make mapper uses exact module scope, with parameter locators
+  ---
+  duration_ms: 3.53524
+  type: 'test'
+  ...
+# Subtest: custom endpoints cannot receive direct-provider replacement authority
+ok 3 - custom endpoints cannot receive direct-provider replacement authority
+  ---
+  duration_ms: 4.069021
+  type: 'test'
+  ...
+# Subtest: dynamic, unknown, missing and duplicate identities retain honest coverage
+ok 4 - dynamic, unknown, missing and duplicate identities retain honest coverage
+  ---
+  duration_ms: 6.210884
+  type: 'test'
+  ...
+# Subtest: malformed shape fails; a healthy subsequent report recovers
+ok 5 - malformed shape fails; a healthy subsequent report recovers
+  ---
+  duration_ms: 8.577645
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 352.502915

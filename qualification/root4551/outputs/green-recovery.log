@@ -1,0 +1,15 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/assurance/root4410-recovery.test.ts src/assurance/assurance.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023
+
+ ✓ src/assurance/root4410-recovery.test.ts (3 tests) 3ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 15ms
+
+ Test Files  2 passed (2)
+      Tests  28 passed (28)
+   Start at  11:25:44
+   Duration  309ms (transform 58ms, setup 0ms, import 80ms, tests 18ms, environment 0ms)
+

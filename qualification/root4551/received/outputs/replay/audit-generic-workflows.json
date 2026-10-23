@@ -1,0 +1,27 @@
+{
+  "name": "audit-generic-workflows",
+  "command": [
+    "node",
+    "dist/cli.js",
+    "audit",
+    "/tmp/root4410-exports-xctdnp55",
+    "--offline",
+    "--json"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:34:35.683289+00:00",
+  "elapsedSeconds": 0.416,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 391448,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 14034,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "3426943f18f9c384168daacdd18d63f686377dd6527ada6e88030f52a47e6d9d",
+  "reportArtifact": "audit-generic-workflows.report.json"
+}

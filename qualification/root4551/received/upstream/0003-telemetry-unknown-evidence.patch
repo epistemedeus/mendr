@@ -1,0 +1,153 @@
+diff --git a/src/assurance/telemetry.ts b/src/assurance/telemetry.ts
+index eba3e9f..a9f151e 100644
+--- a/src/assurance/telemetry.ts
++++ b/src/assurance/telemetry.ts
+@@ -95,7 +95,11 @@ function summarize(rows: readonly CallSample[], which: 'before' | 'after', notes
+   const calls = rows.reduce((n, s) => n + s.requests, 0);
+   out.calls = calls;
+   if (calls === 0) return out;
+-  out.errorRate = rows.reduce((n, s) => n + s.failures, 0) / calls;
++  if (rows.every((s) => s.failuresReported !== false)) {
++    out.errorRate = rows.reduce((n, s) => n + s.failures, 0) / calls;
++  } else {
++    notes.push(`Some rows ${which} the deploy have no usable outcome evidence, so error rate was not computed.`);
++  }
+ 
+   const latencies = rows.filter((s) => s.latencyMs !== null).map((s) => s.latencyMs!).sort((x, y) => x - y);
+   if (latencies.length >= MIN_LATENCY_SAMPLES) {
+diff --git a/src/runtime/evidence.ts b/src/runtime/evidence.ts
+index fb56221..c4c4e00 100644
+--- a/src/runtime/evidence.ts
++++ b/src/runtime/evidence.ts
+@@ -121,6 +121,14 @@ const asNumber = (v: unknown): number => {
+   return 0;
+ };
+ 
++/** Optional measured quantities must not turn malformed evidence into zero. */
++function measuredNonnegativeNumber(v: unknown): number | null {
++  if (typeof v !== 'number' && typeof v !== 'string') return null;
++  if (typeof v === 'string' && !/^\$?\d+(?:,\d{3})*(?:\.\d+)?(?:e[+-]?\d+)?$/i.test(v.trim())) return null;
++  const n = typeof v === 'number' ? v : Number(v.trim().replace(/[$,]/g, ''));
++  return Number.isFinite(n) && n >= 0 ? n : null;
++}
++
+ /** Infer the provider from a model id when the source did not say. */
+ export function inferProvider(model: string): string {
+   const m = model.toLowerCase();
+@@ -132,14 +140,19 @@ export function inferProvider(model: string): string {
+ 
+ /** A failure count from either an explicit number or a status/outcome field. */
+ function failuresOf(row: Row): number {
++  return measuredFailuresOf(row) ?? 0;
++}
++
++/** null means outcome evidence is absent or unrecognized, not a success. */
++function measuredFailuresOf(row: Row): number | null {
+   const explicit = pick(row, FAILURE_KEYS);
+-  if (explicit !== undefined) return asNumber(explicit);
++  if (explicit !== undefined) return measuredNonnegativeNumber(explicit);
+   const status = asString(pick(row, ['status', 'outcome', 'result', 'http.status_code', 'status_code']));
+-  if (!status) return 0;
++  if (!status) return null;
+   if (/^(error|fail|failed|failure)$/i.test(status)) return 1;
+-  const code = parseInt(status, 10);
+-  if (Number.isFinite(code) && code >= 400) return 1;
+-  return 0;
++  if (/^(ok|success|succeeded|passed)$/i.test(status)) return 0;
++  if (/^[1-5]\d{2}$/.test(status)) return Number(status) >= 400 ? 1 : 0;
++  return null;
+ }
+ 
+ /** Normalize one arbitrary row into an observation, or null when it names no model. */
+@@ -165,7 +178,7 @@ export function toObservation(row: Row): RuntimeObservation | null {
+     requests: requestsRaw === undefined ? 1 : asNumber(requestsRaw),
+     requestsReported: requestsRaw !== undefined || true,
+     failures: failuresOf(row),
+-    costUsd: costRaw === undefined ? null : asNumber(costRaw),
++    costUsd: measuredNonnegativeNumber(costRaw),
+   };
+ }
+ 
+@@ -309,6 +322,8 @@ export interface CallSample {
+   service: string | null;
+   requests: number;
+   failures: number;
++  /** False when a parsed row has no usable outcome evidence. Legacy explicit samples may omit it. */
++  failuresReported?: boolean;
+   /** Per-call latency in milliseconds, when the row carries one. */
+   latencyMs: number | null;
+   costUsd: number | null;
+@@ -334,14 +349,16 @@ export function toCallSample(row: Row): CallSample {
+   const latencyRaw = pick(row, LATENCY_MS_KEYS);
+   const requestsRaw = pick(row, REQUEST_KEYS);
+   const costRaw = pick(row, COST_KEYS);
++  const measuredFailures = measuredFailuresOf(row);
+   return {
+     timeMs: start ?? (Number.isNaN(parsed) ? null : parsed),
+     model: asString(pick(row, MODEL_KEYS)),
+     service: asString(pick(row, SERVICE_KEYS)),
+     requests: requestsRaw === undefined ? 1 : asNumber(requestsRaw),
+-    failures: failuresOf(row),
+-    latencyMs: latencyRaw !== undefined ? asNumber(latencyRaw) : start !== null && end !== null && end >= start ? end - start : null,
+-    costUsd: costRaw === undefined ? null : asNumber(costRaw),
++    failures: measuredFailures ?? 0,
++    failuresReported: measuredFailures !== null,
++    latencyMs: latencyRaw !== undefined ? measuredNonnegativeNumber(latencyRaw) : start !== null && end !== null && end >= start ? end - start : null,
++    costUsd: measuredNonnegativeNumber(costRaw),
+     fields: row,
+   };
+ }
+diff --git a/src/assurance/root4410-telemetry-evidence.test.ts b/src/assurance/root4410-telemetry-evidence.test.ts
+new file mode 100644
+index 0000000..6a3a2e9
+--- /dev/null
++++ b/src/assurance/root4410-telemetry-evidence.test.ts
+@@ -0,0 +1,48 @@
++import { describe, expect, it } from 'vitest';
++import { toCallSample, toObservation } from '../runtime/evidence.js';
++import { windowsFromTelemetry } from './telemetry.js';
++import { judgeRollout } from './rollout.js';
++
++const deployedAt = new Date('2026-10-20T12:00:00Z');
++function rows(extra: Record<string, unknown> = {}) {
++  return [-1,1].flatMap(side => Array.from({length:120},(_,i)=>({
++    timestamp:new Date(deployedAt.getTime()+side*(i+1)*1000).toISOString(),
++    model:side<0?'o4-mini':'gpt-5.6-terra',requests:1,...extra,
++  })));
++}
++const summarize = (input: ReturnType<typeof rows>) => windowsFromTelemetry(input.map(toCallSample),{workflow:'Synthetic',deployedAt});
++describe('ROOT4410 telemetry keeps missing evidence unknown',()=>{
++  it('cannot turn an export without outcomes into a healthy rollout',()=>{
++    const r=summarize(rows());
++    expect(r.input.before.errorRate).toBeUndefined();
++    expect(r.input.after.errorRate).toBeUndefined();
++    expect(judgeRollout(r.input,undefined).verdict).toBe('inconclusive');
++  });
++  it('holds missing, malformed and partial failure evidence',()=>{
++    for(const value of ['pending','200not-a-code','',null]) {
++      const r=summarize(rows({status:value}));
++      expect(judgeRollout(r.input,undefined).verdict).toBe('inconclusive');
++    }
++    const partial=rows({status:200});delete partial[200].status;
++    expect(summarize(partial).input.after.errorRate).toBeUndefined();
++    expect(judgeRollout(summarize(rows({failures:'unknown'})).input,undefined).verdict).toBe('inconclusive');
++  });
++  it('valid failures are regressions; explicit success and explicit zero recover',()=>{
++    const unhealthy=rows({status:200});unhealthy.filter((_,i)=>i>=120).forEach(x=>x.status=500);
++    expect(judgeRollout(summarize(unhealthy).input,undefined).verdict).toBe('regression');
++    for(const fields of [{status:200},{status:'success'},{failures:0}]) {
++      expect(judgeRollout(summarize(rows(fields)).input,undefined).verdict).toBe('verified');
++    }
++  });
++  it('does not invent zero cost from malformed values; an actual zero remains measured',()=>{
++    for(const cost of ['unknown','12garbage',-1,Infinity]) {
++      expect(toCallSample({model:'o4-mini',cost}).costUsd).toBeNull();
++      expect(toObservation({model:'o4-mini',cost})?.costUsd).toBeNull();
++      expect(toCallSample({model:'o4-mini',latency_ms:cost}).latencyMs).toBeNull();
++    }
++    expect(toCallSample({model:'o4-mini',cost:0}).costUsd).toBe(0);
++    expect(toObservation({model:'o4-mini',cost:'0'})?.costUsd).toBe(0);
++    const r=summarize(rows({status:200,cost:'unknown'}));
++    expect(r.input.after.costPer1k).toBeUndefined();
++  });
++});

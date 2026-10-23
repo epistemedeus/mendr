@@ -1,0 +1,20 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/usage/root4410-request-spread.test.ts src/usage/requestObjectFlow.test.ts src/usage/tsGuards.test.ts src/usage/coupledParams.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023
+
+ ✓ src/usage/root4410-request-spread.test.ts (7 tests) 336ms
+ ✓ src/usage/requestObjectFlow.test.ts (14 tests) 2604ms
+     ✓ is a live call, not catalog data, when the client is assigned later (the Node server shape)  320ms
+     ✓ classifies hundreds of standalone model objects in one large file within budget  351ms
+     ✓ an object handed to a function that is not a provider endpoint  474ms
+ ✓ src/usage/coupledParams.test.ts (110 tests) 277ms
+ ✓ src/usage/tsGuards.test.ts (67 tests) 114ms
+
+ Test Files  4 passed (4)
+      Tests  198 passed (198)
+   Start at  11:25:45
+   Duration  5.12s (transform 321ms, setup 0ms, import 1.35s, tests 3.33s, environment 0ms)
+

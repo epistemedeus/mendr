@@ -1,0 +1,4329 @@
+{
+  "generatedBy": "mendr",
+  "schema": "mendr-audit/v3",
+  "preview": true,
+  "repo": "eventcatalog",
+  "generatedAt": "2026-10-23T10:14:13.933Z",
+  "evaluatedAt": "2026-10-23T10:14:13.933Z",
+  "evaluationTimeSource": "system",
+  "period": {
+    "from": null,
+    "to": null
+  },
+  "sha": null,
+  "coverage": {
+    "source": {
+      "analyzed": true,
+      "failed": false,
+      "filesScanned": 16,
+      "filesRead": 16,
+      "tsFiles": 16,
+      "jsFiles": 0,
+      "pyFiles": 0,
+      "unanalyzedLanguages": [],
+      "unanalyzedFiles": 0,
+      "docsFiles": 2,
+      "testFilesSkipped": 4,
+      "unreadableFiles": 0,
+      "parseFailures": 0,
+      "parseFailureFiles": []
+    },
+    "config": {
+      "analyzed": true,
+      "failed": false,
+      "filesScanned": 13,
+      "filesRead": 13,
+      "generatedSkipped": 0,
+      "excludedDirs": [
+        ".git",
+        "dist"
+      ],
+      "parseFailures": 0,
+      "parseFailureFiles": []
+    },
+    "registry": {
+      "providers": [
+        "anthropic",
+        "google",
+        "openai"
+      ],
+      "source": "bundled",
+      "version": "sha256:e0464cc70ab44d9d",
+      "publishedAt": "2026-10-11T07:10:25Z",
+      "ageDays": 12.1,
+      "maxAgeDays": 14,
+      "freshness": "fresh",
+      "refresh": {
+        "requested": false,
+        "ok": false
+      }
+    },
+    "runtime": {
+      "connected": false,
+      "source": null,
+      "failed": false
+    },
+    "readerTieBack": {
+      "proven": false
+    },
+    "migration": {
+      "workflowPresent": false,
+      "workflowFile": null
+    }
+  },
+  "observations": {
+    "config": {}
+  },
+  "conclusion": "exposure_detected",
+  "investigations": [
+    {
+      "entryId": "openai.o4-mini.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "o4-mini",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [
+          {
+            "file": "src/lib/ai.ts",
+            "line": 13,
+            "column": 40,
+            "key": null,
+            "value": "o4-mini",
+            "role": "code_candidate",
+            "surface": "code",
+            "tier": "B",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "review",
+            "reason": "surface_capped",
+            "snippet": {
+              "startLine": 10,
+              "lines": [
+                "): Promise<z.infer<typeof schema>> {",
+                "  try {",
+                "    const provider = getInput('provider') || 'openai';",
+                "    const model = getInput('model') || 'o4-mini';",
+                "    const apiKey = getInput('api_key') || process.env.API_KEY || '';",
+                "",
+                "    core.info(`Sending prompt to model ${model} with provider ${provider}`);"
+              ]
+            },
+            "lineHash": "84c01f9e76a40326"
+          }
+        ],
+        "catalog": [
+          {
+            "file": "action.yml",
+            "line": 22,
+            "column": 15,
+            "key": "default",
+            "value": "o4-mini",
+            "role": "catalog_reference",
+            "surface": "config",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 19,
+              "lines": [
+                "  model:",
+                "    description: 'The model to use for AI processing. Default is o4-mini.'",
+                "    required: false",
+                "    default: 'o4-mini'",
+                "  provider:",
+                "    description: 'The AI Provider to use for AI processing. Default is openai.'",
+                "    required: false"
+              ]
+            },
+            "lineHash": "ed286189f687df42"
+          },
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 15,
+            "column": 3,
+            "key": null,
+            "value": "o4-mini",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 12,
+              "lines": [
+                "  'o3-mini-2025-01-31',",
+                "  'o3',",
+                "  'o3-2025-04-16',",
+                "  'o4-mini',",
+                "  'o4-mini-2025-04-16',",
+                "  'gpt-4.1',",
+                "  'gpt-4.1-2025-04-14',"
+              ]
+            },
+            "lineHash": "b622b18fe1eed166"
+          },
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 58,
+            "column": 61,
+            "key": null,
+            "value": "o4-mini",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 55,
+              "lines": [
+                "    const openaiProvider = createOpenAI({",
+                "      apiKey: options.apiKey,",
+                "    });",
+                "    const languageModel = openaiProvider(options.modelId || 'o4-mini');",
+                "    super({",
+                "      ...options,",
+                "      model: languageModel,"
+              ]
+            },
+            "lineHash": "486359df40c61a87"
+          },
+          {
+            "file": "tests/tasks/schema-review/github-comment.spec.ts",
+            "line": 51,
+            "column": 14,
+            "key": null,
+            "value": "o4-mini",
+            "role": "test_fixture",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 48,
+              "lines": [
+                "    const commentBody = await generateGitHubCommentForSchemaReview({",
+                "      context,",
+                "      reviewedFiles,",
+                "      model: 'o4-mini',",
+                "      provider: 'openai',",
+                "      catalogDirectory: path.join(__dirname, '../eventcatalog'),",
+                "    });"
+              ]
+            },
+            "lineHash": "caf817652a101016"
+          },
+          {
+            "file": "tests/tasks/schema-review/github-comment.spec.ts",
+            "line": 94,
+            "column": 14,
+            "key": null,
+            "value": "o4-mini",
+            "role": "test_fixture",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 91,
+              "lines": [
+                "    const commentBody = await generateGitHubCommentForSchemaReview({",
+                "      context,",
+                "      reviewedFiles,",
+                "      model: 'o4-mini',",
+                "      provider: 'openai',",
+                "      catalogDirectory: path.join(__dirname, '../eventcatalog'),",
+                "    });"
+              ]
+            },
+            "lineHash": "caf817652a101016"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "review",
+      "reason": "Located at a code default or call not traced to a provider request (its use as a live call is not proven). Production usage was not measured. Human review required before any change.",
+      "nextAction": "Human review before any change",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4.5-preview.retirement-2025-07-14",
+      "provider": "openai",
+      "model": "gpt-4.5-preview",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-07-14",
+        "daysUntil": -466,
+        "replacement": "gpt-4.1",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 43,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4.5-preview",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 40,
+              "lines": [
+                "  'gpt-4-1106-preview',",
+                "  'gpt-4',",
+                "  'gpt-4-0613',",
+                "  'gpt-4.5-preview',",
+                "  'gpt-4.5-preview-2025-02-27',",
+                "  'gpt-3.5-turbo-0125',",
+                "  'gpt-3.5-turbo',"
+              ]
+            },
+            "lineHash": "44f22b8f2e904db9"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4.5-preview-2025-02-27.retirement-2025-07-14",
+      "provider": "openai",
+      "model": "gpt-4.5-preview-2025-02-27",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-07-14",
+        "daysUntil": -466,
+        "replacement": "gpt-4.1",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 44,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4.5-preview-2025-02-27",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 41,
+              "lines": [
+                "  'gpt-4',",
+                "  'gpt-4-0613',",
+                "  'gpt-4.5-preview',",
+                "  'gpt-4.5-preview-2025-02-27',",
+                "  'gpt-3.5-turbo-0125',",
+                "  'gpt-3.5-turbo',",
+                "  'gpt-3.5-turbo-1106',"
+              ]
+            },
+            "lineHash": "a8ba99c6fb82fcb0"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-2.5-flash-preview-04-17.retirement-2025-07-15",
+      "provider": "google",
+      "model": "gemini-2.5-flash-preview-04-17",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-07-15",
+        "daysUntil": -465,
+        "replacement": "gemini-2.5-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 25,
+            "column": 3,
+            "key": null,
+            "value": "gemini-2.5-flash-preview-04-17",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 22,
+              "lines": [
+                "  'gemini-2.0-flash-exp',",
+                "  'gemini-2.5-pro-exp-03-25',",
+                "  'gemini-2.5-pro-preview-05-06',",
+                "  'gemini-2.5-flash-preview-04-17',",
+                "  'gemini-exp-1206',",
+                "  'gemma-3-27b-it',",
+                "  'learnlm-1.5-pro-experimental',"
+              ]
+            },
+            "lineHash": "5f40affd0ea56c03"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-sonnet-20240229.retirement-2025-07-21",
+      "provider": "anthropic",
+      "model": "claude-3-sonnet-20240229",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-07-21",
+        "daysUntil": -459,
+        "replacement": "claude-sonnet-4-6",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 13,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-sonnet-20240229",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 10,
+              "lines": [
+                "  'claude-3-5-haiku-20241022',",
+                "  'claude-3-opus-latest',",
+                "  'claude-3-opus-20240229',",
+                "  'claude-3-sonnet-20240229',",
+                "  'claude-3-haiku-20240307',",
+                "] as const;",
+                ""
+              ]
+            },
+            "lineHash": "93a197d700b79192"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o1-preview.retirement-2025-07-28",
+      "provider": "openai",
+      "model": "o1-preview",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-07-28",
+        "daysUntil": -452,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "unverified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 9,
+            "column": 3,
+            "key": null,
+            "value": "o1-preview",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 6,
+              "lines": [
+                "  'o1-2024-12-17',",
+                "  'o1-mini',",
+                "  'o1-mini-2024-09-12',",
+                "  'o1-preview',",
+                "  'o1-preview-2024-09-12',",
+                "  'o3-mini',",
+                "  'o3-mini-2025-01-31',"
+              ]
+            },
+            "lineHash": "12debffca0afd0a2"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-flash.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-flash",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 5,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-flash",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 2,
+              "lines": [
+                "import { AIProvider, type AIProviderOptions } from '@/ai-models/ai-provider';",
+                "",
+                "const AVAILABLE_GOOGLE_MODELS = [",
+                "  'gemini-1.5-flash',",
+                "  'gemini-1.5-flash-latest',",
+                "  'gemini-1.5-flash-001',",
+                "  'gemini-1.5-flash-002',"
+              ]
+            },
+            "lineHash": "4719a547c0939984"
+          },
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 38,
+            "column": 61,
+            "key": null,
+            "value": "gemini-1.5-flash",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 35,
+              "lines": [
+                "    const googleProvider = createGoogleGenerativeAI({",
+                "      apiKey: options.apiKey,",
+                "    });",
+                "    const languageModel = googleProvider(options.modelId || 'gemini-1.5-flash');",
+                "    super({",
+                "      ...options,",
+                "      model: languageModel,"
+              ]
+            },
+            "lineHash": "0f66e6f11a6948d0"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-flash-001.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-flash-001",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 7,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-flash-001",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 4,
+              "lines": [
+                "const AVAILABLE_GOOGLE_MODELS = [",
+                "  'gemini-1.5-flash',",
+                "  'gemini-1.5-flash-latest',",
+                "  'gemini-1.5-flash-001',",
+                "  'gemini-1.5-flash-002',",
+                "  'gemini-1.5-flash-8b',",
+                "  'gemini-1.5-flash-8b-latest',"
+              ]
+            },
+            "lineHash": "44466a0bffa317f7"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-flash-002.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-flash-002",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 8,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-flash-002",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 5,
+              "lines": [
+                "  'gemini-1.5-flash',",
+                "  'gemini-1.5-flash-latest',",
+                "  'gemini-1.5-flash-001',",
+                "  'gemini-1.5-flash-002',",
+                "  'gemini-1.5-flash-8b',",
+                "  'gemini-1.5-flash-8b-latest',",
+                "  'gemini-1.5-flash-8b-001',"
+              ]
+            },
+            "lineHash": "115ea417709eb719"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-flash-8b.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-flash-8b",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-flash-lite",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 9,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-flash-8b",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 6,
+              "lines": [
+                "  'gemini-1.5-flash-latest',",
+                "  'gemini-1.5-flash-001',",
+                "  'gemini-1.5-flash-002',",
+                "  'gemini-1.5-flash-8b',",
+                "  'gemini-1.5-flash-8b-latest',",
+                "  'gemini-1.5-flash-8b-001',",
+                "  'gemini-1.5-pro',"
+              ]
+            },
+            "lineHash": "61ee6c7306bda639"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-flash-latest.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-flash-latest",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 6,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-flash-latest",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 3,
+              "lines": [
+                "",
+                "const AVAILABLE_GOOGLE_MODELS = [",
+                "  'gemini-1.5-flash',",
+                "  'gemini-1.5-flash-latest',",
+                "  'gemini-1.5-flash-001',",
+                "  'gemini-1.5-flash-002',",
+                "  'gemini-1.5-flash-8b',"
+              ]
+            },
+            "lineHash": "205cc7104c23b40c"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-pro.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-pro",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-pro",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 12,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-pro",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 9,
+              "lines": [
+                "  'gemini-1.5-flash-8b',",
+                "  'gemini-1.5-flash-8b-latest',",
+                "  'gemini-1.5-flash-8b-001',",
+                "  'gemini-1.5-pro',",
+                "  'gemini-1.5-pro-latest',",
+                "  'gemini-1.5-pro-001',",
+                "  'gemini-1.5-pro-002',"
+              ]
+            },
+            "lineHash": "5cf98c7f75fb35f8"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-pro-001.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-pro-001",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-pro",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 14,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-pro-001",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 11,
+              "lines": [
+                "  'gemini-1.5-flash-8b-001',",
+                "  'gemini-1.5-pro',",
+                "  'gemini-1.5-pro-latest',",
+                "  'gemini-1.5-pro-001',",
+                "  'gemini-1.5-pro-002',",
+                "  'gemini-2.0-flash',",
+                "  'gemini-2.0-flash-001',"
+              ]
+            },
+            "lineHash": "3c02b2f4213fd84e"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-pro-002.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-pro-002",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-pro",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 15,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-pro-002",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 12,
+              "lines": [
+                "  'gemini-1.5-pro',",
+                "  'gemini-1.5-pro-latest',",
+                "  'gemini-1.5-pro-001',",
+                "  'gemini-1.5-pro-002',",
+                "  'gemini-2.0-flash',",
+                "  'gemini-2.0-flash-001',",
+                "  'gemini-2.0-flash-live-001',"
+              ]
+            },
+            "lineHash": "b60fa367b0afb526"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-1.5-pro-latest.retirement-2025-09-29",
+      "provider": "google",
+      "model": "gemini-1.5-pro-latest",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-09-29",
+        "daysUntil": -389,
+        "replacement": "gemini-2.5-pro",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 13,
+            "column": 3,
+            "key": null,
+            "value": "gemini-1.5-pro-latest",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 10,
+              "lines": [
+                "  'gemini-1.5-flash-8b-latest',",
+                "  'gemini-1.5-flash-8b-001',",
+                "  'gemini-1.5-pro',",
+                "  'gemini-1.5-pro-latest',",
+                "  'gemini-1.5-pro-001',",
+                "  'gemini-1.5-pro-002',",
+                "  'gemini-2.0-flash',"
+              ]
+            },
+            "lineHash": "dd4579747490cf59"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4o-audio-preview-2024-10-01.retirement-2025-10-10",
+      "provider": "openai",
+      "model": "gpt-4o-audio-preview-2024-10-01",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-10-10",
+        "daysUntil": -378,
+        "replacement": "gpt-audio-1.5",
+        "replacementVerdict": "unverifiable",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 28,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4o-audio-preview-2024-10-01",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 25,
+              "lines": [
+                "  'gpt-4o-2024-08-06',",
+                "  'gpt-4o-2024-11-20',",
+                "  'gpt-4o-audio-preview',",
+                "  'gpt-4o-audio-preview-2024-10-01',",
+                "  'gpt-4o-audio-preview-2024-12-17',",
+                "  'gpt-4o-search-preview',",
+                "  'gpt-4o-search-preview-2025-03-11',"
+              ]
+            },
+            "lineHash": "9014b06b248c43f8"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverifiable",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o1-mini.retirement-2025-10-27",
+      "provider": "openai",
+      "model": "o1-mini",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-10-27",
+        "daysUntil": -361,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "unverified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 7,
+            "column": 3,
+            "key": null,
+            "value": "o1-mini",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 4,
+              "lines": [
+                "const AVAILABLE_OPENAI_MODELS = [",
+                "  'o1',",
+                "  'o1-2024-12-17',",
+                "  'o1-mini',",
+                "  'o1-mini-2024-09-12',",
+                "  'o1-preview',",
+                "  'o1-preview-2024-09-12',"
+              ]
+            },
+            "lineHash": "65970e6efd6b84cc"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-5-sonnet-20240620.retirement-2025-10-28",
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20240620",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-10-28",
+        "daysUntil": -360,
+        "replacement": "claude-sonnet-4-6",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 8,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-5-sonnet-20240620",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 5,
+              "lines": [
+                "  'claude-3-7-sonnet-20250219',",
+                "  'claude-3-5-sonnet-latest',",
+                "  'claude-3-5-sonnet-20241022',",
+                "  'claude-3-5-sonnet-20240620',",
+                "  'claude-3-5-haiku-latest',",
+                "  'claude-3-5-haiku-20241022',",
+                "  'claude-3-opus-latest',"
+              ]
+            },
+            "lineHash": "fdef3b72a84a9b69"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-5-sonnet-20241022.retirement-2025-10-28",
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20241022",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-10-28",
+        "daysUntil": -360,
+        "replacement": "claude-sonnet-4-6",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 7,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-5-sonnet-20241022",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 4,
+              "lines": [
+                "const AVAILABLE_GOOGLE_MODELS = [",
+                "  'claude-3-7-sonnet-20250219',",
+                "  'claude-3-5-sonnet-latest',",
+                "  'claude-3-5-sonnet-20241022',",
+                "  'claude-3-5-sonnet-20240620',",
+                "  'claude-3-5-haiku-latest',",
+                "  'claude-3-5-haiku-20241022',"
+              ]
+            },
+            "lineHash": "a0cc490e68a25add"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-5-sonnet-latest.retirement-2025-10-28",
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-latest",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-10-28",
+        "daysUntil": -360,
+        "replacement": "claude-sonnet-4-6",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 6,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-5-sonnet-latest",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 3,
+              "lines": [
+                "",
+                "const AVAILABLE_GOOGLE_MODELS = [",
+                "  'claude-3-7-sonnet-20250219',",
+                "  'claude-3-5-sonnet-latest',",
+                "  'claude-3-5-sonnet-20241022',",
+                "  'claude-3-5-sonnet-20240620',",
+                "  'claude-3-5-haiku-latest',"
+              ]
+            },
+            "lineHash": "944ed488c14d917a"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-2.0-flash-exp.retirement-2025-12-02",
+      "provider": "google",
+      "model": "gemini-2.0-flash-exp",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-12-02",
+        "daysUntil": -325,
+        "replacement": "gemini-2.5-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 22,
+            "column": 3,
+            "key": null,
+            "value": "gemini-2.0-flash-exp",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 19,
+              "lines": [
+                "  'gemini-2.0-flash-lite',",
+                "  'gemini-2.0-pro-exp-02-05',",
+                "  'gemini-2.0-flash-thinking-exp-01-21',",
+                "  'gemini-2.0-flash-exp',",
+                "  'gemini-2.5-pro-exp-03-25',",
+                "  'gemini-2.5-pro-preview-05-06',",
+                "  'gemini-2.5-flash-preview-04-17',"
+              ]
+            },
+            "lineHash": "f35662bf5c810830"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-2.5-pro-preview-05-06.retirement-2025-12-02",
+      "provider": "google",
+      "model": "gemini-2.5-pro-preview-05-06",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-12-02",
+        "daysUntil": -325,
+        "replacement": "gemini-3.1-pro-preview",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 24,
+            "column": 3,
+            "key": null,
+            "value": "gemini-2.5-pro-preview-05-06",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 21,
+              "lines": [
+                "  'gemini-2.0-flash-thinking-exp-01-21',",
+                "  'gemini-2.0-flash-exp',",
+                "  'gemini-2.5-pro-exp-03-25',",
+                "  'gemini-2.5-pro-preview-05-06',",
+                "  'gemini-2.5-flash-preview-04-17',",
+                "  'gemini-exp-1206',",
+                "  'gemma-3-27b-it',"
+              ]
+            },
+            "lineHash": "de4a60429aa70e26"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-2.0-flash-live-001.retirement-2025-12-09",
+      "provider": "google",
+      "model": "gemini-2.0-flash-live-001",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2025-12-09",
+        "daysUntil": -318,
+        "replacement": "gemini-3.8-live",
+        "replacementVerdict": "unverified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 18,
+            "column": 3,
+            "key": null,
+            "value": "gemini-2.0-flash-live-001",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 15,
+              "lines": [
+                "  'gemini-1.5-pro-002',",
+                "  'gemini-2.0-flash',",
+                "  'gemini-2.0-flash-001',",
+                "  'gemini-2.0-flash-live-001',",
+                "  'gemini-2.0-flash-lite',",
+                "  'gemini-2.0-pro-exp-02-05',",
+                "  'gemini-2.0-flash-thinking-exp-01-21',"
+              ]
+            },
+            "lineHash": "0a2553969abf1372"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-opus-20240229.retirement-2026-01-05",
+      "provider": "anthropic",
+      "model": "claude-3-opus-20240229",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-01-05",
+        "daysUntil": -291,
+        "replacement": "claude-opus-4-8",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 12,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-opus-20240229",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 9,
+              "lines": [
+                "  'claude-3-5-haiku-latest',",
+                "  'claude-3-5-haiku-20241022',",
+                "  'claude-3-opus-latest',",
+                "  'claude-3-opus-20240229',",
+                "  'claude-3-sonnet-20240229',",
+                "  'claude-3-haiku-20240307',",
+                "] as const;"
+              ]
+            },
+            "lineHash": "006a95bd6c137a82"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-opus-latest.retirement-2026-01-05",
+      "provider": "anthropic",
+      "model": "claude-3-opus-latest",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-01-05",
+        "daysUntil": -291,
+        "replacement": "claude-opus-4-8",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 11,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-opus-latest",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 8,
+              "lines": [
+                "  'claude-3-5-sonnet-20240620',",
+                "  'claude-3-5-haiku-latest',",
+                "  'claude-3-5-haiku-20241022',",
+                "  'claude-3-opus-latest',",
+                "  'claude-3-opus-20240229',",
+                "  'claude-3-sonnet-20240229',",
+                "  'claude-3-haiku-20240307',"
+              ]
+            },
+            "lineHash": "297fbfab5b200112"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.chatgpt-4o-latest.retirement-2026-02-17",
+      "provider": "openai",
+      "model": "chatgpt-4o-latest",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-02-17",
+        "daysUntil": -248,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 48,
+            "column": 3,
+            "key": null,
+            "value": "chatgpt-4o-latest",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 45,
+              "lines": [
+                "  'gpt-3.5-turbo-0125',",
+                "  'gpt-3.5-turbo',",
+                "  'gpt-3.5-turbo-1106',",
+                "  'chatgpt-4o-latest',",
+                "] as const;",
+                "",
+                "export class OpenAIProvider extends AIProvider {"
+              ]
+            },
+            "lineHash": "12bc8a7dee11c48d"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-5-haiku-20241022.retirement-2026-02-19",
+      "provider": "anthropic",
+      "model": "claude-3-5-haiku-20241022",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-02-19",
+        "daysUntil": -246,
+        "replacement": "claude-haiku-4-5-20251001",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 10,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-5-haiku-20241022",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 7,
+              "lines": [
+                "  'claude-3-5-sonnet-20241022',",
+                "  'claude-3-5-sonnet-20240620',",
+                "  'claude-3-5-haiku-latest',",
+                "  'claude-3-5-haiku-20241022',",
+                "  'claude-3-opus-latest',",
+                "  'claude-3-opus-20240229',",
+                "  'claude-3-sonnet-20240229',"
+              ]
+            },
+            "lineHash": "c2b3239ddb87e05b"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-5-haiku-latest.retirement-2026-02-19",
+      "provider": "anthropic",
+      "model": "claude-3-5-haiku-latest",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-02-19",
+        "daysUntil": -246,
+        "replacement": "claude-haiku-4-5-20251001",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 9,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-5-haiku-latest",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 6,
+              "lines": [
+                "  'claude-3-5-sonnet-latest',",
+                "  'claude-3-5-sonnet-20241022',",
+                "  'claude-3-5-sonnet-20240620',",
+                "  'claude-3-5-haiku-latest',",
+                "  'claude-3-5-haiku-20241022',",
+                "  'claude-3-opus-latest',",
+                "  'claude-3-opus-20240229',"
+              ]
+            },
+            "lineHash": "0d073fb441d18c71"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-7-sonnet-20250219.retirement-2026-02-19",
+      "provider": "anthropic",
+      "model": "claude-3-7-sonnet-20250219",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-02-19",
+        "daysUntil": -246,
+        "replacement": "claude-sonnet-4-6",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 5,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-7-sonnet-20250219",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 2,
+              "lines": [
+                "import { AIProvider, type AIProviderOptions } from './ai-provider';",
+                "",
+                "const AVAILABLE_GOOGLE_MODELS = [",
+                "  'claude-3-7-sonnet-20250219',",
+                "  'claude-3-5-sonnet-latest',",
+                "  'claude-3-5-sonnet-20241022',",
+                "  'claude-3-5-sonnet-20240620',"
+              ]
+            },
+            "lineHash": "ad3c2b7ad1a0808d"
+          },
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 24,
+            "column": 64,
+            "key": null,
+            "value": "claude-3-7-sonnet-20250219",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 21,
+              "lines": [
+                "    const anthropicProvider = createAnthropic({",
+                "      apiKey: options.apiKey,",
+                "    });",
+                "    const languageModel = anthropicProvider(options.modelId || 'claude-3-7-sonnet-20250219');",
+                "",
+                "    super({",
+                "      ...options,"
+              ]
+            },
+            "lineHash": "46b329cc63165ee3"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4-0125-preview.retirement-2026-03-26",
+      "provider": "openai",
+      "model": "gpt-4-0125-preview",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-03-26",
+        "daysUntil": -211,
+        "replacement": "gpt-4.1",
+        "replacementVerdict": "unverified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 39,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4-0125-preview",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 36,
+              "lines": [
+                "  'gpt-4-turbo',",
+                "  'gpt-4-turbo-2024-04-09',",
+                "  'gpt-4-turbo-preview',",
+                "  'gpt-4-0125-preview',",
+                "  'gpt-4-1106-preview',",
+                "  'gpt-4',",
+                "  'gpt-4-0613',"
+              ]
+            },
+            "lineHash": "964e981a4263d3a0"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4-turbo-preview.retirement-2026-03-26",
+      "provider": "openai",
+      "model": "gpt-4-turbo-preview",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-03-26",
+        "daysUntil": -211,
+        "replacement": "gpt-4.1",
+        "replacementVerdict": "unverified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 38,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4-turbo-preview",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 35,
+              "lines": [
+                "  'gpt-4o-mini-2024-07-18',",
+                "  'gpt-4-turbo',",
+                "  'gpt-4-turbo-2024-04-09',",
+                "  'gpt-4-turbo-preview',",
+                "  'gpt-4-0125-preview',",
+                "  'gpt-4-1106-preview',",
+                "  'gpt-4',"
+              ]
+            },
+            "lineHash": "1a4e930c0b0f073a"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "anthropic.claude-3-haiku-20240307.retirement-2026-04-20",
+      "provider": "anthropic",
+      "model": "claude-3-haiku-20240307",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-04-20",
+        "daysUntil": -186,
+        "replacement": "claude-haiku-4-5-20251001",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/anthropic.ts",
+            "line": 14,
+            "column": 3,
+            "key": null,
+            "value": "claude-3-haiku-20240307",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 11,
+              "lines": [
+                "  'claude-3-opus-latest',",
+                "  'claude-3-opus-20240229',",
+                "  'claude-3-sonnet-20240229',",
+                "  'claude-3-haiku-20240307',",
+                "] as const;",
+                "",
+                "export class AnthropicProvider extends AIProvider {"
+              ]
+            },
+            "lineHash": "a4ebc12e1c0e2054"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4o-audio-preview.retirement-2026-05-07",
+      "provider": "openai",
+      "model": "gpt-4o-audio-preview",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-05-07",
+        "daysUntil": -169,
+        "replacement": "gpt-audio-1.5",
+        "replacementVerdict": "unverifiable",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 27,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4o-audio-preview",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 24,
+              "lines": [
+                "  'gpt-4o-2024-05-13',",
+                "  'gpt-4o-2024-08-06',",
+                "  'gpt-4o-2024-11-20',",
+                "  'gpt-4o-audio-preview',",
+                "  'gpt-4o-audio-preview-2024-10-01',",
+                "  'gpt-4o-audio-preview-2024-12-17',",
+                "  'gpt-4o-search-preview',"
+              ]
+            },
+            "lineHash": "14c85a1dcb1e629c"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverifiable",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-2.0-flash.retirement-2026-06-01",
+      "provider": "google",
+      "model": "gemini-2.0-flash",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-06-01",
+        "daysUntil": -144,
+        "replacement": "gemini-3.6-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 16,
+            "column": 3,
+            "key": null,
+            "value": "gemini-2.0-flash",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 13,
+              "lines": [
+                "  'gemini-1.5-pro-latest',",
+                "  'gemini-1.5-pro-001',",
+                "  'gemini-1.5-pro-002',",
+                "  'gemini-2.0-flash',",
+                "  'gemini-2.0-flash-001',",
+                "  'gemini-2.0-flash-live-001',",
+                "  'gemini-2.0-flash-lite',"
+              ]
+            },
+            "lineHash": "625f5112af14525c"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-2.0-flash-001.retirement-2026-06-01",
+      "provider": "google",
+      "model": "gemini-2.0-flash-001",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-06-01",
+        "daysUntil": -144,
+        "replacement": "gemini-3.6-flash",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 17,
+            "column": 3,
+            "key": null,
+            "value": "gemini-2.0-flash-001",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 14,
+              "lines": [
+                "  'gemini-1.5-pro-001',",
+                "  'gemini-1.5-pro-002',",
+                "  'gemini-2.0-flash',",
+                "  'gemini-2.0-flash-001',",
+                "  'gemini-2.0-flash-live-001',",
+                "  'gemini-2.0-flash-lite',",
+                "  'gemini-2.0-pro-exp-02-05',"
+              ]
+            },
+            "lineHash": "b4313e4b8a7111fe"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "google.gemini-2.0-flash-lite.retirement-2026-06-01",
+      "provider": "google",
+      "model": "gemini-2.0-flash-lite",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-06-01",
+        "daysUntil": -144,
+        "replacement": "gemini-3.5-flash-lite",
+        "replacementVerdict": "unverified",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/google.ts",
+            "line": 19,
+            "column": 3,
+            "key": null,
+            "value": "gemini-2.0-flash-lite",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 16,
+              "lines": [
+                "  'gemini-2.0-flash',",
+                "  'gemini-2.0-flash-001',",
+                "  'gemini-2.0-flash-live-001',",
+                "  'gemini-2.0-flash-lite',",
+                "  'gemini-2.0-pro-exp-02-05',",
+                "  'gemini-2.0-flash-thinking-exp-01-21',",
+                "  'gemini-2.0-flash-exp',"
+              ]
+            },
+            "lineHash": "1ac9afa3d66a409e"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4o-mini-search-preview-2025-03-11.retirement-2026-07-23",
+      "provider": "openai",
+      "model": "gpt-4o-mini-search-preview-2025-03-11",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-07-23",
+        "daysUntil": -92,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 33,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4o-mini-search-preview-2025-03-11",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 30,
+              "lines": [
+                "  'gpt-4o-search-preview',",
+                "  'gpt-4o-search-preview-2025-03-11',",
+                "  'gpt-4o-mini-search-preview',",
+                "  'gpt-4o-mini-search-preview-2025-03-11',",
+                "  'gpt-4o-mini',",
+                "  'gpt-4o-mini-2024-07-18',",
+                "  'gpt-4-turbo',"
+              ]
+            },
+            "lineHash": "1fbf00b70b3f0405"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4o-search-preview-2025-03-11.retirement-2026-07-23",
+      "provider": "openai",
+      "model": "gpt-4o-search-preview-2025-03-11",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-07-23",
+        "daysUntil": -92,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 31,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4o-search-preview-2025-03-11",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 28,
+              "lines": [
+                "  'gpt-4o-audio-preview-2024-10-01',",
+                "  'gpt-4o-audio-preview-2024-12-17',",
+                "  'gpt-4o-search-preview',",
+                "  'gpt-4o-search-preview-2025-03-11',",
+                "  'gpt-4o-mini-search-preview',",
+                "  'gpt-4o-mini-search-preview-2025-03-11',",
+                "  'gpt-4o-mini',"
+              ]
+            },
+            "lineHash": "2c49188d6c83ac60"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-3.5-turbo-1106.retirement-2026-09-28",
+      "provider": "openai",
+      "model": "gpt-3.5-turbo-1106",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "retired",
+        "shutdownDate": "2026-09-28",
+        "daysUntil": -25,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 47,
+            "column": 3,
+            "key": null,
+            "value": "gpt-3.5-turbo-1106",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 44,
+              "lines": [
+                "  'gpt-4.5-preview-2025-02-27',",
+                "  'gpt-3.5-turbo-0125',",
+                "  'gpt-3.5-turbo',",
+                "  'gpt-3.5-turbo-1106',",
+                "  'chatgpt-4o-latest',",
+                "] as const;",
+                ""
+              ]
+            },
+            "lineHash": "fedc3eeee6fd412e"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-3.5-turbo.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-3.5-turbo",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 46,
+            "column": 3,
+            "key": null,
+            "value": "gpt-3.5-turbo",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 43,
+              "lines": [
+                "  'gpt-4.5-preview',",
+                "  'gpt-4.5-preview-2025-02-27',",
+                "  'gpt-3.5-turbo-0125',",
+                "  'gpt-3.5-turbo',",
+                "  'gpt-3.5-turbo-1106',",
+                "  'chatgpt-4o-latest',",
+                "] as const;"
+              ]
+            },
+            "lineHash": "3d3548d4f3985864"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-3.5-turbo-0125.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-3.5-turbo-0125",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 45,
+            "column": 3,
+            "key": null,
+            "value": "gpt-3.5-turbo-0125",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 42,
+              "lines": [
+                "  'gpt-4-0613',",
+                "  'gpt-4.5-preview',",
+                "  'gpt-4.5-preview-2025-02-27',",
+                "  'gpt-3.5-turbo-0125',",
+                "  'gpt-3.5-turbo',",
+                "  'gpt-3.5-turbo-1106',",
+                "  'chatgpt-4o-latest',"
+              ]
+            },
+            "lineHash": "a90ab2614f5fc241"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 41,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 38,
+              "lines": [
+                "  'gpt-4-turbo-preview',",
+                "  'gpt-4-0125-preview',",
+                "  'gpt-4-1106-preview',",
+                "  'gpt-4',",
+                "  'gpt-4-0613',",
+                "  'gpt-4.5-preview',",
+                "  'gpt-4.5-preview-2025-02-27',"
+              ]
+            },
+            "lineHash": "1b015ce98b4e1924"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4-0613.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4-0613",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 42,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4-0613",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 39,
+              "lines": [
+                "  'gpt-4-0125-preview',",
+                "  'gpt-4-1106-preview',",
+                "  'gpt-4',",
+                "  'gpt-4-0613',",
+                "  'gpt-4.5-preview',",
+                "  'gpt-4.5-preview-2025-02-27',",
+                "  'gpt-3.5-turbo-0125',"
+              ]
+            },
+            "lineHash": "b843d7a783943f08"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4-1106-preview.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4-1106-preview",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 40,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4-1106-preview",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 37,
+              "lines": [
+                "  'gpt-4-turbo-2024-04-09',",
+                "  'gpt-4-turbo-preview',",
+                "  'gpt-4-0125-preview',",
+                "  'gpt-4-1106-preview',",
+                "  'gpt-4',",
+                "  'gpt-4-0613',",
+                "  'gpt-4.5-preview',"
+              ]
+            },
+            "lineHash": "c3c3fc0f818eef08"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4-turbo.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4-turbo",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 36,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4-turbo",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 33,
+              "lines": [
+                "  'gpt-4o-mini-search-preview-2025-03-11',",
+                "  'gpt-4o-mini',",
+                "  'gpt-4o-mini-2024-07-18',",
+                "  'gpt-4-turbo',",
+                "  'gpt-4-turbo-2024-04-09',",
+                "  'gpt-4-turbo-preview',",
+                "  'gpt-4-0125-preview',"
+              ]
+            },
+            "lineHash": "e85770cfa71722e3"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4-turbo-2024-04-09.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4-turbo-2024-04-09",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 37,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4-turbo-2024-04-09",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 34,
+              "lines": [
+                "  'gpt-4o-mini',",
+                "  'gpt-4o-mini-2024-07-18',",
+                "  'gpt-4-turbo',",
+                "  'gpt-4-turbo-2024-04-09',",
+                "  'gpt-4-turbo-preview',",
+                "  'gpt-4-0125-preview',",
+                "  'gpt-4-1106-preview',"
+              ]
+            },
+            "lineHash": "ebc9fb819fadad12"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4.1-nano.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4.1-nano",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-luna",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 21,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4.1-nano",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 18,
+              "lines": [
+                "  'gpt-4.1-2025-04-14',",
+                "  'gpt-4.1-mini',",
+                "  'gpt-4.1-mini-2025-04-14',",
+                "  'gpt-4.1-nano',",
+                "  'gpt-4.1-nano-2025-04-14',",
+                "  'gpt-4o',",
+                "  'gpt-4o-2024-05-13',"
+              ]
+            },
+            "lineHash": "d9df318d81ee1421"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4.1-nano-2025-04-14.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4.1-nano-2025-04-14",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-luna",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 22,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4.1-nano-2025-04-14",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 19,
+              "lines": [
+                "  'gpt-4.1-mini',",
+                "  'gpt-4.1-mini-2025-04-14',",
+                "  'gpt-4.1-nano',",
+                "  'gpt-4.1-nano-2025-04-14',",
+                "  'gpt-4o',",
+                "  'gpt-4o-2024-05-13',",
+                "  'gpt-4o-2024-08-06',"
+              ]
+            },
+            "lineHash": "f95f76cb6557a28c"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4o-2024-05-13.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "gpt-4o-2024-05-13",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 24,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4o-2024-05-13",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 21,
+              "lines": [
+                "  'gpt-4.1-nano',",
+                "  'gpt-4.1-nano-2025-04-14',",
+                "  'gpt-4o',",
+                "  'gpt-4o-2024-05-13',",
+                "  'gpt-4o-2024-08-06',",
+                "  'gpt-4o-2024-11-20',",
+                "  'gpt-4o-audio-preview',"
+              ]
+            },
+            "lineHash": "221cbeeba1ac2d59"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o1.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "o1",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "pnpm-lock.yaml",
+            "line": 488,
+            "column": 106,
+            "key": "resolution",
+            "value": "o1",
+            "role": "catalog_reference",
+            "surface": "config",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 485,
+              "lines": [
+                "    os: [openbsd]",
+                "",
+                "  '@esbuild/openbsd-x64@0.25.5':",
+                "    resolution: {integrity: sha512-G4hE405ErTWraiZ8UiSoesH8DaCsMm0Cay4fsFWOOUcz8b8rC6uCvnagr+gnioEjWn0wC+o1/TAHt+It+MpIMg==}",
+                "    engines: {node: '>=18'}",
+                "    cpu: [x64]",
+                "    os: [openbsd]"
+              ]
+            },
+            "lineHash": "0667bbe8cab7f659"
+          },
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 5,
+            "column": 3,
+            "key": null,
+            "value": "o1",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 2,
+              "lines": [
+                "import { AIProvider, type AIProviderOptions } from '@/ai-models/ai-provider';",
+                "",
+                "const AVAILABLE_OPENAI_MODELS = [",
+                "  'o1',",
+                "  'o1-2024-12-17',",
+                "  'o1-mini',",
+                "  'o1-mini-2024-09-12',"
+              ]
+            },
+            "lineHash": "40a8981e264e7ffa"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o1-2024-12-17.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "o1-2024-12-17",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 6,
+            "column": 3,
+            "key": null,
+            "value": "o1-2024-12-17",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 3,
+              "lines": [
+                "",
+                "const AVAILABLE_OPENAI_MODELS = [",
+                "  'o1',",
+                "  'o1-2024-12-17',",
+                "  'o1-mini',",
+                "  'o1-mini-2024-09-12',",
+                "  'o1-preview',"
+              ]
+            },
+            "lineHash": "51cd4ef097f84e83"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o3-mini.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "o3-mini",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 11,
+            "column": 3,
+            "key": null,
+            "value": "o3-mini",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 8,
+              "lines": [
+                "  'o1-mini-2024-09-12',",
+                "  'o1-preview',",
+                "  'o1-preview-2024-09-12',",
+                "  'o3-mini',",
+                "  'o3-mini-2025-01-31',",
+                "  'o3',",
+                "  'o3-2025-04-16',"
+              ]
+            },
+            "lineHash": "49be30dcf965f5a8"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o3-mini-2025-01-31.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "o3-mini-2025-01-31",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 12,
+            "column": 3,
+            "key": null,
+            "value": "o3-mini-2025-01-31",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 9,
+              "lines": [
+                "  'o1-preview',",
+                "  'o1-preview-2024-09-12',",
+                "  'o3-mini',",
+                "  'o3-mini-2025-01-31',",
+                "  'o3',",
+                "  'o3-2025-04-16',",
+                "  'o4-mini',"
+              ]
+            },
+            "lineHash": "11f312bdc6ca9de4"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o4-mini-2025-04-16.retirement-2026-10-23",
+      "provider": "openai",
+      "model": "o4-mini-2025-04-16",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-10-23",
+        "daysUntil": 0,
+        "replacement": "gpt-5.6-terra",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 16,
+            "column": 3,
+            "key": null,
+            "value": "o4-mini-2025-04-16",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 13,
+              "lines": [
+                "  'o3',",
+                "  'o3-2025-04-16',",
+                "  'o4-mini',",
+                "  'o4-mini-2025-04-16',",
+                "  'gpt-4.1',",
+                "  'gpt-4.1-2025-04-14',",
+                "  'gpt-4.1-mini',"
+              ]
+            },
+            "lineHash": "62b07a4df48946e9"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.o3-2025-04-16.retirement-2026-12-11",
+      "provider": "openai",
+      "model": "o3-2025-04-16",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": "2026-12-11",
+        "daysUntil": 49,
+        "replacement": "gpt-5.6-sol",
+        "replacementVerdict": "verified",
+        "sourceUrl": "https://developers.openai.com/api/docs/deprecations"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 14,
+            "column": 3,
+            "key": null,
+            "value": "o3-2025-04-16",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 11,
+              "lines": [
+                "  'o3-mini',",
+                "  'o3-mini-2025-01-31',",
+                "  'o3',",
+                "  'o3-2025-04-16',",
+                "  'o4-mini',",
+                "  'o4-mini-2025-04-16',",
+                "  'gpt-4.1',"
+              ]
+            },
+            "lineHash": "27f30f5c660f1db9"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "verified",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    },
+    {
+      "entryId": "openai.gpt-4o-audio-preview-2024-12-17.retirement-undated",
+      "provider": "openai",
+      "model": "gpt-4o-audio-preview-2024-12-17",
+      "retirementEvidence": {
+        "deprecated": true,
+        "status": "deprecated",
+        "shutdownDate": null,
+        "daysUntil": null,
+        "replacement": "gpt-audio-1.5",
+        "replacementVerdict": "unverifiable",
+        "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-4o-audio-preview"
+      },
+      "productionUsage": "not_measured",
+      "locations": {
+        "selectors": [],
+        "catalog": [
+          {
+            "file": "src/ai-models/openai.ts",
+            "line": 29,
+            "column": 3,
+            "key": null,
+            "value": "gpt-4o-audio-preview-2024-12-17",
+            "role": "code_reference",
+            "surface": "code",
+            "tier": "C",
+            "providerSurface": null,
+            "patchEligible": false,
+            "disposition": "informational",
+            "reason": null,
+            "snippet": {
+              "startLine": 26,
+              "lines": [
+                "  'gpt-4o-2024-11-20',",
+                "  'gpt-4o-audio-preview',",
+                "  'gpt-4o-audio-preview-2024-10-01',",
+                "  'gpt-4o-audio-preview-2024-12-17',",
+                "  'gpt-4o-search-preview',",
+                "  'gpt-4o-search-preview-2025-03-11',",
+                "  'gpt-4o-mini-search-preview',"
+              ]
+            },
+            "lineHash": "0fa6a39915a40701"
+          }
+        ]
+      },
+      "compatibility": {
+        "checked": false,
+        "result": null
+      },
+      "verification": {
+        "replacementVerdict": "unverifiable",
+        "readerTieBackProven": false
+      },
+      "decision": "monitor",
+      "reason": "Only catalog / reference / data occurrences found (no selector). Production usage was not measured. Nothing is proven live to change — monitor.",
+      "nextAction": "No migration action required from this reference. Monitor provider status.",
+      "patchEligible": false,
+      "patchApplied": false,
+      "productionUsageDetail": {
+        "measured": false,
+        "source": null,
+        "observed": false,
+        "requestsReported": false,
+        "requests": 0,
+        "failures": 0,
+        "lastSeen": null,
+        "services": [],
+        "environments": [],
+        "costUsd": null
+      }
+    }
+  ]
+}

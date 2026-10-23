@@ -1,0 +1,127 @@
+diff --git a/src/usage/requestObjectFlow.test.ts b/src/usage/requestObjectFlow.test.ts
+index f86bd15..7cc0ade 100644
+--- a/src/usage/requestObjectFlow.test.ts
++++ b/src/usage/requestObjectFlow.test.ts
+@@ -4,7 +4,7 @@ import type { LlmRegistry } from '../types.js';
+ import { autoApplyVerification } from './llmRegistry.js';
+ import { findModelIdLiterals } from './scanLiterals.js';
+ import { classifyOccurrenceTier } from '../report/classifyOccurrence.js';
+-import { TS_REQUEST_VARIABLE_REASON } from './tsSurface.js';
++import { TS_REQUEST_SPREAD_REASON, TS_REQUEST_VARIABLE_REASON } from './tsSurface.js';
+ 
+ // A REQUEST OBJECT BUILT IN A VARIABLE, THEN PASSED BY NAME.
+ //
+@@ -94,7 +94,7 @@ describe('a request object built in a variable and passed to a provider request'
+       `${OPENAI}export async function ask() {\n  const base = { model: "gpt-4", messages: [] };\n  return client.chat.completions.create({ ...base, max_tokens: 10 });\n}\n`,
+     );
+     expect(v?.tier).toBe('B');
+-    expect(v?.reason).toBe(TS_REQUEST_VARIABLE_REASON);
++    expect(v?.reason).toBe(TS_REQUEST_SPREAD_REASON);
+   });
+ 
+   it('is held when the variable is also used some other way', () => {
+diff --git a/src/usage/scanLiterals.ts b/src/usage/scanLiterals.ts
+index 6a2a8dc..b602762 100644
+--- a/src/usage/scanLiterals.ts
++++ b/src/usage/scanLiterals.ts
+@@ -24,6 +24,7 @@ import {
+   TS_MODEL_FACTORIES,
+   TS_PREFIXED_REASON,
+   TS_REQUEST_VARIABLE_REASON,
++  TS_REQUEST_SPREAD_REASON,
+   TS_WRAPPER_CTOR_REASON,
+   type TsSinkMap,
+ } from './tsSurface.js';
+@@ -599,6 +600,9 @@ function classifyByEnclosure(node: Node, parent: Node | undefined, sinks?: TsSin
+       if (isModelLikeName(keyName) && obj && !call) {
+         const flow = requestObjectFlow(obj);
+         if (flow) {
++          if (Node.isObjectLiteralExpression(obj) && obj.getProperties().some(Node.isSpreadAssignment)) {
++            return { position: 'surface_capped', reason: TS_REQUEST_SPREAD_REASON };
++          }
+           for (const c of flow.calls) {
+             const verdict = classifyCallSurface(c);
+             if (verdict.position !== 'model_arg') return verdict;
+diff --git a/src/usage/tsSurface.ts b/src/usage/tsSurface.ts
+index 702afca..1060940 100644
+--- a/src/usage/tsSurface.ts
++++ b/src/usage/tsSurface.ts
+@@ -68,6 +68,8 @@ export interface TsSurfaceVerdict {
+ export const TS_MODULE_LEVEL_REASON =
+   'module-level execution (fires at import); a real request, capped at review';
+ export const TS_SURFACE_REASON = 'provider surface caps this call at review';
++export const TS_REQUEST_SPREAD_REASON =
++  'request object spread leaves the effective model and parameters unproven; review before a model swap';
+ /**
+  * The one verdict in this file that DEMOTES. Everything else here can only refuse to
+  * promote; this says a call is provably not a provider request at all, so a model id
+@@ -488,6 +490,12 @@ export function classifyCallSurface(call: CallExpression): SurfaceClassification
+       reason: `${TS_SURFACE_REASON} (client is ${v.family}, endpoint is ${wanted})`,
+     };
+   }
++  if (call.getArguments().some((arg) => {
++    const value = unwrapValueWrappers(arg);
++    return Node.isObjectLiteralExpression(value) && value.getProperties().some(Node.isSpreadAssignment);
++  })) {
++    return { position: 'surface_capped', reason: TS_REQUEST_SPREAD_REASON };
++  }
+   return { position: 'model_arg' };
+ }
+ 
+diff --git a/src/usage/root4410-request-spread.test.ts b/src/usage/root4410-request-spread.test.ts
+new file mode 100644
+index 0000000..ee75d71
+--- /dev/null
++++ b/src/usage/root4410-request-spread.test.ts
+@@ -0,0 +1,51 @@
++import { describe, expect, it } from 'vitest';
++import { Project } from 'ts-morph';
++import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
++import { join } from 'node:path';
++import { tmpdir } from 'node:os';
++import { findModelIdLiterals } from './scanLiterals.js';
++import { autoApplyVerification } from './llmRegistry.js';
++import { runMigration } from '../migrate/migrate.js';
++import type { LlmRegistry } from '../types.js';
++
++const registry: LlmRegistry = [{ provider: 'openai', kind: 'model_id', deprecated: 'gpt-4-0613', replacement: 'gpt-5.6-sol', verification: autoApplyVerification() }];
++const prefix = 'import OpenAI from "openai"; const client = new OpenAI();\n';
++const sources = [
++  'export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); }',
++  'export async function ask(options: object) { return client.chat.completions.create({ ...options, model: "gpt-4-0613", messages: [] }); }',
++  'export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }',
++  'const MODEL = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model: MODEL, messages: [], ...options }); }',
++  'const model = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model, messages: [], ...options }); }',
++];
++describe('ROOT4410 opaque request spread cannot earn automatic migration', () => {
++  it.each(sources)('holds model and parameter uncertainty: %s', source => {
++    const p = new Project({ useInMemoryFileSystem: true });
++    p.createSourceFile('src/app.ts', prefix + source);
++    const [match] = findModelIdLiterals(p, registry);
++    expect(match.position).toBe('surface_capped');
++    expect(match.reason).toMatch(/spread.*model.*parameters/i);
++  });
++  it('keeps an explicit request eligible', () => {
++    const p = new Project({ useInMemoryFileSystem: true });
++    p.createSourceFile('src/app.ts', prefix + 'export async function ask() { return client.chat.completions.create({ model: "gpt-4-0613", messages: [] }); }');
++    expect(findModelIdLiterals(p, registry)[0].position).toBe('model_arg');
++  });
++  it('refuses a real migration write rather than trusting a passing local eval', async () => {
++    const dir = mkdtempSync(join(tmpdir(), 'root4410-spread-'));
++    const file = join(dir, 'src/app.ts');
++    try {
++      mkdirSync(join(dir, 'src'));
++      mkdirSync(join(dir, 'node_modules/openai'), { recursive: true });
++      const source = prefix + sources[0];
++      writeFileSync(file, source);
++      writeFileSync(join(dir, 'package.json'), JSON.stringify({ name: 'synthetic' }));
++      writeFileSync(join(dir, 'node_modules/openai/package.json'), JSON.stringify({ name: 'openai', types: 'index.d.ts' }));
++      writeFileSync(join(dir, 'node_modules/openai/index.d.ts'), 'declare class OpenAI { chat: { completions: { create(body: {model: string; messages: unknown[]}): Promise<unknown> } } }; export default OpenAI;');
++      writeFileSync(join(dir, 'eval.cjs'), 'require("node:assert/strict").ok(true);');
++      const r = await runMigration(dir, registry, { write: true, evalCommand: 'node eval.cjs' });
++      expect(r.verification.verdict).toBe('held_for_review');
++      expect(r.prReady).toBe(false);
++      expect(readFileSync(file, 'utf8')).toBe(source);
++    } finally { rmSync(dir, { recursive: true, force: true }); }
++  }, 30000);
++});

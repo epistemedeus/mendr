@@ -1,0 +1,28 @@
+{
+  "name": "baseline-red-recovery",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/assurance/root4410-recovery.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:25:11.976757+00:00",
+  "elapsedSeconds": 0.627,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 604160,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 3342,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "075d7b15acae62eb44f242824c369bc78d75e468a02bd4781f5424a5bb43f7e6",
+  "reportArtifact": null
+}

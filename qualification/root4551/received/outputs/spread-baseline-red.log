@@ -1,0 +1,60 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/usage/root4410-request-spread.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /tmp/root4410-c-scratch/mendr
+
+ ❯ src/usage/root4410-request-spread.test.ts (7 tests | 6 failed) 783ms
+     × holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); } 26ms
+     × holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ ...options, model: "gpt-4-0613", messages: [] }); } 4ms
+     × holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); } 354ms
+     × holds model and parameter uncertainty: const MODEL = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model: MODEL, messages: [], ...options }); } 3ms
+     × holds model and parameter uncertainty: const model = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model, messages: [], ...options }); } 3ms
+     ✓ keeps an explicit request eligible 5ms
+     × refuses a real migration write rather than trusting a passing local eval 388ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); }
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object) { return client.chat.completions.create({ ...options, model: "gpt-4-0613", messages: [] }); }
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: const MODEL = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model: MODEL, messages: [], ...options }); }
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > holds model and parameter uncertainty: const model = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model, messages: [], ...options }); }
+AssertionError: expected 'model_arg' to be 'surface_capped' // Object.is equality
+
+Expected: "surface_capped"
+Received: "model_arg"
+
+ ❯ src/usage/root4410-request-spread.test.ts:25:28
+     23|     p.createSourceFile('src/app.ts', prefix + source);
+     24|     const [match] = findModelIdLiterals(p, registry);
+     25|     expect(match.position).toBe('surface_capped');
+       |                            ^
+     26|     expect(match.reason).toMatch(/spread.*model.*parameters/i);
+     27|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/usage/root4410-request-spread.test.ts > ROOT4410 opaque request spread cannot earn automatic migration > refuses a real migration write rather than trusting a passing local eval
+AssertionError: expected 'verified' to be 'held_for_review' // Object.is equality
+
+Expected: "held_for_review"
+Received: "verified"
+
+ ❯ src/usage/root4410-request-spread.test.ts:46:38
+     44|       writeFileSync(join(dir, 'eval.cjs'), 'require("node:assert/stric…
+     45|       const r = await runMigration(dir, registry, { write: true, evalC…
+     46|       expect(r.verification.verdict).toBe('held_for_review');
+       |                                      ^
+     47|       expect(r.prReady).toBe(false);
+     48|       expect(readFileSync(file, 'utf8')).toBe(source);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 1 passed (7)
+   Start at  10:18:31
+   Duration  1.48s (transform 276ms, setup 0ms, import 581ms, tests 783ms, environment 0ms)
+

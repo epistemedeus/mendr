@@ -1,0 +1,28 @@
+{
+  "name": "second-check-exact-write",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/migrate/root4410-second-check-write.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:30:42.747087+00:00",
+  "elapsedSeconds": 2.11,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1030144,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 547,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "21e325bfe7a8303bbff280702172e73f4dcf41b4469076c83d4be8138d8503b7",
+  "reportArtifact": null
+}

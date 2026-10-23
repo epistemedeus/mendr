@@ -1,0 +1,18 @@
+{
+  "name": "Owner-authored Make compatibility probe",
+  "flow": [
+    {
+      "id": 11,
+      "module": "openai-gpt-3:CreateCompletion",
+      "version": 1,
+      "parameters": { "__IMTCONN__": "synthetic-only" },
+      "mapper": { "model": "gpt-4.1-nano", "temperature": 0.2, "max_tokens": 12 }
+    },
+    {
+      "id": 12,
+      "module": "util:SetVariable2",
+      "mapper": { "name": "documentation", "value": "gpt-4.1-nano", "model": "gpt-4.1-nano" }
+    }
+  ],
+  "metadata": { "description": "Historical gpt-4.1-nano example", "credentials": { "model": "gpt-4.1-nano" } }
+}

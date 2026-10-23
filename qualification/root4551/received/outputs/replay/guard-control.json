@@ -1,0 +1,23 @@
+{
+  "name": "guard-control",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/network-guard-control.cjs"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr-baseline",
+  "startedAt": "2026-10-23T10:34:33.934962+00:00",
+  "elapsedSeconds": 0.108,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 278120,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 66,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "3d180d7741b611da4358a4c78d6ade4e41517cdd11c2719e391272b6201f4444",
+  "reportArtifact": null
+}

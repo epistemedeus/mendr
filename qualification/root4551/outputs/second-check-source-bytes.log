@@ -1,0 +1,15 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/migrate/root4410-second-check-write.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023
+
+ ✓ src/migrate/root4410-second-check-write.test.ts (1 test) 906ms
+   ✓ a failed second check cannot verify or write; a real healthy check subsequently recovers  906ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  11:31:47
+   Duration  1.70s (transform 358ms, setup 0ms, import 669ms, tests 906ms, environment 0ms)
+

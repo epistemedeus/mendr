@@ -1,0 +1,26 @@
+{
+  "name": "qualify-received",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/scripts/qualify.mjs",
+    "/tmp/root4410-c-scratch/mendr",
+    "/home/ubuntu/ae14-work/root4410-c-mendr-adoption-20261023/experiments/oct23-deadline-compatibility/mendr-adoption/outputs"
+  ],
+  "cwd": "/tmp/root4410-c-scratch/mendr",
+  "startedAt": "2026-10-23T10:16:34.807983+00:00",
+  "elapsedSeconds": 7.16,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 695000,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "runner + ancestors through native Codex + command descendants; sampled RSS, not cgroup peak",
+  "stopReason": null,
+  "survivingOwnedPids": [
+    33600
+  ],
+  "logBytesBeforeBounding": 768,
+  "outputSha256": "24da7b3b020e13f016424076df76a66c34de9c59fab867dc3b1a0fd36f8e5717",
+  "reportArtifact": null
+}

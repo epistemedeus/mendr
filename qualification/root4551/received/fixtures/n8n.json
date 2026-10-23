@@ -1,0 +1,23 @@
+{
+  "name": "Owner-authored compatibility probe",
+  "nodes": [
+    {
+      "id": "chat-object",
+      "name": "Chat with selected model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "parameters": { "model": { "__rl": true, "value": "o4-mini", "mode": "list" }, "options": { "temperature": 0 } },
+      "credentials": { "openAiApi": { "id": "synthetic-only", "name": "o4-mini" } }
+    },
+    {
+      "id": "chat-scalar",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "parameters": { "model": "o4-mini", "options": { "maxTokens": 12 } }
+    },
+    {
+      "id": "notes",
+      "type": "n8n-nodes-base.stickyNote",
+      "parameters": { "content": "Historical o4-mini example", "model": "o4-mini" }
+    }
+  ],
+  "active": false
+}

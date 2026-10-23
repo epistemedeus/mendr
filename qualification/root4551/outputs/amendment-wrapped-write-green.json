@@ -1,0 +1,26 @@
+{
+  "name": "amendment-wrapped-write-green",
+  "command": [
+    "node",
+    "qualification/root4551/scripts/probe-wrapped-spread-write.mjs",
+    "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+    "qualification/root4551/outputs/amendment-wrapped-write-green"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:30:41.652684+00:00",
+  "elapsedSeconds": 1.034,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 644992,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 471,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "dda2d2001354beabec9221f3172484b5c4a7ae7ac71f7b3e59614779b4cee283",
+  "reportArtifact": null
+}

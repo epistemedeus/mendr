@@ -1,0 +1,28 @@
+{
+  "name": "baseline-red-spread",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/usage/root4410-request-spread.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4551-mendr-safety-integration-20261023",
+  "startedAt": "2026-10-23T11:25:12.658317+00:00",
+  "elapsedSeconds": 1.861,
+  "exitCode": 1,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 901944,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 94491,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 4593,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "27cae978f940c2c6bde8df99eca4f03c5c3b37fea1dcf313cdf822a4fa695c42",
+  "reportArtifact": null
+}
