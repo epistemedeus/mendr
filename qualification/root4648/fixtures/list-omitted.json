@@ -1,0 +1,25 @@
+{
+  "schema": "mendr-models-metadata/v1",
+  "provider": "openai",
+  "surface": "direct",
+  "sourceUrl": "https://api.openai.com/v1/models",
+  "retrievedAt": "2026-10-23T12:00:00Z",
+  "scope": {
+    "kind": "list",
+    "coverage": "complete"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "object": "list",
+      "data": [
+        {
+          "object": "model",
+          "id": "synthetic-source",
+          "created": 0,
+          "owned_by": "synthetic"
+        }
+      ]
+    }
+  }
+}

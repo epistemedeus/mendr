@@ -663,6 +663,14 @@ mendr rollout numbers.json --migration migration.json --record .mendr/outcomes.j
 
 With `--migration`, it reprints the recovery plan as of today, because a revert that was safe when the pull request was opened is not safe after the shutdown date. `--record` appends one line per migration to a file you keep; mendr sends it nowhere.
 
+Optionally reconcile a caller-supplied offline Models capture for an exact direct OpenAI source model:
+
+```bash
+mendr rollout numbers.json --migration migration.json --models-metadata models-capture.json --json
+```
+
+The [versioned capture contract](qualification/root4648/CONTRACT.md) distinguishes dated, null, omitted and missing-model evidence. Capture age is bounded to 24 hours and evaluated with `MENDR_EVALUATED_AT` when set. The opt-in `modelsMetadata` result retains provenance and conflicts; it changes only schedule-based recovery advice. It does not authenticate the capture, establish availability or replacement quality, freshen the registry, or change the measured rollout verdict.
+
 **Or let mendr read the numbers from your telemetry.** Export the feature's calls from wherever you keep them (OpenTelemetry spans, a gateway or application log, a usage export; as JSON, NDJSON or CSV) and pass the file:
 
 ```sh

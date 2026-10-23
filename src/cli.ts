@@ -2,7 +2,7 @@
 import { Command } from 'commander';
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { appendFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { appendFileSync, closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, readSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -200,6 +200,7 @@ import { judgeRollout, parseRolloutInput, renderRollout, type RolloutInput } fro
 import { windowsFromTelemetry } from './assurance/telemetry.js';
 import { readTelemetryRows, toCallSample } from './runtime/evidence.js';
 import { recoveryPlan } from './assurance/recovery.js';
+import { MODELS_METADATA_MAX_BYTES, ModelsMetadataError, parseModelsMetadata, reconcileModelsMetadata, renderModelsMetadata } from './recon/modelRetirement.js';
 import { appendOutcome, HUMAN_DECISIONS, outcomeRecord, type HumanDecision } from './assurance/outcome.js';
 import type { MigrationResult } from './migrate/migrate.js';
 
@@ -4418,6 +4419,7 @@ program
   .description('[preview] Judge whether a migrated feature stayed healthy after the deploy: verified, regression or inconclusive. Reads the numbers you give it; changes nothing.')
   .option('--repo <path>', 'the repository whose mendr.config.json names the workflow and its limits', '.')
   .option('--migration <file>', 'the mendr-migration/v1 JSON of the migration (from `migrate --json`), to recompute its recovery plan for today')
+  .option('--models-metadata <file>', 'with --migration: reconcile a caller-supplied offline Models capture for exact direct OpenAI source-model schedules')
   .option('--record <file>', 'append a mendr-outcome/v1 line for this migration to this file, such as .mendr/outcomes.jsonl')
   .option('--decision <decision>', `what the person did with the pull request, for the record: ${HUMAN_DECISIONS.join(', ')}`)
   .option('--note <text>', 'anything to keep with the record, such as why the pull request was edited')
@@ -4431,7 +4433,7 @@ program
     (
       numbers: string | undefined,
       opts: {
-        repo: string; migration?: string; record?: string; decision?: string; note?: string; json?: boolean;
+        repo: string; migration?: string; modelsMetadata?: string; record?: string; decision?: string; note?: string; json?: boolean;
         from?: string; deployedAt?: string; workflow?: string; windowDays?: string; quality?: string;
       },
     ) => {
@@ -4439,10 +4441,15 @@ program
         console.error(`mendr: ${message}`);
         process.exit(2);
       };
+      if (opts.modelsMetadata && !opts.migration) fail('--models-metadata requires --migration for exact provider/from-model binding');
+      let migrationBytes: string | undefined;
       const readJson = (path: string, what: string): unknown => {
         try {
-          return JSON.parse(readFileSync(path, 'utf8'));
+          const bytes = readFileSync(path, 'utf8');
+          if (path === opts.migration) migrationBytes = bytes;
+          return JSON.parse(bytes);
         } catch (err) {
+          if (opts.modelsMetadata) return fail('models metadata: could_not_read_input_json');
           return fail(`could not read ${what} ${path}: ${err instanceof Error ? err.message : String(err)}`);
         }
       };
@@ -4461,8 +4468,40 @@ program
       let migration: MigrationResult | null = null;
       if (opts.migration) {
         migration = readJson(opts.migration, 'the migration file') as MigrationResult;
+        if (opts.modelsMetadata && (!migration || typeof migration !== 'object')) fail('models metadata: invalid_migration');
         if ((migration as { schema?: unknown }).schema !== 'mendr-migration/v1' || !Array.isArray(migration.migrations)) {
+          if (opts.modelsMetadata) fail('models metadata: invalid_migration');
           fail(`${opts.migration} is not a mendr-migration/v1 file; write one with \`mendr migrate --json > migration.json\``);
+        }
+      }
+      // Only the opt-in path uses the shared pinnable evaluation clock; default rollout is unchanged.
+      let metadata: ReturnType<typeof reconcileModelsMetadata> | undefined;
+      let metadataNow: Date | undefined;
+      if (opts.modelsMetadata) {
+        try {
+          const evaluation = resolveEvaluationTime();
+          metadataNow = evaluation.at;
+          // Bound the read itself, including files that grow after opening. Never echo supplied bodies.
+          const fd = openSync(opts.modelsMetadata, 'r');
+          let bytes: Buffer;
+          try {
+            bytes = Buffer.alloc(MODELS_METADATA_MAX_BYTES + 1);
+            let length = 0;
+            while (length < bytes.length) {
+              const count = readSync(fd, bytes, length, bytes.length - length, null);
+              if (count === 0) break;
+              length += count;
+            }
+            bytes = bytes.subarray(0, length);
+          } finally { closeSync(fd); }
+          metadata = reconcileModelsMetadata(
+            parseModelsMetadata(bytes), migration, metadataNow, evaluation.source,
+            `sha256:${createHash('sha256').update(migrationBytes!).digest('hex')}`,
+          );
+        } catch (err) {
+          return fail(err instanceof ModelsMetadataError ? err.message : err instanceof EvaluatedAtError
+            ? 'models metadata: invalid_evaluation_clock; check MENDR_EVALUATED_AT'
+            : 'models metadata: could_not_read_capture');
         }
       }
       let input: RolloutInput;
@@ -4503,8 +4542,8 @@ program
       // was planned is not safe once the old model's shutdown date has passed.
       const recovery = migration
         ? recoveryPlan(
-            migration.migrations.map((m) => ({ from: m.from, to: m.to, shutdownDate: m.evidence?.shutdownDate ?? null })),
-            new Date(),
+            metadata?.recoverySwaps ?? migration.migrations.map((m) => ({ from: m.from, to: m.to, shutdownDate: m.evidence?.shutdownDate ?? null })),
+            metadataNow ?? new Date(),
           )
         : undefined;
       const result = judgeRollout(input, workflow, recovery);
@@ -4512,8 +4551,11 @@ program
       if (opts.record) {
         appendOutcome(opts.record, outcomeRecord(result, migration, (opts.decision as HumanDecision | undefined) ?? null, opts.note ?? null, new Date()));
       }
-      if (opts.json) console.log(JSON.stringify(result, null, 2));
-      else for (const line of renderRollout(result)) console.log(line);
+      if (opts.json) console.log(JSON.stringify(metadata ? { ...result, modelsMetadata: metadata.report } : result, null, 2));
+      else {
+        for (const line of renderRollout(result)) console.log(line);
+        if (metadata) for (const line of renderModelsMetadata(metadata.report)) console.log(line);
+      }
       if (opts.record && !opts.json) console.log(`Recorded in ${opts.record}.`);
       // 0 verified, 1 regression, 3 inconclusive: a script can tell "worse" from "cannot say".
       process.exit(result.verdict === 'verified' ? 0 : result.verdict === 'regression' ? 1 : 3);
