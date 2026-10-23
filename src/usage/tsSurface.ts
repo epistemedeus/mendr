@@ -68,6 +68,8 @@ export interface TsSurfaceVerdict {
 export const TS_MODULE_LEVEL_REASON =
   'module-level execution (fires at import); a real request, capped at review';
 export const TS_SURFACE_REASON = 'provider surface caps this call at review';
+export const TS_REQUEST_SPREAD_REASON =
+  'request object spread leaves the effective model and parameters unproven; review before a model swap';
 /**
  * The one verdict in this file that DEMOTES. Everything else here can only refuse to
  * promote; this says a call is provably not a provider request at all, so a model id
@@ -487,6 +489,12 @@ export function classifyCallSurface(call: CallExpression): SurfaceClassification
       position: 'surface_capped',
       reason: `${TS_SURFACE_REASON} (client is ${v.family}, endpoint is ${wanted})`,
     };
+  }
+  if (call.getArguments().some((arg) => {
+    const value = unwrapValueWrappers(arg);
+    return Node.isObjectLiteralExpression(value) && value.getProperties().some(Node.isSpreadAssignment);
+  })) {
+    return { position: 'surface_capped', reason: TS_REQUEST_SPREAD_REASON };
   }
   return { position: 'model_arg' };
 }
