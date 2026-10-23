@@ -1,0 +1,59 @@
+[
+  {
+    "number": 79,
+    "title": "Qualify recovery advice using known retirement schedules",
+    "state": "open",
+    "merged": false,
+    "merge_commit_sha": "667ccdd79dda7a0ce891eeb648331dbb808cb967",
+    "html_url": "https://github.com/ajitheee/mendr/pull/79",
+    "body": "Unknown, empty or mixed retirement schedules cannot establish revert eligibility. Known schedules retain pre-date advice and close the window on the UTC retirement date. This does not claim an observed outage or replacement quality.\n\nValidation: 28 tests in 2 files, build, and five built CLI rollout cases. Independently replayed at this exact head.\n\nOne commit above current main; no qualification artifacts in the diff. AI-assisted implementation and review; synthetic/offline checks, no live provider evaluation.",
+    "base": {
+      "sha": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+      "ref": "main",
+      "repo": "ajitheee/mendr"
+    },
+    "head": {
+      "sha": "10b4ed4b65908bf9cca421174562524902f2c189",
+      "ref": "codex/root4626-mendr-recovery-20261023",
+      "repo": "epistemedeus/mendr"
+    }
+  },
+  {
+    "number": 80,
+    "title": "Hold opaque request spreads before automatic migration",
+    "state": "open",
+    "merged": false,
+    "merge_commit_sha": "275b51d3551c5b4287f6dc2767cc2d2e214108e7",
+    "html_url": "https://github.com/ajitheee/mendr/pull/80",
+    "body": "Request spreads can change the effective model or coupled parameters. Hold opaque inline, named, shorthand, fallback and conditional forms for review while retaining automatic handling for explicit unambiguous requests. Existing second-check refusal and exact-source recovery remain intact.\n\nValidation: 234 tests in 7 files, build, and both direct/wrapped built write probes with refusal and healthy recovery. Independently replayed at this exact head.\n\nOne commit above current main; no qualification artifacts in the diff. AI-assisted implementation and review; synthetic/offline checks, no live provider evaluation.",
+    "base": {
+      "sha": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+      "ref": "main",
+      "repo": "ajitheee/mendr"
+    },
+    "head": {
+      "sha": "8382a864fd5ef0334a8a803d52a40559126e3e3b",
+      "ref": "codex/root4626-mendr-request-spreads-20261023",
+      "repo": "epistemedeus/mendr"
+    }
+  },
+  {
+    "number": 81,
+    "title": "Keep missing telemetry outcomes unmeasured",
+    "state": "open",
+    "merged": false,
+    "merge_commit_sha": "06535dcdbafcf7f1e0bd3e68c7a1f3a6bb3ca69c",
+    "html_url": "https://github.com/ajitheee/mendr/pull/81",
+    "body": "Missing, malformed, unrecognized or partial outcomes no longer become a healthy error rate. Invalid optional cost and latency stay unknown; valid zero stays measured. Explicit legacy samples remain compatible.\n\nValidation: 50 tests in 4 files, build, and five built rollout predicates for healthy, degraded, insufficient, missing-cost and missing-outcome inputs. Independently replayed at this exact head.\n\nOne commit above current main; no qualification artifacts in the diff. AI-assisted implementation and review; synthetic/offline checks, not measured provider availability or billing.",
+    "base": {
+      "sha": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+      "ref": "main",
+      "repo": "ajitheee/mendr"
+    },
+    "head": {
+      "sha": "55e4a3499a0330aa8de4e36c9a7659202635af4d",
+      "ref": "codex/root4626-mendr-telemetry-20261023",
+      "repo": "epistemedeus/mendr"
+    }
+  }
+]

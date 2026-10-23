@@ -1,0 +1,97 @@
+{
+  "originalHead": "7cb956dd0f4b1b8d8b9b1d763a4065a4c3202380",
+  "upstreamMain": "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c",
+  "dependencyBase": "e74fa18d16592eb47c6c70920732df2ffc7de717",
+  "dependencies": [
+    {
+      "sha": "10b4ed4b65908bf9cca421174562524902f2c189",
+      "ref": "codex/root4626-mendr-recovery-20261023",
+      "repo": "epistemedeus/mendr"
+    },
+    {
+      "sha": "55e4a3499a0330aa8de4e36c9a7659202635af4d",
+      "ref": "codex/root4626-mendr-telemetry-20261023",
+      "repo": "epistemedeus/mendr"
+    }
+  ],
+  "excludedSafety": {
+    "sha": "8382a864fd5ef0334a8a803d52a40559126e3e3b",
+    "ref": "codex/root4626-mendr-request-spreads-20261023",
+    "repo": "epistemedeus/mendr"
+  },
+  "existingProjectionRefs": [],
+  "projectionWorktree": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+  "branch": "codex/mendr-provider-metadata-20261023",
+  "dependencyBranch": "codex/mendr-provider-metadata-20261023-dependencies",
+  "head": "fe4cf6d6114d206ddf37e28409472388d77cc746",
+  "tree": "9a6593a9efc1fb5dd4fb755053edde9c0c9579ac",
+  "dependencyTree": "bd212a16a3e3dae9379e6c826444107923492830",
+  "upstreamTree": "601dc96f4658585058cdd06df23e6a2728e4a9d2",
+  "featureCommitCount": 1,
+  "featureChangedFiles": [
+    "MODELS-METADATA.md",
+    "README.md",
+    "src/cli.modelRetirement.test.ts",
+    "src/cli.ts",
+    "src/recon/__fixtures__/modelRetirement/default-migration.json",
+    "src/recon/__fixtures__/modelRetirement/default-migration.txt",
+    "src/recon/__fixtures__/modelRetirement/default-numbers.json",
+    "src/recon/__fixtures__/modelRetirement/default-numbers.txt",
+    "src/recon/__fixtures__/modelRetirement/fixed-clock.cjs",
+    "src/recon/__fixtures__/modelRetirement/list-date.json",
+    "src/recon/__fixtures__/modelRetirement/migration.json",
+    "src/recon/__fixtures__/modelRetirement/numbers.json",
+    "src/recon/__fixtures__/modelRetirement/retrieve-date.json",
+    "src/recon/modelRetirement.test.ts",
+    "src/recon/modelRetirement.ts"
+  ],
+  "fullChangedFilesAgainstUpstream": [
+    "MODELS-METADATA.md",
+    "README.md",
+    "src/assurance/assurance.test.ts",
+    "src/assurance/recovery-schedule.test.ts",
+    "src/assurance/recovery.ts",
+    "src/assurance/telemetry-evidence.test.ts",
+    "src/assurance/telemetry.ts",
+    "src/cli.modelRetirement.test.ts",
+    "src/cli.ts",
+    "src/recon/__fixtures__/modelRetirement/default-migration.json",
+    "src/recon/__fixtures__/modelRetirement/default-migration.txt",
+    "src/recon/__fixtures__/modelRetirement/default-numbers.json",
+    "src/recon/__fixtures__/modelRetirement/default-numbers.txt",
+    "src/recon/__fixtures__/modelRetirement/fixed-clock.cjs",
+    "src/recon/__fixtures__/modelRetirement/list-date.json",
+    "src/recon/__fixtures__/modelRetirement/migration.json",
+    "src/recon/__fixtures__/modelRetirement/numbers.json",
+    "src/recon/__fixtures__/modelRetirement/retrieve-date.json",
+    "src/recon/modelRetirement.test.ts",
+    "src/recon/modelRetirement.ts",
+    "src/runtime/evidence.ts"
+  ],
+  "grouping": "Existing exact PR79 and PR81 commits, merged without replaying safety patches, then one feature commit. PR80 stays separate.",
+  "readiness": "Depends on upstream PR79 and PR81; cannot submit as an independent main-based diff while they remain unmerged.",
+  "sourceEquality": {
+    "src/cli.ts": true,
+    "src/recon/modelRetirement.ts": true,
+    "src/assurance/recovery.ts": true,
+    "src/assurance/telemetry.ts": true,
+    "src/runtime/evidence.ts": true
+  },
+  "sourceHashes": {
+    "MODELS-METADATA.md": "61e278f1f68988a1491b4a1b5f7a729734fd7ba773d0b45bf78bf92681eaf858",
+    "README.md": "7e0c6c6fb63a88e66f8589dffe152070c44fc343d2638a9ca29ac2fa24f9e990",
+    "src/cli.modelRetirement.test.ts": "34cb257278e6c1edeb22107daa71d233b775b6b5b071158ea393480f5cd9b36d",
+    "src/cli.ts": "adf6d43f65ade5adf2ba9de00c380214e1f2017e95a70e87395128abcca68aa5",
+    "src/recon/__fixtures__/modelRetirement/default-migration.json": "78cbbfb8a573b301418acd5e4030e30a293d7097cb764bd703be1d9b5880949e",
+    "src/recon/__fixtures__/modelRetirement/default-migration.txt": "c412ee0e6e724f9c4badd5add89b638dcb9e145670793f971cc100f237c76599",
+    "src/recon/__fixtures__/modelRetirement/default-numbers.json": "1409c894c0e415f5aedf069fcdb085dde203dac2a108c688ac51343b0419ad37",
+    "src/recon/__fixtures__/modelRetirement/default-numbers.txt": "ebf4799358e309e8ad905589b35ab8c0cf4cd920e97b25d109a1752597f3debf",
+    "src/recon/__fixtures__/modelRetirement/fixed-clock.cjs": "7db352dda4df7d21967a7bf2ea89205109badabfc7148525cbba4741b4187448",
+    "src/recon/__fixtures__/modelRetirement/list-date.json": "e896fb823bec3ec9a753b89f975ac20e4cd34608045ced97539ec70d0d9b1d55",
+    "src/recon/__fixtures__/modelRetirement/migration.json": "52a11a3a0acda7e324e3f3cf2b505d4c8829817b6d55625f9cc723d75c9e03aa",
+    "src/recon/__fixtures__/modelRetirement/numbers.json": "53e896f2216727b675a6a5dd5255ab0e0ae90492f2a6cdaf5d4a4fca3d7033c6",
+    "src/recon/__fixtures__/modelRetirement/retrieve-date.json": "3e6000eb7f5d8b8992a9100ecfb0c72569679c1ae8bbb93c68addfeb0f94d003",
+    "src/recon/modelRetirement.test.ts": "fd2adbccee0d6e2f985a3aaaa7783e89a2623876e25f1d70f07cec1c5ef5a1e1",
+    "src/recon/modelRetirement.ts": "ab6c0a257842fa28b39f218d32ca2c4e683175ad7aa8a6b41ddc975469dab4dc"
+  }
+}

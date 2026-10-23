@@ -1,0 +1,1455 @@
+{
+  "results": [
+    {
+      "name": "dependency-base-undated",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/undated.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        }
+      }
+    },
+    {
+      "name": "corroborated",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/date.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": true,
+              "detail": "A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:93ac59e4ac4237955ef80439f10af875349efb9929071043cc44443fc24c2ae0",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "scheduled",
+                "shutdownDate": "2026-10-24"
+              },
+              "reconciliation": "corroborated",
+              "reasons": [
+                "same_shutdown_date"
+              ],
+              "effectiveSchedule": {
+                "source": "corroborated",
+                "shutdownDate": "2026-10-24"
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "undated-supplied-schedule",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/undated.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/date.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": true,
+              "detail": "A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:93ac59e4ac4237955ef80439f10af875349efb9929071043cc44443fc24c2ae0",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:725d5932154c2f84db3b9301ac2975aead8feb858dba96cd18cfa38a1ed4f0ba",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": null,
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "undated"
+              },
+              "metadata": {
+                "state": "scheduled",
+                "shutdownDate": "2026-10-24"
+              },
+              "reconciliation": "metadata_schedule",
+              "reasons": [
+                "fresh_exact_metadata_schedule"
+              ],
+              "effectiveSchedule": {
+                "source": "metadata",
+                "shutdownDate": "2026-10-24"
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "null",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/null.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:9259a8e6980c300c10b01e6aec3c79ac6ac2fca16a8ddb765c9fe97100de4347",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "no_announced_date",
+                "shutdownDate": null
+              },
+              "reconciliation": "conflict",
+              "reasons": [
+                "null_conflicts_with_artifact_date"
+              ],
+              "effectiveSchedule": {
+                "source": "none",
+                "shutdownDate": null
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "omitted",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/omitted.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": true,
+              "detail": "A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:dfc1ea4670350cd9095b0338a54eae53c92d4cdddcd9b7a0cd7f85c5a0631e47",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "not_reported",
+                "shutdownDate": null
+              },
+              "reconciliation": "artifact_only",
+              "reasons": [
+                "shutdown_field_not_reported"
+              ],
+              "effectiveSchedule": {
+                "source": "artifact",
+                "shutdownDate": "2026-10-24"
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "missing",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/missing.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": true,
+              "detail": "A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:7f92dc1bbf9960f93edc2bd541319bf69d987b90392c6f97445dd684831262d6",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 0,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "missing_model",
+                "shutdownDate": null
+              },
+              "reconciliation": "artifact_only",
+              "reasons": [
+                "model_missing_in_capture_scope"
+              ],
+              "effectiveSchedule": {
+                "source": "artifact",
+                "shutdownDate": "2026-10-24"
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "conflict",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/conflict.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:130ad37405e7cd37e9e1c8850c94c874fd5c2682ac2588848f67721b915fe871",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "scheduled",
+                "shutdownDate": "2026-10-25"
+              },
+              "reconciliation": "conflict",
+              "reasons": [
+                "different_shutdown_dates"
+              ],
+              "effectiveSchedule": {
+                "source": "none",
+                "shutdownDate": null
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "stale",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/stale.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": false,
+              "detail": "Revert availability is not established: a shutdown date is unknown or no model swaps were supplied. Verify the old model before relying on a revert."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:e40ec204c1a265bdc1c811deb30083d57f560ada4b928a2b023321d10cb011dc",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-21T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 48,
+            "maxAgeHours": 24,
+            "freshness": "stale"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "scheduled",
+                "shutdownDate": "2026-10-24"
+              },
+              "reconciliation": "unknown",
+              "reasons": [
+                "stale_capture"
+              ],
+              "effectiveSchedule": {
+                "source": "none",
+                "shutdownDate": null
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "restored-current",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/date.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": true,
+              "detail": "A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:93ac59e4ac4237955ef80439f10af875349efb9929071043cc44443fc24c2ae0",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "scheduled",
+                "shutdownDate": "2026-10-24"
+              },
+              "reconciliation": "corroborated",
+              "reasons": [
+                "same_shutdown_date"
+              ],
+              "effectiveSchedule": {
+                "source": "corroborated",
+                "shutdownDate": "2026-10-24"
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    },
+    {
+      "name": "restored-after-refusal",
+      "args": [
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/numbers.json",
+        "--repo",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7",
+        "--migration",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/migration.json",
+        "--models-metadata",
+        "/tmp/r4648-gumedoft/mendr-projection-Lz4ft7/date.json",
+        "--json"
+      ],
+      "exit": 0,
+      "report": {
+        "schema": "mendr-rollout/v1",
+        "workflow": "Synthetic support",
+        "configured": false,
+        "deployedAt": null,
+        "verdict": "verified",
+        "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+        "signals": [
+          {
+            "signal": "errorRate",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+          },
+          {
+            "signal": "latencyP95Ms",
+            "state": "ok",
+            "before": 100,
+            "after": 100,
+            "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+          },
+          {
+            "signal": "costPer1k",
+            "state": "ok",
+            "before": 0,
+            "after": 0,
+            "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+          },
+          {
+            "signal": "quality",
+            "state": "ok",
+            "before": "passed",
+            "after": "passed",
+            "detail": "your quality check passed after the deploy (it passed before)"
+          }
+        ],
+        "recovery": {
+          "asOf": "2026-10-23",
+          "options": [
+            {
+              "kind": "revert",
+              "available": true,
+              "detail": "A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it."
+            },
+            {
+              "kind": "fix_forward",
+              "available": true,
+              "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
+            },
+            {
+              "kind": "other_model",
+              "available": true,
+              "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
+            }
+          ],
+          "caveats": [
+            "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
+            "Replacement answer quality, latency and cost are not established by a recovery plan.",
+            "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
+          ]
+        },
+        "modelsMetadata": {
+          "schema": "mendr-model-retirement/v1",
+          "evaluatedAt": "2026-10-23T12:00:00.000Z",
+          "evaluationTimeSource": "override",
+          "capture": {
+            "digest": "sha256:93ac59e4ac4237955ef80439f10af875349efb9929071043cc44443fc24c2ae0",
+            "provider": "openai",
+            "surface": "direct",
+            "sourceUrl": "https://api.openai.com/v1/models",
+            "retrievedAt": "2026-10-23T12:00:00Z",
+            "scope": {
+              "kind": "list",
+              "coverage": "complete"
+            },
+            "responseStatus": 200,
+            "recordCount": 1,
+            "duplicateCount": 0,
+            "reasons": [],
+            "authentication": "caller_supplied_unverified",
+            "ageHours": 0,
+            "maxAgeHours": 24,
+            "freshness": "fresh"
+          },
+          "artifact": {
+            "digest": "sha256:77a98c1bd528b4a39e2be47fdb022d452b7d26af57c9e766fd3215d381ae58df",
+            "generatedAt": "2026-10-01T00:00:00.000Z",
+            "ageDays": 22.5,
+            "registry": {
+              "source": "bundled",
+              "version": "synthetic-old",
+              "publishedAt": "2026-10-01T00:00:00Z",
+              "ageDays": 22,
+              "maxAgeDays": 14,
+              "freshness": "stale"
+            }
+          },
+          "swaps": [
+            {
+              "provider": "openai",
+              "from": "synthetic-source",
+              "to": "synthetic-target",
+              "artifact": {
+                "shutdownDate": "2026-10-24",
+                "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+                "entryId": "openai.synthetic-source.retirement-2026-10-24",
+                "lifecycle": "deprecated",
+                "replacementVerdict": "unverified",
+                "dateState": "scheduled"
+              },
+              "metadata": {
+                "state": "scheduled",
+                "shutdownDate": "2026-10-24"
+              },
+              "reconciliation": "corroborated",
+              "reasons": [
+                "same_shutdown_date"
+              ],
+              "effectiveSchedule": {
+                "source": "corroborated",
+                "shutdownDate": "2026-10-24"
+              }
+            }
+          ],
+          "limits": [
+            "Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.",
+            "Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.",
+            "A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.",
+            "Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.",
+            "Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.",
+            "No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata."
+          ]
+        }
+      }
+    }
+  ],
+  "refusal": {
+    "exit": 2,
+    "stderr": "mendr: models metadata: malformed_json; use a bounded mendr-models-metadata/v1 capture and a mendr-migration/v1 artifact\n"
+  },
+  "parity": [
+    {
+      "useMigration": false,
+      "json": false,
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true
+    },
+    {
+      "useMigration": false,
+      "json": true,
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true
+    },
+    {
+      "useMigration": true,
+      "json": false,
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true
+    },
+    {
+      "useMigration": true,
+      "json": true,
+      "exit": 0,
+      "stdoutByteEqual": true,
+      "stderrByteEqual": true
+    }
+  ],
+  "restorationEqual": true
+}

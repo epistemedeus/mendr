@@ -1,0 +1,41 @@
+{
+  "name": "related",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/audit/evaluatedAt.test.ts",
+    "src/assurance",
+    "src/runtime/evidence.test.ts",
+    "src/cli.evidence.test.ts",
+    "src/registry/evidence.test.ts",
+    "src/registry/freshRegistry.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+  "startedAt": "2026-10-23T15:00:52.532384+00:00",
+  "elapsedSeconds": 8.152,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1090688,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 439559,
+  "stopReason": null,
+  "survivingOwnedPids": [
+    441362
+  ],
+  "logBytesBeforeBounding": 1333,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 441362,
+      "state": "Z",
+      "ppid": 439686
+    }
+  ],
+  "outputSha256": "d2194fbbd0eb434ca93cf687a8e0e0da515b12339c9d8805b99762b0211b5855",
+  "reportArtifact": null
+}

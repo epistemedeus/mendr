@@ -1,0 +1,27 @@
+
+> mendr@0.5.11-alpha test
+> vitest run src/audit/evaluatedAt.test.ts src/assurance src/runtime/evidence.test.ts src/cli.evidence.test.ts src/registry/evidence.test.ts src/registry/freshRegistry.test.ts --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.10 /home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023
+
+ ✓ src/cli.evidence.test.ts (5 tests) 4856ms
+     ✓ resolves an entryId -- the id findings actually print  1225ms
+     ✓ still resolves the bare model id  919ms
+     ✓ shows the four fields the gate reads, and says the prose is not one of them  948ms
+     ✓ reports PASS on a record that clears the whole conjunction  901ms
+     ✓ exits 2 on an unknown id, naming both forms it accepts  860ms
+ ✓ src/registry/freshRegistry.test.ts (24 tests) 188ms
+ ✓ src/registry/evidence.test.ts (25 tests) 89ms
+ ✓ src/assurance/assurance.test.ts (25 tests) 18ms
+ ✓ src/runtime/evidence.test.ts (14 tests) 15ms
+ ✓ src/assurance/telemetry.test.ts (7 tests) 9ms
+ ✓ src/audit/evaluatedAt.test.ts (11 tests) 5ms
+ ✓ src/assurance/telemetry-evidence.test.ts (4 tests) 31ms
+ ✓ src/assurance/recovery-schedule.test.ts (3 tests) 4ms
+
+ Test Files  9 passed (9)
+      Tests  118 passed (118)
+   Start at  15:00:52
+   Duration  7.65s (transform 363ms, setup 0ms, import 1.36s, tests 5.21s, environment 1ms)
+

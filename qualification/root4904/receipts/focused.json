@@ -1,0 +1,29 @@
+{
+  "name": "focused",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/recon/modelRetirement.test.ts",
+    "src/cli.modelRetirement.test.ts",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+  "startedAt": "2026-10-23T14:58:34.250000+00:00",
+  "elapsedSeconds": 68.941,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1412536,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 439559,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 3385,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "f74fed01353967954db8a4dac590cda2398f1cfa6086e6c9d868185ea7a94295",
+  "reportArtifact": null
+}

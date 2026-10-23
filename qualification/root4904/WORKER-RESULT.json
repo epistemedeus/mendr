@@ -1,0 +1,16 @@
+{
+  "state": "checkpoint-focused-and-built-consumer-passed",
+  "at": "2026-10-23T15:03:11.285905+00:00",
+  "projectionHead": "fe4cf6d6114d206ddf37e28409472388d77cc746",
+  "projectionTree": "9a6593a9efc1fb5dd4fb755053edde9c0c9579ac",
+  "dependencyBase": "e74fa18d16592eb47c6c70920732df2ffc7de717",
+  "focused": 107,
+  "related": 118,
+  "shippedCases": 10,
+  "defaultParityControls": 4,
+  "fullSuite": "pending; finite foreground through 16:28:41.750Z permits serial run",
+  "checkpointBy": "2026-10-23T15:04:10.529Z",
+  "canonicalOriginal": "7cb956dd0f4b1b8d8b9b1d763a4065a4c3202380",
+  "projectionFiles": 15,
+  "dependencyHold": "Upstream PR79 and PR81 are still open; candidate is a dependency stack, not an independent diff against main."
+}

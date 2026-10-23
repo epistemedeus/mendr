@@ -1,0 +1,1289 @@
+diff --git a/MODELS-METADATA.md b/MODELS-METADATA.md
+new file mode 100644
+index 0000000..1c6cbd2
+--- /dev/null
++++ b/MODELS-METADATA.md
+@@ -0,0 +1,89 @@
++# Offline Models capture contract (v1)
++
++Caller supplies a UTF-8 JSON file,
++maximum 1,048,576 bytes, with exactly these envelope keys:
++
++```json
++{
++  "schema": "mendr-models-metadata/v1",
++  "provider": "openai",
++  "surface": "direct",
++  "sourceUrl": "https://api.openai.com/v1/models",
++  "retrievedAt": "2026-10-23T12:00:00Z",
++  "scope": { "kind": "list", "coverage": "complete" },
++  "response": {
++    "status": 200,
++    "body": {
++      "object": "list",
++      "data": [{ "object": "model", "id": "synthetic-source", "shutdown_date": "2026-10-24" }]
++    }
++  }
++}
++```
++
++Retrieve uses `scope: {"kind":"retrieve","model":"synthetic-source"}`,
++`sourceUrl: "https://api.openai.com/v1/models/synthetic-source"`, and the
++single raw model object as body. The locator must exactly match the declared
++operation/model, with no credentials, query, fragment or alternative host.
++Response status is an integer HTTP status. Non-200 responses carry status only,
++no error body. No headers, credentials or prompts belong in this input.
++Provider/surface strings are retained as unsupported scope when not exactly
++`openai` / `direct`; they never acquire authority through an official URL.
++
++List coverage is caller-declared `complete` or `partial`, referring only to that
++capture's account/visibility scope, never all models globally. Partial captures,
++pagination/truncation indicators, malformed rows and excessive records (maximum
++2,048) are unusable. Ordinary additional Models body fields are ignored and never
++printed. All rows are checked before using any; duplicate IDs with differing
++shutdown values conflict. Identical duplicate rows are counted and reported.
++JSON duplicate object keys are refused rather than accepting parser last-wins.
++
++Only exact IDs bind to migration provider/from. No ID trimming, case folding,
++alias/snapshot/base-model resolution. Fine-tune IDs (`ft:`/`ft-`, colon IDs) are
++unsupported. Exact snapshots may bind only to themselves. Direct OpenAI schedule
++scope is declared by the caller, not observed on a workload. A migration does
++not record its serving endpoint; this intake cannot establish one. Non-OpenAI
++artifact document URLs are ambiguous for this direct schedule reconciliation.
++Unrelated swaps retain their own artifact schedules.
++
++Reconciliation semantics:
++
++| Supplied fact | Reconciliation and recovery schedule input |
++| --- | --- |
++| Fresh exact date, same artifact date | corroborated, date retained |
++| Fresh exact date, undated artifact | metadata schedule, date supplied |
++| Date differs / null against artifact date | conflict, target date withheld |
++| Null without artifact date | no announced date at capture, no revert assurance |
++| Absent field | not reported; valid artifact date remains explicitly artifact-only |
++| Missing model | missing in capture scope; valid artifact date remains artifact-only |
++| Retrieve wrong model or HTTP error | unknown, target date withheld |
++| Stale/future/partial/malformed/unbound | unknown/conflict, target date withheld |
++
++A list missing an unrelated model does not invalidate its original artifact
++schedule. No missing/null fact establishes availability or a safe revert.
++Invalid artifact schedules and conflicting artifact dates for the same exact
++provider/from are unknown/conflicted; no convenient date is selected.
++
++Capture age is an independent fixed maximum of **24 hours**, inclusive, with
++zero tolerance for future timestamps. Evaluate once using existing
++`resolveEvaluationTime` (`MENDR_EVALUATED_AT`) only on the opt-in path; date pins
++mean UTC midnight, offset timestamps normalize to UTC. Retrieval requires an
++explicit RFC3339 timestamp with seconds and timezone and a real calendar date.
++Retirement dates are real Gregorian `YYYY-MM-DD` dates. Before/on/after retirement
++uses the existing recoveryPlan UTC-day rule, never observed shutdown.
++
++Report schema `mendr-model-retirement/v1`: caller-supplied/unverified capture
++provenance (raw-file SHA-256, endpoint, retrieval, independent age/grade), migration
++artifact digest/generatedAt/unchanged registry facts, and per-swap artifact and
++metadata facts, reason codes, reconciliation and effective schedule source.
++Digests bind supplied bytes, not authenticity; they are separate from normalized
++EvidenceRef document hashes. No registry freshness is recomputed or promoted.
++Existing recoveryPlan owns advice; judgeRollout owns measured verdict and exits
++0/1/3. Invalid file/envelope/clock is a sanitized configuration error, exit 2.
++Metadata unknown/conflict never invents a measured regression. Human output
++shows the same reconciliation and provenance caveat. No-flag output is unchanged.
++
++Source contract: official OpenAI deprecations overview, searched and fetched
++2026-10-23 via official documentation, explicitly describes optional shutdown_date
++on both List and Retrieve as date or null. This is documentation, not an account
++response: https://developers.openai.com/api/docs/deprecations#overview
+diff --git a/README.md b/README.md
+index 7380353..9086341 100644
+--- a/README.md
++++ b/README.md
+@@ -663,6 +663,14 @@ mendr rollout numbers.json --migration migration.json --record .mendr/outcomes.j
+ 
+ With `--migration`, it reprints the recovery plan as of today, because a revert that was safe when the pull request was opened is not safe after the shutdown date. `--record` appends one line per migration to a file you keep; mendr sends it nowhere.
+ 
++Optionally reconcile a caller-supplied offline Models capture for an exact direct OpenAI source model:
++
++```bash
++mendr rollout numbers.json --migration migration.json --models-metadata models-capture.json --json
++```
++
++The [versioned capture contract](MODELS-METADATA.md) distinguishes dated, null, omitted and missing-model evidence. Capture age is bounded to 24 hours and evaluated with `MENDR_EVALUATED_AT` when set. The opt-in `modelsMetadata` result retains provenance and conflicts; it changes only schedule-based recovery advice. It does not authenticate the capture, establish availability or replacement quality, freshen the registry, or change the measured rollout verdict.
++
+ **Or let mendr read the numbers from your telemetry.** Export the feature's calls from wherever you keep them (OpenTelemetry spans, a gateway or application log, a usage export; as JSON, NDJSON or CSV) and pass the file:
+ 
+ ```sh
+diff --git a/src/cli.modelRetirement.test.ts b/src/cli.modelRetirement.test.ts
+new file mode 100644
+index 0000000..493187f
+--- /dev/null
++++ b/src/cli.modelRetirement.test.ts
+@@ -0,0 +1,231 @@
++import { afterEach, describe, expect, it } from 'vitest';
++import { execa } from 'execa';
++import { createHash } from 'node:crypto';
++import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
++import { tmpdir } from 'node:os';
++import { dirname, join, resolve } from 'node:path';
++import { fileURLToPath } from 'node:url';
++
++// Receiving must run `npm run build` first: this exercises the shipped JS entry point.
++const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
++const FIXTURES = join(ROOT, 'src/recon/__fixtures__/modelRetirement');
++const CLI = join(ROOT, 'dist/cli.js');
++const NOW = '2026-10-23T12:00:00Z';
++const created: string[] = [];
++afterEach(() => { for (const path of created.splice(0)) rmSync(path, { recursive: true, force: true }); });
++function tmp() { const dir = mkdtempSync(join(tmpdir(), 'mendr-models-')); created.push(dir); return dir; }
++const fixtureText = (name: string) => readFileSync(join(FIXTURES, name), 'utf8');
++const fixture = (name: string): any => JSON.parse(fixtureText(name));
++const digest = (text: string | Buffer) => `sha256:${createHash('sha256').update(text).digest('hex')}`;
++async function run(options: {
++  capture?: any; rawCapture?: string | Buffer; migration?: any; rawMigration?: string | Buffer; noMigration?: boolean;
++  noMetadata?: boolean; noJson?: boolean; extra?: string[]; now?: string; telemetry?: any[];
++  numbers?: any; fixedClock?: boolean;
++} = {}) {
++  expect(existsSync(CLI), 'build the shipped CLI before receiving').toBe(true);
++  const dir = tmp();
++  const numbers = join(dir, 'numbers.json');
++  const migration = join(dir, 'migration.json');
++  const capture = join(dir, 'capture.json');
++  const telemetry = join(dir, 'telemetry.json');
++  const migrationText = options.rawMigration ?? (options.migration ? JSON.stringify(options.migration) : fixtureText('migration.json'));
++  const captureText = options.rawCapture ?? JSON.stringify(options.capture ?? fixture('list-date.json'));
++  writeFileSync(numbers, JSON.stringify(options.numbers ?? fixture('numbers.json')));
++  writeFileSync(migration, migrationText);
++  writeFileSync(capture, captureText);
++  writeFileSync(telemetry, JSON.stringify(options.telemetry ?? []));
++  writeFileSync(join(dir, 'client.ts'), 'export const untouched = "customer source sentinel";\n');
++  const paths = [numbers, migration, capture, telemetry, join(dir, 'client.ts'), join(ROOT, 'registries/llm-deprecations.json')];
++  const before = paths.map((p) => readFileSync(p));
++  const args = [CLI, 'rollout', ...(options.telemetry ? ['--from', telemetry, '--deployed-at', '2026-10-20T12:00:00Z', '--workflow', 'Synthetic support'] : [numbers]),
++    '--repo', dir, ...(options.noMigration ? [] : ['--migration', migration]),
++    ...(options.noMetadata ? [] : ['--models-metadata', capture]), ...(options.noJson ? [] : ['--json']), ...(options.extra ?? [])];
++  const r = await execa(process.execPath, args, {
++    cwd: ROOT, reject: false, extendEnv: false, timeout: 20_000,
++    env: {
++      PATH: process.env.PATH, HOME: dir, TMPDIR: dir, LANG: 'C.UTF-8', NO_COLOR: '1',
++      MENDR_EVALUATED_AT: options.now ?? NOW, MENDR_REGISTRY_REFRESH: 'on',
++      NODE_OPTIONS: `--max-old-space-size=640 --require ${join(ROOT, 'scripts/no-network.cjs')}${options.fixedClock ? ` --require ${join(FIXTURES, 'fixed-clock.cjs')}` : ''}`,
++      ...(options.fixedClock ? { MENDR_TEST_NOW: NOW } : {}),
++    },
++  });
++  expect(paths.map((p) => readFileSync(p))).toEqual(before);
++  return { ...r, report: r.stdout.startsWith('{') ? JSON.parse(r.stdout) : null, captureText, migrationText };
++}
++const revert = (r: any) => r.report.recovery.options.find((o: any) => o.kind === 'revert');
++const swap = (r: any) => r.report.modelsMetadata.swaps[0];
++
++describe('built rollout --models-metadata, no network or input writes', () => {
++  it('preserves frozen base stdout/stderr/exits with no new flag, including an ignored invalid evaluation pin', async () => {
++    for (const noMigration of [true, false]) {
++      for (const noJson of [false, true]) {
++        const r = await run({ noMetadata: true, noMigration, noJson, fixedClock: true, now: 'ignored-invalid-pin' });
++        expect(r.exitCode).toBe(0); expect(r.stderr).toBe('');
++        const file = `default-${noMigration ? 'numbers' : 'migration'}.${noJson ? 'txt' : 'json'}`;
++        expect(r.stdout + '\n').toBe(fixtureText(file));
++        if (!noJson) expect(r.report).not.toHaveProperty('modelsMetadata');
++      }
++    }
++  }, 30_000);
++  it('requires --migration and refuses new write flags', async () => {
++    const missing = await run({ noMigration: true });
++    expect(missing.exitCode).toBe(2); expect(missing.stderr).toContain('--models-metadata requires --migration');
++    const write = await run({ extra: ['--write'] });
++    expect(write.exitCode).not.toBe(0); expect(write.stderr).toContain("unknown option '--write'");
++  });
++  it('corroborates date-only evidence and retains both digests, artifact age and stale registry facts', async () => {
++    const r = await run();
++    expect(r.exitCode).toBe(0); expect(r.report.verdict).toBe('verified');
++    expect(swap(r)).toMatchObject({ reconciliation: 'corroborated', artifact: { lifecycle: 'deprecated', replacementVerdict: 'unverified' } });
++    expect(revert(r).available).toBe(true); expect(revert(r).detail).toContain('Verify current accessibility');
++    expect(r.report.modelsMetadata.capture).toMatchObject({ digest: digest(r.captureText as string), authentication: 'caller_supplied_unverified', freshness: 'fresh' });
++    expect(r.report.modelsMetadata.artifact).toMatchObject({ digest: digest(r.migrationText), ageDays: 22.5, registry: fixture('migration.json').registry });
++    expect(JSON.stringify(r.report)).not.toContain('autoApplyAllowed');
++    expect(r.report).not.toHaveProperty('prReady');
++  });
++  it('changes the existing recovery consumer for an undated artifact while measured verdict and signals stay identical', async () => {
++    const migration = fixture('migration.json'); migration.migrations[0].evidence.shutdownDate = null;
++    const before = await run({ migration, noMetadata: true }); const after = await run({ migration });
++    expect(revert(before).available).toBe(false); expect(revert(after).available).toBe(true);
++    expect(after.report.signals).toEqual(before.report.signals); expect(after.report.verdict).toBe(before.report.verdict);
++    expect(swap(after)).toMatchObject({ reconciliation: 'metadata_schedule', effectiveSchedule: { source: 'metadata', shutdownDate: '2026-10-24' } });
++  });
++  it('keeps null, omitted field and missing model distinct; null cannot clear an artifact warning', async () => {
++    const outputs = [];
++    for (const kind of ['null', 'omitted', 'missing']) {
++      const capture = fixture('list-date.json'); const migration = fixture('migration.json');
++      migration.migrations[0].evidence.shutdownDate = '2026-10-22';
++      if (kind === 'null') capture.response.body.data[0].shutdown_date = null;
++      if (kind === 'omitted') delete capture.response.body.data[0].shutdown_date;
++      if (kind === 'missing') capture.response.body.data = [];
++      const r = await run({ capture, migration }); outputs.push(swap(r));
++      expect(r.exitCode).toBe(0); expect(r.report.verdict).toBe('verified'); expect(revert(r).available).toBe(false);
++    }
++    expect(outputs.map((s) => s.metadata.state)).toEqual(['no_announced_date', 'not_reported', 'missing_model']);
++    expect(outputs.map((s) => s.reconciliation)).toEqual(['conflict', 'artifact_only', 'artifact_only']);
++    expect(outputs.map((s) => s.artifact.shutdownDate)).toEqual(['2026-10-22', '2026-10-22', '2026-10-22']);
++  });
++  it('list/retrieve agree and preserve unrelated provider/model swaps', async () => {
++    const migration = fixture('migration.json');
++    migration.migrations.push({ ...structuredClone(migration.migrations[0]), from: 'unrelated-openai' });
++    migration.migrations.push({ ...structuredClone(migration.migrations[0]), provider: 'anthropic' });
++    const list = await run({ migration }); const retrieve = await run({ capture: fixture('retrieve-date.json'), migration });
++    expect(list.report.recovery).toEqual(retrieve.report.recovery);
++    expect(list.report.modelsMetadata.swaps.map((s: any) => s.reconciliation)).toEqual(['corroborated', 'artifact_only', 'artifact_only']);
++    expect(retrieve.report.modelsMetadata.swaps.map((s: any) => s.reconciliation)).toEqual(['corroborated', 'artifact_only', 'artifact_only']);
++    expect(retrieve.report.modelsMetadata.capture.scope).toEqual({ kind: 'retrieve', model: 'synthetic-source' });
++  });
++  it.each(['wrong-model', 'duplicate', 'azure-provider', 'proxy-surface', 'partner-document', 'fine-tune'])('cannot cross-bind %s evidence', async (kind) => {
++    const capture = fixture(kind === 'wrong-model' ? 'retrieve-date.json' : 'list-date.json'); const migration = fixture('migration.json');
++    if (kind === 'wrong-model') capture.response.body.id = 'another-model';
++    if (kind === 'duplicate') capture.response.body.data.push({ ...capture.response.body.data[0], shutdown_date: null });
++    if (kind === 'azure-provider') capture.provider = 'azure';
++    if (kind === 'proxy-surface') capture.surface = 'proxy';
++    if (kind === 'partner-document') migration.migrations[0].evidence.sourceUrl = 'https://learn.microsoft.com/azure/model-retirements';
++    if (kind === 'fine-tune') {
++      migration.migrations[0].from = 'ft:synthetic-source:owner:suffix'; capture.response.body.data[0].id = migration.migrations[0].from;
++    }
++    const r = await run({ capture, migration });
++    expect(r.exitCode).toBe(0); expect(['unknown', 'conflict']).toContain(swap(r).reconciliation); expect(revert(r).available).toBe(false);
++    expect(r.report.verdict).toBe('verified');
++  });
++  it.each(['2026-10-23T23:59:59Z', '2026-10-24T00:00:00Z', '2026-10-24T00:00:01Z', '2026-10-24T00:30:00+14:00', '2026-10-23T23:30:00-12:00'])('honors UTC schedule boundaries at %s without declaring observed shutdown', async (now) => {
++    const capture = fixture('list-date.json'); capture.retrievedAt = new Date(now).toISOString();
++    const r = await run({ capture, now });
++    expect(r.exitCode).toBe(0); expect(swap(r).reconciliation).toBe('corroborated');
++    expect(revert(r).available).toBe(new Date(now).toISOString().slice(0, 10) < '2026-10-24');
++    expect(r.report.recovery.caveats.join(' ')).toContain('accessibility was not observed');
++    expect(r.report.modelsMetadata.evaluatedAt).toBe(new Date(now).toISOString());
++  });
++  it('independently withholds stale/future/conflicting captures and recovers with valid current evidence', async () => {
++    for (const kind of ['stale', 'future', 'conflict', 'invalid-date', 'partial', 'truncated', 'http-failure']) {
++      const capture = fixture('list-date.json');
++      if (kind === 'stale') capture.retrievedAt = '2026-10-21T12:00:00Z';
++      if (kind === 'future') capture.retrievedAt = '2026-10-23T12:00:01Z';
++      if (kind === 'conflict') capture.response.body.data[0].shutdown_date = '2026-10-25';
++      if (kind === 'invalid-date') capture.response.body.data[0].shutdown_date = '2026-02-30';
++      if (kind === 'partial') capture.scope.coverage = 'partial';
++      if (kind === 'truncated') capture.response.body.has_more = true;
++      if (kind === 'http-failure') capture.response = { status: 404 };
++      const bad = await run({ capture });
++      expect(revert(bad).available, kind).toBe(false); expect(bad.exitCode, kind).toBe(0);
++      expect(bad.report.modelsMetadata.artifact.registry).toEqual(fixture('migration.json').registry);
++    }
++    const recovered = await run(); const repeated = await run();
++    expect(recovered.report).toEqual(repeated.report); expect(revert(recovered).available).toBe(true);
++    expect(swap(recovered).reconciliation).toBe('corroborated');
++  }, 120_000);
++  it.each(['malformed', 'shape', 'bytes', 'records', 'locator', 'error-body', 'duplicate-key', 'clock', 'migration'])('refuses %s input with exit 2 and no private marker', async (kind) => {
++    const capture = fixture('list-date.json'); const opts: Parameters<typeof run>[0] = { capture };
++    if (kind === 'malformed') opts.rawCapture = '{"PRIVATE_BODY_MARKER":';
++    if (kind === 'shape') opts.rawCapture = JSON.stringify({ schema: 'PRIVATE_BODY_MARKER' });
++    if (kind === 'bytes') opts.rawCapture = ' '.repeat(1_048_577) + 'PRIVATE_BODY_MARKER';
++    if (kind === 'records') capture.response.body.data = Array.from({ length: 2049 }, () => capture.response.body.data[0]);
++    if (kind === 'locator') capture.sourceUrl += '?PRIVATE_BODY_MARKER';
++    if (kind === 'error-body') capture.response = { status: 404, body: { error: 'PRIVATE_BODY_MARKER' } };
++    if (kind === 'duplicate-key') opts.rawCapture = '{"shutdown_date":null,"shutdown_date":"PRIVATE_BODY_MARKER"}';
++    if (kind === 'clock') opts.now = 'PRIVATE_BODY_MARKER';
++    if (kind === 'migration') opts.rawMigration = '{"PRIVATE_BODY_MARKER":';
++    const r = await run(opts);
++    expect(r.exitCode).toBe(2); expect(r.stdout).toBe(''); expect(r.stderr).toContain('models metadata:');
++    expect(r.stderr).not.toContain('PRIVATE_BODY_MARKER');
++  });
++  it('preserves supplied field facts while stale evidence withholds recovery', async () => {
++    for (const [kind, state] of [['null', 'no_announced_date'], ['omitted', 'not_reported'], ['missing', 'missing_model']]) {
++      const capture = fixture('list-date.json'); capture.retrievedAt = '2026-10-21T12:00:00Z';
++      if (kind === 'null') capture.response.body.data[0].shutdown_date = null;
++      if (kind === 'omitted') delete capture.response.body.data[0].shutdown_date;
++      if (kind === 'missing') capture.response.body.data = [];
++      const r = await run({ capture });
++      expect(swap(r)).toMatchObject({ metadata: { state }, reconciliation: 'unknown', effectiveSchedule: { source: 'none', shutdownDate: null } });
++      expect(r.report.modelsMetadata.capture.freshness).toBe('stale');
++      expect(revert(r).available).toBe(false); expect(r.exitCode).toBe(0);
++    }
++  }, 30_000);
++  it('refuses malformed UTF-8 migration bytes without replacing them in provenance', async () => {
++    const migration = fixture('migration.json'); migration.notes = ['invalid-byte', 'PRIVATE_BODY_MARKER'];
++    const rawMigration = Buffer.from(JSON.stringify(migration));
++    rawMigration[rawMigration.indexOf('invalid-byte')] = 0xff;
++    const r = await run({ rawMigration });
++    expect(r.exitCode).toBe(2); expect(r.stdout).toBe('');
++    expect(r.stderr).toContain('could_not_read_input_json');
++    expect(r.stderr).not.toContain('PRIVATE_BODY_MARKER');
++  });
++  it.each([false, true])('refuses malformed migration rows before consuming telemetry=%s', async (fromTelemetry) => {
++    const migration = fixture('migration.json'); migration.migrations = [null];
++    const r = await run({ migration, ...(fromTelemetry ? { telemetry: [] } : {}) });
++    expect(r.exitCode).toBe(2); expect(r.stdout).toBe('');
++    expect(r.stderr).toContain('invalid_migration_swap');
++  });
++  it('renders a scoped human result including provenance, conflict and unauthenticated evidence', async () => {
++    const capture = fixture('list-date.json'); capture.response.body.data[0].shutdown_date = null;
++    const r = await run({ capture, noJson: true });
++    expect(r.exitCode).toBe(0); expect(r.stdout).toContain('VERIFIED:');
++    expect(r.stdout).toContain('no_announced_date → conflict'); expect(r.stdout).toContain('caller_supplied_unverified');
++    expect(r.stdout).toContain('sha256:'); expect(r.stdout).toContain('do not authenticate');
++    expect(r.stdout).toContain('endpoint accessibility was not observed');
++  });
++  it('keeps missing outcomes and malformed costs unknown, actual measured failure regressed, success/zero recovered', async () => {
++    const deployedAt = Date.parse('2026-10-20T12:00:00Z');
++    const rows = (fields: any, unhealthy = false) => [-1, 1].flatMap((side) => Array.from({ length: 120 }, (_, i) => ({
++      timestamp: new Date(deployedAt + side * (i + 1) * 1000).toISOString(),
++      model: side < 0 ? 'synthetic-source' : 'synthetic-target', requests: 1, ...fields,
++      ...(unhealthy ? { status: side < 0 ? 200 : 500 } : {}),
++    })));
++    for (const [fields, unhealthy, expected, exit] of [
++      [{ cost: '12garbage' }, false, 'inconclusive', 3],
++      [{ status: 200, cost: 'unknown' }, false, 'verified', 0],
++      [{ status: 200, cost: 0 }, true, 'regression', 1],
++      [{ status: 200, cost: 0 }, false, 'verified', 0],
++      [{ failures: 0, cost: 0 }, false, 'verified', 0],
++    ] as const) {
++      const telemetry = rows(fields, unhealthy);
++      const control = await run({ telemetry, noMetadata: true }); const received = await run({ telemetry });
++      expect(received.report.verdict).toBe(expected); expect(received.exitCode).toBe(exit);
++      expect(received.report.signals).toEqual(control.report.signals); expect(control.exitCode).toBe(exit);
++      const cost = received.report.signals.find((s: any) => s.signal === 'costPer1k');
++      expect(cost.state).toBe(typeof fields.cost === 'number' ? 'ok' : 'not_measured');
++      expect(received.report.signals.find((s: any) => s.signal === 'quality').state).toBe('not_measured');
++    }
++  }, 120_000);
++});
+diff --git a/src/cli.ts b/src/cli.ts
+index bad0992..0ccea2d 100644
+--- a/src/cli.ts
++++ b/src/cli.ts
+@@ -2,7 +2,7 @@
+ import { Command } from 'commander';
+ import { execSync } from 'node:child_process';
+ import { createHash } from 'node:crypto';
+-import { appendFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, statSync, writeFileSync } from 'node:fs';
++import { appendFileSync, closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, readSync, statSync, writeFileSync } from 'node:fs';
+ import { tmpdir } from 'node:os';
+ import { basename, dirname, join, relative, resolve } from 'node:path';
+ import { fileURLToPath } from 'node:url';
+@@ -200,6 +200,7 @@ import { judgeRollout, parseRolloutInput, renderRollout, type RolloutInput } fro
+ import { windowsFromTelemetry } from './assurance/telemetry.js';
+ import { readTelemetryRows, toCallSample } from './runtime/evidence.js';
+ import { recoveryPlan } from './assurance/recovery.js';
++import { MODELS_METADATA_MAX_BYTES, ModelsMetadataError, parseModelsMetadata, reconcileModelsMetadata, renderModelsMetadata } from './recon/modelRetirement.js';
+ import { appendOutcome, HUMAN_DECISIONS, outcomeRecord, type HumanDecision } from './assurance/outcome.js';
+ import type { MigrationResult } from './migrate/migrate.js';
+ 
+@@ -4418,6 +4419,7 @@ program
+   .description('[preview] Judge whether a migrated feature stayed healthy after the deploy: verified, regression or inconclusive. Reads the numbers you give it; changes nothing.')
+   .option('--repo <path>', 'the repository whose mendr.config.json names the workflow and its limits', '.')
+   .option('--migration <file>', 'the mendr-migration/v1 JSON of the migration (from `migrate --json`), to recompute its recovery plan for today')
++  .option('--models-metadata <file>', 'with --migration: reconcile a caller-supplied offline Models capture for exact direct OpenAI source-model schedules')
+   .option('--record <file>', 'append a mendr-outcome/v1 line for this migration to this file, such as .mendr/outcomes.jsonl')
+   .option('--decision <decision>', `what the person did with the pull request, for the record: ${HUMAN_DECISIONS.join(', ')}`)
+   .option('--note <text>', 'anything to keep with the record, such as why the pull request was edited')
+@@ -4431,7 +4433,7 @@ program
+     (
+       numbers: string | undefined,
+       opts: {
+-        repo: string; migration?: string; record?: string; decision?: string; note?: string; json?: boolean;
++        repo: string; migration?: string; modelsMetadata?: string; record?: string; decision?: string; note?: string; json?: boolean;
+         from?: string; deployedAt?: string; workflow?: string; windowDays?: string; quality?: string;
+       },
+     ) => {
+@@ -4439,10 +4441,17 @@ program
+         console.error(`mendr: ${message}`);
+         process.exit(2);
+       };
++      if (opts.modelsMetadata && !opts.migration) fail('--models-metadata requires --migration for exact provider/from-model binding');
++      let migrationBytes: Buffer | undefined;
+       const readJson = (path: string, what: string): unknown => {
+         try {
+-          return JSON.parse(readFileSync(path, 'utf8'));
++          const bytes = readFileSync(path);
++          if (path === opts.migration) migrationBytes = bytes;
++          return JSON.parse(opts.modelsMetadata
++            ? new TextDecoder('utf-8', { fatal: true }).decode(bytes)
++            : bytes.toString('utf8'));
+         } catch (err) {
++          if (opts.modelsMetadata) return fail('models metadata: could_not_read_input_json');
+           return fail(`could not read ${what} ${path}: ${err instanceof Error ? err.message : String(err)}`);
+         }
+       };
+@@ -4461,10 +4470,42 @@ program
+       let migration: MigrationResult | null = null;
+       if (opts.migration) {
+         migration = readJson(opts.migration, 'the migration file') as MigrationResult;
++        if (opts.modelsMetadata && (!migration || typeof migration !== 'object')) fail('models metadata: invalid_migration');
+         if ((migration as { schema?: unknown }).schema !== 'mendr-migration/v1' || !Array.isArray(migration.migrations)) {
++          if (opts.modelsMetadata) fail('models metadata: invalid_migration');
+           fail(`${opts.migration} is not a mendr-migration/v1 file; write one with \`mendr migrate --json > migration.json\``);
+         }
+       }
++      // Only the opt-in path uses the shared pinnable evaluation clock; default rollout is unchanged.
++      let metadata: ReturnType<typeof reconcileModelsMetadata> | undefined;
++      let metadataNow: Date | undefined;
++      if (opts.modelsMetadata) {
++        try {
++          const evaluation = resolveEvaluationTime();
++          metadataNow = evaluation.at;
++          // Bound the read itself, including files that grow after opening. Never echo supplied bodies.
++          const fd = openSync(opts.modelsMetadata, 'r');
++          let bytes: Buffer;
++          try {
++            bytes = Buffer.alloc(MODELS_METADATA_MAX_BYTES + 1);
++            let length = 0;
++            while (length < bytes.length) {
++              const count = readSync(fd, bytes, length, bytes.length - length, null);
++              if (count === 0) break;
++              length += count;
++            }
++            bytes = bytes.subarray(0, length);
++          } finally { closeSync(fd); }
++          metadata = reconcileModelsMetadata(
++            parseModelsMetadata(bytes), migration, metadataNow, evaluation.source,
++            `sha256:${createHash('sha256').update(migrationBytes!).digest('hex')}`,
++          );
++        } catch (err) {
++          return fail(err instanceof ModelsMetadataError ? err.message : err instanceof EvaluatedAtError
++            ? 'models metadata: invalid_evaluation_clock; check MENDR_EVALUATED_AT'
++            : 'models metadata: could_not_read_capture');
++        }
++      }
+       let input: RolloutInput;
+       let telemetryNotes: string[] | undefined;
+       if (opts.from) {
+@@ -4503,8 +4544,8 @@ program
+       // was planned is not safe once the old model's shutdown date has passed.
+       const recovery = migration
+         ? recoveryPlan(
+-            migration.migrations.map((m) => ({ from: m.from, to: m.to, shutdownDate: m.evidence?.shutdownDate ?? null })),
+-            new Date(),
++            metadata?.recoverySwaps ?? migration.migrations.map((m) => ({ from: m.from, to: m.to, shutdownDate: m.evidence?.shutdownDate ?? null })),
++            metadataNow ?? new Date(),
+           )
+         : undefined;
+       const result = judgeRollout(input, workflow, recovery);
+@@ -4512,8 +4553,11 @@ program
+       if (opts.record) {
+         appendOutcome(opts.record, outcomeRecord(result, migration, (opts.decision as HumanDecision | undefined) ?? null, opts.note ?? null, new Date()));
+       }
+-      if (opts.json) console.log(JSON.stringify(result, null, 2));
+-      else for (const line of renderRollout(result)) console.log(line);
++      if (opts.json) console.log(JSON.stringify(metadata ? { ...result, modelsMetadata: metadata.report } : result, null, 2));
++      else {
++        for (const line of renderRollout(result)) console.log(line);
++        if (metadata) for (const line of renderModelsMetadata(metadata.report)) console.log(line);
++      }
+       if (opts.record && !opts.json) console.log(`Recorded in ${opts.record}.`);
+       // 0 verified, 1 regression, 3 inconclusive: a script can tell "worse" from "cannot say".
+       process.exit(result.verdict === 'verified' ? 0 : result.verdict === 'regression' ? 1 : 3);
+diff --git a/src/recon/__fixtures__/modelRetirement/default-migration.json b/src/recon/__fixtures__/modelRetirement/default-migration.json
+new file mode 100644
+index 0000000..e23545e
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/default-migration.json
+@@ -0,0 +1,63 @@
++{
++  "schema": "mendr-rollout/v1",
++  "workflow": "Synthetic support",
++  "configured": false,
++  "deployedAt": null,
++  "verdict": "verified",
++  "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
++  "signals": [
++    {
++      "signal": "errorRate",
++      "state": "ok",
++      "before": 0,
++      "after": 0,
++      "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
++    },
++    {
++      "signal": "latencyP95Ms",
++      "state": "ok",
++      "before": 100,
++      "after": 100,
++      "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
++    },
++    {
++      "signal": "costPer1k",
++      "state": "ok",
++      "before": 0,
++      "after": 0,
++      "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
++    },
++    {
++      "signal": "quality",
++      "state": "ok",
++      "before": "passed",
++      "after": "passed",
++      "detail": "your quality check passed after the deploy (it passed before)"
++    }
++  ],
++  "recovery": {
++    "asOf": "2026-10-23",
++    "options": [
++      {
++        "kind": "revert",
++        "available": true,
++        "detail": "A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it."
++      },
++      {
++        "kind": "fix_forward",
++        "available": true,
++        "detail": "Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters."
++      },
++      {
++        "kind": "other_model",
++        "available": true,
++        "detail": "Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it."
++      }
++    ],
++    "caveats": [
++      "Current model accessibility was not observed by this plan; an announced date is schedule evidence only.",
++      "Replacement answer quality, latency and cost are not established by a recovery plan.",
++      "A revert undoes code, not what the feature already did: messages sent and records written stay as they are."
++    ]
++  }
++}
+diff --git a/src/recon/__fixtures__/modelRetirement/default-migration.txt b/src/recon/__fixtures__/modelRetirement/default-migration.txt
+new file mode 100644
+index 0000000..de11e64
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/default-migration.txt
+@@ -0,0 +1,21 @@
++mendr rollout · Synthetic support
++
++note: "Synthetic support" is not in mendr.config.json, so the default limits were used.
++
++VERIFIED: the feature stayed healthy after the deploy
++  200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.
++
++  ✓ error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)
++  ✓ p95 latency 100 ms → 100 ms (+0%; limit +25%)
++  ✓ cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)
++  ✓ your quality check passed after the deploy (it passed before)
++
++If you act on this (as of 2026-10-23):
++  • A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it.
++  • Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters.
++  • Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it.
++  note: Current model accessibility was not observed by this plan; an announced date is schedule evidence only.
++  note: Replacement answer quality, latency and cost are not established by a recovery plan.
++  note: A revert undoes code, not what the feature already did: messages sent and records written stay as they are.
++
++mendr reads the numbers you gave it. It does not deploy, roll back or change anything.
+diff --git a/src/recon/__fixtures__/modelRetirement/default-numbers.json b/src/recon/__fixtures__/modelRetirement/default-numbers.json
+new file mode 100644
+index 0000000..2ffe2d7
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/default-numbers.json
+@@ -0,0 +1,38 @@
++{
++  "schema": "mendr-rollout/v1",
++  "workflow": "Synthetic support",
++  "configured": false,
++  "deployedAt": null,
++  "verdict": "verified",
++  "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
++  "signals": [
++    {
++      "signal": "errorRate",
++      "state": "ok",
++      "before": 0,
++      "after": 0,
++      "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
++    },
++    {
++      "signal": "latencyP95Ms",
++      "state": "ok",
++      "before": 100,
++      "after": 100,
++      "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
++    },
++    {
++      "signal": "costPer1k",
++      "state": "ok",
++      "before": 0,
++      "after": 0,
++      "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
++    },
++    {
++      "signal": "quality",
++      "state": "ok",
++      "before": "passed",
++      "after": "passed",
++      "detail": "your quality check passed after the deploy (it passed before)"
++    }
++  ]
++}
+diff --git a/src/recon/__fixtures__/modelRetirement/default-numbers.txt b/src/recon/__fixtures__/modelRetirement/default-numbers.txt
+new file mode 100644
+index 0000000..9c1d9da
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/default-numbers.txt
+@@ -0,0 +1,13 @@
++mendr rollout · Synthetic support
++
++note: "Synthetic support" is not in mendr.config.json, so the default limits were used.
++
++VERIFIED: the feature stayed healthy after the deploy
++  200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.
++
++  ✓ error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)
++  ✓ p95 latency 100 ms → 100 ms (+0%; limit +25%)
++  ✓ cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)
++  ✓ your quality check passed after the deploy (it passed before)
++
++mendr reads the numbers you gave it. It does not deploy, roll back or change anything.
+diff --git a/src/recon/__fixtures__/modelRetirement/fixed-clock.cjs b/src/recon/__fixtures__/modelRetirement/fixed-clock.cjs
+new file mode 100644
+index 0000000..1f1d57b
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/fixed-clock.cjs
+@@ -0,0 +1,11 @@
++// Synthetic test clock only. Opt-in production uses MENDR_EVALUATED_AT instead.
++const RealDate = Date;
++const pinned = process.env.MENDR_TEST_NOW;
++if (pinned) {
++  const epoch = RealDate.parse(pinned);
++  if (!Number.isFinite(epoch)) throw new Error('invalid synthetic clock');
++  globalThis.Date = class extends RealDate {
++    constructor(...args) { super(...(args.length ? args : [epoch])); }
++    static now() { return epoch; }
++  };
++}
+diff --git a/src/recon/__fixtures__/modelRetirement/list-date.json b/src/recon/__fixtures__/modelRetirement/list-date.json
+new file mode 100644
+index 0000000..bbdedf9
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/list-date.json
+@@ -0,0 +1,10 @@
++{
++  "schema": "mendr-models-metadata/v1",
++  "provider": "openai", "surface": "direct",
++  "sourceUrl": "https://api.openai.com/v1/models",
++  "retrievedAt": "2026-10-23T12:00:00Z",
++  "scope": { "kind": "list", "coverage": "complete" },
++  "response": { "status": 200, "body": { "object": "list", "data": [
++    { "object": "model", "id": "synthetic-source", "shutdown_date": "2026-10-24", "created": 0, "owned_by": "synthetic" }
++  ] } }
++}
+diff --git a/src/recon/__fixtures__/modelRetirement/migration.json b/src/recon/__fixtures__/modelRetirement/migration.json
+new file mode 100644
+index 0000000..086772e
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/migration.json
+@@ -0,0 +1,21 @@
++{
++  "schema": "mendr-migration/v1",
++  "generatedBy": "mendr",
++  "repo": "synthetic-offline-fixture",
++  "generatedAt": "2026-10-01T00:00:00Z",
++  "sha": null,
++  "migrated": true,
++  "migrations": [{
++    "provider": "openai", "model": "synthetic-source", "from": "synthetic-source", "to": "synthetic-target",
++    "language": "ts", "sites": 1, "files": ["client.ts"],
++    "evidence": {
++      "entryId": "openai.synthetic-source.retirement-2026-10-24", "lifecycle": "deprecated", "shutdownDate": "2026-10-24",
++      "daysUntil": 23, "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
++      "replacementVerdict": "unverified", "excerpts": []
++    }
++  }],
++  "paramTransforms": [], "skipped": [], "changedFiles": ["client.ts"], "diff": "",
++  "verification": { "verdict": "inconclusive", "behavioralTested": false },
++  "prReady": false, "notes": ["Synthetic schedule only; no live request or verified write."],
++  "registry": { "source": "bundled", "version": "synthetic-old", "publishedAt": "2026-10-01T00:00:00Z", "ageDays": 22, "maxAgeDays": 14, "freshness": "stale" }
++}
+diff --git a/src/recon/__fixtures__/modelRetirement/numbers.json b/src/recon/__fixtures__/modelRetirement/numbers.json
+new file mode 100644
+index 0000000..b507049
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/numbers.json
+@@ -0,0 +1,5 @@
++{
++  "workflow": "Synthetic support",
++  "before": { "calls": 200, "errorRate": 0, "latencyP95Ms": 100, "costPer1k": 0, "quality": "passed" },
++  "after": { "calls": 200, "errorRate": 0, "latencyP95Ms": 100, "costPer1k": 0, "quality": "passed" }
++}
+diff --git a/src/recon/__fixtures__/modelRetirement/retrieve-date.json b/src/recon/__fixtures__/modelRetirement/retrieve-date.json
+new file mode 100644
+index 0000000..881ab21
+--- /dev/null
++++ b/src/recon/__fixtures__/modelRetirement/retrieve-date.json
+@@ -0,0 +1,8 @@
++{
++  "schema": "mendr-models-metadata/v1",
++  "provider": "openai", "surface": "direct",
++  "sourceUrl": "https://api.openai.com/v1/models/synthetic-source",
++  "retrievedAt": "2026-10-23T12:00:00Z",
++  "scope": { "kind": "retrieve", "model": "synthetic-source" },
++  "response": { "status": 200, "body": { "object": "model", "id": "synthetic-source", "shutdown_date": "2026-10-24" } }
++}
+diff --git a/src/recon/modelRetirement.test.ts b/src/recon/modelRetirement.test.ts
+new file mode 100644
+index 0000000..0b34682
+--- /dev/null
++++ b/src/recon/modelRetirement.test.ts
+@@ -0,0 +1,247 @@
++import { describe, expect, it } from 'vitest';
++import { readFileSync } from 'node:fs';
++import { recoveryPlan } from '../assurance/recovery.js';
++import { MODELS_METADATA_MAX_BYTES, MODELS_METADATA_MAX_RECORDS, parseModelsMetadata, reconcileModelsMetadata } from './modelRetirement.js';
++
++const NOW = new Date('2026-10-23T12:00:00Z');
++const ROOT = new URL('./__fixtures__/modelRetirement/', import.meta.url);
++const original = (name: string): any => JSON.parse(readFileSync(new URL(name, ROOT), 'utf8'));
++const capture = (): any => original('list-date.json');
++const migration = (): any => original('migration.json');
++const row = (id = 'synthetic-source', value: unknown = '2026-10-24'): any => ({ object: 'model', id, shutdown_date: value });
++function receive(c = capture(), m = migration(), now = NOW) {
++  return reconcileModelsMetadata(parseModelsMetadata(JSON.stringify(c)), m, now, 'override', `sha256:${'a'.repeat(64)}`);
++}
++function first(c = capture(), m = migration(), now = NOW) { return receive(c, m, now).report.swaps[0]; }
++function revert(c = capture(), m = migration(), now = NOW) { return recoveryPlan(receive(c, m, now).recoverySwaps, now).options[0]; }
++
++describe('supplied Models metadata, exact scoped reconciliation', () => {
++  it('corroborates an exact schedule and independently reports unauthenticated provenance and stale artifact registry', () => {
++    const c = capture(); const m = migration(); const before = JSON.stringify(m);
++    const { report } = receive(c, m);
++    expect(report.capture).toMatchObject({ authentication: 'caller_supplied_unverified', freshness: 'fresh', ageHours: 0, maxAgeHours: 24, recordCount: 1 });
++    expect(report.capture.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
++    expect(report.artifact).toMatchObject({ ageDays: 22.5, registry: m.registry });
++    expect(report.swaps[0]).toMatchObject({ reconciliation: 'corroborated', effectiveSchedule: { source: 'corroborated', shutdownDate: '2026-10-24' } });
++    expect(JSON.stringify(m)).toBe(before);
++    expect(revert(c, m)).toMatchObject({ available: true });
++    expect(revert(c, m).detail).toContain('Verify current accessibility');
++    expect(report.limits.join(' ')).toContain('do not authenticate');
++  });
++  it('supplies a bounded schedule to an undated artifact without changing verification, lifecycle or replacement', () => {
++    const m = migration(); m.migrations[0].evidence.shutdownDate = null;
++    const frozen = JSON.stringify(m);
++    const r = first(capture(), m);
++    expect(r).toMatchObject({ reconciliation: 'metadata_schedule', artifact: { shutdownDate: null, lifecycle: 'deprecated', replacementVerdict: 'unverified' }, effectiveSchedule: { source: 'metadata', shutdownDate: '2026-10-24' } });
++    expect(JSON.stringify(m)).toBe(frozen);
++    expect(revert(capture(), m).available).toBe(true);
++  });
++  it('agrees on equivalent list and retrieve objects without equating their scope provenance', () => {
++    const list = receive(); const retrieve = receive(original('retrieve-date.json'));
++    expect(list.recoverySwaps).toEqual(retrieve.recoverySwaps);
++    expect(list.report.swaps).toEqual(retrieve.report.swaps);
++    expect(list.report.capture.scope).not.toEqual(retrieve.report.capture.scope);
++    expect(list.report.capture.digest).not.toBe(retrieve.report.capture.digest);
++  });
++  it.each([
++    ['null', row('synthetic-source', null), 'no_announced_date', 'conflict', 'none'],
++    ['omitted', { object: 'model', id: 'synthetic-source' }, 'not_reported', 'artifact_only', 'artifact'],
++    ['missing', row('other-exact-model'), 'missing_model', 'artifact_only', 'artifact'],
++  ])('keeps %s distinct against a dated artifact', (_, value, state, reconciliation, source) => {
++    const c = capture(); c.response.body.data = [value];
++    expect(first(c)).toMatchObject({ metadata: { state }, reconciliation, effectiveSchedule: { source } });
++    if (state === 'no_announced_date') expect(revert(c).available).toBe(false);
++  });
++  it.each(['null', 'omitted', 'missing'])('%s alone never proves a safe revert', (kind) => {
++    const c = capture(); const m = migration(); m.migrations[0].evidence.shutdownDate = null;
++    c.response.body.data = kind === 'null' ? [row('synthetic-source', null)] : kind === 'omitted' ? [{ object: 'model', id: 'synthetic-source' }] : [];
++    expect(revert(c, m).available).toBe(false);
++    expect(first(c, m).metadata.state).toBe(kind === 'null' ? 'no_announced_date' : kind === 'omitted' ? 'not_reported' : 'missing_model');
++  });
++  it('null cannot erase an expired artifact date', () => {
++    const c = capture(); const m = migration(); c.response.body.data = [row('synthetic-source', null)]; m.migrations[0].evidence.shutdownDate = '2026-10-22';
++    expect(first(c, m)).toMatchObject({ reconciliation: 'conflict', artifact: { shutdownDate: '2026-10-22' }, metadata: { state: 'no_announced_date' } });
++    expect(revert(c, m).available).toBe(false);
++  });
++  it('retains both differing dates and refuses to select either as recovery assurance', () => {
++    const c = capture(); c.response.body.data = [row('synthetic-source', '2027-01-01')];
++    expect(first(c)).toMatchObject({ reconciliation: 'conflict', artifact: { shutdownDate: '2026-10-24' }, metadata: { shutdownDate: '2027-01-01' }, effectiveSchedule: { source: 'none', shutdownDate: null }, reasons: ['different_shutdown_dates'] });
++    expect(revert(c).available).toBe(false);
++  });
++  it.each([
++    ['gpt-example', 'gpt-example-2026-10-01'], ['gpt-example-2026-10-01', 'gpt-example'],
++    ['gpt-example', 'ft:gpt-example:customer:custom'], ['exact-model', 'EXACT-model'],
++  ])('never cross-binds %s to %s', (from, id) => {
++    const m = migration(); m.migrations[0].from = from; m.migrations[0].evidence.shutdownDate = null;
++    const c = capture(); c.response.body.data = [row(id)];
++    expect(first(c, m)).toMatchObject({ metadata: { state: 'missing_model' }, reconciliation: 'unknown', effectiveSchedule: { shutdownDate: null } });
++  });
++  it('allows only exact snapshot binding and refuses even exact fine-tune scope', () => {
++    const m = migration(); m.migrations[0].from = 'gpt-example-2026-10-01';
++    const c = capture(); c.response.body.data = [row(m.migrations[0].from)];
++    expect(first(c, m).reconciliation).toBe('corroborated');
++    for (const id of ['ft:gpt-example:owner:suffix', 'ft-gpt-example']) {
++      m.migrations[0].from = id; c.response.body.data = [row(id)];
++      expect(first(c, m).reasons).toContain('unsupported_fine_tune');
++      expect(revert(c, m).available).toBe(false);
++    }
++  });
++  it('preserves unrelated swaps and all target IDs without a replacement inference', () => {
++    const m = migration();
++    m.migrations.push({ ...structuredClone(m.migrations[0]), from: 'unrelated-openai' });
++    m.migrations.push({ ...structuredClone(m.migrations[0]), provider: 'anthropic', from: 'synthetic-source' });
++    const c = original('retrieve-date.json');
++    const r = receive(c, m);
++    expect(r.report.swaps.map((s) => s.reconciliation)).toEqual(['corroborated', 'artifact_only', 'artifact_only']);
++    expect(r.recoverySwaps).toEqual(m.migrations.map((s: any) => ({ from: s.from, to: s.to, shutdownDate: s.evidence.shutdownDate })));
++  });
++  it('does not accept a retrieve body for the wrong declared exact model', () => {
++    const c = original('retrieve-date.json'); c.response.body.id = 'other-model';
++    expect(first(c).reasons).toContain('retrieve_model_mismatch');
++    expect(revert(c).available).toBe(false);
++  });
++  it.each([404, 401, 429, 500])('retains HTTP %s as failure evidence without inventing a date', (status) => {
++    const c = original('retrieve-date.json'); c.response = { status };
++    const r = receive(c);
++    expect(r.report.capture.responseStatus).toBe(status);
++    expect(r.report.swaps[0]).toMatchObject({ reconciliation: 'unknown', metadata: { state: 'unusable' }, reasons: ['http_failure'] });
++    expect(revert(c).available).toBe(false);
++  });
++  it.each([['provider', 'azure'], ['surface', 'azure'], ['surface', 'proxy']])('refuses %s=%s authority even with an official locator and exact ID', (field, value) => {
++    const c = capture(); c[field] = value;
++    expect(first(c).reconciliation).toBe('unknown');
++    expect(revert(c).available).toBe(false);
++  });
++  it('keeps partner document facts separate from the direct schedule', () => {
++    const m = migration(); m.migrations[0].evidence.sourceUrl = 'https://learn.microsoft.com/azure/ai-services/openai/concepts/model-retirements';
++    expect(first(capture(), m).reasons).toContain('ambiguous_artifact_surface');
++    expect(revert(capture(), m).available).toBe(false);
++  });
++  it.each([
++    ['2026-10-22T12:00:00Z', 'fresh', true],
++    ['2026-10-22T11:59:59Z', 'stale', false],
++    ['2026-10-23T12:00:01Z', 'future', false],
++    ['2026-10-23T14:00:00+02:00', 'fresh', true],
++  ])('grades retrieval %s independently as %s', (time, freshness, available) => {
++    const c = capture(); c.retrievedAt = time;
++    const r = receive(c);
++    expect(r.report.capture.freshness).toBe(freshness);
++    expect(revert(c).available).toBe(available);
++    expect(r.report.artifact.registry).toEqual(migration().registry);
++    if (!available) expect(r.report.swaps[0].reasons).toContain(`${freshness}_capture`);
++  });
++  it.each([
++    ['2026-10-23T23:59:59Z', true], ['2026-10-24T00:00:00Z', false],
++    ['2026-10-24T00:00:01Z', false], ['2026-10-24T00:30:00+14:00', true],
++    ['2026-10-23T23:30:00-12:00', false],
++  ])('uses the existing UTC schedule rule at %s without observing accessibility', (clock, available) => {
++    const now = new Date(clock); const c = capture(); c.retrievedAt = now.toISOString();
++    expect(revert(c, migration(), now).available).toBe(available);
++    expect(first(c, migration(), now).metadata.state).toBe('scheduled');
++    expect(recoveryPlan(receive(c, migration(), now).recoverySwaps, now).caveats.join(' ')).toContain('accessibility was not observed');
++  });
++  it.each(['2026-02-30', '2025-02-29', '2026-13-01', '2026-00-12', '2026-10-24T00:00:00Z', '', 42, false])('does not normalize an invalid shutdown date %s', (date) => {
++    const c = capture(); c.response.body.data = [row('synthetic-source', date)];
++    expect(first(c).reasons).toContain('invalid_shutdown_date');
++    expect(revert(c).available).toBe(false);
++  });
++  it.each([
++    ['stale', 'null', 'no_announced_date'], ['stale', 'omitted', 'not_reported'], ['stale', 'missing', 'missing_model'],
++    ['future', 'null', 'no_announced_date'], ['future', 'omitted', 'not_reported'], ['future', 'missing', 'missing_model'],
++  ])('preserves supplied field facts under %s %s capture grading', (grade, kind, state) => {
++    const c = capture(); c.retrievedAt = grade === 'stale' ? '2026-10-21T12:00:00Z' : '2026-10-23T12:00:01Z';
++    if (kind === 'null') c.response.body.data[0].shutdown_date = null;
++    if (kind === 'omitted') delete c.response.body.data[0].shutdown_date;
++    if (kind === 'missing') c.response.body.data = [];
++    expect(first(c)).toMatchObject({ metadata: { state }, reconciliation: 'unknown', effectiveSchedule: { source: 'none', shutdownDate: null } });
++    expect(first(c).reasons).toContain(`${grade}_capture`);
++    expect(revert(c).available).toBe(false);
++  });
++  it('preserves supplied field facts when artifact dates are invalid or conflicting', () => {
++    const m = migration(); m.migrations[0].evidence.shutdownDate = 'not-a-date';
++    expect(first(capture(), m)).toMatchObject({ metadata: { state: 'scheduled', shutdownDate: '2026-10-24' }, reconciliation: 'unknown' });
++    m.migrations[0].evidence.shutdownDate = '2026-10-24'; m.migrations.push(structuredClone(m.migrations[0]));
++    m.migrations[1].evidence.shutdownDate = '2026-10-25';
++    for (const r of receive(capture(), m).report.swaps) expect(r).toMatchObject({ metadata: { state: 'scheduled', shutdownDate: '2026-10-24' }, reconciliation: 'conflict' });
++  });
++  it('accepts a real leap date as a schedule', () => {
++    const c = capture(); const m = migration(); c.response.body.data = [row('synthetic-source', '2028-02-29')]; m.migrations[0].evidence.shutdownDate = null;
++    expect(first(c, m).effectiveSchedule.shutdownDate).toBe('2028-02-29');
++  });
++  it.each(['2026-02-30T12:00:00Z', '2026-10-23T12:00:00', '2026-10-23', '2026-10-23T24:00:00Z', '2026-10-23T12:00:00+25:00'])('refuses ambiguous/invalid retrieval time %s', (time) => {
++    const c = capture(); c.retrievedAt = time;
++    expect(() => receive(c)).toThrow(/invalid_envelope/);
++  });
++  it('identical duplicates are visible; differing duplicates are conflicted regardless of order', () => {
++    const c = capture(); c.response.body.data = [row(), row()];
++    expect(receive(c).report.capture.duplicateCount).toBe(1);
++    expect(first(c).reconciliation).toBe('corroborated');
++    for (const values of [[row(), row('synthetic-source', null)], [row('synthetic-source', null), row()]]) {
++      c.response.body.data = values;
++      expect(first(c).reconciliation).toBe('conflict');
++      expect(first(c).reasons).toContain('duplicate_conflicting_model');
++      expect(revert(c).available).toBe(false);
++    }
++  });
++  it.each(['partial', 'truncated', 'malformed-row', 'malformed-body'])('withholds assurance on %s evidence, even alongside an exact valid row', (kind) => {
++    const c = capture();
++    if (kind === 'partial') c.scope.coverage = 'partial';
++    if (kind === 'truncated') c.response.body.has_more = true;
++    if (kind === 'malformed-row') c.response.body.data.push({ error: 'PRIVATE_BODY_MARKER' });
++    if (kind === 'malformed-body') c.response.body = [];
++    expect(first(c).reconciliation).toBe('unknown');
++    expect(revert(c).available).toBe(false);
++    expect(JSON.stringify(receive(c).report)).not.toContain('PRIVATE_BODY_MARKER');
++  });
++  it('does not choose a convenient artifact date from conflicting duplicate migrations', () => {
++    const m = migration(); m.migrations.push(structuredClone(m.migrations[0])); m.migrations[1].evidence.shutdownDate = '2026-10-25';
++    expect(receive(capture(), m).report.swaps.every((s) => s.reconciliation === 'conflict')).toBe(true);
++    expect(revert(capture(), m).available).toBe(false);
++  });
++  it('invalid artifact dates stay explicit unknown rather than lexical future dates', () => {
++    const m = migration(); m.migrations[0].evidence.shutdownDate = 'not-a-date';
++    expect(first(capture(), m)).toMatchObject({ artifact: { dateState: 'invalid' }, reconciliation: 'unknown', reasons: ['invalid_artifact_date'] });
++    expect(revert(capture(), m).available).toBe(false);
++  });
++  it('recovers deterministically from stale and conflicting captures without cache or mutation', () => {
++    const good = capture(); const bad = capture(); const expected = receive(good); bad.retrievedAt = '2026-10-01T00:00:00Z';
++    expect(first(bad).reconciliation).toBe('unknown');
++    expect(receive(good)).toEqual(expected);
++    bad.retrievedAt = good.retrievedAt; bad.response.body.data = [row('synthetic-source', null)];
++    expect(first(bad).reconciliation).toBe('conflict');
++    expect(receive(good)).toEqual(expected);
++  });
++});
++
++describe('bounded capture intake diagnostics', () => {
++  it.each(['{PRIVATE_BODY_MARKER', 'null', '[]'])('refuses malformed JSON/envelope with safe errors: %s', (raw) => {
++    try { parseModelsMetadata(raw); throw new Error('should refuse'); }
++    catch (e) { expect(String(e)).toMatch(/malformed_json|invalid_envelope/); expect(String(e)).not.toContain('PRIVATE_BODY_MARKER'); }
++  });
++  it('refuses duplicate JSON keys including escaped equivalent keys', () => {
++    for (const raw of ['{"schema":1,"schema":2}', '{"shutdown_date":null,"shutdown_\\u0064ate":"2026-10-24"}']) {
++      expect(() => parseModelsMetadata(raw)).toThrow(/duplicate_json_key/);
++    }
++  });
++  it('bounds bytes, depth, UTF-8 and record count', () => {
++    expect(() => parseModelsMetadata(' '.repeat(MODELS_METADATA_MAX_BYTES + 1))).toThrow(/excessive_bytes/);
++    expect(() => parseModelsMetadata('['.repeat(33))).toThrow(/excessive_json_depth/);
++    expect(() => parseModelsMetadata(new Uint8Array([0xff]))).toThrow(/invalid_utf8/);
++    const c = capture(); c.response.body.data = Array.from({ length: MODELS_METADATA_MAX_RECORDS + 1 }, () => row());
++    expect(() => receive(c)).toThrow(/excessive_records/);
++  });
++  it.each(['https://proxy.example/v1/models', 'https://api.openai.com/v1/models?key=PRIVATE_BODY_MARKER', 'https://PRIVATE_BODY_MARKER@api.openai.com/v1/models', 'https://api.openai.com/v1/models/other'])('refuses an unbound locator without echoing it: %s', (url) => {
++    const c = capture(); c.sourceUrl = url;
++    expect(() => receive(c)).toThrow(/source_locator_mismatch/);
++    try { receive(c); } catch (e) { expect(String(e)).not.toContain('PRIVATE_BODY_MARKER'); }
++  });
++  it('refuses error bodies, headers and unknown envelope keys without echoing private values', () => {
++    const error = capture(); error.response = { status: 404, body: { message: 'PRIVATE_BODY_MARKER' } };
++    const headers = capture(); headers.headers = { authorization: 'PRIVATE_BODY_MARKER' };
++    const extra = capture(); extra.prompt = 'PRIVATE_BODY_MARKER';
++    for (const c of [error, headers, extra]) {
++      try { receive(c); throw new Error('should refuse'); }
++      catch (e) { expect(String(e)).toMatch(/error_body_not_allowed|invalid_envelope/); expect(String(e)).not.toContain('PRIVATE_BODY_MARKER'); }
++    }
++  });
++});
+diff --git a/src/recon/modelRetirement.ts b/src/recon/modelRetirement.ts
+new file mode 100644
+index 0000000..a6259e1
+--- /dev/null
++++ b/src/recon/modelRetirement.ts
+@@ -0,0 +1,310 @@
++import { createHash } from 'node:crypto';
++import { resolveEvaluationTime, type EvaluationTimeSource } from '../audit/evaluatedAt.js';
++import type { RecoverySwap } from '../assurance/recovery.js';
++
++export const MODELS_METADATA_SCHEMA = 'mendr-models-metadata/v1';
++export const MODELS_METADATA_MAX_BYTES = 1_048_576;
++export const MODELS_METADATA_MAX_RECORDS = 2_048;
++export const MODELS_METADATA_MAX_AGE_HOURS = 24;
++const DAY = 86_400_000;
++const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,199}$/;
++const ENDPOINT = 'https://api.openai.com/v1/models';
++type ObjectValue = Record<string, unknown>;
++const object = (v: unknown): v is ObjectValue => v !== null && typeof v === 'object' && !Array.isArray(v);
++const own = (v: ObjectValue, k: string): boolean => Object.hasOwn(v, k);
++const hash = (v: Uint8Array | string): string => `sha256:${createHash('sha256').update(v).digest('hex')}`;
++
++/** Diagnostics deliberately contain no parser text, supplied paths, body values or error bodies. */
++export class ModelsMetadataError extends Error {
++  constructor(public readonly code: string) {
++    super(`models metadata: ${code}; use a bounded mendr-models-metadata/v1 capture and a mendr-migration/v1 artifact`);
++  }
++}
++const refuse = (code: string): never => { throw new ModelsMetadataError(code); };
++function exactKeys(v: ObjectValue, allowed: string[]): boolean {
++  return Object.keys(v).every((k) => allowed.includes(k));
++}
++function calendarDate(v: unknown): v is string {
++  if (typeof v !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(v)) return false;
++  try { return resolveEvaluationTime({ MENDR_EVALUATED_AT: v }).at.toISOString().slice(0, 10) === v; }
++  catch { return false; }
++}
++function instant(v: unknown): Date | null {
++  if (typeof v !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/.test(v)) return null;
++  try { return resolveEvaluationTime({ MENDR_EVALUATED_AT: v }).at; }
++  catch { return null; }
++}
++
++// JSON.parse accepts duplicate keys with last-wins semantics. Check keys before parsing;
++// JSON.parse still owns the grammar. Depth and byte limits bound this lexical pass.
++function checkJsonKeys(text: string): void {
++  const stack: { keys: Set<string> | null; expectingKey: boolean }[] = [];
++  for (let i = 0; i < text.length; i++) {
++    const ch = text[i];
++    if (ch === '"') {
++      const start = i;
++      for (i++; i < text.length; i++) {
++        if (text[i] === '\\') { i++; continue; }
++        if (text[i] === '"') break;
++      }
++      const top = stack.at(-1);
++      if (top?.keys && top.expectingKey) {
++        let key: string;
++        try { key = JSON.parse(text.slice(start, i + 1)); } catch { return refuse('malformed_json'); }
++        if (top.keys.has(key)) refuse('duplicate_json_key');
++        top.keys.add(key);
++        top.expectingKey = false;
++      }
++    } else if (ch === '{' || ch === '[') {
++      stack.push({ keys: ch === '{' ? new Set() : null, expectingKey: ch === '{' });
++      if (stack.length > 32) refuse('excessive_json_depth');
++    } else if (ch === '}' || ch === ']') stack.pop();
++    else if (ch === ',' && stack.at(-1)?.keys) stack.at(-1)!.expectingKey = true;
++  }
++}
++
++type Field = { state: 'scheduled'; shutdownDate: string } | { state: 'no_announced_date' | 'not_reported' | 'invalid'; shutdownDate: null };
++export interface ModelsCapture {
++  digest: string;
++  provider: string;
++  surface: string;
++  sourceUrl: string;
++  retrievedAt: string;
++  scope: { kind: 'list'; coverage: 'complete' | 'partial' } | { kind: 'retrieve'; model: string };
++  responseStatus: number;
++  recordCount: number;
++  duplicateCount: number;
++  reasons: string[];
++  records: ReadonlyMap<string, Field>;
++}
++
++/** Parse supplied response bytes only. Does not fetch, authenticate or normalize IDs. */
++export function parseModelsMetadata(bytes: Uint8Array | string): ModelsCapture {
++  const raw = typeof bytes === 'string' ? Buffer.from(bytes, 'utf8') : bytes;
++  if (raw.byteLength > MODELS_METADATA_MAX_BYTES) refuse('excessive_bytes');
++  let text: string;
++  try { text = new TextDecoder('utf-8', { fatal: true }).decode(raw); }
++  catch { return refuse('invalid_utf8'); }
++  checkJsonKeys(text);
++  let v: unknown;
++  try { v = JSON.parse(text); } catch { return refuse('malformed_json'); }
++  if (!object(v) || !exactKeys(v, ['schema', 'provider', 'surface', 'sourceUrl', 'retrievedAt', 'scope', 'response']) ||
++      v.schema !== MODELS_METADATA_SCHEMA || typeof v.provider !== 'string' || !ID.test(v.provider) ||
++      typeof v.surface !== 'string' || !ID.test(v.surface) || !instant(v.retrievedAt) || !object(v.scope) || !object(v.response)) {
++    return refuse('invalid_envelope');
++  }
++  let scope: ModelsCapture['scope'];
++  if (v.scope.kind === 'list' && exactKeys(v.scope, ['kind', 'coverage']) && ['complete', 'partial'].includes(v.scope.coverage as string)) {
++    scope = { kind: 'list', coverage: v.scope.coverage as 'complete' | 'partial' };
++  } else if (v.scope.kind === 'retrieve' && exactKeys(v.scope, ['kind', 'model']) && typeof v.scope.model === 'string' && ID.test(v.scope.model)) {
++    scope = { kind: 'retrieve', model: v.scope.model };
++  } else return refuse('invalid_scope');
++  const expectedUrl = scope.kind === 'list' ? ENDPOINT : `${ENDPOINT}/${encodeURIComponent(scope.model)}`;
++  // Unsupported source locators never get echoed (userinfo/query could be private).
++  if (v.sourceUrl !== expectedUrl) refuse('source_locator_mismatch');
++  if (!exactKeys(v.response, ['status', 'body']) || !Number.isInteger(v.response.status) || (v.response.status as number) < 100 || (v.response.status as number) > 599) refuse('invalid_response');
++  if (v.response.status !== 200 && own(v.response, 'body')) refuse('error_body_not_allowed');
++  const reasons: string[] = [];
++  if (v.provider !== 'openai') reasons.push('unsupported_provider');
++  if (v.surface !== 'direct') reasons.push('unsupported_surface');
++  if (scope.kind === 'list' && scope.coverage !== 'complete') reasons.push('partial_capture');
++  const records = new Map<string, Field>();
++  let rows: unknown[] = [];
++  if (v.response.status !== 200) reasons.push('http_failure');
++  else if (scope.kind === 'list') {
++    const body = v.response.body;
++    if (!object(body) || body.object !== 'list' || !Array.isArray(body.data)) reasons.push('invalid_list_body');
++    else {
++      if (body.data.length > MODELS_METADATA_MAX_RECORDS) refuse('excessive_records');
++      rows = body.data;
++      if ((own(body, 'has_more') && body.has_more !== false) ||
++          (own(body, 'next') && body.next !== null) || (own(body, 'next_page') && body.next_page !== null) ||
++          (own(body, 'next_cursor') && body.next_cursor !== null)) reasons.push('truncated_capture');
++    }
++  } else rows = [v.response.body];
++  let duplicateCount = 0;
++  for (const row of rows) {
++    if (!object(row) || row.object !== 'model' || typeof row.id !== 'string' || !ID.test(row.id)) {
++      reasons.push('invalid_model_record');
++      continue;
++    }
++    if (scope.kind === 'retrieve' && row.id !== scope.model) reasons.push('retrieve_model_mismatch');
++    const field: Field = !own(row, 'shutdown_date') ? { state: 'not_reported', shutdownDate: null }
++      : row.shutdown_date === null ? { state: 'no_announced_date', shutdownDate: null }
++      : calendarDate(row.shutdown_date) ? { state: 'scheduled', shutdownDate: row.shutdown_date }
++      : { state: 'invalid', shutdownDate: null };
++    if (field.state === 'invalid') reasons.push('invalid_shutdown_date');
++    const previous = records.get(row.id);
++    if (previous) {
++      duplicateCount++;
++      if (previous.state !== field.state || previous.shutdownDate !== field.shutdownDate) reasons.push('duplicate_conflicting_model');
++    } else records.set(row.id, field);
++  }
++  return {
++    digest: hash(raw), provider: v.provider, surface: v.surface, sourceUrl: expectedUrl,
++    retrievedAt: v.retrievedAt as string, scope, responseStatus: v.response.status as number,
++    recordCount: rows.length, duplicateCount, records, reasons: [...new Set(reasons)],
++  };
++}
++
++interface ArtifactSwap {
++  provider: string; from: string; to: string;
++  evidence: { shutdownDate: unknown; sourceUrl: string | null; entryId: string | null; lifecycle: string | null; replacementVerdict: string | null };
++}
++export interface RetirementReconciliation {
++  provider: string; from: string; to: string;
++  artifact: ArtifactSwap['evidence'] & { dateState: 'scheduled' | 'undated' | 'invalid' };
++  metadata: { state: Field['state'] | 'missing_model' | 'not_in_scope' | 'unusable'; shutdownDate: string | null };
++  reconciliation: 'corroborated' | 'metadata_schedule' | 'artifact_only' | 'no_announced_date' | 'unknown' | 'conflict';
++  reasons: string[];
++  effectiveSchedule: { source: 'corroborated' | 'metadata' | 'artifact' | 'none'; shutdownDate: string | null };
++}
++export interface ModelRetirementReport {
++  schema: 'mendr-model-retirement/v1';
++  evaluatedAt: string;
++  evaluationTimeSource: EvaluationTimeSource;
++  capture: Omit<ModelsCapture, 'records'> & {
++    authentication: 'caller_supplied_unverified'; ageHours: number; maxAgeHours: number;
++    freshness: 'fresh' | 'stale' | 'future';
++  };
++  artifact: { digest: string; generatedAt: string | null; ageDays: number | null; registry: unknown };
++  swaps: RetirementReconciliation[];
++  limits: string[];
++}
++
++function safeUrl(v: unknown): string | null {
++  if (v === null || v === undefined) return null;
++  if (typeof v !== 'string' || v.length > 2048) return null;
++  try {
++    const u = new URL(v);
++    return u.protocol === 'https:' && !u.username && !u.password && !u.search && !u.hash ? v : null;
++  } catch { return null; }
++}
++function directDocument(v: string | null): boolean {
++  if (v === null) return true;
++  return ['developers.openai.com', 'platform.openai.com', 'openai.com'].includes(new URL(v).hostname);
++}
++function artifactSwaps(v: unknown): { raw: ObjectValue; swaps: ArtifactSwap[] } {
++  if (!object(v) || v.schema !== 'mendr-migration/v1' || !Array.isArray(v.migrations) || v.migrations.length > MODELS_METADATA_MAX_RECORDS) return refuse('invalid_migration');
++  const swaps = v.migrations.map((m): ArtifactSwap => {
++    if (!object(m) || typeof m.provider !== 'string' || !ID.test(m.provider) || typeof m.from !== 'string' || !ID.test(m.from) || typeof m.to !== 'string' || !ID.test(m.to) ||
++        (m.evidence !== undefined && !object(m.evidence))) return refuse('invalid_migration_swap');
++    const e = (m.evidence ?? {}) as ObjectValue;
++    if (e.shutdownDate !== undefined && e.shutdownDate !== null && (typeof e.shutdownDate !== 'string' || e.shutdownDate.length > 40)) return refuse('invalid_artifact_date');
++    if (e.sourceUrl !== undefined && e.sourceUrl !== null && safeUrl(e.sourceUrl) === null) return refuse('invalid_artifact_source');
++    return {
++      provider: m.provider, from: m.from, to: m.to,
++      evidence: {
++        shutdownDate: e.shutdownDate ?? null, sourceUrl: safeUrl(e.sourceUrl),
++        entryId: typeof e.entryId === 'string' && ID.test(e.entryId) ? e.entryId : null,
++        lifecycle: e.lifecycle === 'retired' || e.lifecycle === 'deprecated' ? e.lifecycle : null,
++        replacementVerdict: ['verified', 'unverified', 'quarantined'].includes(e.replacementVerdict as string) ? e.replacementVerdict as string : null,
++      },
++    };
++  });
++  return { raw: v, swaps };
++}
++
++/** Reconcile only supplied facts. Returned swaps feed the existing recoveryPlan, never registry gates. */
++export function reconcileModelsMetadata(
++  capture: ModelsCapture, migration: unknown, now: Date, evaluationTimeSource: EvaluationTimeSource,
++  artifactDigest: string,
++): { report: ModelRetirementReport; recoverySwaps: RecoverySwap[] } {
++  if (!Number.isFinite(now.getTime())) return refuse('invalid_evaluation_time');
++  const { raw, swaps } = artifactSwaps(migration);
++  const ageHours = (now.getTime() - instant(capture.retrievedAt)!.getTime()) / 3_600_000;
++  const freshness = ageHours < 0 ? 'future' : ageHours > MODELS_METADATA_MAX_AGE_HOURS ? 'stale' : 'fresh';
++  const captureReasons = [...capture.reasons, ...(freshness === 'fresh' ? [] : [`${freshness}_capture`])];
++  const artifactDates = new Map<string, Set<unknown>>();
++  for (const m of swaps) {
++    const key = `${m.provider}\0${m.from}`;
++    if (!artifactDates.has(key)) artifactDates.set(key, new Set());
++    artifactDates.get(key)!.add(m.evidence.shutdownDate);
++  }
++  const reconciled = swaps.map((m): RetirementReconciliation => {
++    const dateState = m.evidence.shutdownDate === null ? 'undated' : calendarDate(m.evidence.shutdownDate) ? 'scheduled' : 'invalid';
++    const artifactDate = dateState === 'scheduled' ? m.evidence.shutdownDate as string : null;
++    const r: RetirementReconciliation = {
++      provider: m.provider, from: m.from, to: m.to, artifact: { ...m.evidence, dateState },
++      metadata: { state: 'not_in_scope', shutdownDate: null },
++      reconciliation: artifactDate ? 'artifact_only' : 'unknown', reasons: [],
++      effectiveSchedule: { source: artifactDate ? 'artifact' : 'none', shutdownDate: artifactDate },
++    };
++    const block = (state: 'unknown' | 'conflict', reasons: string[]): RetirementReconciliation => {
++      r.reconciliation = state;
++      r.reasons.push(...reasons);
++      r.effectiveSchedule = { source: 'none', shutdownDate: null };
++      return r;
++    };
++    // Keep the supplied field fact independent of eligibility, including stale captures
++    // and invalid/conflicting artifact dates. Neither grade rewrites the other source.
++    const inScope = m.provider === 'openai' && (capture.scope.kind === 'list' || capture.scope.model === m.from);
++    const field = inScope ? capture.records.get(m.from) : undefined;
++    if (inScope) r.metadata = field ? { ...field } : {
++      state: capture.responseStatus === 200 ? 'missing_model' : 'unusable', shutdownDate: null,
++    };
++    if (dateState === 'invalid') return block('unknown', ['invalid_artifact_date']);
++    if (artifactDates.get(`${m.provider}\0${m.from}`)!.size > 1) return block('conflict', ['conflicting_artifact_dates']);
++    // Metadata for one provider/retrieved model cannot change other swaps' artifact schedules.
++    if (!inScope) {
++      r.reasons.push(m.provider !== 'openai' ? 'unsupported_migration_provider' : 'outside_retrieve_scope');
++      return r;
++    }
++    if (captureReasons.length) {
++      return block(captureReasons.includes('duplicate_conflicting_model') ? 'conflict' : 'unknown', captureReasons);
++    }
++    if (/^(?:ft:|ft-)/.test(m.from) || m.from.includes(':')) return block('unknown', ['unsupported_fine_tune']);
++    if (!directDocument(m.evidence.sourceUrl)) return block('unknown', ['ambiguous_artifact_surface']);
++    if (!field) { r.reasons.push('model_missing_in_capture_scope'); return r; }
++    if (field.state === 'not_reported') { r.reasons.push('shutdown_field_not_reported'); return r; }
++    if (field.state === 'no_announced_date') {
++      if (artifactDate) return block('conflict', ['null_conflicts_with_artifact_date']);
++      r.reconciliation = 'no_announced_date';
++      r.reasons.push('no_announced_date_at_capture');
++      return r;
++    }
++    if (field.state !== 'scheduled') return block('unknown', ['invalid_shutdown_date']);
++    if (artifactDate && artifactDate !== field.shutdownDate) return block('conflict', ['different_shutdown_dates']);
++    r.reconciliation = artifactDate ? 'corroborated' : 'metadata_schedule';
++    r.effectiveSchedule = { source: artifactDate ? 'corroborated' : 'metadata', shutdownDate: field.shutdownDate };
++    r.reasons.push(artifactDate ? 'same_shutdown_date' : 'fresh_exact_metadata_schedule');
++    return r;
++  });
++  const { records: _records, ...provenance } = capture;
++  const generatedAt = instant(raw.generatedAt)?.toISOString() ?? null;
++  // Preserve the artifact's registry facts without treating capture age as registry age.
++  const reg = raw.registry;
++  const registry = object(reg) ? Object.fromEntries(
++    ['source', 'version', 'publishedAt', 'ageDays', 'maxAgeDays', 'freshness']
++      .filter((k) => ['string', 'number'].includes(typeof reg[k]) || reg[k] === null)
++      .map((k) => [k, reg[k]]),
++  ) : null;
++  return {
++    report: {
++      schema: 'mendr-model-retirement/v1', evaluatedAt: now.toISOString(), evaluationTimeSource,
++      capture: { ...provenance, authentication: 'caller_supplied_unverified', ageHours, maxAgeHours: MODELS_METADATA_MAX_AGE_HOURS, freshness },
++      artifact: { digest: artifactDigest, generatedAt, ageDays: generatedAt ? (now.getTime() - Date.parse(generatedAt)) / DAY : null, registry },
++      swaps: reconciled,
++      limits: [
++        'Caller-supplied capture; its official URL, digest and timestamp do not authenticate its contents.',
++        'Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.',
++        'A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.',
++        'Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.',
++        'Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.',
++        'No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata.',
++      ],
++    },
++    recoverySwaps: reconciled.map((r) => ({ from: r.from, to: r.to, shutdownDate: r.effectiveSchedule.shutdownDate })),
++  };
++}
++
++export function renderModelsMetadata(report: ModelRetirementReport): string[] {
++  return [
++    '', `Models metadata evidence (${report.capture.authentication}; ${report.capture.freshness}, max ${report.capture.maxAgeHours}h):`,
++    `  ${report.capture.sourceUrl} retrieved ${report.capture.retrievedAt}; ${report.capture.digest}`,
++    `  evaluated ${report.evaluatedAt} (${report.evaluationTimeSource}); capture age ${report.capture.ageHours}h`,
++    `  migration ${report.artifact.digest}; generated ${report.artifact.generatedAt ?? 'unknown'}; registry facts retained in JSON`,
++    ...report.swaps.map((r) => `  ${r.provider}:${r.from}: ${r.metadata.state} → ${r.reconciliation}; artifact ${r.artifact.shutdownDate ?? 'undated'}, metadata ${r.metadata.shutdownDate ?? 'undated'}; recovery schedule ${r.effectiveSchedule.shutdownDate ?? 'unknown'} (${r.effectiveSchedule.source}); ${r.reasons.join(', ')}`),
++    ...report.limits.map((l) => `  note: ${l}`),
++  ];
++}

@@ -1,0 +1,27 @@
+{
+  "name": "shipped-consumer",
+  "command": [
+    "node",
+    "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4904/scripts/consumer.mjs",
+    "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "/home/ubuntu/ae14-work/root4904-mendr-metadata-base-20261023",
+    "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4904/receipts/CONSUMER.json"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+  "startedAt": "2026-10-23T15:02:07.586450+00:00",
+  "elapsedSeconds": 7.772,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 715676,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 439559,
+  "stopReason": null,
+  "survivingOwnedPids": [],
+  "logBytesBeforeBounding": 76,
+  "survivingOwnedProcesses": [],
+  "outputSha256": "5080948bf3ae2a502a49c50350548801c9ba43fc3f83c1ab68ba39a7583c25fa",
+  "reportArtifact": null
+}

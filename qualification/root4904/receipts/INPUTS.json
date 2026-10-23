@@ -1,0 +1,58 @@
+{
+  "schema": "pilot.native-inputs.v1",
+  "binding": "0e74ba49e8668c7fd26cb44400bb0eda7f04a914f9bfd882092ecdf38947b09e",
+  "directory": "/home/ubuntu/root-sol-window100337/root4910-mendr-upstream-packaging-20261023/inputs",
+  "product": {
+    "repository": "https://github.com/epistemedeus/mendr.git",
+    "commit": "6e2a0c8cab5bb94817173fff43dbf67a1f834c61"
+  },
+  "operating": {
+    "repository": "https://github.com/epistemedeus/pilot.git",
+    "commit": "e9c0fa7ad473a06501f8797815e5e345497a1623",
+    "account": "epistemedeus"
+  },
+  "assignment": {
+    "repository": "https://github.com/epistemedeus/pilot.git",
+    "commit": "e9c0fa7ad473a06501f8797815e5e345497a1623",
+    "account": "epistemedeus"
+  },
+  "members": [
+    {
+      "role": "instructions",
+      "path": "AGENTS.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "e9c0fa7ad473a06501f8797815e5e345497a1623",
+      "blob": "1948fb788970e41ca2524cb7f743e58241ba04c5",
+      "bytes": 33312,
+      "sha256": "c2dc6304ed19e7ec9d3370353408667ebb61355b0c54b8f750fa4390f59c68a3"
+    },
+    {
+      "role": "state",
+      "path": "overview/STATE.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "e9c0fa7ad473a06501f8797815e5e345497a1623",
+      "blob": "c15367a93a5534f9bd4b74e176f4bf1315332891",
+      "bytes": 34008,
+      "sha256": "c67f1d56297f3c878613115c4de67379d80b3b22102fcee259b7d71fdd3f139c"
+    },
+    {
+      "role": "execution-plan",
+      "path": "overview/MACHINE-COMMERCE-EXECUTION-PLAN.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "e9c0fa7ad473a06501f8797815e5e345497a1623",
+      "blob": "d68d8bf8a2efc9476f34e82b5fcd96851e773948",
+      "bytes": 34445,
+      "sha256": "1e7bd849925d31863d472dab322fac62513e7c03d2216ab68ac37b579cefa04a"
+    },
+    {
+      "role": "assignment",
+      "path": "overview/remote-worker/assignments/ROOT4904-MENDR-METADATA-UPSTREAM-PACKAGING.md",
+      "repository": "https://github.com/epistemedeus/pilot.git",
+      "commit": "e9c0fa7ad473a06501f8797815e5e345497a1623",
+      "blob": "0d27d185b6a062d154be8bab03f79ff7a1dcc18c",
+      "bytes": 4780,
+      "sha256": "49e539969cfdd1b15e8839bd24101071b24fa67d1b02fc53b4f6b777d698ff20"
+    }
+  ],
+  "at": "2026-10-23T14:53:46.607Z"
+}
