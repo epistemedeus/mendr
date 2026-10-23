@@ -1,0 +1,38 @@
+{
+  "schema": "mendr-rollout/v1",
+  "workflow": "Synthetic support",
+  "configured": false,
+  "deployedAt": null,
+  "verdict": "verified",
+  "reason": "200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.",
+  "signals": [
+    {
+      "signal": "errorRate",
+      "state": "ok",
+      "before": 0,
+      "after": 0,
+      "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+    },
+    {
+      "signal": "latencyP95Ms",
+      "state": "ok",
+      "before": 100,
+      "after": 100,
+      "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+    },
+    {
+      "signal": "costPer1k",
+      "state": "ok",
+      "before": 0,
+      "after": 0,
+      "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+    },
+    {
+      "signal": "quality",
+      "state": "ok",
+      "before": "passed",
+      "after": "passed",
+      "detail": "your quality check passed after the deploy (it passed before)"
+    }
+  ]
+}

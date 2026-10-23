@@ -1,0 +1,21 @@
+mendr rollout · Synthetic support
+
+note: "Synthetic support" is not in mendr.config.json, so the default limits were used.
+
+VERIFIED: the feature stayed healthy after the deploy
+  200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.
+
+  ✓ error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)
+  ✓ p95 latency 100 ms → 100 ms (+0%; limit +25%)
+  ✓ cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)
+  ✓ your quality check passed after the deploy (it passed before)
+
+If you act on this (as of 2026-10-23):
+  • A code revert would send calls back to `synthetic-source`, within the announced schedule window until 2026-10-24. Verify current accessibility and workload behavior before relying on it.
+  • Keep `synthetic-target` and fix forward in a new pull request: adjust the prompt or the request's parameters.
+  • Move the affected calls to a different current model. Which one is your decision: it changes cost, latency and answers, so mendr does not choose it.
+  note: Current model accessibility was not observed by this plan; an announced date is schedule evidence only.
+  note: Replacement answer quality, latency and cost are not established by a recovery plan.
+  note: A revert undoes code, not what the feature already did: messages sent and records written stay as they are.
+
+mendr reads the numbers you gave it. It does not deploy, roll back or change anything.

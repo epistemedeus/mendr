@@ -1,0 +1,13 @@
+mendr rollout · Synthetic support
+
+note: "Synthetic support" is not in mendr.config.json, so the default limits were used.
+
+VERIFIED: the feature stayed healthy after the deploy
+  200 calls since the deploy; error rate, p95 latency, cost per 1,000 calls, your quality check stayed inside their limits.
+
+  ✓ error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)
+  ✓ p95 latency 100 ms → 100 ms (+0%; limit +25%)
+  ✓ cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)
+  ✓ your quality check passed after the deploy (it passed before)
+
+mendr reads the numbers you gave it. It does not deploy, roll back or change anything.

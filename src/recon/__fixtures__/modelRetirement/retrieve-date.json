@@ -1,0 +1,8 @@
+{
+  "schema": "mendr-models-metadata/v1",
+  "provider": "openai", "surface": "direct",
+  "sourceUrl": "https://api.openai.com/v1/models/synthetic-source",
+  "retrievedAt": "2026-10-23T12:00:00Z",
+  "scope": { "kind": "retrieve", "model": "synthetic-source" },
+  "response": { "status": 200, "body": { "object": "model", "id": "synthetic-source", "shutdown_date": "2026-10-24" } }
+}

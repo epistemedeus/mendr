@@ -1,0 +1,5 @@
+{
+  "workflow": "Synthetic support",
+  "before": { "calls": 200, "errorRate": 0, "latencyP95Ms": 100, "costPer1k": 0, "quality": "passed" },
+  "after": { "calls": 200, "errorRate": 0, "latencyP95Ms": 100, "costPer1k": 0, "quality": "passed" }
+}

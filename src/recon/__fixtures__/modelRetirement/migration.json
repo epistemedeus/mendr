@@ -1,0 +1,21 @@
+{
+  "schema": "mendr-migration/v1",
+  "generatedBy": "mendr",
+  "repo": "synthetic-offline-fixture",
+  "generatedAt": "2026-10-01T00:00:00Z",
+  "sha": null,
+  "migrated": true,
+  "migrations": [{
+    "provider": "openai", "model": "synthetic-source", "from": "synthetic-source", "to": "synthetic-target",
+    "language": "ts", "sites": 1, "files": ["client.ts"],
+    "evidence": {
+      "entryId": "openai.synthetic-source.retirement-2026-10-24", "lifecycle": "deprecated", "shutdownDate": "2026-10-24",
+      "daysUntil": 23, "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+      "replacementVerdict": "unverified", "excerpts": []
+    }
+  }],
+  "paramTransforms": [], "skipped": [], "changedFiles": ["client.ts"], "diff": "",
+  "verification": { "verdict": "inconclusive", "behavioralTested": false },
+  "prReady": false, "notes": ["Synthetic schedule only; no live request or verified write."],
+  "registry": { "source": "bundled", "version": "synthetic-old", "publishedAt": "2026-10-01T00:00:00Z", "ageDays": 22, "maxAgeDays": 14, "freshness": "stale" }
+}
