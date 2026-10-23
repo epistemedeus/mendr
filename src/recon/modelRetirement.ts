@@ -236,17 +236,21 @@ export function reconcileModelsMetadata(
       r.effectiveSchedule = { source: 'none', shutdownDate: null };
       return r;
     };
+    // Keep the supplied field fact independent of eligibility, including stale captures
+    // and invalid/conflicting artifact dates. Neither grade rewrites the other source.
+    const inScope = m.provider === 'openai' && (capture.scope.kind === 'list' || capture.scope.model === m.from);
+    const field = inScope ? capture.records.get(m.from) : undefined;
+    if (inScope) r.metadata = field ? { ...field } : {
+      state: capture.responseStatus === 200 ? 'missing_model' : 'unusable', shutdownDate: null,
+    };
     if (dateState === 'invalid') return block('unknown', ['invalid_artifact_date']);
     if (artifactDates.get(`${m.provider}\0${m.from}`)!.size > 1) return block('conflict', ['conflicting_artifact_dates']);
     // Metadata for one provider/retrieved model cannot change other swaps' artifact schedules.
-    if (m.provider !== 'openai' || (capture.scope.kind === 'retrieve' && capture.scope.model !== m.from)) {
+    if (!inScope) {
       r.reasons.push(m.provider !== 'openai' ? 'unsupported_migration_provider' : 'outside_retrieve_scope');
       return r;
     }
-    const field = capture.records.get(m.from);
-    r.metadata = field ? { ...field } : { state: 'missing_model', shutdownDate: null };
     if (captureReasons.length) {
-      r.metadata.state = 'unusable';
       return block(captureReasons.includes('duplicate_conflicting_model') ? 'conflict' : 'unknown', captureReasons);
     }
     if (/^(?:ft:|ft-)/.test(m.from) || m.from.includes(':')) return block('unknown', ['unsupported_fine_tune']);
@@ -286,6 +290,7 @@ export function reconcileModelsMetadata(
         'Direct OpenAI schedules for exact IDs only; migration artifacts do not record the serving endpoint. No partner, proxy, alias, snapshot or fine-tune authority is inherited.',
         'A date is a retirement schedule, including dates in the past; endpoint accessibility was not observed. Null, omission and missing models do not prove availability or a safe revert.',
         'Capture freshness is independent of the artifact and registry; artifact-only dates are not freshened.',
+        'Metadata field states retain supplied facts even when unusable; reconciliation and effectiveSchedule determine supported recovery input.',
         'No replacement, workload quality, usage, cost, verification switch, lifecycle or write authority is established by Models metadata.',
       ],
     },

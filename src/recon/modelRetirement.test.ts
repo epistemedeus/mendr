@@ -145,6 +145,25 @@ describe('supplied Models metadata, exact scoped reconciliation', () => {
     expect(first(c).reasons).toContain('invalid_shutdown_date');
     expect(revert(c).available).toBe(false);
   });
+  it.each([
+    ['stale', 'null', 'no_announced_date'], ['stale', 'omitted', 'not_reported'], ['stale', 'missing', 'missing_model'],
+    ['future', 'null', 'no_announced_date'], ['future', 'omitted', 'not_reported'], ['future', 'missing', 'missing_model'],
+  ])('preserves supplied field facts under %s %s capture grading', (grade, kind, state) => {
+    const c = capture(); c.retrievedAt = grade === 'stale' ? '2026-10-21T12:00:00Z' : '2026-10-23T12:00:01Z';
+    if (kind === 'null') c.response.body.data[0].shutdown_date = null;
+    if (kind === 'omitted') delete c.response.body.data[0].shutdown_date;
+    if (kind === 'missing') c.response.body.data = [];
+    expect(first(c)).toMatchObject({ metadata: { state }, reconciliation: 'unknown', effectiveSchedule: { source: 'none', shutdownDate: null } });
+    expect(first(c).reasons).toContain(`${grade}_capture`);
+    expect(revert(c).available).toBe(false);
+  });
+  it('preserves supplied field facts when artifact dates are invalid or conflicting', () => {
+    const m = migration(); m.migrations[0].evidence.shutdownDate = 'not-a-date';
+    expect(first(capture(), m)).toMatchObject({ metadata: { state: 'scheduled', shutdownDate: '2026-10-24' }, reconciliation: 'unknown' });
+    m.migrations[0].evidence.shutdownDate = '2026-10-24'; m.migrations.push(structuredClone(m.migrations[0]));
+    m.migrations[1].evidence.shutdownDate = '2026-10-25';
+    for (const r of receive(capture(), m).report.swaps) expect(r).toMatchObject({ metadata: { state: 'scheduled', shutdownDate: '2026-10-24' }, reconciliation: 'conflict' });
+  });
   it('accepts a real leap date as a schedule', () => {
     const c = capture(); const m = migration(); c.response.body.data = [row('synthetic-source', '2028-02-29')]; m.migrations[0].evidence.shutdownDate = null;
     expect(first(c, m).effectiveSchedule.shutdownDate).toBe('2028-02-29');

@@ -170,6 +170,18 @@ describe('built rollout --models-metadata, no network or input writes', () => {
     expect(r.exitCode).toBe(2); expect(r.stdout).toBe(''); expect(r.stderr).toContain('models metadata:');
     expect(r.stderr).not.toContain('PRIVATE_BODY_MARKER');
   });
+  it('preserves supplied field facts while stale evidence withholds recovery', async () => {
+    for (const [kind, state] of [['null', 'no_announced_date'], ['omitted', 'not_reported'], ['missing', 'missing_model']]) {
+      const capture = fixture('list-date.json'); capture.retrievedAt = '2026-10-21T12:00:00Z';
+      if (kind === 'null') capture.response.body.data[0].shutdown_date = null;
+      if (kind === 'omitted') delete capture.response.body.data[0].shutdown_date;
+      if (kind === 'missing') capture.response.body.data = [];
+      const r = await run({ capture });
+      expect(swap(r)).toMatchObject({ metadata: { state }, reconciliation: 'unknown', effectiveSchedule: { source: 'none', shutdownDate: null } });
+      expect(r.report.modelsMetadata.capture.freshness).toBe('stale');
+      expect(revert(r).available).toBe(false); expect(r.exitCode).toBe(0);
+    }
+  }, 30_000);
   it('refuses malformed UTF-8 migration bytes without replacing them in provenance', async () => {
     const migration = fixture('migration.json'); migration.notes = ['invalid-byte', 'PRIVATE_BODY_MARKER'];
     const rawMigration = Buffer.from(JSON.stringify(migration));
