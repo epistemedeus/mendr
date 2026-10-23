@@ -4442,12 +4442,14 @@ program
         process.exit(2);
       };
       if (opts.modelsMetadata && !opts.migration) fail('--models-metadata requires --migration for exact provider/from-model binding');
-      let migrationBytes: string | undefined;
+      let migrationBytes: Buffer | undefined;
       const readJson = (path: string, what: string): unknown => {
         try {
-          const bytes = readFileSync(path, 'utf8');
+          const bytes = readFileSync(path);
           if (path === opts.migration) migrationBytes = bytes;
-          return JSON.parse(bytes);
+          return JSON.parse(opts.modelsMetadata
+            ? new TextDecoder('utf-8', { fatal: true }).decode(bytes)
+            : bytes.toString('utf8'));
         } catch (err) {
           if (opts.modelsMetadata) return fail('models metadata: could_not_read_input_json');
           return fail(`could not read ${what} ${path}: ${err instanceof Error ? err.message : String(err)}`);

@@ -16,9 +16,9 @@ afterEach(() => { for (const path of created.splice(0)) rmSync(path, { recursive
 function tmp() { const dir = mkdtempSync(join(tmpdir(), 'mendr-models-')); created.push(dir); return dir; }
 const fixtureText = (name: string) => readFileSync(join(QUAL, 'fixtures', name), 'utf8');
 const fixture = (name: string): any => JSON.parse(fixtureText(name));
-const digest = (text: string) => `sha256:${createHash('sha256').update(text).digest('hex')}`;
+const digest = (text: string | Buffer) => `sha256:${createHash('sha256').update(text).digest('hex')}`;
 async function run(options: {
-  capture?: any; rawCapture?: string | Buffer; migration?: any; rawMigration?: string; noMigration?: boolean;
+  capture?: any; rawCapture?: string | Buffer; migration?: any; rawMigration?: string | Buffer; noMigration?: boolean;
   noMetadata?: boolean; noJson?: boolean; extra?: string[]; now?: string; telemetry?: any[];
   numbers?: any; fixedClock?: boolean;
 } = {}) {
@@ -168,6 +168,15 @@ describe('built rollout --models-metadata, no network or input writes', () => {
     if (kind === 'migration') opts.rawMigration = '{"PRIVATE_BODY_MARKER":';
     const r = await run(opts);
     expect(r.exitCode).toBe(2); expect(r.stdout).toBe(''); expect(r.stderr).toContain('models metadata:');
+    expect(r.stderr).not.toContain('PRIVATE_BODY_MARKER');
+  });
+  it('refuses malformed UTF-8 migration bytes without replacing them in provenance', async () => {
+    const migration = fixture('migration.json'); migration.notes = ['invalid-byte', 'PRIVATE_BODY_MARKER'];
+    const rawMigration = Buffer.from(JSON.stringify(migration));
+    rawMigration[rawMigration.indexOf('invalid-byte')] = 0xff;
+    const r = await run({ rawMigration });
+    expect(r.exitCode).toBe(2); expect(r.stdout).toBe('');
+    expect(r.stderr).toContain('could_not_read_input_json');
     expect(r.stderr).not.toContain('PRIVATE_BODY_MARKER');
   });
   it.each([false, true])('refuses malformed migration rows before consuming telemetry=%s', async (fromTelemetry) => {
