@@ -1,0 +1,285 @@
+[
+  {
+    "name": "projection-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "startedAt": "2026-10-23T14:57:59.876319+00:00",
+    "elapsedSeconds": 4.35,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 1021244,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [],
+    "logBytesBeforeBounding": 35,
+    "survivingOwnedProcesses": [],
+    "outputSha256": "6dc7477cb53b4f989c0f19caad60216fdbdacb39ccc3857b3197182f8c95b4d3",
+    "reportArtifact": null
+  },
+  {
+    "name": "focused",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "src/recon/modelRetirement.test.ts",
+      "src/cli.modelRetirement.test.ts",
+      "--maxWorkers=1",
+      "--no-file-parallelism"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "startedAt": "2026-10-23T14:58:34.250000+00:00",
+    "elapsedSeconds": 68.941,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 1412536,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [],
+    "logBytesBeforeBounding": 3385,
+    "survivingOwnedProcesses": [],
+    "outputSha256": "f74fed01353967954db8a4dac590cda2398f1cfa6086e6c9d868185ea7a94295",
+    "reportArtifact": null
+  },
+  {
+    "name": "related",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "src/audit/evaluatedAt.test.ts",
+      "src/assurance",
+      "src/runtime/evidence.test.ts",
+      "src/cli.evidence.test.ts",
+      "src/registry/evidence.test.ts",
+      "src/registry/freshRegistry.test.ts",
+      "--maxWorkers=1",
+      "--no-file-parallelism"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "startedAt": "2026-10-23T15:00:52.532384+00:00",
+    "elapsedSeconds": 8.152,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 1090688,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [
+      441362
+    ],
+    "logBytesBeforeBounding": 1333,
+    "survivingOwnedProcesses": [
+      {
+        "pid": 441362,
+        "state": "Z",
+        "ppid": 439686
+      }
+    ],
+    "outputSha256": "d2194fbbd0eb434ca93cf687a8e0e0da515b12339c9d8805b99762b0211b5855",
+    "reportArtifact": null
+  },
+  {
+    "name": "dependency-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-base-20261023",
+    "startedAt": "2026-10-23T15:01:17.172649+00:00",
+    "elapsedSeconds": 4.386,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 1023128,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [],
+    "logBytesBeforeBounding": 35,
+    "survivingOwnedProcesses": [],
+    "outputSha256": "6dc7477cb53b4f989c0f19caad60216fdbdacb39ccc3857b3197182f8c95b4d3",
+    "reportArtifact": null
+  },
+  {
+    "name": "shipped-consumer",
+    "command": [
+      "node",
+      "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4904/scripts/consumer.mjs",
+      "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+      "/home/ubuntu/ae14-work/root4904-mendr-metadata-base-20261023",
+      "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4904/receipts/CONSUMER.json"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "startedAt": "2026-10-23T15:02:07.586450+00:00",
+    "elapsedSeconds": 7.772,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 715676,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [],
+    "logBytesBeforeBounding": 76,
+    "survivingOwnedProcesses": [],
+    "outputSha256": "5080948bf3ae2a502a49c50350548801c9ba43fc3f83c1ab68ba39a7583c25fa",
+    "reportArtifact": null
+  },
+  {
+    "name": "upstream-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-upstream-20261023",
+    "startedAt": "2026-10-23T15:02:29.618757+00:00",
+    "elapsedSeconds": 4.253,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 1026148,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [],
+    "logBytesBeforeBounding": 35,
+    "survivingOwnedProcesses": [],
+    "outputSha256": "6dc7477cb53b4f989c0f19caad60216fdbdacb39ccc3857b3197182f8c95b4d3",
+    "reportArtifact": null
+  },
+  {
+    "name": "dependency-controls",
+    "command": [
+      "node",
+      "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4904/scripts/dependencies.mjs",
+      "/home/ubuntu/ae14-work/root4904-mendr-metadata-upstream-20261023",
+      "/home/ubuntu/ae14-work/root4904-mendr-metadata-base-20261023",
+      "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023/src/recon/__fixtures__/modelRetirement",
+      "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4904/receipts/DEPENDENCY-CONTROLS.json"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "startedAt": "2026-10-23T15:03:10.160013+00:00",
+    "elapsedSeconds": 1.656,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 705496,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [],
+    "logBytesBeforeBounding": 2475,
+    "survivingOwnedProcesses": [],
+    "outputSha256": "e71fa1d1ede70d977d2cfc694f9354d4c597b77b4f535a9a5e28264628c2c3e5",
+    "reportArtifact": null
+  },
+  {
+    "name": "full-serial",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--maxWorkers=1",
+      "--no-file-parallelism"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "startedAt": "2026-10-23T15:03:48.871271+00:00",
+    "elapsedSeconds": 366.94,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 1424792,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [
+      442599,
+      442632,
+      449177,
+      445260,
+      445314
+    ],
+    "logBytesBeforeBounding": 25465,
+    "survivingOwnedProcesses": [
+      {
+        "pid": 442599,
+        "state": "Z",
+        "ppid": 439686
+      },
+      {
+        "pid": 442632,
+        "state": "Z",
+        "ppid": 439686
+      },
+      {
+        "pid": 449177,
+        "state": "Z",
+        "ppid": 439686
+      },
+      {
+        "pid": 445260,
+        "state": "Z",
+        "ppid": 439686
+      },
+      {
+        "pid": 445314,
+        "state": "Z",
+        "ppid": 439686
+      }
+    ],
+    "outputSha256": "97a4c314c6c326e76a423f55943d9b7eedae0fd2e409b4a0f5ca63bbdbd121b0",
+    "reportArtifact": null
+  },
+  {
+    "name": "network-control",
+    "command": [
+      "node",
+      "/home/ubuntu/ae14-work/root4648-mendr-provider-retirement-metadata-20261023/qualification/root4551/received/scripts/network-guard-control.cjs"
+    ],
+    "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+    "startedAt": "2026-10-23T15:10:30.763889+00:00",
+    "elapsedSeconds": 0.109,
+    "exitCode": 0,
+    "offlinePreload": true,
+    "environment": "allowlisted; no provider or Git credentials inherited",
+    "peakAggregateRssKiB": 527168,
+    "reservationKiB": 2097152,
+    "sampleMs": 100,
+    "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+    "nativeRoot": 439559,
+    "stopReason": null,
+    "survivingOwnedPids": [],
+    "logBytesBeforeBounding": 66,
+    "survivingOwnedProcesses": [],
+    "outputSha256": "3d180d7741b611da4358a4c78d6ade4e41517cdd11c2719e391272b6201f4444",
+    "reportArtifact": null
+  }
+]

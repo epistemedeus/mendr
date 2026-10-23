@@ -17,7 +17,8 @@
   "excludedSafety": {
     "sha": "8382a864fd5ef0334a8a803d52a40559126e3e3b",
     "ref": "codex/root4626-mendr-request-spreads-20261023",
-    "repo": "epistemedeus/mendr"
+    "repo": "epistemedeus/mendr",
+    "tree": "55ede68e2eb0120e7dad853e7a14d9ee8c3a9679"
   },
   "existingProjectionRefs": [],
   "projectionWorktree": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
@@ -93,5 +94,35 @@
     "src/recon/__fixtures__/modelRetirement/retrieve-date.json": "3e6000eb7f5d8b8992a9100ecfb0c72569679c1ae8bbb93c68addfeb0f94d003",
     "src/recon/modelRetirement.test.ts": "fd2adbccee0d6e2f985a3aaaa7783e89a2623876e25f1d70f07cec1c5ef5a1e1",
     "src/recon/modelRetirement.ts": "ab6c0a257842fa28b39f218d32ca2c4e683175ad7aa8a6b41ddc975469dab4dc"
-  }
+  },
+  "scopeLimit": "PR80 scanner/write safety remains a separate existing PR, not a metadata dependency. Original canonical source retains all accepted safety families. This projection does not newly qualify PR80 behavior.",
+  "projectionRemoteVerified": "fe4cf6d6114d206ddf37e28409472388d77cc746",
+  "dependencyRemoteVerified": "e74fa18d16592eb47c6c70920732df2ffc7de717",
+  "checkpointExportCanonicalHead": "1e994b8c41b6999aeea72eb0306596bdff614ae3",
+  "checkpointReceipt": "CHECKPOINT.json",
+  "requiredUntil": "2026-10-23T16:28:41.750Z",
+  "checkpointBy": "2026-10-23T15:04:10.529Z",
+  "originalTree": "93906d64afd416c02c3b94ac8142790f86795b92",
+  "dependencyObjects": [
+    {
+      "head": "10b4ed4b65908bf9cca421174562524902f2c189",
+      "tree": "67173e9dfdc72aeca9331283ad460b95e0986aeb",
+      "parents": [
+        "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c"
+      ],
+      "ref": "codex/root4626-mendr-recovery-20261023"
+    },
+    {
+      "head": "55e4a3499a0330aa8de4e36c9a7659202635af4d",
+      "tree": "c49563242ef84a012711493ed47dc33e092df809",
+      "parents": [
+        "413bdc648d3b45d52ed9a2d5a27146e9685f9d7c"
+      ],
+      "ref": "codex/root4626-mendr-telemetry-20261023"
+    }
+  ],
+  "mergeParents": [
+    "10b4ed4b65908bf9cca421174562524902f2c189",
+    "55e4a3499a0330aa8de4e36c9a7659202635af4d"
+  ]
 }

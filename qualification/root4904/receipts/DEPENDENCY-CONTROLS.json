@@ -1,0 +1,141 @@
+{
+  "rows": [
+    {
+      "label": "upstream-main",
+      "kind": "undated-recovery",
+      "exit": 0,
+      "verdict": "verified",
+      "revertScheduleOption": true,
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "ok",
+          "before": 0,
+          "after": 0,
+          "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "ok",
+          "before": 100,
+          "after": 100,
+          "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "ok",
+          "before": 0,
+          "after": 0,
+          "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+        },
+        {
+          "signal": "quality",
+          "state": "ok",
+          "before": "passed",
+          "after": "passed",
+          "detail": "your quality check passed after the deploy (it passed before)"
+        }
+      ]
+    },
+    {
+      "label": "upstream-main",
+      "kind": "missing-outcome",
+      "exit": 0,
+      "verdict": "verified",
+      "revertScheduleOption": true,
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "ok",
+          "before": 0,
+          "after": 0,
+          "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "not_measured",
+          "detail": "p95 latency was not given for both windows"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "ok",
+          "before": 0,
+          "after": 0,
+          "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+        },
+        {
+          "signal": "quality",
+          "state": "not_measured",
+          "detail": "your quality check was not reported for the time since the deploy"
+        }
+      ]
+    },
+    {
+      "label": "exact-safety-dependencies",
+      "kind": "undated-recovery",
+      "exit": 0,
+      "verdict": "verified",
+      "revertScheduleOption": false,
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "ok",
+          "before": 0,
+          "after": 0,
+          "detail": "error rate 0.00% → 0.00% (+0.00 points; limit +0.50 points)"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "ok",
+          "before": 100,
+          "after": 100,
+          "detail": "p95 latency 100 ms → 100 ms (+0%; limit +25%)"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "ok",
+          "before": 0,
+          "after": 0,
+          "detail": "cost per 1,000 calls 0.00 → 0.00 (no change; limit +50%)"
+        },
+        {
+          "signal": "quality",
+          "state": "ok",
+          "before": "passed",
+          "after": "passed",
+          "detail": "your quality check passed after the deploy (it passed before)"
+        }
+      ]
+    },
+    {
+      "label": "exact-safety-dependencies",
+      "kind": "missing-outcome",
+      "exit": 3,
+      "verdict": "inconclusive",
+      "revertScheduleOption": false,
+      "signals": [
+        {
+          "signal": "errorRate",
+          "state": "not_measured",
+          "detail": "error rate was not given for both windows"
+        },
+        {
+          "signal": "latencyP95Ms",
+          "state": "not_measured",
+          "detail": "p95 latency was not given for both windows"
+        },
+        {
+          "signal": "costPer1k",
+          "state": "not_measured",
+          "detail": "cost per 1,000 calls was not given for both windows"
+        },
+        {
+          "signal": "quality",
+          "state": "not_measured",
+          "detail": "your quality check was not reported for the time since the deploy"
+        }
+      ]
+    }
+  ],
+  "reason": "PR79 prevents unknown schedules from assuring revert; PR81 prevents missing outcomes from manufacturing a healthy measured rollout."
+}

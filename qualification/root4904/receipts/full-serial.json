@@ -1,0 +1,59 @@
+{
+  "name": "full-serial",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "cwd": "/home/ubuntu/ae14-work/root4904-mendr-metadata-projection-20261023",
+  "startedAt": "2026-10-23T15:03:48.871271+00:00",
+  "elapsedSeconds": 366.94,
+  "exitCode": 0,
+  "offlinePreload": true,
+  "environment": "allowlisted; no provider or Git credentials inherited",
+  "peakAggregateRssKiB": 1424792,
+  "reservationKiB": 2097152,
+  "sampleMs": 100,
+  "accounting": "admitted native/supervisor process tree + owned runner/command descendants; 100ms sampled RSS, not cgroup peak",
+  "nativeRoot": 439559,
+  "stopReason": null,
+  "survivingOwnedPids": [
+    442599,
+    442632,
+    449177,
+    445260,
+    445314
+  ],
+  "logBytesBeforeBounding": 25465,
+  "survivingOwnedProcesses": [
+    {
+      "pid": 442599,
+      "state": "Z",
+      "ppid": 439686
+    },
+    {
+      "pid": 442632,
+      "state": "Z",
+      "ppid": 439686
+    },
+    {
+      "pid": 449177,
+      "state": "Z",
+      "ppid": 439686
+    },
+    {
+      "pid": 445260,
+      "state": "Z",
+      "ppid": 439686
+    },
+    {
+      "pid": 445314,
+      "state": "Z",
+      "ppid": 439686
+    }
+  ],
+  "outputSha256": "97a4c314c6c326e76a423f55943d9b7eedae0fd2e409b4a0f5ca63bbdbd121b0",
+  "reportArtifact": null
+}
