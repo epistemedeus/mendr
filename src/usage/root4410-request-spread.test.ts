@@ -10,12 +10,17 @@ import type { LlmRegistry } from '../types.js';
 
 const registry: LlmRegistry = [{ provider: 'openai', kind: 'model_id', deprecated: 'gpt-4-0613', replacement: 'gpt-5.6-sol', verification: autoApplyVerification() }];
 const prefix = 'import OpenAI from "openai"; const client = new OpenAI();\n';
+// ROOT4551 additions below retain the exact received direct-request controls.
 const sources = [
   'export async function ask(options: object) { return client.chat.completions.create({ model: "gpt-4-0613", messages: [], ...options }); }',
   'export async function ask(options: object) { return client.chat.completions.create({ ...options, model: "gpt-4-0613", messages: [] }); }',
   'export async function ask(options: object) { const req = { model: "gpt-4-0613", messages: [], ...options }; return client.chat.completions.create(req); }',
   'const MODEL = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model: MODEL, messages: [], ...options }); }',
   'const model = "gpt-4-0613"; export async function ask(options: object) { return client.chat.completions.create({ model, messages: [], ...options }); }',
+  'export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override ?? { model: "gpt-4-0613", messages: [], ...options }); }',
+  'export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create(override || { ...options, model: "gpt-4-0613", messages: [] }); }',
+  'export async function ask(options: object, useOptions: boolean) { return client.chat.completions.create(useOptions ? { model: "gpt-4-0613", messages: [], ...options } : { model: "gpt-5.6-sol", messages: [] }); }',
+  'export async function ask(options: object, override?: {model: string; messages: unknown[]}) { return client.chat.completions.create((override ?? ({ model: "gpt-4-0613", messages: [], ...options }))); }',
 ];
 describe('ROOT4410 opaque request spread cannot earn automatic migration', () => {
   it.each(sources)('holds model and parameter uncertainty: %s', source => {
@@ -29,14 +34,23 @@ describe('ROOT4410 opaque request spread cannot earn automatic migration', () =>
     const p = new Project({ useInMemoryFileSystem: true });
     p.createSourceFile('src/app.ts', prefix + 'export async function ask() { return client.chat.completions.create({ model: "gpt-4-0613", messages: [] }); }');
     expect(findModelIdLiterals(p, registry)[0].position).toBe('model_arg');
+    for (const request of [
+      'override ?? { model: "gpt-4-0613", messages: [] }',
+      'override || { model: "gpt-4-0613", messages: [] }',
+      'useDefault ? { model: "gpt-4-0613", messages: [] } : {}',
+    ]) {
+      const explicit = new Project({ useInMemoryFileSystem: true });
+      explicit.createSourceFile('src/app.ts', prefix + `export async function ask(override?: object, useDefault = true) { return client.chat.completions.create(${request}); }`);
+      expect(findModelIdLiterals(explicit, registry)[0].position).toBe('model_arg');
+    }
   });
-  it('refuses a real migration write rather than trusting a passing local eval', async () => {
+  it.each([sources[0], ...sources.slice(5)])('refuses a real migration write rather than trusting a passing local eval: %s', async request => {
     const dir = mkdtempSync(join(tmpdir(), 'root4410-spread-'));
     const file = join(dir, 'src/app.ts');
     try {
       mkdirSync(join(dir, 'src'));
       mkdirSync(join(dir, 'node_modules/openai'), { recursive: true });
-      const source = prefix + sources[0];
+      const source = prefix + request;
       writeFileSync(file, source);
       writeFileSync(join(dir, 'package.json'), JSON.stringify({ name: 'synthetic' }));
       writeFileSync(join(dir, 'node_modules/openai/package.json'), JSON.stringify({ name: 'openai', types: 'index.d.ts' }));

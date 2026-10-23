@@ -466,6 +466,22 @@ export type SurfaceClassification =
   | { position: 'usage_unverified'; reason: string }
   | { position: 'data'; purpose: 'not_provider_call'; reason: string };
 
+/** Inspect each possible request value, including fallback and conditional branches. */
+function requestHasSpread(expr: Node): boolean {
+  const value = unwrapValueWrappers(expr);
+  if (Node.isObjectLiteralExpression(value)) return value.getProperties().some(Node.isSpreadAssignment);
+  if (Node.isConditionalExpression(value)) {
+    return requestHasSpread(value.getWhenTrue()) || requestHasSpread(value.getWhenFalse());
+  }
+  if (Node.isBinaryExpression(value)) {
+    const op = value.getOperatorToken().getKind();
+    if (op === SyntaxKind.BarBarToken || op === SyntaxKind.QuestionQuestionToken) {
+      return requestHasSpread(value.getLeft()) || requestHasSpread(value.getRight());
+    }
+  }
+  return false;
+}
+
 /**
  * G1 + G4 for one call: module-level execution and any non-direct surface cap
  * at review; only a resolved first-party client inside a function reaches
@@ -490,10 +506,7 @@ export function classifyCallSurface(call: CallExpression): SurfaceClassification
       reason: `${TS_SURFACE_REASON} (client is ${v.family}, endpoint is ${wanted})`,
     };
   }
-  if (call.getArguments().some((arg) => {
-    const value = unwrapValueWrappers(arg);
-    return Node.isObjectLiteralExpression(value) && value.getProperties().some(Node.isSpreadAssignment);
-  })) {
+  if (call.getArguments().some(requestHasSpread)) {
     return { position: 'surface_capped', reason: TS_REQUEST_SPREAD_REASON };
   }
   return { position: 'model_arg' };
